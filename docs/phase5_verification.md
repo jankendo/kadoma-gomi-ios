@@ -4,14 +4,19 @@
 
 ## 1. 実行したコマンド
 
-作業途中時点:
-
 ```powershell
+git diff --check
 python Scripts\validate_data.py --split-only
 python Scripts\generate_master.py --write
 python Scripts\validate_data.py
+python Scripts\generate_master.py --check
 python Scripts\run_quality_checks.py
 python -m py_compile Scripts\validate_data.py Scripts\generate_master.py Scripts\run_quality_checks.py
+git push origin main
+gh run view 26398859780 --json status,conclusion,displayTitle,url
+gh workflow run source-monitor.yml
+gh api repos/jankendo/kadoma-gomi-ios/actions/runs/26398859780/artifacts
+gh run download 26398859780 -n KadomaGomi-unsigned-ipa -D build\phase5_artifacts
 ```
 
 ## 2. 成功した検証
@@ -29,6 +34,15 @@ python -m py_compile Scripts\validate_data.py Scripts\generate_master.py Scripts
 - 検索スモークテスト
 - 通知プレビュースモークテスト
 - Python構文チェック
+- GitHub Actions Build Unsigned iOS App
+- GitHub Actions Deploy Master JSON to GitHub Pages
+- GitHub Actions Validate Kadoma Data
+- GitHub Actions Source Monitor
+- IPA artifact取得
+- IPA内 `UIUserInterfaceStyle=Light`
+- IPA内 bundled master `2026.04.01-af.4`, items=225, categories=9
+- GitHub Pages remote manifest/master HTTP確認
+- remote manifest SHA一致
 
 ## 3. 警告
 
@@ -43,14 +57,31 @@ python -m py_compile Scripts\validate_data.py Scripts\generate_master.py Scripts
 - VoiceOver実走査は未確認
 - Dynamic Type最大の実機確認は未実施
 
-## 5. 後続検証予定
+## 5. GitHub Actions結果
 
-- GitHub Actionsでunsigned IPAビルド
-- Pages deploy
-- Source Monitor
-- IPA artifact確認
-- remote manifest/master HTTP確認
+- Build Unsigned iOS App: success, run `26398859780`
+- Deploy Master JSON to GitHub Pages: success, run `26398859779`
+- Validate Kadoma Data: success, run `26398859713`
+- Source Monitor: success, run `26398963248`
+
+IPA artifact: `KadomaGomi-unsigned-ipa`
+
+IPA SHA-256:
+
+```text
+d2131c42d88ba98b3aa63934bb39954c9874e148170a700ee39f52d686fb0df2
+```
+
+Remote master:
+
+```text
+version=2026.04.01-af.4
+items=225
+categories=9
+sha_match=True
+sha=a87a5875938479b48019bbd07ef0e8cf69ff367486623cc91dfa9c282ac7c332
+```
 
 ## 6. ビルド可否
 
-このファイル作成時点では、ローカルWindows環境では直接ビルド不可。GitHub Actionsで最終確認する。
+ローカルWindows環境では `xcodebuild` は実行不可。GitHub Actions macOS runnerでunsigned IPAビルド成功を確認した。
