@@ -1,0 +1,119 @@
+[
+  {
+    "id": "burnable",
+    "name": "普通ごみ",
+    "shortName": "普通",
+    "symbolName": "trash.fill",
+    "colorHex": "#D94862",
+    "disposalRule": "45L以下の無色透明または白色半透明袋。生ごみは水分を切る。",
+    "notes": [
+      "朝9時まで。生ごみは水分をよく切ってください。"
+    ],
+    "defaultPreviousNightNotification": true,
+    "defaultMorningNotification": true
+  },
+  {
+    "id": "plastic_container",
+    "name": "プラスチック製容器包装",
+    "shortName": "プラ",
+    "symbolName": "shippingbox.fill",
+    "colorHex": "#4B5563",
+    "disposalRule": "中身を出して軽く水洗い。二重袋にしない。",
+    "notes": [
+      "軽く水洗いし、小袋を大袋に入れる二重袋は避けてください。"
+    ],
+    "defaultPreviousNightNotification": true,
+    "defaultMorningNotification": false
+  },
+  {
+    "id": "bottles_cans",
+    "name": "びん・缶類",
+    "shortName": "びん缶",
+    "symbolName": "wineglass.fill",
+    "colorHex": "#2E8B57",
+    "disposalRule": "中身を出して軽く水洗い。スプレー缶は使い切りキケン表示。",
+    "notes": [
+      "スプレー缶は使い切り、袋を分けてキケン表示してください。"
+    ],
+    "defaultPreviousNightNotification": true,
+    "defaultMorningNotification": false
+  },
+  {
+    "id": "paper_cloth",
+    "name": "古紙・古布",
+    "shortName": "古紙",
+    "symbolName": "newspaper.fill",
+    "colorHex": "#9A6A32",
+    "disposalRule": "古紙は種類ごとに十字にしばる。古布は45L以下の袋。",
+    "notes": [
+      "古紙は片手で持てる大きさ・重さにして十字にしばってください。"
+    ],
+    "defaultPreviousNightNotification": true,
+    "defaultMorningNotification": false
+  },
+  {
+    "id": "small_items",
+    "name": "小型ごみ",
+    "shortName": "小型",
+    "symbolName": "wrench.and.screwdriver.fill",
+    "colorHex": "#2563A8",
+    "disposalRule": "30cm以下の金物・陶磁器・ガラスなど。危険物は包装してキケン表示。",
+    "notes": [
+      "蛍光管・電球などは新聞紙などで包装し、キケン表示してください。"
+    ],
+    "defaultPreviousNightNotification": true,
+    "defaultMorningNotification": false
+  },
+  {
+    "id": "pet_bottle",
+    "name": "ペットボトル",
+    "shortName": "PET",
+    "symbolName": "waterbottle.fill",
+    "colorHex": "#1BA7C9",
+    "disposalRule": "中身を出して軽く水洗い。ふたとラベルを外す。",
+    "notes": [
+      "キャップ・ラベルを外し、中を軽く水洗いしてください。"
+    ],
+    "defaultPreviousNightNotification": true,
+    "defaultMorningNotification": false
+  },
+  {
+    "id": "bulky",
+    "name": "粗大ごみ",
+    "shortName": "粗大",
+    "symbolName": "sofa.fill",
+    "colorHex": "#E8791A",
+    "disposalRule": "30cmを超える耐久消費財など。電話予約と処理券が必要。",
+    "notes": [
+      "通常通知はしません。電話予約、申込期限、処理券を確認してください。"
+    ],
+    "defaultPreviousNightNotification": false,
+    "defaultMorningNotification": false
+  },
+  {
+    "id": "recycle_law",
+    "name": "市で収集不可",
+    "shortName": "不可",
+    "symbolName": "xmark.octagon.fill",
+    "colorHex": "#6B7280",
+    "disposalRule": "家電リサイクル対象品などは市の通常収集不可。販売店や指定方法を確認。",
+    "notes": [
+      "迷う場合は公式情報を確認してください。"
+    ],
+    "defaultPreviousNightNotification": false,
+    "defaultMorningNotification": false
+  },
+  {
+    "id": "hazardous_note",
+    "name": "注意品目",
+    "shortName": "注意",
+    "symbolName": "exclamationmark.triangle.fill",
+    "colorHex": "#B45309",
+    "disposalRule": "発火・破裂・飛散に注意。品目別の注意に従う。",
+    "notes": [
+      "電池、ライター、スプレー缶、蛍光管などは表示や包装が必要です。"
+    ],
+    "defaultPreviousNightNotification": false,
+    "defaultMorningNotification": false
+  }
+]

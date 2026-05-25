@@ -42,5 +42,13 @@ enum KadomaDateFormatter {
         formatter.dateFormat = "yyyy年M月"
         return formatter
     }()
-}
 
+    static let timestamp: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.calendar = .kadoma
+        formatter.locale = Locale(identifier: "ja_JP")
+        formatter.timeZone = Calendar.kadoma.timeZone
+        formatter.dateFormat = "yyyy-MM-dd HH:mm"
+        return formatter
+    }()
+}

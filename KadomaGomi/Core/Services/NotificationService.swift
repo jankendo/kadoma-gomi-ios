@@ -15,6 +15,9 @@ struct NotificationService {
             guard event.categoryId != "bulky", let category = categories.first(where: { $0.id == event.categoryId }) else {
                 continue
             }
+            guard settings.notificationEnabled(for: event.categoryId) else {
+                continue
+            }
 
             if settings.previousNightNotificationEnabled && category.defaultPreviousNightNotification {
                 try await addNotification(
@@ -68,4 +71,3 @@ struct NotificationService {
         return prefix
     }
 }
-

@@ -64,6 +64,27 @@ final class MasterStore: ObservableObject {
         return true
     }
 
+    func applyDefaultDistrictPreset() {
+        settings.addressText = "大倉町1-20"
+        settings.areaId = "A"
+        saveSettings()
+    }
+
+    func markOnboardingCompleted() {
+        settings.hasCompletedOnboarding = true
+        saveSettings()
+    }
+
+    func resetOnboarding() {
+        settings.hasCompletedOnboarding = false
+        saveSettings()
+    }
+
+    func setCategoryNotificationEnabled(_ enabled: Bool, categoryId: String) {
+        settings.categoryNotificationOverrides[categoryId] = enabled
+        saveSettings()
+    }
+
     func saveSettings() {
         guard let data = try? JSONEncoder().encode(settings) else { return }
         UserDefaults.standard.set(data, forKey: Self.settingsKey)
@@ -78,16 +99,22 @@ final class MasterStore: ObservableObject {
         defer { isSyncing = false }
         do {
             let result = try await MasterSyncService().fetchRemoteMaster(manifestURL: manifestURL, currentVersion: master.version)
+            settings.lastMasterCheckAt = KadomaDateFormatter.timestamp.string(from: .now)
             switch result {
             case .upToDate(let message):
                 syncMessage = message
+                saveSettings()
             case .updated(let remoteMaster, let message):
                 master = remoteMaster
                 cacheMaster(remoteMaster)
+                settings.lastSuccessfulMasterRefreshAt = KadomaDateFormatter.timestamp.string(from: .now)
+                saveSettings()
                 syncMessage = message
                 await rescheduleNotifications()
             }
         } catch {
+            settings.lastMasterCheckAt = KadomaDateFormatter.timestamp.string(from: .now)
+            saveSettings()
             syncMessage = "更新確認に失敗しました: \(error.localizedDescription)"
         }
     }

@@ -1,0 +1,1363 @@
+[
+  {
+    "id": "item-001",
+    "names": [
+      "生ごみ",
+      "台所ごみ"
+    ],
+    "categoryId": "burnable",
+    "keywords": [
+      "食品くず",
+      "料理くず"
+    ],
+    "notes": "水分をよく切って普通ごみへ。",
+    "source": "official-common",
+    "confidence": 0.95
+  },
+  {
+    "id": "item-002",
+    "names": [
+      "紙くず",
+      "汚れた紙"
+    ],
+    "categoryId": "burnable",
+    "keywords": [
+      "紙"
+    ],
+    "notes": "汚損している紙は普通ごみへ。",
+    "source": "official-common",
+    "confidence": 0.9
+  },
+  {
+    "id": "item-003",
+    "names": [
+      "紙おむつ"
+    ],
+    "categoryId": "burnable",
+    "keywords": [
+      "おむつ"
+    ],
+    "notes": "汚物を取り除いて普通ごみへ。",
+    "source": "official-common",
+    "confidence": 0.9
+  },
+  {
+    "id": "item-004",
+    "names": [
+      "葉っぱ",
+      "草",
+      "花"
+    ],
+    "categoryId": "burnable",
+    "keywords": [
+      "庭"
+    ],
+    "notes": "普通ごみへ。",
+    "source": "official-common",
+    "confidence": 0.85
+  },
+  {
+    "id": "item-005",
+    "names": [
+      "靴",
+      "くつ",
+      "履物"
+    ],
+    "categoryId": "burnable",
+    "keywords": [
+      "スニーカー"
+    ],
+    "notes": "普通ごみへ。",
+    "source": "official-common",
+    "confidence": 0.9
+  },
+  {
+    "id": "item-006",
+    "names": [
+      "かばん",
+      "バッグ"
+    ],
+    "categoryId": "burnable",
+    "keywords": [
+      "鞄"
+    ],
+    "notes": "普通ごみへ。金属が多い場合は小型ごみも確認。",
+    "source": "official-common",
+    "confidence": 0.85
+  },
+  {
+    "id": "item-007",
+    "names": [
+      "ぬいぐるみ"
+    ],
+    "categoryId": "burnable",
+    "keywords": [
+      "人形"
+    ],
+    "notes": "普通ごみへ。45L袋に入らない大きさは粗大ごみを確認。",
+    "source": "official-common",
+    "confidence": 0.85
+  },
+  {
+    "id": "item-008",
+    "names": [
+      "猫砂",
+      "可燃性の猫の砂"
+    ],
+    "categoryId": "burnable",
+    "keywords": [
+      "ペット"
+    ],
+    "notes": "可燃性のものは普通ごみへ。",
+    "source": "official-common",
+    "confidence": 0.85
+  },
+  {
+    "id": "item-009",
+    "names": [
+      "貝殻"
+    ],
+    "categoryId": "burnable",
+    "keywords": [
+      "食品"
+    ],
+    "notes": "普通ごみへ。",
+    "source": "official-common",
+    "confidence": 0.8
+  },
+  {
+    "id": "item-010",
+    "names": [
+      "タッパー",
+      "保存容器"
+    ],
+    "categoryId": "burnable",
+    "keywords": [
+      "プラスチック製品"
+    ],
+    "notes": "30cm以下のプラスチック製品は普通ごみへ。",
+    "source": "official-common",
+    "confidence": 0.9
+  },
+  {
+    "id": "item-011",
+    "names": [
+      "洗面器"
+    ],
+    "categoryId": "burnable",
+    "keywords": [
+      "プラスチック製品"
+    ],
+    "notes": "30cm以下なら普通ごみ。超える場合は粗大ごみを確認。",
+    "source": "official-common",
+    "confidence": 0.88
+  },
+  {
+    "id": "item-012",
+    "names": [
+      "植木鉢",
+      "プラスチック植木鉢"
+    ],
+    "categoryId": "burnable",
+    "keywords": [
+      "鉢"
+    ],
+    "notes": "30cm以下のプラスチック製品は普通ごみへ。陶器製は小型ごみ。",
+    "source": "official-common",
+    "confidence": 0.8
+  },
+  {
+    "id": "item-013",
+    "names": [
+      "カセットテープ"
+    ],
+    "categoryId": "burnable",
+    "keywords": [
+      "テープ"
+    ],
+    "notes": "普通ごみへ。",
+    "source": "official-common",
+    "confidence": 0.85
+  },
+  {
+    "id": "item-014",
+    "names": [
+      "ビデオテープ"
+    ],
+    "categoryId": "burnable",
+    "keywords": [
+      "VHS"
+    ],
+    "notes": "普通ごみへ。",
+    "source": "official-common",
+    "confidence": 0.85
+  },
+  {
+    "id": "item-015",
+    "names": [
+      "ハンガー",
+      "プラスチックハンガー"
+    ],
+    "categoryId": "burnable",
+    "keywords": [
+      "衣類"
+    ],
+    "notes": "プラスチック製で30cm以下なら普通ごみ。金属製は小型ごみを確認。",
+    "source": "official-common",
+    "confidence": 0.82
+  },
+  {
+    "id": "item-016",
+    "names": [
+      "バケツ",
+      "プラスチックバケツ"
+    ],
+    "categoryId": "burnable",
+    "keywords": [
+      "容器"
+    ],
+    "notes": "30cm以下なら普通ごみ。",
+    "source": "official-common",
+    "confidence": 0.85
+  },
+  {
+    "id": "item-017",
+    "names": [
+      "DVD",
+      "CD"
+    ],
+    "categoryId": "burnable",
+    "keywords": [
+      "ディスク"
+    ],
+    "notes": "普通ごみへ。",
+    "source": "official-common",
+    "confidence": 0.85
+  },
+  {
+    "id": "item-018",
+    "names": [
+      "まくら",
+      "枕"
+    ],
+    "categoryId": "burnable",
+    "keywords": [
+      "寝具"
+    ],
+    "notes": "45L袋に入れば普通ごみ。入らない場合は粗大ごみを確認。",
+    "source": "official-common",
+    "confidence": 0.8
+  },
+  {
+    "id": "item-019",
+    "names": [
+      "毛布"
+    ],
+    "categoryId": "burnable",
+    "keywords": [
+      "寝具"
+    ],
+    "notes": "45L袋に入れば普通ごみ。大きいものは粗大ごみを確認。",
+    "source": "official-common",
+    "confidence": 0.8
+  },
+  {
+    "id": "item-020",
+    "names": [
+      "食品トレイ"
+    ],
+    "categoryId": "plastic_container",
+    "keywords": [
+      "トレー",
+      "容器包装"
+    ],
+    "notes": "軽く水洗いしてプラスチック製容器包装へ。",
+    "source": "official-common",
+    "confidence": 0.95
+  },
+  {
+    "id": "item-021",
+    "names": [
+      "卵パック"
+    ],
+    "categoryId": "plastic_container",
+    "keywords": [
+      "パック"
+    ],
+    "notes": "プラスチック製容器包装へ。",
+    "source": "official-common",
+    "confidence": 0.95
+  },
+  {
+    "id": "item-022",
+    "names": [
+      "シャンプーボトル",
+      "リンスボトル"
+    ],
+    "categoryId": "plastic_container",
+    "keywords": [
+      "ボトル",
+      "容器包装"
+    ],
+    "notes": "中身を出して軽く水洗いし、ふたを外す。",
+    "source": "official-common",
+    "confidence": 0.95
+  },
+  {
+    "id": "item-023",
+    "names": [
+      "レジ袋"
+    ],
+    "categoryId": "plastic_container",
+    "keywords": [
+      "袋"
+    ],
+    "notes": "プラスチック製容器包装へ。ごみ袋として使う場合は透明・白色半透明の条件を確認。",
+    "source": "official-common",
+    "confidence": 0.85
+  },
+  {
+    "id": "item-024",
+    "names": [
+      "豆腐の容器"
+    ],
+    "categoryId": "plastic_container",
+    "keywords": [
+      "容器",
+      "食品"
+    ],
+    "notes": "軽く水洗いしてプラスチック製容器包装へ。",
+    "source": "official-common",
+    "confidence": 0.9
+  },
+  {
+    "id": "item-025",
+    "names": [
+      "プリンカップ",
+      "カップ類"
+    ],
+    "categoryId": "plastic_container",
+    "keywords": [
+      "容器"
+    ],
+    "notes": "軽く水洗いしてプラスチック製容器包装へ。",
+    "source": "official-common",
+    "confidence": 0.9
+  },
+  {
+    "id": "item-026",
+    "names": [
+      "弁当容器",
+      "コンビニ弁当容器"
+    ],
+    "categoryId": "plastic_container",
+    "keywords": [
+      "食品容器"
+    ],
+    "notes": "軽く水洗い。二重袋にしない。",
+    "source": "official-common",
+    "confidence": 0.9
+  },
+  {
+    "id": "item-027",
+    "names": [
+      "ラップ",
+      "食品ラップ"
+    ],
+    "categoryId": "plastic_container",
+    "keywords": [
+      "容器包装"
+    ],
+    "notes": "汚れを落とせるものはプラスチック製容器包装へ。汚れが強いものは普通ごみを確認。",
+    "source": "official-common",
+    "confidence": 0.75
+  },
+  {
+    "id": "item-028",
+    "names": [
+      "お菓子の袋"
+    ],
+    "categoryId": "plastic_container",
+    "keywords": [
+      "袋",
+      "容器包装"
+    ],
+    "notes": "中身を空にしてプラスチック製容器包装へ。",
+    "source": "manual-initial",
+    "confidence": 0.75
+  },
+  {
+    "id": "item-029",
+    "names": [
+      "ペットボトルのラベル"
+    ],
+    "categoryId": "plastic_container",
+    "keywords": [
+      "ラベル"
+    ],
+    "notes": "外したラベルはプラスチック製容器包装へ。",
+    "source": "manual-initial",
+    "confidence": 0.75
+  },
+  {
+    "id": "item-030",
+    "names": [
+      "ペットボトルのキャップ"
+    ],
+    "categoryId": "pet_bottle",
+    "keywords": [
+      "ふた"
+    ],
+    "notes": "門真市案内では小袋に入れてペットボトルの日に出します。",
+    "source": "official-common",
+    "confidence": 0.85
+  },
+  {
+    "id": "item-031",
+    "names": [
+      "空き缶",
+      "飲料缶"
+    ],
+    "categoryId": "bottles_cans",
+    "keywords": [
+      "缶"
+    ],
+    "notes": "中身を出して軽く水洗い。",
+    "source": "official-common",
+    "confidence": 0.95
+  },
+  {
+    "id": "item-032",
+    "names": [
+      "空きびん",
+      "空き瓶"
+    ],
+    "categoryId": "bottles_cans",
+    "keywords": [
+      "びん"
+    ],
+    "notes": "中身を出して軽く水洗い。",
+    "source": "official-common",
+    "confidence": 0.95
+  },
+  {
+    "id": "item-033",
+    "names": [
+      "スプレー缶"
+    ],
+    "categoryId": "bottles_cans",
+    "keywords": [
+      "危険",
+      "ガス"
+    ],
+    "notes": "使い切った後、袋を分けてキケンの張り紙をする。",
+    "source": "official-common",
+    "confidence": 0.95
+  },
+  {
+    "id": "item-034",
+    "names": [
+      "簡易ガスボンベ",
+      "カセットボンベ"
+    ],
+    "categoryId": "bottles_cans",
+    "keywords": [
+      "危険",
+      "ガス"
+    ],
+    "notes": "使い切った後、袋を分けてキケンの張り紙をする。",
+    "source": "official-common",
+    "confidence": 0.95
+  },
+  {
+    "id": "item-035",
+    "names": [
+      "一斗缶"
+    ],
+    "categoryId": "small_items",
+    "keywords": [
+      "缶",
+      "金物"
+    ],
+    "notes": "小型ごみの日に出してください。",
+    "source": "official-common",
+    "confidence": 0.9
+  },
+  {
+    "id": "item-036",
+    "names": [
+      "新聞",
+      "新聞紙"
+    ],
+    "categoryId": "paper_cloth",
+    "keywords": [
+      "古紙"
+    ],
+    "notes": "種類ごとに十字にしばる。一度に3束まで。",
+    "source": "official-common",
+    "confidence": 0.95
+  },
+  {
+    "id": "item-037",
+    "names": [
+      "段ボール",
+      "ダンボール"
+    ],
+    "categoryId": "paper_cloth",
+    "keywords": [
+      "古紙"
+    ],
+    "notes": "十字にしばって古紙・古布へ。",
+    "source": "official-common",
+    "confidence": 0.95
+  },
+  {
+    "id": "item-038",
+    "names": [
+      "雑誌"
+    ],
+    "categoryId": "paper_cloth",
+    "keywords": [
+      "古紙"
+    ],
+    "notes": "十字にしばって古紙・古布へ。",
+    "source": "official-common",
+    "confidence": 0.95
+  },
+  {
+    "id": "item-039",
+    "names": [
+      "チラシ"
+    ],
+    "categoryId": "paper_cloth",
+    "keywords": [
+      "古紙"
+    ],
+    "notes": "古紙・古布へ。",
+    "source": "official-common",
+    "confidence": 0.9
+  },
+  {
+    "id": "item-040",
+    "names": [
+      "紙袋"
+    ],
+    "categoryId": "paper_cloth",
+    "keywords": [
+      "古紙"
+    ],
+    "notes": "古紙・古布へ。汚れたものは普通ごみ。",
+    "source": "official-common",
+    "confidence": 0.85
+  },
+  {
+    "id": "item-041",
+    "names": [
+      "牛乳パック"
+    ],
+    "categoryId": "paper_cloth",
+    "keywords": [
+      "紙パック"
+    ],
+    "notes": "古紙・古布へ。",
+    "source": "official-common",
+    "confidence": 0.85
+  },
+  {
+    "id": "item-042",
+    "names": [
+      "古着",
+      "衣類"
+    ],
+    "categoryId": "paper_cloth",
+    "keywords": [
+      "布"
+    ],
+    "notes": "45L以下の無色透明または白色半透明袋。一度に3袋まで。",
+    "source": "official-common",
+    "confidence": 0.9
+  },
+  {
+    "id": "item-043",
+    "names": [
+      "タオル"
+    ],
+    "categoryId": "paper_cloth",
+    "keywords": [
+      "布"
+    ],
+    "notes": "45L以下の袋で古紙・古布へ。汚損しているものは普通ごみ。",
+    "source": "official-common",
+    "confidence": 0.9
+  },
+  {
+    "id": "item-044",
+    "names": [
+      "フライパン"
+    ],
+    "categoryId": "small_items",
+    "keywords": [
+      "金物",
+      "調理器具"
+    ],
+    "notes": "30cm以下なら小型ごみ。30cm超は粗大ごみの可能性。",
+    "source": "official-common",
+    "confidence": 0.95
+  },
+  {
+    "id": "item-045",
+    "names": [
+      "なべ",
+      "鍋"
+    ],
+    "categoryId": "small_items",
+    "keywords": [
+      "金物",
+      "調理器具"
+    ],
+    "notes": "30cm以下なら小型ごみ。",
+    "source": "official-common",
+    "confidence": 0.92
+  },
+  {
+    "id": "item-046",
+    "names": [
+      "やかん"
+    ],
+    "categoryId": "small_items",
+    "keywords": [
+      "金物"
+    ],
+    "notes": "小型ごみへ。",
+    "source": "official-common",
+    "confidence": 0.9
+  },
+  {
+    "id": "item-047",
+    "names": [
+      "陶磁器",
+      "茶碗",
+      "皿"
+    ],
+    "categoryId": "small_items",
+    "keywords": [
+      "割れ物"
+    ],
+    "notes": "小型ごみへ。割れたものは包んでキケン表示。",
+    "source": "official-common",
+    "confidence": 0.9
+  },
+  {
+    "id": "item-048",
+    "names": [
+      "ガラス"
+    ],
+    "categoryId": "small_items",
+    "keywords": [
+      "割れ物"
+    ],
+    "notes": "小型ごみへ。飛散するものは新聞紙などで包装しキケン表示。",
+    "source": "official-common",
+    "confidence": 0.9
+  },
+  {
+    "id": "item-049",
+    "names": [
+      "蛍光管",
+      "蛍光灯"
+    ],
+    "categoryId": "small_items",
+    "keywords": [
+      "危険",
+      "照明"
+    ],
+    "notes": "新聞紙などで包装し、キケンの張り紙をする。",
+    "source": "official-common",
+    "confidence": 0.95
+  },
+  {
+    "id": "item-050",
+    "names": [
+      "電球"
+    ],
+    "categoryId": "small_items",
+    "keywords": [
+      "照明",
+      "割れ物"
+    ],
+    "notes": "新聞紙などで包装し、キケン表示。",
+    "source": "official-common",
+    "confidence": 0.9
+  },
+  {
+    "id": "item-051",
+    "names": [
+      "電池",
+      "乾電池"
+    ],
+    "categoryId": "small_items",
+    "keywords": [
+      "危険"
+    ],
+    "notes": "小型ごみへ。種類により回収方法が異なる可能性があるため公式確認推奨。",
+    "source": "official-common",
+    "confidence": 0.8
+  },
+  {
+    "id": "item-052",
+    "names": [
+      "ライター"
+    ],
+    "categoryId": "small_items",
+    "keywords": [
+      "危険"
+    ],
+    "notes": "小型ごみへ。中身を使い切ってください。",
+    "source": "official-common",
+    "confidence": 0.85
+  },
+  {
+    "id": "item-053",
+    "names": [
+      "小枝"
+    ],
+    "categoryId": "small_items",
+    "keywords": [
+      "枝"
+    ],
+    "notes": "太さ5cm以下、長さ1m以下に切りそろえて2束まで。",
+    "source": "official-common",
+    "confidence": 0.9
+  },
+  {
+    "id": "item-054",
+    "names": [
+      "ペットボトル"
+    ],
+    "categoryId": "pet_bottle",
+    "keywords": [
+      "PET",
+      "飲料"
+    ],
+    "notes": "中身を出して軽く水洗い。ふたを取り除く。",
+    "source": "official-common",
+    "confidence": 0.95
+  },
+  {
+    "id": "item-055",
+    "names": [
+      "しょうゆのペットボトル"
+    ],
+    "categoryId": "pet_bottle",
+    "keywords": [
+      "PET",
+      "調味料"
+    ],
+    "notes": "リサイクルマークのペットボトルが対象。",
+    "source": "official-common",
+    "confidence": 0.9
+  },
+  {
+    "id": "item-056",
+    "names": [
+      "みりんのペットボトル"
+    ],
+    "categoryId": "pet_bottle",
+    "keywords": [
+      "PET",
+      "調味料"
+    ],
+    "notes": "リサイクルマークのペットボトルが対象。",
+    "source": "official-common",
+    "confidence": 0.85
+  },
+  {
+    "id": "item-057",
+    "names": [
+      "酒類のペットボトル"
+    ],
+    "categoryId": "pet_bottle",
+    "keywords": [
+      "PET"
+    ],
+    "notes": "リサイクルマークのペットボトルが対象。",
+    "source": "official-common",
+    "confidence": 0.85
+  },
+  {
+    "id": "item-058",
+    "names": [
+      "布団",
+      "ふとん"
+    ],
+    "categoryId": "bulky",
+    "keywords": [
+      "寝具"
+    ],
+    "notes": "粗大ごみ。電話予約と処理券を確認。",
+    "source": "manual-initial",
+    "confidence": 0.8
+  },
+  {
+    "id": "item-059",
+    "names": [
+      "ソファ"
+    ],
+    "categoryId": "bulky",
+    "keywords": [
+      "家具"
+    ],
+    "notes": "粗大ごみ。電話予約と処理券が必要。",
+    "source": "manual-initial",
+    "confidence": 0.85
+  },
+  {
+    "id": "item-060",
+    "names": [
+      "家具",
+      "棚",
+      "たんす"
+    ],
+    "categoryId": "bulky",
+    "keywords": [
+      "耐久消費財"
+    ],
+    "notes": "30cmを超えるものは粗大ごみ。",
+    "source": "official-common",
+    "confidence": 0.85
+  },
+  {
+    "id": "item-061",
+    "names": [
+      "机",
+      "テーブル"
+    ],
+    "categoryId": "bulky",
+    "keywords": [
+      "家具"
+    ],
+    "notes": "粗大ごみ。予約してください。",
+    "source": "manual-initial",
+    "confidence": 0.8
+  },
+  {
+    "id": "item-062",
+    "names": [
+      "椅子",
+      "いす"
+    ],
+    "categoryId": "bulky",
+    "keywords": [
+      "家具"
+    ],
+    "notes": "30cmを超えるものは粗大ごみ。小さい金属・プラ製品は素材も確認。",
+    "source": "manual-initial",
+    "confidence": 0.75
+  },
+  {
+    "id": "item-063",
+    "names": [
+      "自転車"
+    ],
+    "categoryId": "bulky",
+    "keywords": [
+      "大型"
+    ],
+    "notes": "粗大ごみの可能性。公式申込時に確認してください。",
+    "source": "manual-initial",
+    "confidence": 0.7
+  },
+  {
+    "id": "item-064",
+    "names": [
+      "マットレス"
+    ],
+    "categoryId": "bulky",
+    "keywords": [
+      "寝具"
+    ],
+    "notes": "粗大ごみ。予約してください。",
+    "source": "manual-initial",
+    "confidence": 0.8
+  },
+  {
+    "id": "item-065",
+    "names": [
+      "カーペット",
+      "じゅうたん"
+    ],
+    "categoryId": "bulky",
+    "keywords": [
+      "敷物"
+    ],
+    "notes": "大きいものは粗大ごみを確認。",
+    "source": "manual-initial",
+    "confidence": 0.7
+  },
+  {
+    "id": "item-066",
+    "names": [
+      "電子レンジ"
+    ],
+    "categoryId": "bulky",
+    "keywords": [
+      "家電"
+    ],
+    "notes": "粗大ごみの可能性。家電リサイクル対象外か確認。",
+    "source": "manual-initial",
+    "confidence": 0.7
+  },
+  {
+    "id": "item-067",
+    "names": [
+      "炊飯器"
+    ],
+    "categoryId": "small_items",
+    "keywords": [
+      "家電"
+    ],
+    "notes": "30cm以下なら小型ごみ、超える場合は粗大ごみを確認。",
+    "source": "manual-initial",
+    "confidence": 0.65
+  },
+  {
+    "id": "item-068",
+    "names": [
+      "ドライヤー"
+    ],
+    "categoryId": "small_items",
+    "keywords": [
+      "家電"
+    ],
+    "notes": "小型ごみの目安。電池内蔵品は公式確認推奨。",
+    "source": "manual-initial",
+    "confidence": 0.65
+  },
+  {
+    "id": "item-069",
+    "names": [
+      "傘"
+    ],
+    "categoryId": "small_items",
+    "keywords": [
+      "金属"
+    ],
+    "notes": "小型ごみの目安。長さが大きい場合は公式確認推奨。",
+    "source": "manual-initial",
+    "confidence": 0.6
+  },
+  {
+    "id": "item-070",
+    "names": [
+      "包丁"
+    ],
+    "categoryId": "small_items",
+    "keywords": [
+      "刃物",
+      "危険"
+    ],
+    "notes": "新聞紙などで包み、キケン表示して小型ごみへ。",
+    "source": "manual-initial",
+    "confidence": 0.7
+  },
+  {
+    "id": "item-071",
+    "names": [
+      "はさみ"
+    ],
+    "categoryId": "small_items",
+    "keywords": [
+      "刃物"
+    ],
+    "notes": "危なくないよう包んで小型ごみへ。",
+    "source": "manual-initial",
+    "confidence": 0.7
+  },
+  {
+    "id": "item-072",
+    "names": [
+      "鏡"
+    ],
+    "categoryId": "small_items",
+    "keywords": [
+      "ガラス"
+    ],
+    "notes": "割れ物として包装しキケン表示。大きいものは粗大ごみを確認。",
+    "source": "manual-initial",
+    "confidence": 0.65
+  },
+  {
+    "id": "item-073",
+    "names": [
+      "植木鉢 陶器",
+      "陶器の植木鉢"
+    ],
+    "categoryId": "small_items",
+    "keywords": [
+      "陶磁器"
+    ],
+    "notes": "陶磁器類として小型ごみへ。",
+    "source": "official-common",
+    "confidence": 0.75
+  },
+  {
+    "id": "item-074",
+    "names": [
+      "テレビ"
+    ],
+    "categoryId": "recycle_law",
+    "keywords": [
+      "家電リサイクル"
+    ],
+    "notes": "家電リサイクル対象。市の通常収集ではなく公式案内を確認。",
+    "source": "manual-initial",
+    "confidence": 0.8
+  },
+  {
+    "id": "item-075",
+    "names": [
+      "冷蔵庫",
+      "冷凍庫"
+    ],
+    "categoryId": "recycle_law",
+    "keywords": [
+      "家電リサイクル"
+    ],
+    "notes": "家電リサイクル対象。販売店などへ確認。",
+    "source": "manual-initial",
+    "confidence": 0.8
+  },
+  {
+    "id": "item-076",
+    "names": [
+      "洗濯機"
+    ],
+    "categoryId": "recycle_law",
+    "keywords": [
+      "家電リサイクル"
+    ],
+    "notes": "家電リサイクル対象。市の通常収集不可。",
+    "source": "manual-initial",
+    "confidence": 0.8
+  },
+  {
+    "id": "item-077",
+    "names": [
+      "エアコン"
+    ],
+    "categoryId": "recycle_law",
+    "keywords": [
+      "家電リサイクル"
+    ],
+    "notes": "家電リサイクル対象。市の通常収集不可。",
+    "source": "manual-initial",
+    "confidence": 0.8
+  },
+  {
+    "id": "item-078",
+    "names": [
+      "パソコン"
+    ],
+    "categoryId": "recycle_law",
+    "keywords": [
+      "PCリサイクル"
+    ],
+    "notes": "メーカー回収などを確認。",
+    "source": "manual-initial",
+    "confidence": 0.7
+  },
+  {
+    "id": "item-079",
+    "names": [
+      "スマートフォン",
+      "携帯電話"
+    ],
+    "categoryId": "hazardous_note",
+    "keywords": [
+      "小型家電",
+      "電池"
+    ],
+    "notes": "電池内蔵品は発火に注意。公式回収方法を確認。",
+    "source": "manual-initial",
+    "confidence": 0.55
+  },
+  {
+    "id": "item-080",
+    "names": [
+      "モバイルバッテリー"
+    ],
+    "categoryId": "hazardous_note",
+    "keywords": [
+      "リチウムイオン",
+      "危険"
+    ],
+    "notes": "発火の危険があります。通常ごみに混ぜず公式回収方法を確認。",
+    "source": "manual-initial",
+    "confidence": 0.55
+  },
+  {
+    "id": "item-081",
+    "names": [
+      "ペンキ"
+    ],
+    "categoryId": "hazardous_note",
+    "keywords": [
+      "塗料"
+    ],
+    "notes": "中身の残りや缶の扱いで異なります。公式確認推奨。",
+    "source": "manual-initial",
+    "confidence": 0.45
+  },
+  {
+    "id": "item-082",
+    "names": [
+      "油",
+      "食用油"
+    ],
+    "categoryId": "burnable",
+    "keywords": [
+      "液体"
+    ],
+    "notes": "紙や布にしみこませるなど、出し方は公式確認推奨。",
+    "source": "manual-initial",
+    "confidence": 0.45
+  },
+  {
+    "id": "item-083",
+    "names": [
+      "発泡スチロール"
+    ],
+    "categoryId": "plastic_container",
+    "keywords": [
+      "容器包装"
+    ],
+    "notes": "容器包装のものは軽く汚れを落としてプラスチック製容器包装へ。製品は普通ごみを確認。",
+    "source": "manual-initial",
+    "confidence": 0.55
+  },
+  {
+    "id": "item-084",
+    "names": [
+      "トイレットペーパーの芯"
+    ],
+    "categoryId": "paper_cloth",
+    "keywords": [
+      "古紙"
+    ],
+    "notes": "汚れていなければ古紙・古布を確認。",
+    "source": "manual-initial",
+    "confidence": 0.55
+  },
+  {
+    "id": "item-085",
+    "names": [
+      "紙コップ"
+    ],
+    "categoryId": "burnable",
+    "keywords": [
+      "紙"
+    ],
+    "notes": "防水加工や汚れがあるものは普通ごみの目安。",
+    "source": "manual-initial",
+    "confidence": 0.5
+  },
+  {
+    "id": "item-086",
+    "names": [
+      "アルミホイル"
+    ],
+    "categoryId": "small_items",
+    "keywords": [
+      "金属"
+    ],
+    "notes": "汚れや大きさにより異なるため公式確認推奨。",
+    "source": "manual-initial",
+    "confidence": 0.45
+  },
+  {
+    "id": "item-087",
+    "names": [
+      "歯ブラシ"
+    ],
+    "categoryId": "burnable",
+    "keywords": [
+      "プラスチック製品"
+    ],
+    "notes": "30cm以下のプラスチック製品として普通ごみの目安。",
+    "source": "manual-initial",
+    "confidence": 0.65
+  },
+  {
+    "id": "item-088",
+    "names": [
+      "おもちゃ",
+      "プラスチックおもちゃ"
+    ],
+    "categoryId": "burnable",
+    "keywords": [
+      "プラスチック製品"
+    ],
+    "notes": "30cm以下なら普通ごみ。電池は外してください。",
+    "source": "manual-initial",
+    "confidence": 0.6
+  },
+  {
+    "id": "item-089",
+    "names": [
+      "金属おもちゃ"
+    ],
+    "categoryId": "small_items",
+    "keywords": [
+      "金属"
+    ],
+    "notes": "金属が多い小型品は小型ごみの目安。",
+    "source": "manual-initial",
+    "confidence": 0.5
+  },
+  {
+    "id": "item-090",
+    "names": [
+      "水筒",
+      "金属水筒"
+    ],
+    "categoryId": "small_items",
+    "keywords": [
+      "金物"
+    ],
+    "notes": "小型ごみの目安。",
+    "source": "manual-initial",
+    "confidence": 0.6
+  },
+  {
+    "id": "item-091",
+    "names": [
+      "紙箱"
+    ],
+    "categoryId": "paper_cloth",
+    "keywords": [
+      "古紙"
+    ],
+    "notes": "汚れていなければ古紙・古布へ。",
+    "source": "manual-initial",
+    "confidence": 0.6
+  },
+  {
+    "id": "item-092",
+    "names": [
+      "ティッシュ箱"
+    ],
+    "categoryId": "paper_cloth",
+    "keywords": [
+      "古紙"
+    ],
+    "notes": "ビニール部分を外して古紙・古布へ。",
+    "source": "manual-initial",
+    "confidence": 0.55
+  },
+  {
+    "id": "item-093",
+    "names": [
+      "ラップの芯"
+    ],
+    "categoryId": "paper_cloth",
+    "keywords": [
+      "古紙"
+    ],
+    "notes": "古紙・古布の目安。",
+    "source": "manual-initial",
+    "confidence": 0.55
+  },
+  {
+    "id": "item-094",
+    "names": [
+      "洗剤ボトル"
+    ],
+    "categoryId": "plastic_container",
+    "keywords": [
+      "容器包装"
+    ],
+    "notes": "中身を出して軽く水洗いし、プラスチック製容器包装へ。",
+    "source": "manual-initial",
+    "confidence": 0.65
+  },
+  {
+    "id": "item-095",
+    "names": [
+      "化粧品びん"
+    ],
+    "categoryId": "bottles_cans",
+    "keywords": [
+      "びん"
+    ],
+    "notes": "中身を出す。飲食料用以外は公式確認推奨。",
+    "source": "manual-initial",
+    "confidence": 0.45
+  },
+  {
+    "id": "item-096",
+    "names": [
+      "電気コード"
+    ],
+    "categoryId": "small_items",
+    "keywords": [
+      "家電",
+      "金属"
+    ],
+    "notes": "小型ごみの目安。",
+    "source": "manual-initial",
+    "confidence": 0.55
+  },
+  {
+    "id": "item-097",
+    "names": [
+      "延長コード"
+    ],
+    "categoryId": "small_items",
+    "keywords": [
+      "家電"
+    ],
+    "notes": "小型ごみの目安。",
+    "source": "manual-initial",
+    "confidence": 0.55
+  },
+  {
+    "id": "item-098",
+    "names": [
+      "プリンター"
+    ],
+    "categoryId": "bulky",
+    "keywords": [
+      "家電"
+    ],
+    "notes": "大きさにより小型ごみまたは粗大ごみ。30cm超は粗大ごみを確認。",
+    "source": "manual-initial",
+    "confidence": 0.5
+  },
+  {
+    "id": "item-099",
+    "names": [
+      "掃除機"
+    ],
+    "categoryId": "bulky",
+    "keywords": [
+      "家電"
+    ],
+    "notes": "30cm超は粗大ごみを確認。",
+    "source": "manual-initial",
+    "confidence": 0.55
+  },
+  {
+    "id": "item-100",
+    "names": [
+      "物干し竿"
+    ],
+    "categoryId": "bulky",
+    "keywords": [
+      "大型",
+      "金属"
+    ],
+    "notes": "粗大ごみの可能性が高い品目です。予約時に確認してください。",
+    "source": "manual-initial",
+    "confidence": 0.55
+  }
+]

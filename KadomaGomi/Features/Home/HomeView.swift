@@ -3,138 +3,220 @@ import SwiftUI
 struct HomeView: View {
     @EnvironmentObject private var store: MasterStore
 
-    private var todayEvents: [CollectionEvent] { store.events(on: .now) }
+    let openSearch: () -> Void
+    let openCalendar: () -> Void
+    let openSettings: () -> Void
+
+    private var todayEvents: [CollectionEvent] {
+        store.events(on: .now)
+    }
+
+    private var tomorrow: Date {
+        Calendar.kadoma.date(byAdding: .day, value: 1, to: .now) ?? .now
+    }
+
     private var tomorrowEvents: [CollectionEvent] {
-        guard let tomorrow = Calendar.kadoma.date(byAdding: .day, value: 1, to: .now) else { return [] }
-        return store.events(on: tomorrow)
+        store.events(on: tomorrow)
     }
 
     var body: some View {
         NavigationStack {
-            ScrollView {
-                VStack(alignment: .leading, spacing: 16) {
-                    locationHeader
-                    DaySummaryCard(title: "今日", date: .now, events: todayEvents)
-                    if let tomorrow = Calendar.kadoma.date(byAdding: .day, value: 1, to: .now) {
-                        DaySummaryCard(title: "明日", date: tomorrow, events: tomorrowEvents)
-                    }
-                    upcomingSection
-                    noticeSection
-                }
-                .padding()
+            AppScreen {
+                HomeHeaderView(
+                    address: store.settings.addressText,
+                    areaName: store.currentArea?.name ?? "\(store.settings.areaId)地区",
+                    version: store.master.version,
+                    sourceUpdatedAt: store.master.sourceUpdatedAt
+                )
+
+                CollectionEventCard(
+                    title: "今日出せるごみ",
+                    date: .now,
+                    events: todayEvents,
+                    categoryProvider: store.category(for:),
+                    prominence: .primary
+                )
+
+                CollectionEventCard(
+                    title: "明日出すごみ",
+                    date: tomorrow,
+                    events: tomorrowEvents,
+                    categoryProvider: store.category(for:),
+                    prominence: .secondary
+                )
+
+                QuickActionGrid(
+                    openSearch: openSearch,
+                    openCalendar: openCalendar,
+                    openSettings: openSettings
+                )
+
+                UpcomingEventsSection(events: store.nextEvents(limit: 7), categoryProvider: store.category(for:))
+
+                YearEndNoticeSection()
+
+                DataStatusSection(store: store)
             }
-            .background(Color(.systemGroupedBackground))
             .navigationTitle("かどまごみナビ")
-        }
-    }
-
-    private var locationHeader: some View {
-        VStack(alignment: .leading, spacing: 6) {
-            Text("大倉町 / A地区")
-                .font(.title2.bold())
-            Text("収集日の朝9時までに出してください")
-                .font(.subheadline)
-                .foregroundStyle(.secondary)
-        }
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .padding()
-        .background(.background, in: RoundedRectangle(cornerRadius: 8))
-    }
-
-    private var upcomingSection: some View {
-        VStack(alignment: .leading, spacing: 10) {
-            Text("次回")
-                .font(.headline)
-            ForEach(store.nextEvents(limit: 6)) { event in
-                EventRow(event: event)
-            }
-        }
-        .padding()
-        .background(.background, in: RoundedRectangle(cornerRadius: 8))
-    }
-
-    private var noticeSection: some View {
-        VStack(alignment: .leading, spacing: 10) {
-            Label("年末年始は公式情報を確認", systemImage: "exclamationmark.triangle.fill")
-                .font(.headline)
-                .foregroundStyle(.orange)
-            Text("12月・1月は通常ルールから変更される可能性があります。アプリは例外マスタを優先しますが、最終確認は門真市公式ページで行ってください。")
-                .font(.subheadline)
-                .foregroundStyle(.secondary)
-        }
-        .padding()
-        .background(.background, in: RoundedRectangle(cornerRadius: 8))
-    }
-}
-
-private struct DaySummaryCard: View {
-    @EnvironmentObject private var store: MasterStore
-    let title: String
-    let date: Date
-    let events: [CollectionEvent]
-
-    var body: some View {
-        VStack(alignment: .leading, spacing: 12) {
-            HStack {
-                Text(title)
-                    .font(.headline)
-                Text(KadomaDateFormatter.displayDay.string(from: date))
-                    .font(.subheadline)
-                    .foregroundStyle(.secondary)
-                Spacer()
-            }
-
-            if events.isEmpty {
-                Text("出すごみはありません")
-                    .font(.title3.bold())
-                    .foregroundStyle(.secondary)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .padding(.vertical, 10)
-            } else {
-                ForEach(events) { event in
-                    EventRow(event: event)
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button(action: openSettings) {
+                        Image(systemName: AppIcon.settings)
+                    }
+                    .accessibilityLabel("設定を開く")
                 }
             }
         }
-        .padding()
-        .background(.background, in: RoundedRectangle(cornerRadius: 8))
     }
 }
 
-private struct EventRow: View {
-    @EnvironmentObject private var store: MasterStore
-    let event: CollectionEvent
+private struct HomeHeaderView: View {
+    let address: String
+    let areaName: String
+    let version: String
+    let sourceUpdatedAt: String
 
     var body: some View {
-        let category = store.category(for: event.categoryId)
-        HStack(alignment: .top, spacing: 12) {
-            Image(systemName: category?.symbolName ?? "trash.fill")
-                .frame(width: 34, height: 34)
-                .background(Color(hex: category?.colorHex ?? "#49656a").opacity(0.15), in: Circle())
-                .foregroundStyle(Color(hex: category?.colorHex ?? "#49656a"))
-            VStack(alignment: .leading, spacing: 4) {
-                HStack {
-                    Text(category?.name ?? event.categoryId)
-                        .font(.headline)
-                    if event.requiresReservation {
-                        Text("要予約")
-                            .font(.caption.bold())
-                            .padding(.horizontal, 8)
-                            .padding(.vertical, 3)
-                            .background(.orange.opacity(0.15), in: Capsule())
-                            .foregroundStyle(.orange)
+        VStack(alignment: .leading, spacing: AppSpacing.md) {
+            HStack(alignment: .top, spacing: AppSpacing.md) {
+                Image(systemName: AppIcon.district)
+                    .font(.title3.weight(.semibold))
+                    .frame(width: 44, height: 44)
+                    .background(AppColor.appTint.opacity(0.14), in: RoundedRectangle(cornerRadius: AppRadius.md, style: .continuous))
+                    .foregroundStyle(AppColor.appTint)
+                    .accessibilityHidden(true)
+
+                VStack(alignment: .leading, spacing: AppSpacing.xs) {
+                    Text("門真市 \(address)")
+                        .font(AppTypography.cardTitle)
+                        .foregroundStyle(AppColor.text)
+                    Text(areaName)
+                        .font(.title2.weight(.bold))
+                        .foregroundStyle(AppColor.text)
+                    Text("収集日の朝9時までに出してください")
+                        .font(AppTypography.callout)
+                        .foregroundStyle(AppColor.secondaryText)
+                }
+
+                Spacer(minLength: 0)
+            }
+
+            HStack(spacing: AppSpacing.sm) {
+                AppBadge("2026年度", color: AppColor.appTint)
+                AppBadge("公式更新 \(sourceUpdatedAt)", color: AppColor.subTint, systemImage: AppIcon.official)
+                AppBadge(version, color: AppColor.secondaryText)
+            }
+            .accessibilityElement(children: .combine)
+        }
+        .appCard()
+        .accessibilityElement(children: .combine)
+        .accessibilityHint("現在設定されている地区とマスタ更新日です。")
+    }
+}
+
+private struct QuickActionGrid: View {
+    let openSearch: () -> Void
+    let openCalendar: () -> Void
+    let openSettings: () -> Void
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: AppSpacing.md) {
+            AppSectionHeader("すぐ使う", subtitle: "迷ったらここから始められます", systemImage: "bolt.fill")
+            QuickActionCard(
+                title: "ごみ名で検索",
+                subtitle: "品目名から捨て方を確認",
+                systemImage: AppIcon.search,
+                color: AppColor.appTint,
+                action: openSearch
+            )
+            QuickActionCard(
+                title: "月の予定を見る",
+                subtitle: "収集日をカレンダーで確認",
+                systemImage: AppIcon.calendar,
+                color: AppColor.subTint,
+                action: openCalendar
+            )
+            QuickActionCard(
+                title: "通知と地区を確認",
+                subtitle: "A地区・前日通知・マスタ更新",
+                systemImage: AppIcon.notification,
+                color: AppColor.warning,
+                action: openSettings
+            )
+        }
+    }
+}
+
+private struct UpcomingEventsSection: View {
+    let events: [CollectionEvent]
+    let categoryProvider: (String) -> WasteCategory?
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: AppSpacing.md) {
+            AppSectionHeader("次回の予定", subtitle: "直近7件を表示します", systemImage: AppIcon.calendar)
+            if events.isEmpty {
+                AppStateView(
+                    kind: .empty,
+                    title: "直近の予定がありません",
+                    message: "地区設定またはマスタデータを確認してください。"
+                )
+            } else {
+                VStack(spacing: AppSpacing.sm) {
+                    ForEach(events) { event in
+                        CollectionEventRow(event: event, category: categoryProvider(event.categoryId), showsDate: true)
                     }
                 }
-                Text(KadomaDateFormatter.displayDay.string(from: event.date))
-                    .font(.caption)
-                    .foregroundStyle(.secondary)
-                Text(event.note ?? category?.disposalRule ?? "朝9時まで")
-                    .font(.subheadline)
-                    .foregroundStyle(.secondary)
             }
-            Spacer(minLength: 0)
         }
+    }
+}
+
+private struct YearEndNoticeSection: View {
+    var body: some View {
+        VStack(alignment: .leading, spacing: AppSpacing.md) {
+            HStack(alignment: .top, spacing: AppSpacing.md) {
+                Image(systemName: AppIcon.warning)
+                    .font(.headline)
+                    .frame(width: 36, height: 36)
+                    .background(AppColor.warning.opacity(0.14), in: Circle())
+                    .foregroundStyle(AppColor.warning)
+                VStack(alignment: .leading, spacing: AppSpacing.xs) {
+                    Text("12月・1月は公式情報を確認")
+                        .font(AppTypography.cardTitle)
+                    Text("年末年始は通常ルールから変更される可能性があります。アプリは例外マスタを優先しますが、最終確認は門真市公式ページで行ってください。")
+                        .font(AppTypography.callout)
+                        .foregroundStyle(AppColor.secondaryText)
+                        .fixedSize(horizontal: false, vertical: true)
+                }
+            }
+        }
+        .appCard()
         .accessibilityElement(children: .combine)
     }
 }
 
+private struct DataStatusSection: View {
+    @ObservedObject var store: MasterStore
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: AppSpacing.md) {
+            AppSectionHeader("データ更新", subtitle: "公式ページ監視とアプリ内マスタ更新に対応", systemImage: AppIcon.update)
+            if store.isSyncing {
+                AppStateView(kind: .loading, title: "更新を確認中", message: "manifestとmaster JSONを確認しています。")
+            } else if let message = store.syncMessage {
+                AppStateView(kind: message.contains("失敗") ? .error : .success, title: "更新結果", message: message)
+            } else {
+                Text("マスタ: \(store.master.version)\n最終公式更新日: \(store.master.sourceUpdatedAt)")
+                    .font(AppTypography.callout)
+                    .foregroundStyle(AppColor.secondaryText)
+                    .fixedSize(horizontal: false, vertical: true)
+                    .appCard()
+            }
+        }
+    }
+}
+
+#Preview {
+    MainTabView()
+        .environmentObject(MasterStore())
+}

@@ -1,0 +1,13 @@
+[
+  {
+    "id": "A",
+    "name": "A地区",
+    "towns": [
+      {
+        "townName": "大倉町",
+        "areaId": "A",
+        "blockRange": null
+      }
+    ]
+  }
+]

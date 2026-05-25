@@ -1,0 +1,29 @@
+{
+  "notices": [
+    {
+      "id": "year-end-new-year",
+      "title": "年末年始の収集変更に注意",
+      "body": "12月・1月は通常ルールと異なる場合があります。公式ページや広報で最新情報を確認してください。",
+      "monthHints": [
+        12,
+        1
+      ]
+    }
+  ],
+  "exceptions": [
+    {
+      "date": "2026-12-28",
+      "areaId": "A",
+      "categoryId": "plastic_container",
+      "action": "note",
+      "reason": "年末年始は公式ページ・広報で最新の変更有無を確認してください。"
+    },
+    {
+      "date": "2027-01-04",
+      "areaId": "A",
+      "categoryId": "plastic_container",
+      "action": "note",
+      "reason": "年末年始は公式ページ・広報で最新の変更有無を確認してください。"
+    }
+  ]
+}

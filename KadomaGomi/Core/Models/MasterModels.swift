@@ -114,6 +114,7 @@ struct CollectionEvent: Identifiable, Hashable {
 struct UserSettings: Codable, Equatable {
     var addressText: String = "大倉町1-20"
     var areaId: String = "A"
+    var hasCompletedOnboarding: Bool = false
     var previousNightNotificationEnabled: Bool = true
     var morningNotificationEnabled: Bool = true
     var yearEndNoticeEnabled: Bool = true
@@ -121,6 +122,48 @@ struct UserSettings: Codable, Equatable {
     var morningHour: Int = 7
     var morningMinute: Int = 30
     var remoteManifestURL: String = "https://jankendo.github.io/kadoma-gomi-ios/manifest.json"
+    var categoryNotificationOverrides: [String: Bool] = [:]
+    var lastMasterCheckAt: String?
+    var lastSuccessfulMasterRefreshAt: String?
+
+    init() {}
+
+    enum CodingKeys: String, CodingKey {
+        case addressText
+        case areaId
+        case hasCompletedOnboarding
+        case previousNightNotificationEnabled
+        case morningNotificationEnabled
+        case yearEndNoticeEnabled
+        case previousNightHour
+        case morningHour
+        case morningMinute
+        case remoteManifestURL
+        case categoryNotificationOverrides
+        case lastMasterCheckAt
+        case lastSuccessfulMasterRefreshAt
+    }
+
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        addressText = try container.decodeIfPresent(String.self, forKey: .addressText) ?? "大倉町1-20"
+        areaId = try container.decodeIfPresent(String.self, forKey: .areaId) ?? "A"
+        hasCompletedOnboarding = try container.decodeIfPresent(Bool.self, forKey: .hasCompletedOnboarding) ?? false
+        previousNightNotificationEnabled = try container.decodeIfPresent(Bool.self, forKey: .previousNightNotificationEnabled) ?? true
+        morningNotificationEnabled = try container.decodeIfPresent(Bool.self, forKey: .morningNotificationEnabled) ?? true
+        yearEndNoticeEnabled = try container.decodeIfPresent(Bool.self, forKey: .yearEndNoticeEnabled) ?? true
+        previousNightHour = try container.decodeIfPresent(Int.self, forKey: .previousNightHour) ?? 20
+        morningHour = try container.decodeIfPresent(Int.self, forKey: .morningHour) ?? 7
+        morningMinute = try container.decodeIfPresent(Int.self, forKey: .morningMinute) ?? 30
+        remoteManifestURL = try container.decodeIfPresent(String.self, forKey: .remoteManifestURL) ?? "https://jankendo.github.io/kadoma-gomi-ios/manifest.json"
+        categoryNotificationOverrides = try container.decodeIfPresent([String: Bool].self, forKey: .categoryNotificationOverrides) ?? [:]
+        lastMasterCheckAt = try container.decodeIfPresent(String.self, forKey: .lastMasterCheckAt)
+        lastSuccessfulMasterRefreshAt = try container.decodeIfPresent(String.self, forKey: .lastSuccessfulMasterRefreshAt)
+    }
+
+    func notificationEnabled(for categoryId: String) -> Bool {
+        categoryNotificationOverrides[categoryId] ?? true
+    }
 }
 
 struct MasterManifest: Codable {
@@ -134,4 +177,3 @@ struct MasterManifest: Codable {
     let requiresReview: Bool
     let message: String
 }
-
