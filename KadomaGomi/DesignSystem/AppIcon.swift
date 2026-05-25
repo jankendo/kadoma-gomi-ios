@@ -25,4 +25,12 @@ enum AppIcon {
     static let celebration = "party.popper.fill"
     static let shield = "checkmark.shield.fill"
     static let officialCheck = "doc.text.magnifyingglass"
+    static let guide = "book.fill"
+    static let steps = "checklist"
+    static let examples = "square.grid.2x2.fill"
+    static let rinse = "drop.fill"
+    static let remove = "xmark.circle.fill"
+    static let bundle = "link"
+    static let reserve = "phone.fill"
+    static let separate = "arrow.triangle.2.circlepath"
 }

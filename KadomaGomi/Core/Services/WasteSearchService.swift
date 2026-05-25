@@ -47,6 +47,10 @@ struct WasteSearchService {
             totalScore += scoreText(text: category.name, variants: variants, exact: 70, contains: 45, reverseContains: 18)
             totalScore += scoreText(text: category.shortName, variants: variants, exact: 80, contains: 40, reverseContains: 18)
             totalScore += scoreText(text: category.disposalRule, variants: variants, exact: 0, contains: 6, reverseContains: 0)
+            totalScore += scoreText(text: category.guideSummary, variants: variants, exact: 0, contains: 8, reverseContains: 0)
+            for example in category.guideExamples {
+                totalScore += scoreText(text: example, variants: variants, exact: 20, contains: 10, reverseContains: 6)
+            }
         }
         if query == normalize("プラ") || query == normalize("プラスチック") {
             if item.categoryId == "plastic_container" {

@@ -137,3 +137,37 @@ Runtime互換:
 ## 11. Phase 4追記
 
 第4フェーズではデータ構造を変更していない。`master version 2026.04.01-af.3`、A-F地区、225品目、Dec/Jan `needs_review` ルール、manifest/SHA生成を維持し、UI層のみをライトモード専用デザインへ更新した。
+## Phase 5: 分別方法ガイド拡張
+
+2026-05-25に、門真市公式「ごみの出し方・分け方」と共通PDFを根拠に、カテゴリ/品目の説明力を強化した。
+
+### カテゴリ追加フィールド
+
+- `description`
+- `disposalSummary`
+- `disposalSteps`
+- `warnings`
+- `examples`
+- `collectionMethod`
+- `requiresReservation`
+- `requiresOfficialCheck`
+- `sourceUrl`
+- `sourceTitle`
+- `confidenceStatus`
+- `updatedAt`
+
+### 品目追加フィールド
+
+- `subcategoryName`
+- `disposalSteps`
+- `preparationBeforeDisposal`
+- `sizeRule`
+- `bundleRule`
+- `washingRequired`
+- `removeCapsLabels`
+- `drainContents`
+- `separateMaterials`
+- `requiresReservation`
+- `sourceTitle`
+
+Swift側はoptionalとして読み込むため、古いremote masterとの互換性を維持する。

@@ -186,6 +186,19 @@ def validate_relationships(data: dict[str, Any]) -> tuple[list[str], list[str]]:
     if area_ids != EXPECTED_AREA_IDS:
         errors.append(f"A-F全地区が必要です。現在={sorted(area_ids)}")
 
+    for category in categories:
+        if len(category.get("disposalSteps", [])) < 3:
+            errors.append(f"{category['id']}: カテゴリの出し方ステップは3件以上必要です")
+        if not category.get("examples"):
+            errors.append(f"{category['id']}: 代表品目 examples が必要です")
+        if category.get("confidenceStatus") not in CONFIDENCE_STATUSES:
+            errors.append(f"{category['id']}: confidenceStatus が不正です: {category.get('confidenceStatus')}")
+        if category.get("confidenceStatus") != "confirmed" and not category.get("requiresOfficialCheck", False):
+            errors.append(f"{category['id']}: confirmed以外は requiresOfficialCheck=true が必要です")
+        if not str(category.get("sourceUrl", "")).startswith("https://www.city.kadoma.osaka.jp/"):
+            errors.append(f"{category['id']}: sourceUrl は門真市公式URLが必要です: {category.get('sourceUrl')}")
+        parse_date(category.get("updatedAt", ""), f"{category['id']}.updatedAt", errors)
+
     item_names: dict[str, list[str]] = defaultdict(list)
     alias_index: dict[str, list[str]] = defaultdict(list)
     for item in items:
@@ -203,6 +216,10 @@ def validate_relationships(data: dict[str, Any]) -> tuple[list[str], list[str]]:
             errors.append(f"{item['id']}: confirmed以外は requiresOfficialCheck=true が必要です")
         if item.get("confidenceStatus") == "estimated":
             warnings.append(f"{item['id']}: estimated は確定表示せず公式確認推奨表示が必要です")
+        if len(item.get("disposalSteps", [])) < 2:
+            errors.append(f"{item['id']}: disposalSteps は2件以上必要です")
+        if item.get("requiresReservation") and item["categoryId"] != "bulky":
+            warnings.append(f"{item['id']}: 予約が必要な非粗大ごみ品目です。UIで公式確認を促してください")
         if not str(item.get("sourceUrl", "")).startswith("https://www.city.kadoma.osaka.jp/"):
             warnings.append(f"{item['id']}: sourceUrl は門真市公式URLを優先してください: {item.get('sourceUrl')}")
         parse_date(item.get("updatedAt", ""), f"{item['id']}.updatedAt", errors)

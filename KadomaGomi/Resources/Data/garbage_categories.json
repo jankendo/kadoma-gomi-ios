@@ -10,7 +10,37 @@
       "朝9時まで。生ごみは水分をよく切ってください。"
     ],
     "defaultPreviousNightNotification": true,
-    "defaultMorningNotification": true
+    "defaultMorningNotification": true,
+    "displayName": "普通ごみ",
+    "description": "台所の生ごみ、紙くず、30cm以下のプラスチック製品など、日常で出る燃やせるごみです。",
+    "iconName": "trash.fill",
+    "colorToken": "burnable",
+    "disposalSummary": "45L以下の無色透明または白色半透明袋に入れ、生ごみは水分を切って朝9時までに出します。",
+    "disposalSteps": [
+      "45L以下の無色透明または白色半透明袋を使う",
+      "生ごみは水分をよく切る",
+      "30cmを超えるものや袋に入らないものは粗大ごみを確認する",
+      "収集日の朝9時までに出す"
+    ],
+    "warnings": [
+      "45L袋に入らないものは粗大ごみです。",
+      "汚れた紙・布は古紙・古布ではなく普通ごみです。"
+    ],
+    "examples": [
+      "生ごみ",
+      "紙くず",
+      "紙おむつ",
+      "靴",
+      "かばん",
+      "30cm以下のプラスチック製品"
+    ],
+    "collectionMethod": "週2回の普通ごみ収集日に、45L以下の袋で出す",
+    "requiresReservation": false,
+    "requiresOfficialCheck": false,
+    "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+    "sourceTitle": "門真市 ごみの出し方・分け方 Q&A",
+    "confidenceStatus": "confirmed",
+    "updatedAt": "2026-05-25"
   },
   {
     "id": "plastic_container",
@@ -23,7 +53,38 @@
       "軽く水洗いし、小袋を大袋に入れる二重袋は避けてください。"
     ],
     "defaultPreviousNightNotification": true,
-    "defaultMorningNotification": false
+    "defaultMorningNotification": false,
+    "displayName": "プラスチック製容器包装",
+    "description": "商品を入れていたプラスチック製の容器や包装です。中身の商品そのもののプラスチック製品とは分けます。",
+    "iconName": "shippingbox.fill",
+    "colorToken": "plastic_container",
+    "disposalSummary": "中身を空にして軽く洗い、ふたを外し、二重袋にせず朝9時までに出します。",
+    "disposalSteps": [
+      "中身を使い切る",
+      "汚れを軽く水洗いするかふき取る",
+      "ボトル類はふたを外す",
+      "小袋を大袋に入れる二重袋にしない",
+      "収集日の朝9時までに出す"
+    ],
+    "warnings": [
+      "汚れが落ちないものは普通ごみで確認してください。",
+      "二重袋は収集・選別の妨げになります。"
+    ],
+    "examples": [
+      "食品トレイ",
+      "卵パック",
+      "レジ袋",
+      "プリンカップ",
+      "シャンプーボトル",
+      "ラップ"
+    ],
+    "collectionMethod": "週1回のプラスチック製容器包装収集日に出す",
+    "requiresReservation": false,
+    "requiresOfficialCheck": false,
+    "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+    "sourceTitle": "門真市 ごみの出し方・分け方 Q&A",
+    "confidenceStatus": "confirmed",
+    "updatedAt": "2026-05-25"
   },
   {
     "id": "bottles_cans",
@@ -36,7 +97,37 @@
       "スプレー缶は使い切り、袋を分けてキケン表示してください。"
     ],
     "defaultPreviousNightNotification": true,
-    "defaultMorningNotification": false
+    "defaultMorningNotification": false,
+    "displayName": "びん・缶類",
+    "description": "飲食料用の空きびん・空き缶と、使い切ったスプレー缶・簡易ガスボンベなどです。",
+    "iconName": "wineglass.fill",
+    "colorToken": "bottles_cans",
+    "disposalSummary": "中身を空にして軽く洗います。スプレー缶やボンベは使い切り、袋を分けてキケン表示します。",
+    "disposalSteps": [
+      "中身を完全に空にする",
+      "飲食料用のびん・缶は軽く水洗いする",
+      "スプレー缶・ボンベは使い切る",
+      "危険な缶は袋を分けてキケン表示をする",
+      "収集日の朝9時までに出す"
+    ],
+    "warnings": [
+      "一斗缶は小型ごみです。",
+      "中身が残るスプレー缶は危険です。無理に穴を開けず公式案内を確認してください。"
+    ],
+    "examples": [
+      "空きびん",
+      "飲料缶",
+      "缶詰缶",
+      "スプレー缶",
+      "簡易ガスボンベ"
+    ],
+    "collectionMethod": "週1回のびん・缶類収集日に出す",
+    "requiresReservation": false,
+    "requiresOfficialCheck": false,
+    "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+    "sourceTitle": "門真市 ごみの出し方・分け方 Q&A",
+    "confidenceStatus": "confirmed",
+    "updatedAt": "2026-05-25"
   },
   {
     "id": "paper_cloth",
@@ -49,7 +140,40 @@
       "古紙は片手で持てる大きさ・重さにして十字にしばってください。"
     ],
     "defaultPreviousNightNotification": true,
-    "defaultMorningNotification": false
+    "defaultMorningNotification": false,
+    "displayName": "古紙・古布",
+    "description": "新聞、段ボール、雑誌、紙袋、チラシ、牛乳パック、古着、タオルなどの資源です。",
+    "iconName": "newspaper.fill",
+    "colorToken": "paper_cloth",
+    "disposalSummary": "古紙は種類ごとに十字にしばり、古着・タオルは45L以下の透明または半透明袋に入れます。",
+    "disposalSteps": [
+      "古紙は新聞・段ボール・雑誌など種類ごとに分ける",
+      "片手で持てる大きさと重さにして十字にしばる",
+      "古紙は一度に3束までにする",
+      "古着・タオルは45L以下の無色透明または白色半透明袋に入れる",
+      "汚れたものは普通ごみで確認する"
+    ],
+    "warnings": [
+      "古着・タオルなどは一度に3袋までです。",
+      "汚損した紙・布は普通ごみです。"
+    ],
+    "examples": [
+      "新聞",
+      "段ボール",
+      "雑誌",
+      "紙袋",
+      "チラシ",
+      "牛乳パック",
+      "古着",
+      "タオル"
+    ],
+    "collectionMethod": "月1回の古紙・古布収集日に、古紙はしばり、布類は袋で出す",
+    "requiresReservation": false,
+    "requiresOfficialCheck": false,
+    "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+    "sourceTitle": "門真市 ごみの出し方・分け方 Q&A",
+    "confidenceStatus": "confirmed",
+    "updatedAt": "2026-05-25"
   },
   {
     "id": "small_items",
@@ -62,7 +186,40 @@
       "蛍光管・電球などは新聞紙などで包装し、キケン表示してください。"
     ],
     "defaultPreviousNightNotification": true,
-    "defaultMorningNotification": false
+    "defaultMorningNotification": false,
+    "displayName": "小型ごみ",
+    "description": "30cm以下の金物、陶磁器、ガラス、電池、ライター、蛍光管などです。",
+    "iconName": "wrench.and.screwdriver.fill",
+    "colorToken": "small_items",
+    "disposalSummary": "30cm以下を目安に出します。割れ物や蛍光管などは包んでキケン表示します。",
+    "disposalSteps": [
+      "最大の辺または径が30cm以下か確認する",
+      "割れ物・蛍光管・電球は新聞紙などで包む",
+      "危険なものはキケン表示をする",
+      "小枝は太さ5cm以下・長さ1m以下にそろえる",
+      "収集日の朝9時までに出す"
+    ],
+    "warnings": [
+      "30cmを超える耐久消費財は粗大ごみの可能性があります。",
+      "電池やライターは火災防止のため分けて確認してください。"
+    ],
+    "examples": [
+      "フライパン",
+      "なべ",
+      "やかん",
+      "陶磁器",
+      "ガラス",
+      "蛍光管",
+      "電池",
+      "ライター"
+    ],
+    "collectionMethod": "月1回の小型ごみ収集日に、危険表示が必要なものは分けて出す",
+    "requiresReservation": false,
+    "requiresOfficialCheck": false,
+    "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+    "sourceTitle": "門真市 ごみの出し方・分け方 Q&A",
+    "confidenceStatus": "confirmed",
+    "updatedAt": "2026-05-25"
   },
   {
     "id": "pet_bottle",
@@ -75,7 +232,36 @@
       "キャップ・ラベルを外し、中を軽く水洗いしてください。"
     ],
     "defaultPreviousNightNotification": true,
-    "defaultMorningNotification": false
+    "defaultMorningNotification": false,
+    "displayName": "ペットボトル",
+    "description": "PETマークのある飲料・しょうゆ・みりん・酒類などのペットボトルです。",
+    "iconName": "waterbottle.fill",
+    "colorToken": "pet_bottle",
+    "disposalSummary": "中身を空にし、キャップとラベルを外して軽くすすぎ、ペットボトルの日に出します。",
+    "disposalSteps": [
+      "PETマークがあるか確認する",
+      "中身を完全に空にする",
+      "キャップとラベルを外す",
+      "軽く水洗いする",
+      "収集日の朝9時までに出す"
+    ],
+    "warnings": [
+      "汚れていると資源化できません。",
+      "キャップ・ラベルの扱いは公式案内も確認してください。"
+    ],
+    "examples": [
+      "飲料用ペットボトル",
+      "しょうゆボトル",
+      "みりんボトル",
+      "酒類ボトル"
+    ],
+    "collectionMethod": "月2回のペットボトル収集日に出す",
+    "requiresReservation": false,
+    "requiresOfficialCheck": false,
+    "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+    "sourceTitle": "門真市 ごみの出し方・分け方 Q&A",
+    "confidenceStatus": "confirmed",
+    "updatedAt": "2026-05-25"
   },
   {
     "id": "bulky",
@@ -88,7 +274,37 @@
       "通常通知はしません。電話予約、申込期限、処理券を確認してください。"
     ],
     "defaultPreviousNightNotification": false,
-    "defaultMorningNotification": false
+    "defaultMorningNotification": false,
+    "displayName": "粗大ごみ",
+    "description": "最大の辺または径が30cmを超える耐久消費財などです。予約と処理券が必要です。",
+    "iconName": "sofa.fill",
+    "colorToken": "bulky",
+    "disposalSummary": "粗大ごみ受付センターへ申し込み、料金と収集日を確認してから出します。ごみ袋は不要です。",
+    "disposalSteps": [
+      "最大の辺または径が30cmを超えるか確認する",
+      "粗大ごみ受付センターへ申し込む",
+      "指定された料金の処理券を用意する",
+      "予約した収集日に出す",
+      "ごみ袋には入れない"
+    ],
+    "warnings": [
+      "予約なしでは出せません。",
+      "収集日の3か月前から2日前までが申込目安です。土日は除きます。"
+    ],
+    "examples": [
+      "布団",
+      "家具",
+      "自転車",
+      "カラーボックス",
+      "スーツケース"
+    ],
+    "collectionMethod": "電話または条件を満たすWeb申込後、予約日に処理券を貼って出す",
+    "requiresReservation": true,
+    "requiresOfficialCheck": false,
+    "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/5/22406.html",
+    "sourceTitle": "門真市 粗大ごみの電話申込みについて",
+    "confidenceStatus": "confirmed",
+    "updatedAt": "2026-05-25"
   },
   {
     "id": "recycle_law",
@@ -101,7 +317,38 @@
       "迷う場合は公式情報を確認してください。"
     ],
     "defaultPreviousNightNotification": false,
-    "defaultMorningNotification": false
+    "defaultMorningNotification": false,
+    "displayName": "市で収集不可",
+    "description": "門真市では収集できない、またはリサイクル制度・販売店・専門業者での対応が必要なものです。",
+    "iconName": "xmark.octagon.fill",
+    "colorToken": "recycle_law",
+    "disposalSummary": "市の通常収集に出さず、家電リサイクル、パソコン回収、販売店、専門業者などの案内を確認します。",
+    "disposalSteps": [
+      "市のごみ収集に出せる品目か確認する",
+      "家電リサイクル対象品やパソコンは専用の回収ルートを確認する",
+      "販売店・専門業者・公式ページの案内を確認する",
+      "不明な場合は門真市公式情報で確認する"
+    ],
+    "warnings": [
+      "市で収集できない品目を集積所に出さないでください。",
+      "料金や持ち込み先は品目ごとに異なります。"
+    ],
+    "examples": [
+      "テレビ",
+      "エアコン",
+      "冷蔵庫",
+      "洗濯機",
+      "パソコン",
+      "消火器",
+      "タイヤ"
+    ],
+    "collectionMethod": "通常収集ではなく、公式案内に沿った別ルートで処理する",
+    "requiresReservation": false,
+    "requiresOfficialCheck": true,
+    "sourceUrl": "https://www.city.kadoma.osaka.jp/material/files/group/20/kyoutuu.pdf",
+    "sourceTitle": "門真市 ごみの出し方・分け方 共通PDF",
+    "confidenceStatus": "needs_review",
+    "updatedAt": "2026-05-25"
   },
   {
     "id": "hazardous_note",
@@ -114,6 +361,37 @@
       "電池、ライター、スプレー缶、蛍光管などは表示や包装が必要です。"
     ],
     "defaultPreviousNightNotification": false,
-    "defaultMorningNotification": false
+    "defaultMorningNotification": false,
+    "displayName": "注意品目",
+    "description": "火災・破裂・けがにつながる可能性がある注意品目です。通常カテゴリに出す場合でも分け方に注意します。",
+    "iconName": "exclamationmark.triangle.fill",
+    "colorToken": "hazardous_note",
+    "disposalSummary": "使い切る、包む、袋を分ける、キケン表示をするなど、品目ごとの注意を守ります。",
+    "disposalSteps": [
+      "中身や電気を使い切る",
+      "割れ物や蛍光管は新聞紙などで包む",
+      "スプレー缶・ボンベは袋を分ける",
+      "必要なものはキケン表示をする",
+      "迷う品目は公式情報を確認する"
+    ],
+    "warnings": [
+      "火災防止のため、電池・ライター・スプレー缶は特に注意してください。",
+      "中身が残るものは収集できない場合があります。"
+    ],
+    "examples": [
+      "スプレー缶",
+      "簡易ガスボンベ",
+      "電池",
+      "ライター",
+      "蛍光管",
+      "刃物"
+    ],
+    "collectionMethod": "品目ごとの指定カテゴリに分け、危険表示や包装をして出す",
+    "requiresReservation": false,
+    "requiresOfficialCheck": true,
+    "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+    "sourceTitle": "門真市 ごみの出し方・分け方 Q&A",
+    "confidenceStatus": "needs_review",
+    "updatedAt": "2026-05-25"
   }
 ]

@@ -55,3 +55,17 @@
 ## 補足
 
 装飾だけの画像は追加していない。生活インフラ系アプリとして、読みやすさと操作理解に寄与するアセットに限定した。
+## Phase 5 追加アセット
+
+| 名称 | 用途 | 配置 | ライセンス/作成方法 | 使用画面 |
+| --- | --- | --- | --- | --- |
+| `AppIcon.guide` | 分別ガイド | `AppIcon.swift` | SF Symbols | ホーム、検索、ガイド |
+| `AppIcon.steps` | 出し方ステップ | `AppIcon.swift` | SF Symbols | カテゴリ詳細、品目詳細 |
+| `AppIcon.examples` | 代表例 | `AppIcon.swift` | SF Symbols | カテゴリ詳細 |
+| `AppIcon.rinse` | 洗う/すすぐ | `AppIcon.swift` | SF Symbols | 出し方ステップ、品目詳細 |
+| `AppIcon.remove` | 外す | `AppIcon.swift` | SF Symbols | 出し方ステップ、品目詳細 |
+| `AppIcon.bundle` | しばる/まとめる | `AppIcon.swift` | SF Symbols | 出し方ステップ、品目詳細 |
+| `AppIcon.reserve` | 予約 | `AppIcon.swift` | SF Symbols | 粗大ごみ、品目詳細 |
+| `AppIcon.separate` | 分ける | `AppIcon.swift` | SF Symbols | 出し方ステップ、品目詳細 |
+
+外部画像の無断取得は行っていない。画像生成は未実施で、将来の生成プロンプトは `phase5_assets_and_prompts.md` に記録した。

@@ -84,6 +84,109 @@ struct WasteCategory: Codable, Identifiable, Hashable {
     let notes: [String]
     let defaultPreviousNightNotification: Bool
     let defaultMorningNotification: Bool
+    let displayName: String?
+    let description: String?
+    let iconName: String?
+    let colorToken: String?
+    let disposalSummary: String?
+    let disposalSteps: [String]?
+    let warnings: [String]?
+    let examples: [String]?
+    let collectionMethod: String?
+    let requiresReservation: Bool?
+    let requiresOfficialCheck: Bool?
+    let sourceUrl: String?
+    let sourceTitle: String?
+    let confidenceStatus: String?
+    let updatedAt: String?
+
+    init(
+        id: String,
+        name: String,
+        shortName: String,
+        symbolName: String,
+        colorHex: String,
+        disposalRule: String,
+        notes: [String],
+        defaultPreviousNightNotification: Bool,
+        defaultMorningNotification: Bool,
+        displayName: String? = nil,
+        description: String? = nil,
+        iconName: String? = nil,
+        colorToken: String? = nil,
+        disposalSummary: String? = nil,
+        disposalSteps: [String]? = nil,
+        warnings: [String]? = nil,
+        examples: [String]? = nil,
+        collectionMethod: String? = nil,
+        requiresReservation: Bool? = nil,
+        requiresOfficialCheck: Bool? = nil,
+        sourceUrl: String? = nil,
+        sourceTitle: String? = nil,
+        confidenceStatus: String? = nil,
+        updatedAt: String? = nil
+    ) {
+        self.id = id
+        self.name = name
+        self.shortName = shortName
+        self.symbolName = symbolName
+        self.colorHex = colorHex
+        self.disposalRule = disposalRule
+        self.notes = notes
+        self.defaultPreviousNightNotification = defaultPreviousNightNotification
+        self.defaultMorningNotification = defaultMorningNotification
+        self.displayName = displayName
+        self.description = description
+        self.iconName = iconName
+        self.colorToken = colorToken
+        self.disposalSummary = disposalSummary
+        self.disposalSteps = disposalSteps
+        self.warnings = warnings
+        self.examples = examples
+        self.collectionMethod = collectionMethod
+        self.requiresReservation = requiresReservation
+        self.requiresOfficialCheck = requiresOfficialCheck
+        self.sourceUrl = sourceUrl
+        self.sourceTitle = sourceTitle
+        self.confidenceStatus = confidenceStatus
+        self.updatedAt = updatedAt
+    }
+
+    var guideDisplayName: String {
+        displayName ?? name
+    }
+
+    var guideIconName: String {
+        iconName ?? symbolName
+    }
+
+    var guideDescription: String {
+        description ?? disposalRule
+    }
+
+    var guideSummary: String {
+        disposalSummary ?? disposalRule
+    }
+
+    var guideSteps: [String] {
+        disposalSteps ?? []
+    }
+
+    var guideWarnings: [String] {
+        warnings ?? notes
+    }
+
+    var guideExamples: [String] {
+        examples ?? []
+    }
+
+    var reservationRequired: Bool {
+        requiresReservation ?? (id == "bulky")
+    }
+
+    var categoryNeedsOfficialCheck: Bool {
+        (requiresOfficialCheck ?? false) || confidenceStatus == "needs_review" || confidenceStatus == "estimated"
+    }
 }
 
 struct WasteItem: Codable, Identifiable, Hashable {
@@ -105,13 +208,28 @@ struct WasteItem: Codable, Identifiable, Hashable {
     let confidence: Double
     let confidenceStatus: String?
     let updatedAt: String?
+    let subcategoryName: String?
+    let disposalSteps: [String]?
+    let preparationBeforeDisposal: String?
+    let sizeRule: String?
+    let bundleRule: String?
+    let washingRequired: Bool?
+    let removeCapsLabels: Bool?
+    let drainContents: Bool?
+    let separateMaterials: Bool?
+    let requiresReservation: Bool?
+    let sourceTitle: String?
 
     var primaryName: String {
         displayName ?? names.first ?? id
     }
 
     var searchAliases: [String] {
-        Array(Set((aliases ?? []) + Array(names.dropFirst()) + keywords + [kana].compactMap { $0 }))
+        Array(Set((aliases ?? [])
+            + Array(names.dropFirst())
+            + keywords
+            + [kana, subcategoryName, preparationBeforeDisposal, sizeRule, bundleRule].compactMap { $0 }
+            + (disposalSteps ?? [])))
     }
 
     var needsOfficialCheck: Bool {
@@ -124,6 +242,18 @@ struct WasteItem: Codable, Identifiable, Hashable {
 
     var oversizedFlag: Bool {
         isOversizedCandidate ?? (categoryId == "bulky")
+    }
+
+    var reservationRequired: Bool {
+        requiresReservation ?? (categoryId == "bulky")
+    }
+
+    var detailSteps: [String] {
+        disposalSteps ?? []
+    }
+
+    var sourceTitleText: String {
+        sourceTitle ?? source
     }
 }
 

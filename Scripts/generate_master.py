@@ -23,7 +23,7 @@ from validate_data import (
 )
 
 
-MASTER_VERSION = "2026.04.01-af.3"
+MASTER_VERSION = "2026.04.01-af.4"
 SOURCE_UPDATED_AT = "2026-03-30"
 MASTER_FILE_NAME = "kadoma_27223_2026_master.json"
 DIFF_PATH = ROOT / "build" / "master_diff.txt"
@@ -40,14 +40,19 @@ SOURCE_PAGES = [
         "updatedAt": SOURCE_UPDATED_AT,
     },
     {
+        "title": "ごみの出し方・分け方 共通PDF",
+        "url": "https://www.city.kadoma.osaka.jp/material/files/group/20/kyoutuu.pdf",
+        "updatedAt": SOURCE_UPDATED_AT,
+    },
+    {
         "title": "粗大ごみの電話申込み",
         "url": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/5/22406.html",
-        "updatedAt": SOURCE_UPDATED_AT,
+        "updatedAt": "2025-11-04",
     },
     {
         "title": "粗大ごみのインターネット申込み",
         "url": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/5/22408.html",
-        "updatedAt": SOURCE_UPDATED_AT,
+        "updatedAt": "2023-04-03",
     },
 ]
 

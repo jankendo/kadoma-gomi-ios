@@ -27,6 +27,10 @@ struct SearchView: View {
             AppScreen {
                 SearchHeroCard(query: $query)
                 SearchIntroCard()
+                WasteGuideOverviewSection(
+                    categories: visibleCategories,
+                    items: store.master.itemDictionary
+                )
                 CategoryFilterSection(
                     categories: visibleCategories,
                     selectedCategoryId: $selectedCategoryId,
@@ -36,6 +40,7 @@ struct SearchView: View {
                     query: query,
                     selectedCategory: selectedCategoryId.flatMap(store.category(for:)),
                     items: searchedItems,
+                    allItems: store.master.itemDictionary,
                     categoryProvider: store.category(for:),
                     clearSearch: clearSearch
                 )
@@ -163,6 +168,7 @@ private struct SearchResultsSection: View {
     let query: String
     let selectedCategory: WasteCategory?
     let items: [WasteItem]
+    let allItems: [WasteItem]
     let categoryProvider: (String) -> WasteCategory?
     let clearSearch: () -> Void
 
@@ -185,7 +191,16 @@ private struct SearchResultsSection: View {
             } else {
                 VStack(spacing: AppSpacing.md) {
                     ForEach(items.prefix(40)) { item in
-                        WasteItemResultCard(item: item, category: categoryProvider(item.categoryId))
+                        NavigationLink {
+                            WasteItemDetailView(
+                                item: item,
+                                category: categoryProvider(item.categoryId),
+                                relatedItems: relatedItems(for: item)
+                            )
+                        } label: {
+                            WasteItemResultCard(item: item, category: categoryProvider(item.categoryId))
+                        }
+                        .buttonStyle(.plain)
                     }
                 }
             }
@@ -198,6 +213,13 @@ private struct SearchResultsSection: View {
             return "\(categoryText)から、日常で迷いやすい品目を表示"
         }
         return "\(categoryText)で\(items.count)件"
+    }
+
+    private func relatedItems(for item: WasteItem) -> [WasteItem] {
+        allItems
+            .filter { $0.categoryId == item.categoryId && $0.id != item.id }
+            .prefix(8)
+            .map { $0 }
     }
 }
 
@@ -237,13 +259,22 @@ private struct WasteItemResultCard: View {
 
             if let category {
                 VStack(alignment: .leading, spacing: AppSpacing.xs) {
-                    Text("出し方")
+                    Text("出し方の要点")
                         .font(AppTypography.badge)
                         .foregroundStyle(AppColor.secondaryText)
-                    Text(category.disposalRule)
-                        .font(AppTypography.callout)
-                        .foregroundStyle(AppColor.secondaryText)
-                        .fixedSize(horizontal: false, vertical: true)
+                    VStack(alignment: .leading, spacing: AppSpacing.xs) {
+                        ForEach((item.detailSteps.isEmpty ? category.guideSteps : item.detailSteps).prefix(3), id: \.self) { step in
+                            HStack(alignment: .top, spacing: AppSpacing.xs) {
+                                Image(systemName: AppIcon.success)
+                                    .font(.caption.weight(.bold))
+                                    .foregroundStyle(AppColor.category(category))
+                                Text(step)
+                                    .font(AppTypography.callout)
+                                    .foregroundStyle(AppColor.secondaryText)
+                                    .fixedSize(horizontal: false, vertical: true)
+                            }
+                        }
+                    }
                 }
             }
 
@@ -260,6 +291,14 @@ private struct WasteItemResultCard: View {
                     .foregroundStyle(AppColor.tertiaryText)
                     .fixedSize(horizontal: false, vertical: true)
             }
+
+            HStack(spacing: AppSpacing.xs) {
+                Text("詳しい出し方を見る")
+                    .font(AppTypography.callout.weight(.bold))
+                Image(systemName: "chevron.right")
+                    .font(.caption.weight(.bold))
+            }
+            .foregroundStyle(AppColor.category(category))
 
         }
         .padding(AppSpacing.lg)

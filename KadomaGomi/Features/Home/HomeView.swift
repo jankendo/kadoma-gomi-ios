@@ -42,6 +42,13 @@ struct HomeView: View {
                     prominence: .primary
                 )
 
+                HomeTodayWasteGuideCard(
+                    summary: summary,
+                    categories: store.master.categories,
+                    items: store.master.itemDictionary,
+                    openSearch: openSearch
+                )
+
                 CollectionEventCard(
                     title: "明日の収集予定",
                     date: summary.tomorrow.date,
@@ -161,9 +168,9 @@ private struct QuickActionGrid: View {
             AppSectionHeader("すぐ使う", subtitle: "迷ったらここから始められます", systemImage: "bolt.fill")
             LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: AppSpacing.sm) {
                 QuickActionCard(
-                    title: "検索",
-                    subtitle: "ごみ名で確認",
-                    systemImage: AppIcon.search,
+                    title: "分別ガイド",
+                    subtitle: "検索と出し方",
+                    systemImage: AppIcon.guide,
                     color: AppColor.appTint,
                     action: openSearch
                 )

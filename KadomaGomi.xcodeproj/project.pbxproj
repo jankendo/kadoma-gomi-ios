@@ -42,6 +42,8 @@
 		B00000000000000000000032 /* collection_areas.json in Resources */ = {isa = PBXBuildFile; fileRef = F00000000000000000000034 /* collection_areas.json */; };
 		B00000000000000000000033 /* collection_schedule.json in Resources */ = {isa = PBXBuildFile; fileRef = F00000000000000000000035 /* collection_schedule.json */; };
 		B00000000000000000000034 /* special_rules.json in Resources */ = {isa = PBXBuildFile; fileRef = F00000000000000000000036 /* special_rules.json */; };
+		B00000000000000000000036 /* HomeTodayWasteGuideCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00000000000000000000038 /* HomeTodayWasteGuideCard.swift */; };
+		B00000000000000000000037 /* WasteGuideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00000000000000000000039 /* WasteGuideView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -82,6 +84,8 @@
 		F00000000000000000000034 /* collection_areas.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = collection_areas.json; sourceTree = "<group>"; };
 		F00000000000000000000035 /* collection_schedule.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = collection_schedule.json; sourceTree = "<group>"; };
 		F00000000000000000000036 /* special_rules.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = special_rules.json; sourceTree = "<group>"; };
+		F00000000000000000000038 /* HomeTodayWasteGuideCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTodayWasteGuideCard.swift; sourceTree = "<group>"; };
+		F00000000000000000000039 /* WasteGuideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WasteGuideView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,6 +155,7 @@
 				300000000000000000000011 /* Home */,
 				300000000000000000000012 /* Calendar */,
 				300000000000000000000013 /* Search */,
+				300000000000000000000021 /* Guide */,
 				300000000000000000000014 /* BulkyWaste */,
 				300000000000000000000015 /* Settings */,
 			);
@@ -203,6 +208,7 @@
 			isa = PBXGroup;
 			children = (
 				F00000000000000000000013 /* HomeView.swift */,
+				F00000000000000000000038 /* HomeTodayWasteGuideCard.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -221,6 +227,14 @@
 				F00000000000000000000015 /* SearchView.swift */,
 			);
 			path = Search;
+			sourceTree = "<group>";
+		};
+		300000000000000000000021 /* Guide */ = {
+			isa = PBXGroup;
+			children = (
+				F00000000000000000000039 /* WasteGuideView.swift */,
+			);
+			path = Guide;
 			sourceTree = "<group>";
 		};
 		300000000000000000000014 /* BulkyWaste */ = {
@@ -394,6 +408,8 @@
 				B00000000000000000000026 /* AppViewModifiers.swift in Sources */,
 				B00000000000000000000027 /* AppComponents.swift in Sources */,
 				B00000000000000000000028 /* OnboardingView.swift in Sources */,
+				B00000000000000000000036 /* HomeTodayWasteGuideCard.swift in Sources */,
+				B00000000000000000000037 /* WasteGuideView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

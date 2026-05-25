@@ -50,3 +50,10 @@
 実機QA手順は `docs/release_qa_checklist.md` に分離した。確認対象は iPhone SE相当、393x852、430x932、可能ならiPad。第4フェーズではライトモード専用のため、iOS側をダークにしてもアプリ内がライト固定になること、Dynamic Type最大、太字テキスト、コントラストを上げる、Reduce Motionを確認する。
 
 通知の実機手順は `docs/device_notification_test_plan.md` に記録した。Windows環境では実機通知到達、VoiceOver実走査、Xcode Previewは未確認のまま残す。
+## Phase 5 追加Preview確認
+
+- `HomeTodayWasteGuideCard` 通常表示
+- `WasteGuideOverviewSection` カテゴリ一覧
+- `WasteItemDetailView` 注意品目詳細
+
+実機では、検索結果から詳細画面への遷移、カテゴリ詳細のスクロール、Dynamic Type大での手順カード折り返しを確認する。

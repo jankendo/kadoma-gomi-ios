@@ -198,6 +198,16 @@ def run_data_quality_tests(master: dict) -> None:
         raise AssertionError("A-F全地区が維持されていません")
     if not any(item.get("requiresOfficialCheck") for item in master["itemDictionary"]):
         raise AssertionError("公式確認推奨品目が表現できていません")
+    for category in master["categories"]:
+        if len(category.get("disposalSteps", [])) < 3:
+            raise AssertionError(f"{category['id']}: カテゴリ別の出し方ステップが不足しています")
+        if not category.get("examples"):
+            raise AssertionError(f"{category['id']}: 代表品目 examples が不足しています")
+    for item in master["itemDictionary"]:
+        if len(item.get("disposalSteps", [])) < 2:
+            raise AssertionError(f"{item['id']}: 品目別 disposalSteps が不足しています")
+        if not item.get("sourceTitle"):
+            raise AssertionError(f"{item['id']}: sourceTitle が不足しています")
     if not master.get("exceptionRules"):
         raise AssertionError("年末年始レビュー用 exceptionRules がありません")
     for rule in master["exceptionRules"]:
