@@ -28,7 +28,7 @@ gh run download 26387287807 --repo jankendo/kadoma-gomi-ios --name KadomaGomi-un
 - GitHub Actions `Deploy Master JSON to GitHub Pages` run `26388195383`: 成功。
 - GitHub Actions `Monitor Kadoma Official Sources` run `26388244320`: 成功。
 - GitHub Pages の `manifest.json` / `kadoma_27223_2026_master.json`: HTTP取得成功。manifest SHA と remote master SHA が一致。
-- unsigned IPA artifact を `Artifacts\run-26387287807\KadomaGomi-unsigned.ipa` に取得。IPA内に `Info.plist`、実行ファイル、`Assets.car`、`initial_master_27223_2026.json`、分割JSONが含まれることを確認。
+- unsigned IPA artifact を `Artifacts\run-26388195433\KadomaGomi-unsigned.ipa` に取得。IPA内に `Info.plist`、実行ファイル、`Assets.car`、`initial_master_27223_2026.json`、分割JSONが含まれることを確認。
 
 ## 3. 失敗した検証
 
@@ -69,5 +69,5 @@ Swift unit testターゲットは未作成。Pythonベースのデータ/生成/
 - exceptionRules: 1
 - manifest SHA: `f30e74e7747372ec0d84062c4cf0ee11da195c7591dd985aa7da2c0cff69cfcf`
 - remote manifest/master SHA一致: 成功
-- IPA SHA-256: `3dd8ba69f46822197cbf02359aa01882a5bc05be447af36981d778bc1cd88b9f`
+- IPA SHA-256: `cf04480500c1d5571625765d0d4e8cc25a67ca9b8b31c920f5bfc30ccfb42204`
 - IPA同梱master: version `2026.04.01-af.3`、areas 6、schedules 42、items 225、confirmed exceptions 0、exceptionRules 1
