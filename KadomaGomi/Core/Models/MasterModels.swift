@@ -119,11 +119,11 @@ struct WasteItem: Codable, Identifiable, Hashable {
     }
 
     var hazardFlag: Bool {
-        isHazardous ?? categoryId == "hazardous_note"
+        isHazardous ?? (categoryId == "hazardous_note")
     }
 
     var oversizedFlag: Bool {
-        isOversizedCandidate ?? categoryId == "bulky"
+        isOversizedCandidate ?? (categoryId == "bulky")
     }
 }
 
