@@ -9,6 +9,7 @@
 - 検索辞書は225件。
 - 年末年始は未確認の確定日を登録せず、needs_review として扱う。
 - Widget / App Shortcuts 用の読み取り専用層を追加。
+- GitHub Actions build/pages/source-monitor は Phase 3 最終確認で成功。
 
 ## リリース可否
 
@@ -25,6 +26,5 @@
 
 1. IPA を実機へインストールし、`release_qa_checklist.md` を実行する。
 2. 通知許可/拒否/再設定を実機で確認する。
-3. Source Monitor workflow を最終mainで再実行する。
-4. 年末年始確定情報が公開された時点で `special_rules.json` を更新する。
-5. App Store公開に進む場合は署名、Bundle ID、プライバシー表記、非公式アプリ表記を最終確認する。
+3. 年末年始確定情報が公開された時点で `special_rules.json` を更新する。
+4. App Store公開に進む場合は署名、Bundle ID、プライバシー表記、非公式アプリ表記を最終確認する。

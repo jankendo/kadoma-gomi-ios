@@ -22,8 +22,11 @@ gh run download 26387287807 --repo jankendo/kadoma-gomi-ios --name KadomaGomi-un
 - `py_compile`: 成功。Pythonスクリプト構文エラーなし。
 - manifest SHA は `docs/kadoma_27223_2026_master.json` と一致。
 - GitHub Actions `Build Unsigned iOS App` run `26387287807`: 成功。
+- GitHub Actions `Build Unsigned iOS App` run `26388195433`: 成功。検証ドキュメント更新後の最終pushでも unsigned IPA artifact 生成まで通過。
 - GitHub Actions `Validate Kadoma Data` run `26387236105`: 成功。
 - GitHub Actions `Deploy Master JSON to GitHub Pages` run `26387236106`: 成功。
+- GitHub Actions `Deploy Master JSON to GitHub Pages` run `26388195383`: 成功。
+- GitHub Actions `Monitor Kadoma Official Sources` run `26388244320`: 成功。
 - GitHub Pages の `manifest.json` / `kadoma_27223_2026_master.json`: HTTP取得成功。manifest SHA と remote master SHA が一致。
 - unsigned IPA artifact を `Artifacts\run-26387287807\KadomaGomi-unsigned.ipa` に取得。IPA内に `Info.plist`、実行ファイル、`Assets.car`、`initial_master_27223_2026.json`、分割JSONが含まれることを確認。
 
@@ -40,7 +43,7 @@ gh run download 26387287807 --repo jankendo/kadoma-gomi-ios --name KadomaGomi-un
 ## 5. 未検証項目
 
 - Windows環境のため、ローカル `xcodebuild build`、`xcodebuild test`、Xcode Preview、Simulator、実機通知、VoiceOver実走査、Dynamic Type最大の実画面は未検証。
-- Phase 3変更後の Source Monitor workflow は未実行。第2フェーズ時点の手動実行 run `26380618375` は成功済みだが、今回の最終状態では再実行して確認する。
+- Phase 3変更後の Source Monitor workflow は run `26388244320` で成功済み。
 
 ## 6. 今後必要な確認
 
