@@ -30,7 +30,7 @@ struct HomeView: View {
                 )
 
                 CollectionEventCard(
-                    title: "今日出せるごみ",
+                    title: "今日の収集予定",
                     date: .now,
                     events: todayEvents,
                     categoryProvider: store.category(for:),
@@ -38,7 +38,7 @@ struct HomeView: View {
                 )
 
                 CollectionEventCard(
-                    title: "明日出すごみ",
+                    title: "明日の収集予定",
                     date: tomorrow,
                     events: tomorrowEvents,
                     categoryProvider: store.category(for:),
@@ -138,7 +138,7 @@ private struct QuickActionGrid: View {
             )
             QuickActionCard(
                 title: "通知と地区を確認",
-                subtitle: "A地区・前日通知・マスタ更新",
+                subtitle: "A-F地区・前日通知・マスタ更新",
                 systemImage: AppIcon.notification,
                 color: AppColor.warning,
                 action: openSettings
@@ -219,4 +219,18 @@ private struct DataStatusSection: View {
 #Preview {
     MainTabView()
         .environmentObject(MasterStore())
+}
+
+#Preview("Home iPhone SE") {
+    HomeView(openSearch: {}, openCalendar: {}, openSettings: {})
+        .environmentObject(MasterStore())
+        .previewDevice("iPhone SE (3rd generation)")
+}
+
+#Preview("Home Dark Large Type") {
+    HomeView(openSearch: {}, openCalendar: {}, openSettings: {})
+        .environmentObject(MasterStore())
+        .preferredColorScheme(.dark)
+        .environment(\.dynamicTypeSize, .accessibility2)
+        .previewDevice("iPhone 15 Pro")
 }

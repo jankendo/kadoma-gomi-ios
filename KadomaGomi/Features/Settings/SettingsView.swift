@@ -17,9 +17,12 @@ struct SettingsView: View {
                     addressText: $addressText,
                     currentAddress: store.settings.addressText,
                     currentAreaName: store.currentArea?.name ?? "\(store.settings.areaId)地区",
+                    areas: store.master.areas,
+                    selectedAreaId: store.settings.areaId,
                     message: addressMessage,
                     save: saveAddress,
-                    applyPreset: applyPreset
+                    applyPreset: applyPreset,
+                    selectArea: selectArea
                 )
 
                 NotificationSettingsCard(
@@ -27,6 +30,7 @@ struct SettingsView: View {
                     settings: $store.settings,
                     categories: store.master.categories.filter { $0.id != "recycle_law" && $0.id != "hazardous_note" },
                     categoryProvider: store.category(for:),
+                    previews: store.notificationPreviews(limit: 8),
                     saveSettings: store.saveSettings,
                     setCategory: { enabled, categoryId in
                         store.setCategoryNotificationEnabled(enabled, categoryId: categoryId)
@@ -56,12 +60,25 @@ struct SettingsView: View {
         addressMessage = ok
             ? SettingsMessage(kind: .success, text: "\(store.currentArea?.name ?? store.settings.areaId)として保存しました。通知とカレンダーはこの地区で表示されます。")
             : SettingsMessage(kind: .error, text: "地区を判定できませんでした。例: 大倉町1-20 のように町名を含めて入力してください。")
+        if ok {
+            Task { await store.rescheduleNotifications() }
+        }
     }
 
     private func applyPreset() {
         store.applyDefaultDistrictPreset()
         addressText = store.settings.addressText
         addressMessage = SettingsMessage(kind: .success, text: "門真市 大倉町1-20 / A地区を設定しました。")
+        Task { await store.rescheduleNotifications() }
+    }
+
+    private func selectArea(_ areaId: String) {
+        guard let area = store.master.areas.first(where: { $0.id == areaId }) else { return }
+        let addressLabel = area.id == "A" ? "大倉町1-20" : "\(area.name) 手動選択"
+        store.setArea(area.id, addressText: addressLabel)
+        addressText = store.settings.addressText
+        addressMessage = SettingsMessage(kind: .success, text: "\(area.name)を設定しました。地区変更後は通知を再設定します。")
+        Task { await store.rescheduleNotifications() }
     }
 
     private func requestNotifications() {
@@ -96,9 +113,12 @@ private struct DistrictSettingsCard: View {
     @Binding var addressText: String
     let currentAddress: String
     let currentAreaName: String
+    let areas: [CollectionArea]
+    let selectedAreaId: String
     let message: SettingsMessage?
     let save: () -> Void
     let applyPreset: () -> Void
+    let selectArea: (String) -> Void
 
     var body: some View {
         VStack(alignment: .leading, spacing: AppSpacing.md) {
@@ -112,6 +132,27 @@ private struct DistrictSettingsCard: View {
                     .font(AppTypography.cardTitle)
             }
 
+            VStack(alignment: .leading, spacing: AppSpacing.sm) {
+                Text("地区を選ぶ")
+                    .font(AppTypography.badge)
+                    .foregroundStyle(AppColor.secondaryText)
+                Picker("地区を選ぶ", selection: Binding(
+                    get: { selectedAreaId },
+                    set: { selectArea($0) }
+                )) {
+                    ForEach(areas) { area in
+                        Text("\(area.name)（\(area.towns.prefix(3).map(\.townName).joined(separator: "・"))）")
+                            .tag(area.id)
+                    }
+                }
+                .pickerStyle(.menu)
+                .minimumTapTarget()
+                Text("番地で地区が分かれる町名は、住所入力で判定できない場合があります。その場合は公式ページを確認して地区を選んでください。")
+                    .font(AppTypography.footnote)
+                    .foregroundStyle(AppColor.secondaryText)
+                    .fixedSize(horizontal: false, vertical: true)
+            }
+
             TextField("例: 大倉町1-20", text: $addressText)
                 .textInputAutocapitalization(.never)
                 .autocorrectionDisabled()
@@ -120,14 +161,13 @@ private struct DistrictSettingsCard: View {
                 .accessibilityLabel("住所入力")
                 .accessibilityHint("町名を含めて入力してください。大倉町はA地区です。")
 
-            HStack(spacing: AppSpacing.sm) {
-                Button("保存", action: save)
-                    .buttonStyle(.borderedProminent)
-                    .controlSize(.large)
-                    .tint(AppColor.appTint)
-                Button("大倉町1-20を使う", action: applyPreset)
-                    .buttonStyle(.bordered)
-                    .controlSize(.large)
+            ViewThatFits(in: .horizontal) {
+                HStack(spacing: AppSpacing.sm) {
+                    districtButtons
+                }
+                VStack(alignment: .leading, spacing: AppSpacing.sm) {
+                    districtButtons
+                }
             }
 
             Text("初期版ではGPSを使いません。住所は端末内の設定として保存されます。")
@@ -140,6 +180,18 @@ private struct DistrictSettingsCard: View {
         }
         .appCard()
     }
+
+    private var districtButtons: some View {
+        Group {
+            Button("保存", action: save)
+                .buttonStyle(.borderedProminent)
+                .controlSize(.large)
+                .tint(AppColor.appTint)
+            Button("大倉町1-20を使う", action: applyPreset)
+                .buttonStyle(.bordered)
+                .controlSize(.large)
+        }
+    }
 }
 
 private struct NotificationSettingsCard: View {
@@ -147,6 +199,7 @@ private struct NotificationSettingsCard: View {
     @Binding var settings: UserSettings
     let categories: [WasteCategory]
     let categoryProvider: (String) -> WasteCategory?
+    let previews: [NotificationPreview]
     let saveSettings: () -> Void
     let setCategory: (Bool, String) -> Void
     let requestPermission: () -> Void
@@ -186,6 +239,8 @@ private struct NotificationSettingsCard: View {
                 .buttonStyle(.borderedProminent)
                 .controlSize(.large)
                 .tint(AppColor.appTint)
+
+            NotificationPreviewList(previews: previews, categoryProvider: categoryProvider)
         }
         .appCard()
     }
@@ -217,6 +272,40 @@ private struct NotificationSettingsCard: View {
                 saveSettings()
             }
         )
+    }
+}
+
+private struct NotificationPreviewList: View {
+    let previews: [NotificationPreview]
+    let categoryProvider: (String) -> WasteCategory?
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: AppSpacing.sm) {
+            Text("通知予定プレビュー")
+                .font(AppTypography.cardTitle)
+            if previews.isEmpty {
+                InlineSettingsMessage(message: SettingsMessage(kind: .error, text: "通知予定がありません。通知がオフ、または直近60日に対象がない可能性があります。"))
+            } else {
+                ForEach(previews) { preview in
+                    HStack(alignment: .top, spacing: AppSpacing.sm) {
+                        WasteSymbol(category: categoryProvider(preview.categoryId), size: 30)
+                        VStack(alignment: .leading, spacing: 2) {
+                            Text("\(preview.timing.label) \(KadomaDateFormatter.timestamp.string(from: preview.fireDate))")
+                                .font(AppTypography.badge)
+                                .foregroundStyle(AppColor.secondaryText)
+                            Text(preview.title)
+                                .font(AppTypography.callout.weight(.semibold))
+                            Text("対象日: \(KadomaDateFormatter.displayDay.string(from: preview.eventDate))")
+                                .font(AppTypography.footnote)
+                                .foregroundStyle(AppColor.tertiaryText)
+                        }
+                        Spacer(minLength: 0)
+                    }
+                    .accessibilityElement(children: .combine)
+                }
+            }
+        }
+        .padding(.top, AppSpacing.sm)
     }
 }
 
@@ -352,4 +441,12 @@ private struct InlineLoadingMessage: View {
 #Preview {
     SettingsView()
         .environmentObject(MasterStore())
+}
+
+#Preview("Settings Dark Large Type") {
+    SettingsView()
+        .environmentObject(MasterStore())
+        .preferredColorScheme(.dark)
+        .environment(\.dynamicTypeSize, .accessibility2)
+        .previewDevice("iPhone 15 Pro")
 }

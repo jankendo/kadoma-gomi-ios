@@ -12,7 +12,14 @@ jobs:
   build:
     runs-on: macos-15
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+
+      - name: Validate data and generated master
+        run: python Scripts/run_quality_checks.py
 
       - name: Show Xcode version
         run: xcodebuild -version
@@ -44,7 +51,7 @@ jobs:
           /usr/bin/unzip -l KadomaGomi-unsigned.ipa | grep "Payload/KadomaGomi.app/Info.plist"
 
       - name: Upload IPA artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: KadomaGomi-unsigned-ipa
           path: KadomaGomi-unsigned.ipa

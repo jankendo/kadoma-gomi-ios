@@ -2,6 +2,12 @@ import Foundation
 
 struct WasteSearchService {
     let items: [WasteItem]
+    let categories: [WasteCategory]
+
+    init(items: [WasteItem], categories: [WasteCategory] = []) {
+        self.items = items
+        self.categories = categories
+    }
 
     func search(_ query: String) -> [WasteItem] {
         let normalized = normalize(query)
@@ -23,22 +29,69 @@ struct WasteSearchService {
 
     private func score(item: WasteItem, query: String) -> Int {
         var score = 0
-        for name in item.names.map(normalize) {
-            if name == query { score += 100 }
-            if name.contains(query) { score += 60 }
-            if query.contains(name) { score += 30 }
+        let variants = queryVariants(for: query)
+        for name in item.names {
+            score += score(text: name, variants: variants, exact: 100, contains: 60, reverseContains: 30)
         }
-        for keyword in item.keywords.map(normalize) where keyword.contains(query) || query.contains(keyword) {
-            score += 20
+        for keyword in item.keywords {
+            score += score(text: keyword, variants: variants, exact: 48, contains: 26, reverseContains: 12)
         }
-        if normalize(item.notes).contains(query) {
+        if let category = categories.first(where: { $0.id == item.categoryId }) {
+            score += score(text: category.name, variants: variants, exact: 70, contains: 45, reverseContains: 18)
+            score += score(text: category.shortName, variants: variants, exact: 80, contains: 40, reverseContains: 18)
+            score += score(text: category.disposalRule, variants: variants, exact: 0, contains: 6, reverseContains: 0)
+        }
+        if variants.contains(where: { normalize(item.notes).contains($0) }) {
             score += 8
         }
         return score
     }
 
+    private func score(text: String, variants: Set<String>, exact: Int, contains: Int, reverseContains: Int) -> Int {
+        let normalized = normalize(text)
+        return variants.reduce(0) { partialResult, variant in
+            if normalized == variant {
+                return partialResult + exact
+            }
+            if normalized.contains(variant) {
+                return partialResult + contains
+            }
+            if variant.contains(normalized) {
+                return partialResult + reverseContains
+            }
+            return partialResult
+        }
+    }
+
+    private func queryVariants(for query: String) -> Set<String> {
+        let normalized = normalize(query)
+        guard !normalized.isEmpty else { return [] }
+
+        let aliases: [String: [String]] = [
+            "pet": ["ペット", "ペットボトル"],
+            "ペット": ["PET", "ペットボトル"],
+            "ボトル": ["ペットボトル", "プラスチックボトル"],
+            "プラ": ["プラスチック", "プラスチック製容器包装"],
+            "プラスチック": ["プラ", "プラスチック製容器包装"],
+            "ダンボール": ["段ボール"],
+            "段ボール": ["ダンボール"],
+            "カン": ["缶"],
+            "缶": ["カン"],
+            "ビン": ["びん", "瓶"],
+            "びん": ["ビン", "瓶"]
+        ]
+
+        var variants: Set<String> = [normalized]
+        for (key, values) in aliases where normalize(key) == normalized {
+            variants.formUnion(values.map(normalize))
+        }
+        return variants
+    }
+
     private func normalize(_ text: String) -> String {
-        text.trimmingCharacters(in: .whitespacesAndNewlines)
+        let widthFolded = text.folding(options: [.widthInsensitive, .caseInsensitive], locale: Locale(identifier: "ja_JP"))
+        let kanaFolded = widthFolded.applyingTransform(.hiraganaToKatakana, reverse: false) ?? widthFolded
+        return kanaFolded.trimmingCharacters(in: .whitespacesAndNewlines)
             .lowercased()
             .replacingOccurrences(of: " ", with: "")
             .replacingOccurrences(of: "　", with: "")

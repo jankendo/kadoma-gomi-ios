@@ -2,12 +2,116 @@
   {
     "id": "A",
     "name": "A地区",
+    "sourceStatus": "official-confirmed",
     "towns": [
-      {
-        "townName": "大倉町",
-        "areaId": "A",
-        "blockRange": null
-      }
+      {"townName": "石原町", "areaId": "A", "blockRange": null},
+      {"townName": "泉町", "areaId": "A", "blockRange": null},
+      {"townName": "大倉町", "areaId": "A", "blockRange": null},
+      {"townName": "垣内町", "areaId": "A", "blockRange": null},
+      {"townName": "幸福町", "areaId": "A", "blockRange": null},
+      {"townName": "新橋町", "areaId": "A", "blockRange": null},
+      {"townName": "末広町", "areaId": "A", "blockRange": null},
+      {"townName": "月出町", "areaId": "A", "blockRange": null},
+      {"townName": "中町", "areaId": "A", "blockRange": null},
+      {"townName": "浜町", "areaId": "A", "blockRange": null},
+      {"townName": "速見町", "areaId": "A", "blockRange": null},
+      {"townName": "古川町", "areaId": "A", "blockRange": null},
+      {"townName": "松葉町", "areaId": "A", "blockRange": null},
+      {"townName": "御堂町", "areaId": "A", "blockRange": null},
+      {"townName": "向島町", "areaId": "A", "blockRange": null},
+      {"townName": "柳町", "areaId": "A", "blockRange": null}
+    ]
+  },
+  {
+    "id": "B",
+    "name": "B地区",
+    "sourceStatus": "official-confirmed",
+    "towns": [
+      {"townName": "朝日町", "areaId": "B", "blockRange": null},
+      {"townName": "大池町", "areaId": "B", "blockRange": null},
+      {"townName": "大橋町", "areaId": "B", "blockRange": null},
+      {"townName": "上島町", "areaId": "B", "blockRange": null},
+      {"townName": "上野口町", "areaId": "B", "blockRange": null},
+      {"townName": "北巣本町", "areaId": "B", "blockRange": "1番～34番"},
+      {"townName": "寿町", "areaId": "B", "blockRange": null},
+      {"townName": "下島町", "areaId": "B", "blockRange": null},
+      {"townName": "常称寺町", "areaId": "B", "blockRange": null},
+      {"townName": "城垣町", "areaId": "B", "blockRange": null},
+      {"townName": "常盤町", "areaId": "B", "blockRange": null},
+      {"townName": "野里町", "areaId": "B", "blockRange": null},
+      {"townName": "宮野町", "areaId": "B", "blockRange": null},
+      {"townName": "宮前町", "areaId": "B", "blockRange": null}
+    ]
+  },
+  {
+    "id": "C",
+    "name": "C地区",
+    "sourceStatus": "official-confirmed",
+    "towns": [
+      {"townName": "打越", "areaId": "C", "blockRange": null},
+      {"townName": "江端町", "areaId": "C", "blockRange": null},
+      {"townName": "岸和田", "areaId": "C", "blockRange": "1丁目～4丁目"},
+      {"townName": "北岸和田", "areaId": "C", "blockRange": "1丁目～3丁目"},
+      {"townName": "北島", "areaId": "C", "blockRange": null},
+      {"townName": "北島東町", "areaId": "C", "blockRange": null},
+      {"townName": "北巣本町", "areaId": "C", "blockRange": "35番～38番"},
+      {"townName": "島頭", "areaId": "C", "blockRange": "1丁目～4丁目"},
+      {"townName": "下馬伏町", "areaId": "C", "blockRange": null},
+      {"townName": "巣本町", "areaId": "C", "blockRange": null},
+      {"townName": "千石西町", "areaId": "C", "blockRange": null},
+      {"townName": "千石東町", "areaId": "C", "blockRange": null},
+      {"townName": "野口", "areaId": "C", "blockRange": null},
+      {"townName": "東江端町", "areaId": "C", "blockRange": null},
+      {"townName": "南野口町", "areaId": "C", "blockRange": null},
+      {"townName": "横地", "areaId": "C", "blockRange": null},
+      {"townName": "脇田町", "areaId": "C", "blockRange": null},
+      {"townName": "四宮", "areaId": "C", "blockRange": "1丁目～6丁目"}
+    ]
+  },
+  {
+    "id": "D",
+    "name": "D地区",
+    "sourceStatus": "official-confirmed",
+    "towns": [
+      {"townName": "一番町", "areaId": "D", "blockRange": null},
+      {"townName": "打越町", "areaId": "D", "blockRange": null},
+      {"townName": "沖町", "areaId": "D", "blockRange": null},
+      {"townName": "北島町", "areaId": "D", "blockRange": null},
+      {"townName": "桑才町", "areaId": "D", "blockRange": null},
+      {"townName": "桑才新町", "areaId": "D", "blockRange": null},
+      {"townName": "栄町", "areaId": "D", "blockRange": null},
+      {"townName": "五月田町", "areaId": "D", "blockRange": null},
+      {"townName": "小路町", "areaId": "D", "blockRange": null},
+      {"townName": "堂山町", "areaId": "D", "blockRange": null},
+      {"townName": "殿島町", "areaId": "D", "blockRange": null},
+      {"townName": "ひえ島町", "areaId": "D", "blockRange": null},
+      {"townName": "東田町", "areaId": "D", "blockRange": null},
+      {"townName": "深田町", "areaId": "D", "blockRange": null},
+      {"townName": "舟田町", "areaId": "D", "blockRange": null},
+      {"townName": "本町", "areaId": "D", "blockRange": null},
+      {"townName": "松生町", "areaId": "D", "blockRange": null},
+      {"townName": "三ツ島", "areaId": "D", "blockRange": "1丁目～6丁目"},
+      {"townName": "元町", "areaId": "D", "blockRange": null},
+      {"townName": "柳田町", "areaId": "D", "blockRange": null}
+    ]
+  },
+  {
+    "id": "E",
+    "name": "E地区",
+    "sourceStatus": "official-confirmed",
+    "towns": [
+      {"townName": "市営門真下馬伏住宅", "areaId": "E", "blockRange": null},
+      {"townName": "市営門真四宮住宅", "areaId": "E", "blockRange": null},
+      {"townName": "市営門真北岸和田住宅", "areaId": "E", "blockRange": null},
+      {"townName": "南門真ハイライフ", "areaId": "E", "blockRange": null}
+    ]
+  },
+  {
+    "id": "F",
+    "name": "F地区",
+    "sourceStatus": "official-confirmed",
+    "towns": [
+      {"townName": "市営門真三ツ島住宅", "areaId": "F", "blockRange": null}
     ]
   }
 ]

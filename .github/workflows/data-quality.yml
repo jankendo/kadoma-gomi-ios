@@ -1,0 +1,37 @@
+name: Validate Kadoma Data
+
+on:
+  pull_request:
+    branches: [main, master]
+  push:
+    branches: [main, master]
+    paths:
+      - KadomaGomi/Resources/Data/**
+      - KadomaGomi/Resources/initial_master_27223_2026.json
+      - docs/kadoma_27223_2026_master.json
+      - docs/manifest.json
+      - Schemas/**
+      - Scripts/**
+      - .github/workflows/data-quality.yml
+  workflow_dispatch:
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - name: Run data quality checks
+        run: python Scripts/run_quality_checks.py
+      - name: Upload master diff report
+        uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: master-diff-report
+          path: build/master_diff.txt
+          if-no-files-found: warn

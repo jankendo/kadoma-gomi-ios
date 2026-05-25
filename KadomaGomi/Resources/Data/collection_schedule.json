@@ -1,101 +1,49 @@
 [
-  {
-    "areaId": "A",
-    "id": "a-burnable",
-    "categoryId": "burnable",
-    "recurrenceType": "weekly",
-    "weekdays": [
-      2,
-      5
-    ],
-    "weekOfMonth": null,
-    "specificDates": null,
-    "validFrom": "2026-04-01",
-    "validTo": "2027-03-31"
-  },
-  {
-    "areaId": "A",
-    "id": "a-plastic-container",
-    "categoryId": "plastic_container",
-    "recurrenceType": "weekly",
-    "weekdays": [
-      1
-    ],
-    "weekOfMonth": null,
-    "specificDates": null,
-    "validFrom": "2026-04-01",
-    "validTo": "2027-03-31"
-  },
-  {
-    "areaId": "A",
-    "id": "a-bottles-cans",
-    "categoryId": "bottles_cans",
-    "recurrenceType": "weekly",
-    "weekdays": [
-      4
-    ],
-    "weekOfMonth": null,
-    "specificDates": null,
-    "validFrom": "2026-04-01",
-    "validTo": "2027-03-31"
-  },
-  {
-    "areaId": "A",
-    "id": "a-paper-cloth",
-    "categoryId": "paper_cloth",
-    "recurrenceType": "monthlyNthWeekday",
-    "weekdays": [
-      3
-    ],
-    "weekOfMonth": [
-      4
-    ],
-    "specificDates": null,
-    "validFrom": "2026-04-01",
-    "validTo": "2027-03-31"
-  },
-  {
-    "areaId": "A",
-    "id": "a-small-items",
-    "categoryId": "small_items",
-    "recurrenceType": "monthlyNthWeekday",
-    "weekdays": [
-      3
-    ],
-    "weekOfMonth": [
-      2
-    ],
-    "specificDates": null,
-    "validFrom": "2026-04-01",
-    "validTo": "2027-03-31"
-  },
-  {
-    "areaId": "A",
-    "id": "a-pet-bottle",
-    "categoryId": "pet_bottle",
-    "recurrenceType": "monthlyNthWeekday",
-    "weekdays": [
-      3
-    ],
-    "weekOfMonth": [
-      1,
-      3
-    ],
-    "specificDates": null,
-    "validFrom": "2026-04-01",
-    "validTo": "2027-03-31"
-  },
-  {
-    "areaId": "A",
-    "id": "a-bulky",
-    "categoryId": "bulky",
-    "recurrenceType": "weekly",
-    "weekdays": [
-      4
-    ],
-    "weekOfMonth": null,
-    "specificDates": null,
-    "validFrom": "2026-04-01",
-    "validTo": "2027-03-31"
-  }
+  {"areaId":"A","id":"a-burnable","categoryId":"burnable","recurrenceType":"weekly","weekdays":[2,5],"weekOfMonth":null,"specificDates":null,"validFrom":"2026-04-01","validTo":"2027-03-31","sourceStatus":"official-confirmed"},
+  {"areaId":"A","id":"a-plastic-container","categoryId":"plastic_container","recurrenceType":"weekly","weekdays":[1],"weekOfMonth":null,"specificDates":null,"validFrom":"2026-04-01","validTo":"2027-03-31","sourceStatus":"official-confirmed"},
+  {"areaId":"A","id":"a-bottles-cans","categoryId":"bottles_cans","recurrenceType":"weekly","weekdays":[4],"weekOfMonth":null,"specificDates":null,"validFrom":"2026-04-01","validTo":"2027-03-31","sourceStatus":"official-confirmed"},
+  {"areaId":"A","id":"a-paper-cloth","categoryId":"paper_cloth","recurrenceType":"monthlyNthWeekday","weekdays":[3],"weekOfMonth":[4],"specificDates":null,"validFrom":"2026-04-01","validTo":"2027-03-31","sourceStatus":"official-confirmed"},
+  {"areaId":"A","id":"a-small-items","categoryId":"small_items","recurrenceType":"monthlyNthWeekday","weekdays":[3],"weekOfMonth":[2],"specificDates":null,"validFrom":"2026-04-01","validTo":"2027-03-31","sourceStatus":"official-confirmed"},
+  {"areaId":"A","id":"a-pet-bottle","categoryId":"pet_bottle","recurrenceType":"monthlyNthWeekday","weekdays":[3],"weekOfMonth":[1,3],"specificDates":null,"validFrom":"2026-04-01","validTo":"2027-03-31","sourceStatus":"official-confirmed"},
+  {"areaId":"A","id":"a-bulky","categoryId":"bulky","recurrenceType":"weekly","weekdays":[4],"weekOfMonth":null,"specificDates":null,"validFrom":"2026-04-01","validTo":"2027-03-31","sourceStatus":"official-confirmed"},
+
+  {"areaId":"B","id":"b-burnable","categoryId":"burnable","recurrenceType":"weekly","weekdays":[2,5],"weekOfMonth":null,"specificDates":null,"validFrom":"2026-04-01","validTo":"2027-03-31","sourceStatus":"official-confirmed"},
+  {"areaId":"B","id":"b-plastic-container","categoryId":"plastic_container","recurrenceType":"weekly","weekdays":[4],"weekOfMonth":null,"specificDates":null,"validFrom":"2026-04-01","validTo":"2027-03-31","sourceStatus":"official-confirmed"},
+  {"areaId":"B","id":"b-bottles-cans","categoryId":"bottles_cans","recurrenceType":"weekly","weekdays":[1],"weekOfMonth":null,"specificDates":null,"validFrom":"2026-04-01","validTo":"2027-03-31","sourceStatus":"official-confirmed"},
+  {"areaId":"B","id":"b-paper-cloth","categoryId":"paper_cloth","recurrenceType":"monthlyNthWeekday","weekdays":[3],"weekOfMonth":[1],"specificDates":null,"validFrom":"2026-04-01","validTo":"2027-03-31","sourceStatus":"official-confirmed"},
+  {"areaId":"B","id":"b-small-items","categoryId":"small_items","recurrenceType":"monthlyNthWeekday","weekdays":[3],"weekOfMonth":[3],"specificDates":null,"validFrom":"2026-04-01","validTo":"2027-03-31","sourceStatus":"official-confirmed"},
+  {"areaId":"B","id":"b-pet-bottle","categoryId":"pet_bottle","recurrenceType":"monthlyNthWeekday","weekdays":[3],"weekOfMonth":[2,4],"specificDates":null,"validFrom":"2026-04-01","validTo":"2027-03-31","sourceStatus":"official-confirmed"},
+  {"areaId":"B","id":"b-bulky","categoryId":"bulky","recurrenceType":"weekly","weekdays":[1],"weekOfMonth":null,"specificDates":null,"validFrom":"2026-04-01","validTo":"2027-03-31","sourceStatus":"official-confirmed"},
+
+  {"areaId":"C","id":"c-burnable","categoryId":"burnable","recurrenceType":"weekly","weekdays":[1,4],"weekOfMonth":null,"specificDates":null,"validFrom":"2026-04-01","validTo":"2027-03-31","sourceStatus":"official-confirmed"},
+  {"areaId":"C","id":"c-plastic-container","categoryId":"plastic_container","recurrenceType":"weekly","weekdays":[2],"weekOfMonth":null,"specificDates":null,"validFrom":"2026-04-01","validTo":"2027-03-31","sourceStatus":"official-confirmed"},
+  {"areaId":"C","id":"c-bottles-cans","categoryId":"bottles_cans","recurrenceType":"weekly","weekdays":[5],"weekOfMonth":null,"specificDates":null,"validFrom":"2026-04-01","validTo":"2027-03-31","sourceStatus":"official-confirmed"},
+  {"areaId":"C","id":"c-paper-cloth","categoryId":"paper_cloth","recurrenceType":"monthlyNthWeekday","weekdays":[3],"weekOfMonth":[3],"specificDates":null,"validFrom":"2026-04-01","validTo":"2027-03-31","sourceStatus":"official-confirmed"},
+  {"areaId":"C","id":"c-small-items","categoryId":"small_items","recurrenceType":"monthlyNthWeekday","weekdays":[3],"weekOfMonth":[1],"specificDates":null,"validFrom":"2026-04-01","validTo":"2027-03-31","sourceStatus":"official-confirmed"},
+  {"areaId":"C","id":"c-pet-bottle","categoryId":"pet_bottle","recurrenceType":"monthlyNthWeekday","weekdays":[3],"weekOfMonth":[2,4],"specificDates":null,"validFrom":"2026-04-01","validTo":"2027-03-31","sourceStatus":"official-confirmed"},
+  {"areaId":"C","id":"c-bulky","categoryId":"bulky","recurrenceType":"weekly","weekdays":[5],"weekOfMonth":null,"specificDates":null,"validFrom":"2026-04-01","validTo":"2027-03-31","sourceStatus":"official-confirmed"},
+
+  {"areaId":"D","id":"d-burnable","categoryId":"burnable","recurrenceType":"weekly","weekdays":[1,4],"weekOfMonth":null,"specificDates":null,"validFrom":"2026-04-01","validTo":"2027-03-31","sourceStatus":"official-confirmed"},
+  {"areaId":"D","id":"d-plastic-container","categoryId":"plastic_container","recurrenceType":"weekly","weekdays":[5],"weekOfMonth":null,"specificDates":null,"validFrom":"2026-04-01","validTo":"2027-03-31","sourceStatus":"official-confirmed"},
+  {"areaId":"D","id":"d-bottles-cans","categoryId":"bottles_cans","recurrenceType":"weekly","weekdays":[2],"weekOfMonth":null,"specificDates":null,"validFrom":"2026-04-01","validTo":"2027-03-31","sourceStatus":"official-confirmed"},
+  {"areaId":"D","id":"d-paper-cloth","categoryId":"paper_cloth","recurrenceType":"monthlyNthWeekday","weekdays":[3],"weekOfMonth":[2],"specificDates":null,"validFrom":"2026-04-01","validTo":"2027-03-31","sourceStatus":"official-confirmed"},
+  {"areaId":"D","id":"d-small-items","categoryId":"small_items","recurrenceType":"monthlyNthWeekday","weekdays":[3],"weekOfMonth":[4],"specificDates":null,"validFrom":"2026-04-01","validTo":"2027-03-31","sourceStatus":"official-confirmed"},
+  {"areaId":"D","id":"d-pet-bottle","categoryId":"pet_bottle","recurrenceType":"monthlyNthWeekday","weekdays":[3],"weekOfMonth":[1,3],"specificDates":null,"validFrom":"2026-04-01","validTo":"2027-03-31","sourceStatus":"official-confirmed"},
+  {"areaId":"D","id":"d-bulky","categoryId":"bulky","recurrenceType":"weekly","weekdays":[2],"weekOfMonth":null,"specificDates":null,"validFrom":"2026-04-01","validTo":"2027-03-31","sourceStatus":"official-confirmed"},
+
+  {"areaId":"E","id":"e-burnable","categoryId":"burnable","recurrenceType":"weekly","weekdays":[2,5],"weekOfMonth":null,"specificDates":null,"validFrom":"2026-04-01","validTo":"2027-03-31","sourceStatus":"official-confirmed"},
+  {"areaId":"E","id":"e-plastic-container","categoryId":"plastic_container","recurrenceType":"weekly","weekdays":[2],"weekOfMonth":null,"specificDates":null,"validFrom":"2026-04-01","validTo":"2027-03-31","sourceStatus":"official-confirmed"},
+  {"areaId":"E","id":"e-bottles-cans","categoryId":"bottles_cans","recurrenceType":"weekly","weekdays":[5],"weekOfMonth":null,"specificDates":null,"validFrom":"2026-04-01","validTo":"2027-03-31","sourceStatus":"official-confirmed"},
+  {"areaId":"E","id":"e-paper-cloth","categoryId":"paper_cloth","recurrenceType":"monthlyNthWeekday","weekdays":[3],"weekOfMonth":[3],"specificDates":null,"validFrom":"2026-04-01","validTo":"2027-03-31","sourceStatus":"official-confirmed"},
+  {"areaId":"E","id":"e-small-items","categoryId":"small_items","recurrenceType":"monthlyNthWeekday","weekdays":[3],"weekOfMonth":[1],"specificDates":null,"validFrom":"2026-04-01","validTo":"2027-03-31","sourceStatus":"official-confirmed"},
+  {"areaId":"E","id":"e-pet-bottle","categoryId":"pet_bottle","recurrenceType":"monthlyNthWeekday","weekdays":[3],"weekOfMonth":[2,4],"specificDates":null,"validFrom":"2026-04-01","validTo":"2027-03-31","sourceStatus":"official-confirmed"},
+  {"areaId":"E","id":"e-bulky","categoryId":"bulky","recurrenceType":"weekly","weekdays":[5],"weekOfMonth":null,"specificDates":null,"validFrom":"2026-04-01","validTo":"2027-03-31","sourceStatus":"official-confirmed"},
+
+  {"areaId":"F","id":"f-burnable","categoryId":"burnable","recurrenceType":"weekly","weekdays":[2,5],"weekOfMonth":null,"specificDates":null,"validFrom":"2026-04-01","validTo":"2027-03-31","sourceStatus":"official-confirmed"},
+  {"areaId":"F","id":"f-plastic-container","categoryId":"plastic_container","recurrenceType":"weekly","weekdays":[5],"weekOfMonth":null,"specificDates":null,"validFrom":"2026-04-01","validTo":"2027-03-31","sourceStatus":"official-confirmed"},
+  {"areaId":"F","id":"f-bottles-cans","categoryId":"bottles_cans","recurrenceType":"weekly","weekdays":[2],"weekOfMonth":null,"specificDates":null,"validFrom":"2026-04-01","validTo":"2027-03-31","sourceStatus":"official-confirmed"},
+  {"areaId":"F","id":"f-paper-cloth","categoryId":"paper_cloth","recurrenceType":"monthlyNthWeekday","weekdays":[3],"weekOfMonth":[2],"specificDates":null,"validFrom":"2026-04-01","validTo":"2027-03-31","sourceStatus":"official-confirmed"},
+  {"areaId":"F","id":"f-small-items","categoryId":"small_items","recurrenceType":"monthlyNthWeekday","weekdays":[3],"weekOfMonth":[4],"specificDates":null,"validFrom":"2026-04-01","validTo":"2027-03-31","sourceStatus":"official-confirmed"},
+  {"areaId":"F","id":"f-pet-bottle","categoryId":"pet_bottle","recurrenceType":"monthlyNthWeekday","weekdays":[3],"weekOfMonth":[1,3],"specificDates":null,"validFrom":"2026-04-01","validTo":"2027-03-31","sourceStatus":"official-confirmed"},
+  {"areaId":"F","id":"f-bulky","categoryId":"bulky","recurrenceType":"weekly","weekdays":[2],"weekOfMonth":null,"specificDates":null,"validFrom":"2026-04-01","validTo":"2027-03-31","sourceStatus":"official-confirmed"}
 ]

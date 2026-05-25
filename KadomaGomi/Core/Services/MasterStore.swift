@@ -15,7 +15,7 @@ final class MasterStore: ObservableObject {
         let bundled = Self.loadBundledMaster()
         self.master = Self.loadCachedMaster() ?? bundled
         self.settings = Self.loadSettings(key: Self.settingsKey) ?? UserSettings()
-        if AddressResolver().resolveArea(addressText: settings.addressText, master: master) == nil {
+        if !master.areas.contains(where: { $0.id == settings.areaId }) {
             self.settings.areaId = master.defaultAreaId
         }
     }
@@ -51,7 +51,7 @@ final class MasterStore: ObservableObject {
     }
 
     func searchItems(query: String) -> [WasteItem] {
-        WasteSearchService(items: master.itemDictionary).search(query)
+        WasteSearchService(items: master.itemDictionary, categories: master.categories).search(query)
     }
 
     func resolveAndSaveAddress(_ address: String) -> Bool {
@@ -67,6 +67,15 @@ final class MasterStore: ObservableObject {
     func applyDefaultDistrictPreset() {
         settings.addressText = "大倉町1-20"
         settings.areaId = "A"
+        saveSettings()
+    }
+
+    func setArea(_ areaId: String, addressText: String? = nil) {
+        guard master.areas.contains(where: { $0.id == areaId }) else { return }
+        settings.areaId = areaId
+        if let addressText {
+            settings.addressText = addressText
+        }
         saveSettings()
     }
 
@@ -131,6 +140,15 @@ final class MasterStore: ObservableObject {
         } catch {
             syncMessage = "通知設定に失敗しました: \(error.localizedDescription)"
         }
+    }
+
+    func notificationPreviews(limit: Int = 8) -> [NotificationPreview] {
+        NotificationService().previews(
+            events: events(from: .now, days: 60),
+            categories: master.categories,
+            settings: settings,
+            limit: limit
+        )
     }
 
     private func eventSortKey(_ event: CollectionEvent) -> String {

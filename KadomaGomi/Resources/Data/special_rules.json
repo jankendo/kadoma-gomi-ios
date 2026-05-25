@@ -8,6 +8,15 @@
         12,
         1
       ]
+    },
+    {
+      "id": "pdf-review-required",
+      "title": "PDF日付表はレビュー対象",
+      "body": "地区別PDFの日付表や年末年始変更は自動生成だけで確定せず、公式ページまたは広報で確認してください。",
+      "monthHints": [
+        12,
+        1
+      ]
     }
   ],
   "exceptions": [

@@ -6,4 +6,4 @@ Artifacts/
 *.ipa
 *.zip
 *.log
-
+__pycache__/

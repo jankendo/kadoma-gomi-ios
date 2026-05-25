@@ -183,3 +183,11 @@ private struct WasteItemResultCard: View {
     SearchView()
         .environmentObject(MasterStore())
 }
+
+#Preview("Search Dark Large Type") {
+    SearchView()
+        .environmentObject(MasterStore())
+        .preferredColorScheme(.dark)
+        .environment(\.dynamicTypeSize, .accessibility2)
+        .previewDevice("iPhone 15 Pro Max")
+}

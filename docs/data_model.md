@@ -118,3 +118,10 @@ Runtime互換:
 - 年末年始の実日付変更は通常ルールだけでは確定できない。
 - 品目辞書の`confidence`が低いものは公式確認推奨としてUIで表示する。
 
+## 9. Phase 2追記
+
+第2フェーズから、分割JSONを編集元、`initial_master_27223_2026.json` と `docs/kadoma_27223_2026_master.json` を生成物として扱う。A-F全地区の町名・収集ルールは `collection_areas.json` と `collection_schedule.json` に入り、`Scripts/generate_master.py` で本番masterへ変換する。
+
+`sourceStatus` は分割JSON側で管理し、公式確認済み・レビュー対象・未確認を区別する。アプリのCodable互換を守るため、生成masterでは既存モデルが読むフィールドへ整形する。
+
+データ検証は `Scripts/validate_data.py` と `Scripts/run_quality_checks.py` で行う。manifest SHAは配信用masterの実バイト列から生成し、WindowsとCIで改行差分が出ないようLF固定で書き出す。

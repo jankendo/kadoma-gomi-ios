@@ -120,3 +120,6 @@ SHA-256:
 
 自動テストターゲットは未作成。今回は静的検証、データ検証、GitHub Actionsビルド、artifact検査を実施。
 
+## 9. Phase 2追記
+
+第2フェーズでは `Scripts/run_quality_checks.py` を追加し、schema validation、生成物一致、manifest SHA、A-F地区カレンダースモーク、検索スモークをローカル/CIで確認できるようにした。Swiftのローカルビルドは引き続きWindowsでは不可のため、GitHub ActionsのmacOS runnerを正とする。

@@ -10,8 +10,20 @@ struct NotificationService {
         let pending = await center.pendingNotificationRequests()
         center.removePendingNotificationRequests(withIdentifiers: pending.map(\.identifier).filter { $0.hasPrefix("gomi_") })
 
-        var scheduledCount = 0
-        for event in events where scheduledCount < 60 {
+        for preview in previews(events: events, categories: categories, settings: settings, limit: 60) {
+            try await addNotification(
+                id: preview.id,
+                date: preview.fireDate,
+                title: preview.title,
+                body: preview.body
+            )
+        }
+    }
+
+    func previews(events: [CollectionEvent], categories: [WasteCategory], settings: UserSettings, limit: Int = 60) -> [NotificationPreview] {
+        var previews: [NotificationPreview] = []
+
+        for event in events where previews.count < limit {
             guard event.categoryId != "bulky", let category = categories.first(where: { $0.id == event.categoryId }) else {
                 continue
             }
@@ -20,25 +32,35 @@ struct NotificationService {
             }
 
             if settings.previousNightNotificationEnabled && category.defaultPreviousNightNotification {
-                try await addNotification(
+                previews.append(NotificationPreview(
                     id: "\(event.id)_previous",
-                    date: previousDay(for: event.date, hour: settings.previousNightHour),
+                    eventDate: event.date,
+                    fireDate: previousDay(for: event.date, hour: settings.previousNightHour),
+                    categoryId: event.categoryId,
                     title: "明日は「\(category.name)」の日です",
-                    body: notificationBody(for: category, prefix: "朝9時までに出してください。")
-                )
-                scheduledCount += 1
+                    body: notificationBody(for: category, prefix: "朝9時までに出してください。"),
+                    timing: .previousNight
+                ))
             }
 
-            if settings.morningNotificationEnabled && category.defaultMorningNotification && scheduledCount < 60 {
-                try await addNotification(
+            if settings.morningNotificationEnabled && category.defaultMorningNotification && previews.count < limit {
+                previews.append(NotificationPreview(
                     id: "\(event.id)_morning",
-                    date: sameDay(for: event.date, hour: settings.morningHour, minute: settings.morningMinute),
+                    eventDate: event.date,
+                    fireDate: sameDay(for: event.date, hour: settings.morningHour, minute: settings.morningMinute),
+                    categoryId: event.categoryId,
                     title: "今日は「\(category.name)」の日です",
-                    body: notificationBody(for: category, prefix: "朝9時までです。")
-                )
-                scheduledCount += 1
+                    body: notificationBody(for: category, prefix: "朝9時までです。"),
+                    timing: .sameMorning
+                ))
             }
         }
+
+        return previews
+            .filter { $0.fireDate > .now }
+            .sorted { $0.fireDate < $1.fireDate }
+            .prefix(limit)
+            .map { $0 }
     }
 
     private func addNotification(id: String, date: Date, title: String, body: String) async throws {

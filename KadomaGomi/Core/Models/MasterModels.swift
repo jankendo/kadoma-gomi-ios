@@ -111,6 +111,30 @@ struct CollectionEvent: Identifiable, Hashable {
     }
 }
 
+enum NotificationTiming: String, Hashable {
+    case previousNight
+    case sameMorning
+
+    var label: String {
+        switch self {
+        case .previousNight:
+            return "前日"
+        case .sameMorning:
+            return "当日朝"
+        }
+    }
+}
+
+struct NotificationPreview: Identifiable, Hashable {
+    let id: String
+    let eventDate: Date
+    let fireDate: Date
+    let categoryId: String
+    let title: String
+    let body: String
+    let timing: NotificationTiming
+}
+
 struct UserSettings: Codable, Equatable {
     var addressText: String = "大倉町1-20"
     var areaId: String = "A"
