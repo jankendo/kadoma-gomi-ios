@@ -1,0 +1,38 @@
+name: Monitor Kadoma Official Sources
+
+on:
+  schedule:
+    - cron: "10 20 * * *"
+  workflow_dispatch:
+
+jobs:
+  monitor:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Check official source changes
+        run: python Scripts/check_kadoma_sources.py --baseline docs/source_hashes.json --output build/source-report.json
+      - name: Write summary
+        run: |
+          python - <<'PY'
+          import os
+          import json
+          report = json.load(open("build/source-report.json", encoding="utf-8"))
+          summary = open(os.environ["GITHUB_STEP_SUMMARY"], "a", encoding="utf-8")
+          print("## Kadoma official source monitor", file=summary)
+          print("", file=summary)
+          if report.get("changed"):
+              print("Changes detected. Review `source-report` artifact before updating master JSON.", file=summary)
+              for change in report.get("changes", []):
+                  print(f"- {change}", file=summary)
+          else:
+              print("No changes detected against committed baseline.", file=summary)
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: source-report
+          path: build/source-report.json
+          if-no-files-found: error

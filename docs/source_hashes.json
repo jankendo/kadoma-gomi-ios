@@ -1,0 +1,76 @@
+{
+  "generatedAt": "2026-05-25T01:08:59.730402+00:00",
+  "sources": [
+    {
+      "id": "district-calendar",
+      "title": "地区別ごみカレンダー",
+      "url": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/35805.html",
+      "sha256": "b427b04f45a7edc9eba61ec054e20f787581d3a619883ac6dbb4ebc03e356785",
+      "updatedAtText": "2026年03月30日",
+      "pdfs": [
+        {
+          "url": "https://www.city.kadoma.osaka.jp/material/files/group/20/A.pdf",
+          "sha256": "be24334fb1d61cbaa12363877bfb954a3740ab623a61323a4028d214edc7a535",
+          "bytes": 1696570
+        },
+        {
+          "url": "https://www.city.kadoma.osaka.jp/material/files/group/20/B.pdf",
+          "sha256": "e3106b70518f362bd45a44cbe09097d78404187b16ef8a60cfb03d64fb0fc935",
+          "bytes": 1747350
+        },
+        {
+          "url": "https://www.city.kadoma.osaka.jp/material/files/group/20/C.pdf",
+          "sha256": "2b8cb650a3c74c7c800ef4227e79f9b84a27d3f0441c3b2967f716dac693727e",
+          "bytes": 1884842
+        },
+        {
+          "url": "https://www.city.kadoma.osaka.jp/material/files/group/20/D.pdf",
+          "sha256": "1d5053491254b1cfff85fa5d0d1d9e4a1e1a46953e28a964da787d3d012b3d47",
+          "bytes": 1793035
+        },
+        {
+          "url": "https://www.city.kadoma.osaka.jp/material/files/group/20/E.pdf",
+          "sha256": "a132ccc0adaf48aa58a2a8ec3e1fb4b59674e5fccde36a15969f300a008949d5",
+          "bytes": 1749648
+        },
+        {
+          "url": "https://www.city.kadoma.osaka.jp/material/files/group/20/F.pdf",
+          "sha256": "62a6e990555734b14fabeff0c212fb3b29ad768dcd96ae9e25b02cace0120b2e",
+          "bytes": 1864818
+        }
+      ]
+    },
+    {
+      "id": "sorting-guide",
+      "title": "ごみの出し方・分け方",
+      "url": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "sha256": "1006ecfabf35013588d3c9b101d10a4c1952b73650e96b3c50e8d314f0d224c1",
+      "updatedAtText": "2026年03月30日",
+      "pdfs": [
+        {
+          "url": "https://www.city.kadoma.osaka.jp/material/files/group/20/kyoutuu.pdf",
+          "sha256": "e59e0ceca58fc1cea05e069b2d6af867af521739422cd96f0c09f681558cf282",
+          "bytes": 5044513
+        }
+      ]
+    },
+    {
+      "id": "bulky-phone",
+      "title": "粗大ごみの電話申込み",
+      "url": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/5/22406.html",
+      "sha256": "a310a34597b848fbeb9262e155169aca963ecdc33db0bddd26e43c6960452ba5",
+      "updatedAtText": "2025年11月04日",
+      "pdfs": []
+    },
+    {
+      "id": "bulky-web",
+      "title": "粗大ごみのインターネット申込み",
+      "url": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/5/22408.html",
+      "sha256": "d757c365bf252fccd03e486a09957abca4a92185d766ee8250d1713d794499fa",
+      "updatedAtText": "2023年04月03日",
+      "pdfs": []
+    }
+  ],
+  "changes": [],
+  "changed": false
+}

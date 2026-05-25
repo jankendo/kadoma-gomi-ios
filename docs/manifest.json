@@ -1,0 +1,12 @@
+{
+  "municipalityCode": "27223",
+  "latestVersion": "2026.04.01-a.1",
+  "fiscalYear": 2026,
+  "masterUrl": "kadoma_27223_2026_master.json",
+  "sha256": "b331263aba0d9e8b0df629b52edf7c358ff3103bfde8bae55f222a495e130007",
+  "sourceUpdatedAt": "2026-03-30",
+  "generatedAt": "2026-05-25T10:00:00+09:00",
+  "requiresReview": false,
+  "message": "A地区カレンダーと分別検索マスタを更新しました"
+}
+
