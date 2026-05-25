@@ -8,6 +8,9 @@ python Scripts\validate_data.py
 python Scripts\generate_master.py --check
 python Scripts\run_quality_checks.py
 python -m py_compile Scripts\validate_data.py Scripts\generate_master.py Scripts\run_quality_checks.py
+Get-Command xcodebuild
+gh run list --repo jankendo/kadoma-gomi-ios --limit 10
+gh run download 26387287807 --repo jankendo/kadoma-gomi-ios --name KadomaGomi-unsigned-ipa --dir Artifacts\run-26387287807
 ```
 
 ## 2. 成功した検証
@@ -18,11 +21,17 @@ python -m py_compile Scripts\validate_data.py Scripts\generate_master.py Scripts
 - `run_quality_checks.py`: 成功。データ品質、A-Fカレンダー、検索、通知プレビューのスモークテストを通過。
 - `py_compile`: 成功。Pythonスクリプト構文エラーなし。
 - manifest SHA は `docs/kadoma_27223_2026_master.json` と一致。
+- GitHub Actions `Build Unsigned iOS App` run `26387287807`: 成功。
+- GitHub Actions `Validate Kadoma Data` run `26387236105`: 成功。
+- GitHub Actions `Deploy Master JSON to GitHub Pages` run `26387236106`: 成功。
+- GitHub Pages の `manifest.json` / `kadoma_27223_2026_master.json`: HTTP取得成功。manifest SHA と remote master SHA が一致。
+- unsigned IPA artifact を `Artifacts\run-26387287807\KadomaGomi-unsigned.ipa` に取得。IPA内に `Info.plist`、実行ファイル、`Assets.car`、`initial_master_27223_2026.json`、分割JSONが含まれることを確認。
 
 ## 3. 失敗した検証
 
 - 初回の `run_quality_checks.py` で「プラ」が普通ごみのプラスチック製品へ寄りすぎるランキングを検出。短い略語ではプラスチック製容器包装を優先するようスコア補正した。
 - 初回の `run_quality_checks.py` で「リチュウム電池」が小型ごみの一般電池に寄りすぎるランキングを検出。リチウム/リチュウム/バッテリー系は注意品目を優先するようスコア補正した。
+- 初回の GitHub Actions `Build Unsigned iOS App` run `26387236104` は Swift compile error で失敗。`WasteItem` の optional fallback 条件式を明示的に括弧付けして修正し、run `26387287807` で成功を確認した。
 
 ## 4. 失敗理由
 
@@ -31,7 +40,7 @@ python -m py_compile Scripts\validate_data.py Scripts\generate_master.py Scripts
 ## 5. 未検証項目
 
 - Windows環境のため、ローカル `xcodebuild build`、`xcodebuild test`、Xcode Preview、Simulator、実機通知、VoiceOver実走査、Dynamic Type最大の実画面は未検証。
-- GitHub Actions build/pages/source-monitor はこのドキュメント作成時点では未実行。push後に確認する。
+- Phase 3変更後の Source Monitor workflow は未実行。第2フェーズ時点の手動実行 run `26380618375` は成功済みだが、今回の最終状態では再実行して確認する。
 
 ## 6. 今後必要な確認
 
@@ -41,7 +50,7 @@ python -m py_compile Scripts\validate_data.py Scripts\generate_master.py Scripts
 
 ## 7. ビルド可否
 
-ローカルWindowsでは不可。GitHub Actions macOS runnerで確認する。
+ローカルWindowsでは不可。`Get-Command xcodebuild` で `xcodebuild` が存在しないことを確認。GitHub Actions macOS runner の `Build Unsigned iOS App` run `26387287807` で成功。
 
 ## 8. テスト可否
 
@@ -56,3 +65,6 @@ Swift unit testターゲットは未作成。Pythonベースのデータ/生成/
 - confirmed exceptions: 0
 - exceptionRules: 1
 - manifest SHA: `f30e74e7747372ec0d84062c4cf0ee11da195c7591dd985aa7da2c0cff69cfcf`
+- remote manifest/master SHA一致: 成功
+- IPA SHA-256: `3dd8ba69f46822197cbf02359aa01882a5bc05be447af36981d778bc1cd88b9f`
+- IPA同梱master: version `2026.04.01-af.3`、areas 6、schedules 42、items 225、confirmed exceptions 0、exceptionRules 1

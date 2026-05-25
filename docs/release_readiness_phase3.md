@@ -12,7 +12,7 @@
 
 ## リリース可否
 
-コードとデータ検証が通り、GitHub Actions build が成功すれば、テスト配布用 unsigned IPA としては利用可能です。App Store 公開前には実機QA、VoiceOver、Dynamic Type最大、通知到達、公式年末年始確定表の確認が必要です。
+コードとデータ検証は通過し、GitHub Actions `Build Unsigned iOS App` run `26387287807` で unsigned IPA の生成に成功しました。テスト配布用 unsigned IPA としては利用可能です。App Store 公開前には実機QA、VoiceOver、Dynamic Type最大、通知到達、公式年末年始確定表の確認が必要です。
 
 ## ブロッカー
 
@@ -23,7 +23,8 @@
 
 ## 推奨リリース前作業
 
-1. GitHub Actions build の成功を確認する。
-2. IPA を実機へインストールし、`release_qa_checklist.md` を実行する。
-3. 年末年始確定情報が公開された時点で `special_rules.json` を更新する。
-4. Pages manifest/master の HTTP 200 と SHA 一致を確認する。
+1. IPA を実機へインストールし、`release_qa_checklist.md` を実行する。
+2. 通知許可/拒否/再設定を実機で確認する。
+3. Source Monitor workflow を最終mainで再実行する。
+4. 年末年始確定情報が公開された時点で `special_rules.json` を更新する。
+5. App Store公開に進む場合は署名、Bundle ID、プライバシー表記、非公式アプリ表記を最終確認する。
