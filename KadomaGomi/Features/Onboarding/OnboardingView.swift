@@ -20,8 +20,8 @@ struct OnboardingView: View {
             color: AppColor.subTint
         ),
         .init(
-            title: "大倉町1-20はA地区",
-            message: "初期設定は門真市 大倉町 / A地区。あとから設定画面で変更できます。",
+            title: "門真市A-F地区に対応",
+            message: "大倉町1-20はA地区プリセット。あとから設定画面でA-F地区を選べます。",
             symbol: "mappin.and.ellipse.circle.fill",
             color: AppColor.warning
         ),
@@ -36,6 +36,9 @@ struct OnboardingView: View {
     var body: some View {
         VStack(spacing: AppSpacing.lg) {
             HStack {
+                Text("かどまごみナビ")
+                    .font(AppTypography.cardTitle)
+                    .foregroundStyle(AppColor.appTint)
                 Spacer()
                 Button("スキップ", action: skip)
                     .font(AppTypography.callout.weight(.semibold))
@@ -71,7 +74,14 @@ struct OnboardingView: View {
             .padding(.bottom, AppSpacing.xl)
             .accessibilityHint(page == pages.count - 1 ? "大倉町1-20をA地区として設定してホームを開きます。" : "次の説明へ進みます。")
         }
-        .background(AppColor.background)
+        .background(
+            LinearGradient(
+                colors: [AppColor.backgroundTop, AppColor.background, AppColor.backgroundBottom],
+                startPoint: .topLeading,
+                endPoint: .bottomTrailing
+            )
+            .ignoresSafeArea()
+        )
     }
 }
 
@@ -92,7 +102,12 @@ private struct OnboardingPageView: View {
                 .font(.system(size: 82, weight: .semibold))
                 .foregroundStyle(page.color)
                 .frame(width: 132, height: 132)
-                .background(page.color.opacity(0.14), in: RoundedRectangle(cornerRadius: AppRadius.lg, style: .continuous))
+                .background(page.color.opacity(0.14), in: RoundedRectangle(cornerRadius: AppRadius.xl, style: .continuous))
+                .overlay(
+                    RoundedRectangle(cornerRadius: AppRadius.xl, style: .continuous)
+                        .stroke(page.color.opacity(0.25), lineWidth: 1)
+                )
+                .shadow(color: page.color.opacity(0.12), radius: 18, x: 0, y: 8)
                 .accessibilityHidden(true)
 
             VStack(spacing: AppSpacing.md) {
@@ -116,3 +131,7 @@ private struct OnboardingPageView: View {
     OnboardingView(complete: {}, skip: {})
 }
 
+#Preview("Onboarding Light iPhone SE") {
+    OnboardingView(complete: {}, skip: {})
+        .previewLayout(.fixed(width: 320, height: 568))
+}

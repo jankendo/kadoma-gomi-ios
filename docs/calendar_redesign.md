@@ -1,0 +1,27 @@
+# Calendar Redesign
+
+## 1. 改善目的
+
+月表示を「見るだけで分かる」状態へ近づけるため、日付セル、凡例、選択日詳細、年末年始注意を再設計しました。
+
+## 2. 新しい構成
+
+- `CalendarMonthHeader`: 月、地区、前月/今日/次月、月/リスト切替。
+- `SpecialRuleNoticeCard`: 年末年始や未確認情報の注意。
+- `CalendarLegendView`: ごみ種別の色・アイコン・短名。
+- `CalendarMonthView`: 月グリッド。
+- `CalendarDayCell`: 日付、今日強調、収集チップ、複数件表示。
+- `SelectedDaySummaryCard`: 選択日の詳細。
+- `CollectionEventList`: 直近30日のリスト表示。
+
+## 3. 小型画面対応
+
+iPhone SE相当でも月セルが詰まりすぎないよう、セル内表示は最大2件までにし、3件以上は `+N` で示します。詳細は選択日カードで大きく表示します。
+
+## 4. 色だけに依存しない対策
+
+日付セルのチップは色、SF Symbols、短いラベルを併用します。VoiceOverでは日付と収集種別名を読み上げます。
+
+## 5. 年末年始
+
+Dec/Janは確定例外日が未登録の場合でも、`needs_review` の注意を表示できます。未確認情報を確定収集日として表示しません。

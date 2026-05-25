@@ -10,6 +10,7 @@
 - 年末年始は未確認の確定日を登録せず、needs_review として扱う。
 - Widget / App Shortcuts 用の読み取り専用層を追加。
 - GitHub Actions build/pages/source-monitor は Phase 3 最終確認で成功。
+- Phase 4でライトモード専用のポップなUIへ刷新。データ基盤は維持。
 
 ## リリース可否
 
@@ -21,6 +22,7 @@
 - 実機通知到達が未確認。
 - VoiceOver実走査が未確認。
 - Simulator / Xcode Preview 実画面確認が Windows 環境では未実施。
+- Phase 4デザイン刷新後の実機ライト固定確認が未実施。
 
 ## 推奨リリース前作業
 

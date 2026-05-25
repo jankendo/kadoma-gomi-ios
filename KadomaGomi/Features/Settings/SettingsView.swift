@@ -40,6 +40,7 @@ struct SettingsView: View {
                 )
 
                 DataUpdateSettingsCard(store: store)
+                DisplayAccessibilityCard()
                 OfficialLinksCard(pages: store.master.sourcePages)
                 HelpAndAppInfoCard(
                     resetOnboarding: {
@@ -48,6 +49,7 @@ struct SettingsView: View {
                 )
             }
             .navigationTitle("設定")
+            .toolbarBackground(AppColor.backgroundTop, for: .navigationBar)
             .task {
                 addressText = store.settings.addressText
                 await refreshNotificationStatus()
@@ -122,14 +124,25 @@ private struct DistrictSettingsCard: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: AppSpacing.md) {
-            AppSectionHeader("地区設定", subtitle: "地区を間違えると収集日が変わります", systemImage: AppIcon.district)
+            AppSectionHeader("お住まいの地区", subtitle: "地区を間違えると収集日が変わります", systemImage: AppIcon.district)
 
-            VStack(alignment: .leading, spacing: AppSpacing.xs) {
-                Text("現在")
-                    .font(AppTypography.badge)
-                    .foregroundStyle(AppColor.secondaryText)
-                Text("門真市 \(currentAddress) / \(currentAreaName)")
-                    .font(AppTypography.cardTitle)
+            HStack(alignment: .top, spacing: AppSpacing.md) {
+                Image(systemName: AppIcon.area)
+                    .font(.title2.weight(.heavy))
+                    .frame(width: 52, height: 52)
+                    .background(AppColor.softMint, in: RoundedRectangle(cornerRadius: AppRadius.lg, style: .continuous))
+                    .foregroundStyle(AppColor.appTint)
+                    .accessibilityHidden(true)
+                VStack(alignment: .leading, spacing: AppSpacing.xs) {
+                    Text("現在の設定")
+                        .font(AppTypography.badge)
+                        .foregroundStyle(AppColor.secondaryText)
+                    Text("門真市 \(currentAddress)")
+                        .font(AppTypography.cardTitle)
+                    Text(currentAreaName)
+                        .font(.title2.weight(.heavy))
+                        .foregroundStyle(AppColor.appTint)
+                }
             }
 
             VStack(alignment: .leading, spacing: AppSpacing.sm) {
@@ -183,11 +196,18 @@ private struct DistrictSettingsCard: View {
 
     private var districtButtons: some View {
         Group {
-            Button("保存", action: save)
-                .buttonStyle(.borderedProminent)
-                .controlSize(.large)
-                .tint(AppColor.appTint)
-            Button("大倉町1-20を使う", action: applyPreset)
+            Button(action: applyPreset) {
+                Label("大倉町1-20を使う", systemImage: AppIcon.today)
+                    .frame(maxWidth: .infinity)
+            }
+            .buttonStyle(.borderedProminent)
+            .controlSize(.large)
+            .tint(AppColor.appTint)
+
+            Button(action: save) {
+                Label("入力住所で保存", systemImage: AppIcon.success)
+                    .frame(maxWidth: .infinity)
+            }
                 .buttonStyle(.bordered)
                 .controlSize(.large)
         }
@@ -239,6 +259,7 @@ private struct NotificationSettingsCard: View {
                 .buttonStyle(.borderedProminent)
                 .controlSize(.large)
                 .tint(AppColor.appTint)
+                .frame(maxWidth: .infinity)
 
             NotificationPreviewList(previews: previews, categoryProvider: categoryProvider)
         }
@@ -357,6 +378,32 @@ private struct DataUpdateSettingsCard: View {
     }
 }
 
+private struct DisplayAccessibilityCard: View {
+    var body: some View {
+        VStack(alignment: .leading, spacing: AppSpacing.md) {
+            AppSectionHeader("表示と使いやすさ", subtitle: "明るいライトモード専用です", systemImage: AppIcon.lightMode)
+            HStack(alignment: .top, spacing: AppSpacing.md) {
+                Image(systemName: AppIcon.lightMode)
+                    .font(.title2.weight(.heavy))
+                    .frame(width: 48, height: 48)
+                    .background(AppColor.softYellow, in: RoundedRectangle(cornerRadius: AppRadius.lg, style: .continuous))
+                    .foregroundStyle(AppColor.accent)
+                    .accessibilityHidden(true)
+                VStack(alignment: .leading, spacing: AppSpacing.xs) {
+                    Text("ライトモード専用")
+                        .font(AppTypography.cardTitle)
+                    Text("色の見え方を安定させ、カレンダーとごみ種別を読み取りやすくするため、アプリ内は明るい表示に固定しています。文字サイズ変更とVoiceOverは引き続き確認対象です。")
+                        .font(AppTypography.callout)
+                        .foregroundStyle(AppColor.secondaryText)
+                        .fixedSize(horizontal: false, vertical: true)
+                }
+            }
+        }
+        .appCard()
+        .accessibilityElement(children: .combine)
+    }
+}
+
 private struct OfficialLinksCard: View {
     let pages: [SourcePage]
 
@@ -401,7 +448,7 @@ private struct HelpAndAppInfoCard: View {
                 .buttonStyle(.bordered)
                 .controlSize(.large)
             LabeledContent("バージョン", value: "1.0")
-            LabeledContent("ダークモード", value: "対応")
+            LabeledContent("表示モード", value: "ライトモード専用")
             LabeledContent("文字サイズ", value: "Dynamic Type対応")
         }
         .appCard()
@@ -447,10 +494,9 @@ private struct InlineLoadingMessage: View {
         .environmentObject(MasterStore())
 }
 
-#Preview("Settings Dark Large Type") {
+#Preview("Settings Light Dynamic Type") {
     SettingsView()
         .environmentObject(MasterStore())
-        .preferredColorScheme(.dark)
         .environment(\.dynamicTypeSize, .accessibility2)
         .previewLayout(.fixed(width: 393, height: 852))
 }

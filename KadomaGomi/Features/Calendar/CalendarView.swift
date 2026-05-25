@@ -2,89 +2,67 @@ import SwiftUI
 
 struct CollectionCalendarView: View {
     @EnvironmentObject private var store: MasterStore
-    @State private var displayedMonth = Calendar.kadoma.startOfMonth(for: .now)
+    @State private var displayedMonth: Date
+    @State private var selectedDate: Date
     @State private var displayMode: CalendarDisplayMode = .month
 
-    private let columns = Array(repeating: GridItem(.flexible(), spacing: AppSpacing.sm), count: 7)
     private let weekdays = ["月", "火", "水", "木", "金", "土", "日"]
 
-    private var displayedReviewSummary: AreaCollectionSummary {
+    init(initialMonth: Date = Calendar.kadoma.startOfMonth(for: .now), selectedDate: Date = .now) {
+        _displayedMonth = State(initialValue: Calendar.kadoma.startOfMonth(for: initialMonth))
+        _selectedDate = State(initialValue: Calendar.kadoma.startOfDay(for: selectedDate))
+    }
+
+    private var reviewSummary: AreaCollectionSummary {
         store.collectionSummary(referenceDate: displayedMonth)
+    }
+
+    private var selectedEvents: [CollectionEvent] {
+        store.events(on: selectedDate)
     }
 
     var body: some View {
         NavigationStack {
             AppScreen {
-                CalendarHeader(displayedMonth: $displayedMonth, displayMode: $displayMode)
-                CalendarLegend(categories: store.master.categories)
+                CalendarMonthHeader(
+                    displayedMonth: $displayedMonth,
+                    selectedDate: $selectedDate,
+                    displayMode: $displayMode,
+                    areaName: store.currentArea?.name ?? "\(store.settings.areaId)地区"
+                )
+
+                SpecialRuleNoticeCard(summary: reviewSummary)
+
+                CalendarLegendView(categories: visibleCategories)
 
                 if displayMode == .month {
-                    monthGrid
-                } else {
-                    upcomingList
-                }
-
-                if displayedReviewSummary.today.needsOfficialReview {
-                    AppStateView(
-                        kind: .empty,
-                        title: "12月・1月は公式確認対象です",
-                        message: displayedReviewSummary.today.reviewRules.first?.description ?? "年末年始は通常曜日から変わる場合があります。公式ページとアプリ内マスタ更新を確認してください。"
+                    CalendarMonthView(
+                        weekdays: weekdays,
+                        monthCells: monthCells,
+                        selectedDate: $selectedDate,
+                        eventsProvider: store.events(on:),
+                        categoryProvider: store.category(for:)
+                    )
+                    SelectedDaySummaryCard(
+                        date: selectedDate,
+                        events: selectedEvents,
+                        categoryProvider: store.category(for:)
                     )
                 } else {
-                    AppStateView(
-                        kind: .empty,
-                        title: "例外日はマスタを優先します",
-                        message: "災害時や臨時変更は通常曜日から変わる場合があります。公式ページとアプリ内マスタ更新を確認してください。"
+                    CollectionEventList(
+                        title: "直近30日の予定",
+                        events: store.events(from: .now, days: 30),
+                        categoryProvider: store.category(for:)
                     )
                 }
             }
             .navigationTitle("カレンダー")
+            .toolbarBackground(AppColor.backgroundTop, for: .navigationBar)
         }
     }
 
-    private var monthGrid: some View {
-        VStack(spacing: AppSpacing.sm) {
-            LazyVGrid(columns: columns, spacing: AppSpacing.sm) {
-                ForEach(weekdays, id: \.self) { weekday in
-                    Text(weekday)
-                        .font(AppTypography.badge)
-                        .foregroundStyle(AppColor.secondaryText)
-                        .frame(maxWidth: .infinity)
-                        .accessibilityHidden(true)
-                }
-            }
-
-            LazyVGrid(columns: columns, spacing: AppSpacing.sm) {
-                ForEach(Array(monthCells.enumerated()), id: \.offset) { _, date in
-                    if let date {
-                        CalendarDayCell(
-                            date: date,
-                            events: store.events(on: date),
-                            categoryProvider: store.category(for:)
-                        )
-                    } else {
-                        Color.clear
-                            .aspectRatio(0.75, contentMode: .fit)
-                    }
-                }
-            }
-        }
-    }
-
-    private var upcomingList: some View {
-        VStack(alignment: .leading, spacing: AppSpacing.md) {
-            AppSectionHeader("直近30日", subtitle: "日付順に収集予定を表示します", systemImage: AppIcon.calendar)
-            let events = store.events(from: .now, days: 30)
-            if events.isEmpty {
-                AppStateView(kind: .empty, title: "予定がありません", message: "地区設定またはマスタデータを確認してください。")
-            } else {
-                VStack(spacing: AppSpacing.sm) {
-                    ForEach(events) { event in
-                        CollectionEventRow(event: event, category: store.category(for: event.categoryId), showsDate: true)
-                    }
-                }
-            }
-        }
+    private var visibleCategories: [WasteCategory] {
+        store.master.categories.filter { $0.id != "recycle_law" && $0.id != "hazardous_note" }
     }
 
     private var monthCells: [Date?] {
@@ -106,33 +84,65 @@ private enum CalendarDisplayMode: String, CaseIterable, Identifiable {
     var id: String { rawValue }
 }
 
-private struct CalendarHeader: View {
+private struct CalendarMonthHeader: View {
     @Binding var displayedMonth: Date
+    @Binding var selectedDate: Date
     @Binding var displayMode: CalendarDisplayMode
+    let areaName: String
 
     var body: some View {
         VStack(alignment: .leading, spacing: AppSpacing.md) {
-            HStack {
+            HStack(alignment: .top, spacing: AppSpacing.md) {
+                Image(systemName: AppIcon.calendar)
+                    .font(.title2.weight(.heavy))
+                    .frame(width: 52, height: 52)
+                    .background(AppColor.softBlue, in: RoundedRectangle(cornerRadius: AppRadius.lg, style: .continuous))
+                    .foregroundStyle(AppColor.subTint)
+
+                VStack(alignment: .leading, spacing: AppSpacing.xs) {
+                    Text(KadomaDateFormatter.monthTitle.string(from: displayedMonth))
+                        .font(AppTypography.heroTitle)
+                    Text("\(areaName)の収集予定")
+                        .font(AppTypography.callout.weight(.semibold))
+                        .foregroundStyle(AppColor.secondaryText)
+                }
+
+                Spacer(minLength: 0)
+            }
+
+            HStack(spacing: AppSpacing.sm) {
                 Button {
-                    displayedMonth = Calendar.kadoma.date(byAdding: .month, value: -1, to: displayedMonth) ?? displayedMonth
+                    moveMonth(-1)
                 } label: {
-                    Image(systemName: "chevron.left")
+                    Label("前月", systemImage: "chevron.left")
+                        .labelStyle(.iconOnly)
                 }
                 .buttonStyle(.bordered)
+                .controlSize(.large)
                 .accessibilityLabel("前の月")
 
-                Spacer()
-                Text(KadomaDateFormatter.monthTitle.string(from: displayedMonth))
-                    .font(AppTypography.sectionTitle)
-                Spacer()
+                Button {
+                    displayedMonth = Calendar.kadoma.startOfMonth(for: .now)
+                    selectedDate = Calendar.kadoma.startOfDay(for: .now)
+                } label: {
+                    Label("今日", systemImage: AppIcon.today)
+                        .font(AppTypography.compactTitle)
+                }
+                .buttonStyle(.borderedProminent)
+                .tint(AppColor.appTint)
+                .controlSize(.large)
 
                 Button {
-                    displayedMonth = Calendar.kadoma.date(byAdding: .month, value: 1, to: displayedMonth) ?? displayedMonth
+                    moveMonth(1)
                 } label: {
-                    Image(systemName: "chevron.right")
+                    Label("次月", systemImage: "chevron.right")
+                        .labelStyle(.iconOnly)
                 }
                 .buttonStyle(.bordered)
+                .controlSize(.large)
                 .accessibilityLabel("次の月")
+
+                Spacer(minLength: 0)
             }
 
             Picker("表示", selection: $displayMode) {
@@ -143,18 +153,92 @@ private struct CalendarHeader: View {
             .pickerStyle(.segmented)
         }
         .appCard()
+        .accessibilityElement(children: .combine)
+    }
+
+    private func moveMonth(_ value: Int) {
+        guard let nextMonth = Calendar.kadoma.date(byAdding: .month, value: value, to: displayedMonth) else { return }
+        displayedMonth = Calendar.kadoma.startOfMonth(for: nextMonth)
+        selectedDate = displayedMonth
     }
 }
 
-private struct CalendarLegend: View {
+private struct SpecialRuleNoticeCard: View {
+    let summary: AreaCollectionSummary
+
+    var body: some View {
+        HStack(alignment: .top, spacing: AppSpacing.md) {
+            Image(systemName: summary.today.needsOfficialReview ? AppIcon.warning : AppIcon.shield)
+                .font(.headline.weight(.bold))
+                .frame(width: 42, height: 42)
+                .background(summary.today.needsOfficialReview ? AppColor.softYellow : AppColor.softMint, in: RoundedRectangle(cornerRadius: AppRadius.md, style: .continuous))
+                .foregroundStyle(summary.today.needsOfficialReview ? AppColor.warning : AppColor.success)
+
+            VStack(alignment: .leading, spacing: AppSpacing.xs) {
+                Text(summary.today.needsOfficialReview ? "この月は公式確認も忘れずに" : "通常ルールと例外マスタを確認中")
+                    .font(AppTypography.cardTitle)
+                Text(summary.today.needsOfficialReview ? (summary.today.reviewRules.first?.description ?? "12月・1月は収集日が変わる場合があります。") : "災害時や臨時変更は通常曜日から変わる場合があります。最新マスタと公式情報を確認してください。")
+                    .font(AppTypography.callout)
+                    .foregroundStyle(AppColor.secondaryText)
+                    .fixedSize(horizontal: false, vertical: true)
+            }
+        }
+        .appCard()
+        .accessibilityElement(children: .combine)
+    }
+}
+
+private struct CalendarLegendView: View {
     let categories: [WasteCategory]
 
     var body: some View {
         VStack(alignment: .leading, spacing: AppSpacing.md) {
-            AppSectionHeader("凡例", subtitle: "色だけでなくラベルでも見分けられます", systemImage: "paintpalette.fill")
-            LazyVGrid(columns: [GridItem(.adaptive(minimum: 96), spacing: AppSpacing.sm)], alignment: .leading, spacing: AppSpacing.sm) {
-                ForEach(categories.filter { $0.id != "recycle_law" && $0.id != "hazardous_note" }) { category in
+            AppSectionHeader("ごみ種別", subtitle: "色・アイコン・短い名前で見分けます", systemImage: "paintpalette.fill")
+            LazyVGrid(columns: [GridItem(.adaptive(minimum: 92), spacing: AppSpacing.sm)], alignment: .leading, spacing: AppSpacing.sm) {
+                ForEach(categories) { category in
                     AppBadge(category.shortName, color: AppColor.category(category), systemImage: category.symbolName)
+                }
+            }
+        }
+        .appCard()
+    }
+}
+
+private struct CalendarMonthView: View {
+    let weekdays: [String]
+    let monthCells: [Date?]
+    @Binding var selectedDate: Date
+    let eventsProvider: (Date) -> [CollectionEvent]
+    let categoryProvider: (String) -> WasteCategory?
+
+    private let columns = Array(repeating: GridItem(.flexible(), spacing: 5), count: 7)
+
+    var body: some View {
+        VStack(spacing: AppSpacing.sm) {
+            LazyVGrid(columns: columns, spacing: AppSpacing.sm) {
+                ForEach(weekdays, id: \.self) { weekday in
+                    Text(weekday)
+                        .font(AppTypography.tinyBadge)
+                        .foregroundStyle(AppColor.secondaryText)
+                        .frame(maxWidth: .infinity)
+                }
+            }
+
+            LazyVGrid(columns: columns, spacing: 5) {
+                ForEach(Array(monthCells.enumerated()), id: \.offset) { _, date in
+                    if let date {
+                        CalendarDayCell(
+                            date: date,
+                            events: eventsProvider(date),
+                            isSelected: Calendar.kadoma.isDate(date, inSameDayAs: selectedDate),
+                            categoryProvider: categoryProvider
+                        ) {
+                            selectedDate = Calendar.kadoma.startOfDay(for: date)
+                        }
+                    } else {
+                        Color.clear
+                            .frame(minHeight: 72)
+                    }
                 }
             }
         }
@@ -165,44 +249,53 @@ private struct CalendarLegend: View {
 private struct CalendarDayCell: View {
     let date: Date
     let events: [CollectionEvent]
+    let isSelected: Bool
     let categoryProvider: (String) -> WasteCategory?
+    let select: () -> Void
+
+    private var isToday: Bool {
+        Calendar.kadoma.isDateInToday(date)
+    }
 
     var body: some View {
-        VStack(alignment: .leading, spacing: AppSpacing.xs) {
-            HStack {
-                Text("\(Calendar.kadoma.component(.day, from: date))")
-                    .font(AppTypography.badge)
-                    .foregroundStyle(Calendar.kadoma.isDateInToday(date) ? .white : AppColor.text)
-                    .frame(width: 26, height: 26)
-                    .background(Calendar.kadoma.isDateInToday(date) ? AppColor.appTint : .clear, in: Circle())
+        Button(action: select) {
+            VStack(alignment: .leading, spacing: 4) {
+                HStack(spacing: 2) {
+                    Text("\(Calendar.kadoma.component(.day, from: date))")
+                        .font(AppTypography.tinyBadge)
+                        .foregroundStyle(isToday ? .white : AppColor.text)
+                        .frame(width: 22, height: 22)
+                        .background(isToday ? AppColor.appTint : Color.clear, in: Circle())
+                    Spacer(minLength: 0)
+                    if events.count > 2 {
+                        Text("+\(events.count - 2)")
+                            .font(.caption2.weight(.heavy))
+                            .foregroundStyle(AppColor.tertiaryText)
+                    }
+                }
+
+                VStack(alignment: .leading, spacing: 3) {
+                    ForEach(events.prefix(2)) { event in
+                        if let category = categoryProvider(event.categoryId) {
+                            CollectionDayChip(category: category)
+                        }
+                    }
+                }
+
                 Spacer(minLength: 0)
             }
-
-            ForEach(events.prefix(3)) { event in
-                if let category = categoryProvider(event.categoryId) {
-                    Text(category.shortName)
-                        .font(.caption2.weight(.bold))
-                        .lineLimit(1)
-                        .minimumScaleFactor(0.65)
-                        .padding(.horizontal, 4)
-                        .padding(.vertical, 2)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .background(AppColor.category(category).opacity(0.15), in: RoundedRectangle(cornerRadius: 4, style: .continuous))
-                        .foregroundStyle(AppColor.category(category))
-                }
-            }
-
-            Spacer(minLength: 0)
+            .padding(5)
+            .frame(maxWidth: .infinity, minHeight: 82, alignment: .topLeading)
+            .background(isSelected ? AppColor.softYellow.opacity(0.92) : AppColor.cardBackground, in: RoundedRectangle(cornerRadius: AppRadius.sm, style: .continuous))
+            .overlay(
+                RoundedRectangle(cornerRadius: AppRadius.sm, style: .continuous)
+                    .stroke(isSelected ? AppColor.accent : (isToday ? AppColor.appTint : AppColor.separator.opacity(0.55)), lineWidth: isSelected || isToday ? 1.5 : 0.7)
+            )
         }
-        .padding(6)
-        .aspectRatio(0.75, contentMode: .fit)
-        .background(AppColor.cardBackground, in: RoundedRectangle(cornerRadius: AppRadius.sm, style: .continuous))
-        .overlay(
-            RoundedRectangle(cornerRadius: AppRadius.sm, style: .continuous)
-                .stroke(Calendar.kadoma.isDateInToday(date) ? AppColor.appTint : AppColor.separator.opacity(0.35), lineWidth: Calendar.kadoma.isDateInToday(date) ? 1.5 : 0.5)
-        )
-        .accessibilityElement(children: .combine)
+        .buttonStyle(.plain)
+        .accessibilityElement(children: .ignore)
         .accessibilityLabel(accessibilityLabel)
+        .accessibilityHint("選ぶと下にその日の予定を表示します。")
     }
 
     private var accessibilityLabel: String {
@@ -213,21 +306,103 @@ private struct CalendarDayCell: View {
     }
 }
 
+private struct CollectionDayChip: View {
+    let category: WasteCategory
+
+    var body: some View {
+        HStack(spacing: 2) {
+            Image(systemName: category.symbolName)
+                .font(.system(size: 8, weight: .bold))
+            Text(category.shortName)
+                .font(.system(size: 9, weight: .heavy))
+                .lineLimit(1)
+                .minimumScaleFactor(0.70)
+        }
+        .padding(.horizontal, 4)
+        .padding(.vertical, 3)
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .background(AppColor.categoryBackground(category), in: RoundedRectangle(cornerRadius: 6, style: .continuous))
+        .foregroundStyle(AppColor.category(category))
+    }
+}
+
+private struct SelectedDaySummaryCard: View {
+    let date: Date
+    let events: [CollectionEvent]
+    let categoryProvider: (String) -> WasteCategory?
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: AppSpacing.md) {
+            HStack {
+                VStack(alignment: .leading, spacing: AppSpacing.xs) {
+                    Text("選択日の予定")
+                        .font(AppTypography.sectionTitle)
+                    Text(KadomaDateFormatter.displayDay.string(from: date))
+                        .font(AppTypography.callout)
+                        .foregroundStyle(AppColor.secondaryText)
+                }
+                Spacer()
+                AppBadge(Calendar.kadoma.isDateInToday(date) ? "今日" : "確認中", color: Calendar.kadoma.isDateInToday(date) ? AppColor.appTint : AppColor.official, systemImage: Calendar.kadoma.isDateInToday(date) ? AppIcon.today : AppIcon.info)
+            }
+
+            if events.isEmpty {
+                AppStateView(kind: .empty, title: "この日は収集予定なし", message: "予定がない日も、年末年始や臨時変更は公式情報を確認してください。")
+            } else {
+                VStack(spacing: AppSpacing.sm) {
+                    ForEach(events) { event in
+                        CollectionEventRow(event: event, category: categoryProvider(event.categoryId), showsDate: false)
+                    }
+                }
+            }
+        }
+        .appCard()
+    }
+}
+
+private struct CollectionEventList: View {
+    let title: String
+    let events: [CollectionEvent]
+    let categoryProvider: (String) -> WasteCategory?
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: AppSpacing.md) {
+            AppSectionHeader(title, subtitle: "日付順に収集予定を表示します", systemImage: AppIcon.calendar)
+            if events.isEmpty {
+                AppStateView(kind: .empty, title: "予定がありません", message: "地区設定またはマスタデータを確認してください。")
+            } else {
+                VStack(spacing: AppSpacing.sm) {
+                    ForEach(events) { event in
+                        CollectionEventRow(event: event, category: categoryProvider(event.categoryId), showsDate: true)
+                    }
+                }
+            }
+        }
+    }
+}
+
 #Preview {
     CollectionCalendarView()
         .environmentObject(MasterStore())
 }
 
-#Preview("Calendar iPhone SE") {
+#Preview("Calendar Light iPhone SE") {
     CollectionCalendarView()
         .environmentObject(MasterStore())
         .previewLayout(.fixed(width: 320, height: 568))
 }
 
-#Preview("Calendar Dark Large Type") {
+#Preview("Calendar Light Dynamic Type") {
     CollectionCalendarView()
         .environmentObject(MasterStore())
-        .preferredColorScheme(.dark)
         .environment(\.dynamicTypeSize, .accessibility2)
         .previewLayout(.fixed(width: 393, height: 852))
+}
+
+#Preview("Calendar Light Year End") {
+    CollectionCalendarView(
+        initialMonth: Calendar.kadoma.date(from: DateComponents(year: 2026, month: 12, day: 1)) ?? .now,
+        selectedDate: Calendar.kadoma.date(from: DateComponents(year: 2026, month: 12, day: 28)) ?? .now
+    )
+    .environmentObject(MasterStore())
+    .previewLayout(.fixed(width: 393, height: 852))
 }

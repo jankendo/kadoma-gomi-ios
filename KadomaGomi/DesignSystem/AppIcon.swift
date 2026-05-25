@@ -17,5 +17,12 @@ enum AppIcon {
     static let info = "info.circle.fill"
     static let time = "clock.fill"
     static let bag = "bag.fill"
+    static let today = "sun.max.fill"
+    static let tomorrow = "sparkles"
+    static let next = "arrow.forward.circle.fill"
+    static let area = "map.fill"
+    static let lightMode = "sun.max.circle.fill"
+    static let celebration = "party.popper.fill"
+    static let shield = "checkmark.shield.fill"
+    static let officialCheck = "doc.text.magnifyingglass"
 }
-

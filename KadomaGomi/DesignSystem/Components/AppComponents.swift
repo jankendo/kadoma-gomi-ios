@@ -14,7 +14,15 @@ struct AppScreen<Content: View>: View {
             }
             .padding(AppSpacing.lg)
         }
-        .background(AppColor.background)
+        .background(
+            LinearGradient(
+                colors: [AppColor.backgroundTop, AppColor.background, AppColor.backgroundBottom],
+                startPoint: .topLeading,
+                endPoint: .bottomTrailing
+            )
+            .ignoresSafeArea()
+        )
+        .scrollContentBackground(.hidden)
     }
 }
 
@@ -34,7 +42,8 @@ struct AppSectionHeader: View {
             if let systemImage {
                 Image(systemName: systemImage)
                     .foregroundStyle(AppColor.appTint)
-                    .frame(width: 24, height: 24)
+                    .frame(width: 30, height: 30)
+                    .background(AppColor.appTint.opacity(0.12), in: Circle())
             }
             VStack(alignment: .leading, spacing: AppSpacing.xs) {
                 Text(title)
@@ -74,8 +83,9 @@ struct AppBadge: View {
         }
         .font(AppTypography.badge)
         .padding(.horizontal, AppSpacing.sm)
-        .padding(.vertical, 5)
-        .background(color.opacity(0.15), in: Capsule())
+        .padding(.vertical, 6)
+        .background(color.opacity(0.14), in: Capsule())
+        .overlay(Capsule().stroke(color.opacity(0.22), lineWidth: 1))
         .foregroundStyle(color)
         .accessibilityLabel(text)
     }
@@ -89,7 +99,11 @@ struct WasteSymbol: View {
         Image(systemName: category?.symbolName ?? "trash.fill")
             .font(.system(size: size * 0.42, weight: .semibold))
             .frame(width: size, height: size)
-            .background(AppColor.category(category).opacity(0.16), in: RoundedRectangle(cornerRadius: min(AppRadius.md, size / 4), style: .continuous))
+            .background(AppColor.categoryBackground(category), in: RoundedRectangle(cornerRadius: min(AppRadius.lg, size / 3), style: .continuous))
+            .overlay(
+                RoundedRectangle(cornerRadius: min(AppRadius.lg, size / 3), style: .continuous)
+                    .stroke(AppColor.category(category).opacity(0.22), lineWidth: 1)
+            )
             .foregroundStyle(AppColor.category(category))
             .accessibilityHidden(true)
     }
@@ -127,6 +141,17 @@ struct AppStateView: View {
                 return AppIcon.success
             }
         }
+
+        var actionColor: Color {
+            switch self {
+            case .empty, .loading:
+                return AppColor.appTint
+            case .error:
+                return AppColor.error
+            case .success:
+                return AppColor.success
+            }
+        }
     }
 
     let kind: Kind
@@ -153,7 +178,7 @@ struct AppStateView: View {
                 } else {
                     Image(systemName: kind.icon)
                         .font(.title3.weight(.semibold))
-                        .frame(width: 34, height: 34)
+                        .frame(width: 40, height: 40)
                         .background(kind.color.opacity(0.14), in: Circle())
                         .foregroundStyle(kind.color)
                 }
@@ -166,9 +191,13 @@ struct AppStateView: View {
                 }
             }
             if let actionTitle, let action {
-                Button(actionTitle, action: action)
+                Button(action: action) {
+                    Label(actionTitle, systemImage: "arrow.clockwise")
+                    .frame(maxWidth: .infinity)
+                }
                     .buttonStyle(.borderedProminent)
                     .controlSize(.large)
+                    .tint(kind.actionColor)
                     .minimumTapTarget()
             }
         }
@@ -194,7 +223,7 @@ struct CollectionEventCard: View {
             HStack(alignment: .firstTextBaseline) {
                 VStack(alignment: .leading, spacing: AppSpacing.xs) {
                     Text(title)
-                        .font(prominence == .primary ? .title2.weight(.bold) : AppTypography.cardTitle)
+                        .font(prominence == .primary ? AppTypography.heroTitle : AppTypography.cardTitle)
                     Text(KadomaDateFormatter.displayDay.string(from: date))
                         .font(AppTypography.callout)
                         .foregroundStyle(AppColor.secondaryText)
@@ -204,12 +233,20 @@ struct CollectionEventCard: View {
             }
 
             if events.isEmpty {
-                HStack(spacing: AppSpacing.md) {
+                HStack(alignment: .top, spacing: AppSpacing.md) {
                     Image(systemName: "checkmark.seal.fill")
+                        .font(.title2.weight(.semibold))
+                        .frame(width: prominence == .primary ? 56 : 44, height: prominence == .primary ? 56 : 44)
+                        .background(AppColor.softMint, in: RoundedRectangle(cornerRadius: AppRadius.lg, style: .continuous))
                         .foregroundStyle(AppColor.success)
-                    Text("出すごみはありません")
-                        .font(prominence == .primary ? .title3.weight(.bold) : AppTypography.cardTitle)
-                        .foregroundStyle(AppColor.secondaryText)
+                    VStack(alignment: .leading, spacing: AppSpacing.xs) {
+                        Text("出すごみはありません")
+                            .font(prominence == .primary ? .title3.weight(.heavy) : AppTypography.cardTitle)
+                            .foregroundStyle(AppColor.text)
+                        Text("今日はゆっくり確認だけで大丈夫です。")
+                            .font(AppTypography.callout)
+                            .foregroundStyle(AppColor.secondaryText)
+                    }
                 }
                 .padding(.vertical, AppSpacing.sm)
             } else {
@@ -220,7 +257,16 @@ struct CollectionEventCard: View {
                 }
             }
         }
-        .appCard()
+        .padding(AppSpacing.lg)
+        .background(
+            RoundedRectangle(cornerRadius: AppRadius.xl, style: .continuous)
+                .fill(prominence == .primary ? AppColor.cardBackground : AppColor.elevatedCardBackground)
+        )
+        .overlay(
+            RoundedRectangle(cornerRadius: AppRadius.xl, style: .continuous)
+                .stroke(prominence == .primary ? AppColor.appTint.opacity(0.30) : AppColor.separator.opacity(0.50), lineWidth: prominence == .primary ? 1.4 : 0.8)
+        )
+        .shadow(color: AppShadow.cardColor, radius: prominence == .primary ? AppShadow.floatingRadius : AppShadow.subtleRadius, x: 0, y: prominence == .primary ? AppShadow.floatingY : AppShadow.subtleY)
         .accessibilityElement(children: .combine)
         .accessibilityHint(events.isEmpty ? "この日はごみ出し予定がありません。" : "ごみ種別と出し方の注意を確認できます。")
     }
@@ -256,7 +302,11 @@ struct CollectionEventRow: View {
             Spacer(minLength: 0)
         }
         .padding(AppSpacing.md)
-        .background(AppColor.secondaryBackground, in: RoundedRectangle(cornerRadius: AppRadius.md, style: .continuous))
+        .background(AppColor.categoryBackground(category), in: RoundedRectangle(cornerRadius: AppRadius.lg, style: .continuous))
+        .overlay(
+            RoundedRectangle(cornerRadius: AppRadius.lg, style: .continuous)
+                .stroke(AppColor.category(category).opacity(0.18), lineWidth: 1)
+        )
         .accessibilityElement(children: .combine)
     }
 }
@@ -273,8 +323,8 @@ struct QuickActionCard: View {
             HStack(spacing: AppSpacing.md) {
                 Image(systemName: systemImage)
                     .font(.headline)
-                    .frame(width: 36, height: 36)
-                    .background(color.opacity(0.14), in: Circle())
+                    .frame(width: 42, height: 42)
+                    .background(color.opacity(0.14), in: RoundedRectangle(cornerRadius: AppRadius.md, style: .continuous))
                     .foregroundStyle(color)
                 VStack(alignment: .leading, spacing: 2) {
                     Text(title)
@@ -292,11 +342,12 @@ struct QuickActionCard: View {
             }
             .padding(AppSpacing.md)
             .frame(maxWidth: .infinity, alignment: .leading)
-            .background(AppColor.cardBackground, in: RoundedRectangle(cornerRadius: AppRadius.md, style: .continuous))
+            .background(AppColor.cardBackground, in: RoundedRectangle(cornerRadius: AppRadius.lg, style: .continuous))
             .overlay(
-                RoundedRectangle(cornerRadius: AppRadius.md, style: .continuous)
-                    .stroke(AppColor.separator.opacity(0.35), lineWidth: 0.5)
+                RoundedRectangle(cornerRadius: AppRadius.lg, style: .continuous)
+                    .stroke(color.opacity(0.22), lineWidth: 1)
             )
+            .shadow(color: color.opacity(0.10), radius: 10, x: 0, y: 4)
         }
         .buttonStyle(.plain)
         .minimumTapTarget()
@@ -316,9 +367,9 @@ struct CategoryFilterChip: View {
                 .font(AppTypography.badge)
                 .padding(.horizontal, AppSpacing.md)
                 .padding(.vertical, AppSpacing.sm)
-                .background(isSelected ? color : AppColor.cardBackground, in: Capsule())
+                .background(isSelected ? color : color.opacity(0.11), in: Capsule())
                 .foregroundStyle(isSelected ? .white : color)
-                .overlay(Capsule().stroke(color.opacity(0.5), lineWidth: 1))
+                .overlay(Capsule().stroke(color.opacity(0.45), lineWidth: 1))
         }
         .buttonStyle(.plain)
         .minimumTapTarget()

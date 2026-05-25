@@ -30,13 +30,14 @@
 ## 5. ライトモード対応
 
 - App Iconは単体で視認できる固定色。
-- AccentColorは公共サービス系の落ち着いた青緑。
+- AccentColorは明るく親しみやすいティール。
 - LaunchBackgroundは薄い青緑系で、起動直後の白飛びを避ける。
 
-## 6. ダークモード対応
+## 6. ライトモード専用対応
 
-- LaunchBackgroundはdark appearanceを定義済み。
-- UIアイコンはSwiftUIのforegroundStyleとセマンティックカラーで自動追従。
+- 第4フェーズでLaunchBackgroundのdark appearanceを削除。
+- `UIUserInterfaceStyle=Light` とルートの `.preferredColorScheme(.light)` に合わせ、ライト専用で色を管理。
+- UIアイコンはSF Symbolsを使い、色だけでなくラベルと併用する。
 - App IconはiOS側の表示ルールに委ね、アプリ内UIでは使わない。
 
 ## 7. 使用画面
@@ -54,4 +55,3 @@
 ## 補足
 
 装飾だけの画像は追加していない。生活インフラ系アプリとして、読みやすさと操作理解に寄与するアセットに限定した。
-

@@ -9,6 +9,7 @@ struct KadomaGomiApp: App {
         WindowGroup {
             MainTabView()
                 .environmentObject(store)
+                .preferredColorScheme(.light)
         }
         .modelContainer(for: [
             UserPreference.self,
@@ -16,4 +17,3 @@ struct KadomaGomiApp: App {
         ])
     }
 }
-

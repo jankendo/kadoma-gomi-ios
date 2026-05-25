@@ -10,6 +10,7 @@ struct BulkyWasteView: View {
                 BulkyCautionSection()
             }
             .navigationTitle("粗大ごみ")
+            .toolbarBackground(AppColor.backgroundTop, for: .navigationBar)
         }
     }
 }
@@ -127,4 +128,3 @@ private struct BulkyCautionSection: View {
 #Preview {
     BulkyWasteView()
 }
-

@@ -1,5 +1,9 @@
 # UX Research Notes
 
+## Phase 4方針更新
+
+第4フェーズでは、Dark Mode対応よりもライト表示の安定性を優先し、アプリをライトモード専用にした。以下の初期調査メモにはDark Mode対応前提の記述が残るが、現在の実装方針は `docs/light_mode_only_design.md` を正とする。
+
 ## 1. 調査できた情報
 
 - 門真市公式「地区別ごみカレンダー」は2026年03月30日更新。A地区に大倉町が含まれ、普通ごみは火・金、プラスチック製容器包装は月、びん・缶類と粗大ごみは木、古紙古布は第4水曜、小型ごみは第2水曜、ペットボトルは第1・第3水曜。収集日の朝9時までに出す案内がある。
@@ -103,4 +107,3 @@
 - https://developer.apple.com/design/human-interface-guidelines/dark-mode
 - https://developer.apple.com/documentation/usernotifications/asking-permission-to-use-notifications
 - https://developer.apple.com/help/app-store-connect/manage-app-accessibility/voiceover-evaluation-criteria
-

@@ -133,3 +133,7 @@ Runtime互換:
 `special_rules.json` は未確認の実例外日を確定登録しない設計に変更した。`exceptions` は confirmed のみ、`exceptionRules` は年末年始などレビュー対象期間を表す。2026年12月から2027年1月は `needs_review` として扱う。
 
 将来の Widget / App Shortcuts 用に `GarbageSummaryProvider`、`DayCollectionSummary`、`AreaCollectionSummary` を追加した。ホーム・通知・Widget・Siri 系機能が同じ読み取り専用サマリーを使えるようにするための入口である。
+
+## 11. Phase 4追記
+
+第4フェーズではデータ構造を変更していない。`master version 2026.04.01-af.3`、A-F地区、225品目、Dec/Jan `needs_review` ルール、manifest/SHA生成を維持し、UI層のみをライトモード専用デザインへ更新した。

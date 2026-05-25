@@ -5,6 +5,11 @@ struct SearchView: View {
     @State private var query = ""
     @State private var selectedCategoryId: String?
 
+    init(initialQuery: String = "", initialCategoryId: String? = nil) {
+        _query = State(initialValue: initialQuery)
+        _selectedCategoryId = State(initialValue: initialCategoryId)
+    }
+
     private var searchedItems: [WasteItem] {
         let base = store.searchItems(query: query)
         guard let selectedCategoryId else { return base }
@@ -20,6 +25,7 @@ struct SearchView: View {
     var body: some View {
         NavigationStack {
             AppScreen {
+                SearchHeroCard(query: $query)
                 SearchIntroCard()
                 CategoryFilterSection(
                     categories: visibleCategories,
@@ -35,7 +41,8 @@ struct SearchView: View {
                 )
             }
             .navigationTitle("分別検索")
-            .searchable(text: $query, placement: .navigationBarDrawer(displayMode: .always), prompt: "例: フライパン、ペット、PET")
+            .toolbarBackground(AppColor.backgroundTop, for: .navigationBar)
+            .searchable(text: $query, placement: .navigationBarDrawer(displayMode: .automatic), prompt: "例: フライパン、ペット、PET")
             .textInputAutocapitalization(.never)
             .autocorrectionDisabled()
         }
@@ -47,10 +54,77 @@ struct SearchView: View {
     }
 }
 
+private struct SearchHeroCard: View {
+    @Binding var query: String
+    private let examples = ["ペットボトル", "スプレー缶", "段ボール", "モバイルバッテリー"]
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: AppSpacing.md) {
+            HStack(alignment: .top, spacing: AppSpacing.md) {
+                Image(systemName: AppIcon.search)
+                    .font(.title2.weight(.heavy))
+                    .frame(width: 54, height: 54)
+                    .background(AppColor.softMint, in: RoundedRectangle(cornerRadius: AppRadius.lg, style: .continuous))
+                    .foregroundStyle(AppColor.appTint)
+                    .accessibilityHidden(true)
+                VStack(alignment: .leading, spacing: AppSpacing.xs) {
+                    Text("何を捨てたいですか？")
+                        .font(AppTypography.heroTitle)
+                    Text("ひらがな・カタカナ・略語でも探せます")
+                        .font(AppTypography.callout.weight(.semibold))
+                        .foregroundStyle(AppColor.secondaryText)
+                }
+            }
+
+            HStack(spacing: AppSpacing.sm) {
+                Image(systemName: AppIcon.search)
+                    .foregroundStyle(AppColor.appTint)
+                TextField("例: ペット、PET、ダンボール", text: $query)
+                    .textInputAutocapitalization(.never)
+                    .autocorrectionDisabled()
+                    .submitLabel(.search)
+            }
+            .padding(AppSpacing.md)
+            .background(AppColor.cardBackground, in: RoundedRectangle(cornerRadius: AppRadius.lg, style: .continuous))
+            .overlay(
+                RoundedRectangle(cornerRadius: AppRadius.lg, style: .continuous)
+                    .stroke(AppColor.appTint.opacity(0.25), lineWidth: 1)
+            )
+            .minimumTapTarget()
+
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack(spacing: AppSpacing.sm) {
+                    ForEach(examples, id: \.self) { example in
+                        Button(example) {
+                            query = example
+                        }
+                        .font(AppTypography.badge)
+                        .padding(.horizontal, AppSpacing.md)
+                        .padding(.vertical, AppSpacing.sm)
+                        .background(AppColor.appTint.opacity(0.12), in: Capsule())
+                        .foregroundStyle(AppColor.appTint)
+                    }
+                }
+                .padding(.vertical, 2)
+            }
+        }
+        .padding(AppSpacing.lg)
+        .background(
+            LinearGradient(colors: [AppColor.softBlue.opacity(0.75), AppColor.cardBackground], startPoint: .topLeading, endPoint: .bottomTrailing),
+            in: RoundedRectangle(cornerRadius: AppRadius.xl, style: .continuous)
+        )
+        .overlay(
+            RoundedRectangle(cornerRadius: AppRadius.xl, style: .continuous)
+                .stroke(AppColor.subTint.opacity(0.16), lineWidth: 1)
+        )
+        .shadow(color: AppShadow.cardColor, radius: AppShadow.floatingRadius, x: 0, y: AppShadow.floatingY)
+    }
+}
+
 private struct SearchIntroCard: View {
     var body: some View {
         VStack(alignment: .leading, spacing: AppSpacing.md) {
-            AppSectionHeader("ごみ名から探す", subtitle: "ひらがな・カタカナ・略語でも探せます", systemImage: AppIcon.search)
+            AppSectionHeader("検索のコツ", subtitle: "正式名が分からなくても大丈夫です", systemImage: AppIcon.officialCheck)
             Text("迷いやすい品目は、カテゴリ名だけでなく出し方の注意も表示します。最終判断に迷う場合は公式情報を確認してください。")
                 .font(AppTypography.callout)
                 .foregroundStyle(AppColor.secondaryText)
@@ -104,7 +178,7 @@ private struct SearchResultsSection: View {
                 AppStateView(
                     kind: .empty,
                     title: "該当する品目が見つかりません",
-                    message: "別の名前で検索するか、カテゴリの絞り込みを解除してください。迷う場合は公式ページで最新情報を確認してください。",
+                    message: "短い名前、ひらがな、カタカナでも試せます。例: ペット、PET、カン、ダンボール。迷う場合は公式ページで最新情報を確認してください。",
                     actionTitle: "検索条件をクリア",
                     action: clearSearch
                 )
@@ -188,7 +262,16 @@ private struct WasteItemResultCard: View {
             }
 
         }
-        .appCard()
+        .padding(AppSpacing.lg)
+        .background(
+            LinearGradient(colors: [AppColor.cardBackground, AppColor.categoryBackground(category).opacity(0.65)], startPoint: .topLeading, endPoint: .bottomTrailing),
+            in: RoundedRectangle(cornerRadius: AppRadius.xl, style: .continuous)
+        )
+        .overlay(
+            RoundedRectangle(cornerRadius: AppRadius.xl, style: .continuous)
+                .stroke(AppColor.category(category).opacity(0.22), lineWidth: 1)
+        )
+        .shadow(color: AppColor.category(category).opacity(0.10), radius: 14, x: 0, y: 6)
         .accessibilityElement(children: .combine)
         .accessibilityHint("品目のカテゴリ、出し方、注意を確認できます。")
     }
@@ -202,7 +285,7 @@ private struct WasteItemResultCard: View {
             AppBadge("粗大候補", color: AppColor.warning, systemImage: AppIcon.bulky)
         }
         if item.needsOfficialCheck {
-            AppBadge("公式確認推奨", color: AppColor.warning, systemImage: AppIcon.official)
+            AppBadge("公式確認推奨", color: AppColor.official, systemImage: AppIcon.official)
         }
     }
 }
@@ -212,10 +295,21 @@ private struct WasteItemResultCard: View {
         .environmentObject(MasterStore())
 }
 
-#Preview("Search Dark Large Type") {
+#Preview("Search Light Dynamic Type") {
     SearchView()
         .environmentObject(MasterStore())
-        .preferredColorScheme(.dark)
         .environment(\.dynamicTypeSize, .accessibility2)
         .previewLayout(.fixed(width: 430, height: 932))
+}
+
+#Preview("Search Hazard Result") {
+    SearchView(initialQuery: "スプレー缶")
+        .environmentObject(MasterStore())
+        .previewLayout(.fixed(width: 393, height: 852))
+}
+
+#Preview("Search No Result") {
+    SearchView(initialQuery: "これは存在しない品目")
+        .environmentObject(MasterStore())
+        .previewLayout(.fixed(width: 393, height: 852))
 }

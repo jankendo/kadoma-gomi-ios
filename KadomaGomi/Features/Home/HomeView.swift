@@ -6,9 +6,22 @@ struct HomeView: View {
     let openSearch: () -> Void
     let openCalendar: () -> Void
     let openSettings: () -> Void
+    let referenceDate: Date
 
     private var summary: AreaCollectionSummary {
-        store.collectionSummary(nextLimit: 7)
+        store.collectionSummary(referenceDate: referenceDate, nextLimit: 7)
+    }
+
+    init(
+        openSearch: @escaping () -> Void,
+        openCalendar: @escaping () -> Void,
+        openSettings: @escaping () -> Void,
+        referenceDate: Date = .now
+    ) {
+        self.openSearch = openSearch
+        self.openCalendar = openCalendar
+        self.openSettings = openSettings
+        self.referenceDate = referenceDate
     }
 
     var body: some View {
@@ -50,6 +63,7 @@ struct HomeView: View {
                 DataStatusSection(store: store)
             }
             .navigationTitle("かどまごみナビ")
+            .toolbarBackground(AppColor.backgroundTop, for: .navigationBar)
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button(action: openSettings) {
@@ -69,12 +83,30 @@ private struct HomeHeaderView: View {
     let sourceUpdatedAt: String
 
     var body: some View {
-        VStack(alignment: .leading, spacing: AppSpacing.md) {
+        VStack(alignment: .leading, spacing: AppSpacing.lg) {
+            HStack(alignment: .top, spacing: AppSpacing.md) {
+                VStack(alignment: .leading, spacing: AppSpacing.xs) {
+                    Text("門真市ごみカレンダー")
+                        .font(AppTypography.heroTitle)
+                        .foregroundStyle(AppColor.text)
+                    Text("今日・明日・次回がすぐ分かる")
+                        .font(AppTypography.callout.weight(.semibold))
+                        .foregroundStyle(AppColor.secondaryText)
+                }
+                Spacer(minLength: 0)
+                Image(systemName: AppIcon.today)
+                    .font(.title2.weight(.heavy))
+                    .frame(width: 52, height: 52)
+                    .background(AppColor.softYellow, in: RoundedRectangle(cornerRadius: AppRadius.lg, style: .continuous))
+                    .foregroundStyle(AppColor.accent)
+                    .accessibilityHidden(true)
+            }
+
             HStack(alignment: .top, spacing: AppSpacing.md) {
                 Image(systemName: AppIcon.district)
                     .font(.title3.weight(.semibold))
-                    .frame(width: 44, height: 44)
-                    .background(AppColor.appTint.opacity(0.14), in: RoundedRectangle(cornerRadius: AppRadius.md, style: .continuous))
+                    .frame(width: 48, height: 48)
+                    .background(AppColor.softMint, in: RoundedRectangle(cornerRadius: AppRadius.lg, style: .continuous))
                     .foregroundStyle(AppColor.appTint)
                     .accessibilityHidden(true)
 
@@ -83,7 +115,7 @@ private struct HomeHeaderView: View {
                         .font(AppTypography.cardTitle)
                         .foregroundStyle(AppColor.text)
                     Text(areaName)
-                        .font(.title2.weight(.bold))
+                        .font(.title2.weight(.heavy))
                         .foregroundStyle(AppColor.text)
                     Text("収集日の朝9時までに出してください")
                         .font(AppTypography.callout)
@@ -100,7 +132,20 @@ private struct HomeHeaderView: View {
             }
             .accessibilityElement(children: .combine)
         }
-        .appCard()
+        .padding(AppSpacing.lg)
+        .background(
+            LinearGradient(
+                colors: [AppColor.cardBackground, AppColor.softBlue.opacity(0.65)],
+                startPoint: .topLeading,
+                endPoint: .bottomTrailing
+            ),
+            in: RoundedRectangle(cornerRadius: AppRadius.xl, style: .continuous)
+        )
+        .overlay(
+            RoundedRectangle(cornerRadius: AppRadius.xl, style: .continuous)
+                .stroke(AppColor.appTint.opacity(0.18), lineWidth: 1)
+        )
+        .shadow(color: AppShadow.cardColor, radius: AppShadow.floatingRadius, x: 0, y: AppShadow.floatingY)
         .accessibilityElement(children: .combine)
         .accessibilityHint("現在設定されている地区とマスタ更新日です。")
     }
@@ -114,27 +159,36 @@ private struct QuickActionGrid: View {
     var body: some View {
         VStack(alignment: .leading, spacing: AppSpacing.md) {
             AppSectionHeader("すぐ使う", subtitle: "迷ったらここから始められます", systemImage: "bolt.fill")
-            QuickActionCard(
-                title: "ごみ名で検索",
-                subtitle: "品目名から捨て方を確認",
-                systemImage: AppIcon.search,
-                color: AppColor.appTint,
-                action: openSearch
-            )
-            QuickActionCard(
-                title: "月の予定を見る",
-                subtitle: "収集日をカレンダーで確認",
-                systemImage: AppIcon.calendar,
-                color: AppColor.subTint,
-                action: openCalendar
-            )
-            QuickActionCard(
-                title: "通知と地区を確認",
-                subtitle: "A-F地区・前日通知・マスタ更新",
-                systemImage: AppIcon.notification,
-                color: AppColor.warning,
-                action: openSettings
-            )
+            LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: AppSpacing.sm) {
+                QuickActionCard(
+                    title: "検索",
+                    subtitle: "ごみ名で確認",
+                    systemImage: AppIcon.search,
+                    color: AppColor.appTint,
+                    action: openSearch
+                )
+                QuickActionCard(
+                    title: "カレンダー",
+                    subtitle: "月の予定を見る",
+                    systemImage: AppIcon.calendar,
+                    color: AppColor.subTint,
+                    action: openCalendar
+                )
+                QuickActionCard(
+                    title: "通知",
+                    subtitle: "予定を確認",
+                    systemImage: AppIcon.notification,
+                    color: AppColor.warning,
+                    action: openSettings
+                )
+                QuickActionCard(
+                    title: "地区",
+                    subtitle: "A-Fを確認",
+                    systemImage: AppIcon.area,
+                    color: AppColor.official,
+                    action: openSettings
+                )
+            }
         }
     }
 }
@@ -219,16 +273,26 @@ private struct DataStatusSection: View {
         .environmentObject(MasterStore())
 }
 
-#Preview("Home iPhone SE") {
+#Preview("Home Light iPhone SE") {
     HomeView(openSearch: {}, openCalendar: {}, openSettings: {})
         .environmentObject(MasterStore())
         .previewLayout(.fixed(width: 320, height: 568))
 }
 
-#Preview("Home Dark Large Type") {
+#Preview("Home Light Dynamic Type") {
     HomeView(openSearch: {}, openCalendar: {}, openSettings: {})
         .environmentObject(MasterStore())
-        .preferredColorScheme(.dark)
         .environment(\.dynamicTypeSize, .accessibility2)
         .previewLayout(.fixed(width: 393, height: 852))
+}
+
+#Preview("Home Light Year End Notice") {
+    HomeView(
+        openSearch: {},
+        openCalendar: {},
+        openSettings: {},
+        referenceDate: Calendar.kadoma.date(from: DateComponents(year: 2026, month: 12, day: 15)) ?? .now
+    )
+    .environmentObject(MasterStore())
+    .previewLayout(.fixed(width: 393, height: 852))
 }
