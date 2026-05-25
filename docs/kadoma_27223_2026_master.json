@@ -4,9 +4,9 @@
   "targetAddressPreset": "大倉町1-20",
   "defaultAreaId": "A",
   "fiscalYear": 2026,
-  "version": "2026.04.01-af.2",
+  "version": "2026.04.01-af.3",
   "sourceUpdatedAt": "2026-03-30",
-  "generatedAt": "2026-05-25T11:45:00+09:00",
+  "generatedAt": "2026-05-25T12:40:00+09:00",
   "sourcePages": [
     {
       "title": "地区別ごみカレンダー",
@@ -209,22 +209,7 @@
           "validTo": "2027-03-31"
         }
       ],
-      "exceptions": [
-        {
-          "date": "2026-12-28",
-          "areaId": "A",
-          "categoryId": "plastic_container",
-          "action": "note",
-          "reason": "年末年始は公式ページ・広報で最新の変更有無を確認してください。"
-        },
-        {
-          "date": "2027-01-04",
-          "areaId": "A",
-          "categoryId": "plastic_container",
-          "action": "note",
-          "reason": "年末年始は公式ページ・広報で最新の変更有無を確認してください。"
-        }
-      ]
+      "exceptions": []
     },
     {
       "id": "B",
@@ -1150,7 +1135,22 @@
       ],
       "notes": "水分をよく切って普通ごみへ。",
       "source": "official-common",
-      "confidence": 0.95
+      "confidence": 0.95,
+      "displayName": "生ごみ",
+      "kana": "生ごみ",
+      "aliases": [
+        "台所ごみ",
+        "食品くず",
+        "料理くず"
+      ],
+      "disposalGuide": "水分をよく切って普通ごみへ。",
+      "warnings": [],
+      "isOversizedCandidate": false,
+      "isHazardous": false,
+      "requiresOfficialCheck": false,
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidenceStatus": "confirmed",
+      "updatedAt": "2026-05-25"
     },
     {
       "id": "item-002",
@@ -1164,7 +1164,21 @@
       ],
       "notes": "汚損している紙は普通ごみへ。",
       "source": "official-common",
-      "confidence": 0.9
+      "confidence": 0.9,
+      "displayName": "紙くず",
+      "kana": "紙くず",
+      "aliases": [
+        "汚れた紙",
+        "紙"
+      ],
+      "disposalGuide": "汚損している紙は普通ごみへ。",
+      "warnings": [],
+      "isOversizedCandidate": false,
+      "isHazardous": false,
+      "requiresOfficialCheck": false,
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidenceStatus": "confirmed",
+      "updatedAt": "2026-05-25"
     },
     {
       "id": "item-003",
@@ -1177,7 +1191,20 @@
       ],
       "notes": "汚物を取り除いて普通ごみへ。",
       "source": "official-common",
-      "confidence": 0.9
+      "confidence": 0.9,
+      "displayName": "紙おむつ",
+      "kana": "紙おむつ",
+      "aliases": [
+        "おむつ"
+      ],
+      "disposalGuide": "汚物を取り除いて普通ごみへ。",
+      "warnings": [],
+      "isOversizedCandidate": false,
+      "isHazardous": false,
+      "requiresOfficialCheck": false,
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidenceStatus": "confirmed",
+      "updatedAt": "2026-05-25"
     },
     {
       "id": "item-004",
@@ -1192,7 +1219,22 @@
       ],
       "notes": "普通ごみへ。",
       "source": "official-common",
-      "confidence": 0.85
+      "confidence": 0.85,
+      "displayName": "葉っぱ",
+      "kana": "葉っぱ",
+      "aliases": [
+        "草",
+        "花",
+        "庭"
+      ],
+      "disposalGuide": "普通ごみへ。",
+      "warnings": [],
+      "isOversizedCandidate": false,
+      "isHazardous": false,
+      "requiresOfficialCheck": false,
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidenceStatus": "confirmed",
+      "updatedAt": "2026-05-25"
     },
     {
       "id": "item-005",
@@ -1207,7 +1249,22 @@
       ],
       "notes": "普通ごみへ。",
       "source": "official-common",
-      "confidence": 0.9
+      "confidence": 0.9,
+      "displayName": "靴",
+      "kana": "靴",
+      "aliases": [
+        "くつ",
+        "履物",
+        "スニーカー"
+      ],
+      "disposalGuide": "普通ごみへ。",
+      "warnings": [],
+      "isOversizedCandidate": false,
+      "isHazardous": false,
+      "requiresOfficialCheck": false,
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidenceStatus": "confirmed",
+      "updatedAt": "2026-05-25"
     },
     {
       "id": "item-006",
@@ -1221,7 +1278,21 @@
       ],
       "notes": "普通ごみへ。金属が多い場合は小型ごみも確認。",
       "source": "official-common",
-      "confidence": 0.85
+      "confidence": 0.85,
+      "displayName": "かばん",
+      "kana": "かばん",
+      "aliases": [
+        "バッグ",
+        "鞄"
+      ],
+      "disposalGuide": "普通ごみへ。金属が多い場合は小型ごみも確認。",
+      "warnings": [],
+      "isOversizedCandidate": false,
+      "isHazardous": false,
+      "requiresOfficialCheck": false,
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidenceStatus": "confirmed",
+      "updatedAt": "2026-05-25"
     },
     {
       "id": "item-007",
@@ -1234,7 +1305,22 @@
       ],
       "notes": "普通ごみへ。45L袋に入らない大きさは粗大ごみを確認。",
       "source": "official-common",
-      "confidence": 0.85
+      "confidence": 0.85,
+      "displayName": "ぬいぐるみ",
+      "kana": "ぬいぐるみ",
+      "aliases": [
+        "人形"
+      ],
+      "disposalGuide": "普通ごみへ。45L袋に入らない大きさは粗大ごみを確認。",
+      "warnings": [
+        "30cmを超えるものや袋に入らないものは粗大ごみ受付センターで確認してください。"
+      ],
+      "isOversizedCandidate": true,
+      "isHazardous": false,
+      "requiresOfficialCheck": false,
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidenceStatus": "confirmed",
+      "updatedAt": "2026-05-25"
     },
     {
       "id": "item-008",
@@ -1248,7 +1334,21 @@
       ],
       "notes": "可燃性のものは普通ごみへ。",
       "source": "official-common",
-      "confidence": 0.85
+      "confidence": 0.85,
+      "displayName": "猫砂",
+      "kana": "猫砂",
+      "aliases": [
+        "可燃性の猫の砂",
+        "ペット"
+      ],
+      "disposalGuide": "可燃性のものは普通ごみへ。",
+      "warnings": [],
+      "isOversizedCandidate": false,
+      "isHazardous": false,
+      "requiresOfficialCheck": false,
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidenceStatus": "confirmed",
+      "updatedAt": "2026-05-25"
     },
     {
       "id": "item-009",
@@ -1261,7 +1361,22 @@
       ],
       "notes": "普通ごみへ。",
       "source": "official-common",
-      "confidence": 0.8
+      "confidence": 0.8,
+      "displayName": "貝殻",
+      "kana": "貝殻",
+      "aliases": [
+        "食品"
+      ],
+      "disposalGuide": "普通ごみへ。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。"
+      ],
+      "isOversizedCandidate": false,
+      "isHazardous": false,
+      "requiresOfficialCheck": true,
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidenceStatus": "needs_review",
+      "updatedAt": "2026-05-25"
     },
     {
       "id": "item-010",
@@ -1275,7 +1390,21 @@
       ],
       "notes": "30cm以下のプラスチック製品は普通ごみへ。",
       "source": "official-common",
-      "confidence": 0.9
+      "confidence": 0.9,
+      "displayName": "タッパー",
+      "kana": "タッパー",
+      "aliases": [
+        "保存容器",
+        "プラスチック製品"
+      ],
+      "disposalGuide": "30cm以下のプラスチック製品は普通ごみへ。",
+      "warnings": [],
+      "isOversizedCandidate": false,
+      "isHazardous": false,
+      "requiresOfficialCheck": false,
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidenceStatus": "confirmed",
+      "updatedAt": "2026-05-25"
     },
     {
       "id": "item-011",
@@ -1288,7 +1417,22 @@
       ],
       "notes": "30cm以下なら普通ごみ。超える場合は粗大ごみを確認。",
       "source": "official-common",
-      "confidence": 0.88
+      "confidence": 0.88,
+      "displayName": "洗面器",
+      "kana": "洗面器",
+      "aliases": [
+        "プラスチック製品"
+      ],
+      "disposalGuide": "30cm以下なら普通ごみ。超える場合は粗大ごみを確認。",
+      "warnings": [
+        "30cmを超えるものや袋に入らないものは粗大ごみ受付センターで確認してください。"
+      ],
+      "isOversizedCandidate": true,
+      "isHazardous": false,
+      "requiresOfficialCheck": false,
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidenceStatus": "confirmed",
+      "updatedAt": "2026-05-25"
     },
     {
       "id": "item-012",
@@ -1302,7 +1446,23 @@
       ],
       "notes": "30cm以下のプラスチック製品は普通ごみへ。陶器製は小型ごみ。",
       "source": "official-common",
-      "confidence": 0.8
+      "confidence": 0.8,
+      "displayName": "植木鉢",
+      "kana": "植木鉢",
+      "aliases": [
+        "プラスチック植木鉢",
+        "鉢"
+      ],
+      "disposalGuide": "30cm以下のプラスチック製品は普通ごみへ。陶器製は小型ごみ。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。"
+      ],
+      "isOversizedCandidate": false,
+      "isHazardous": false,
+      "requiresOfficialCheck": true,
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidenceStatus": "needs_review",
+      "updatedAt": "2026-05-25"
     },
     {
       "id": "item-013",
@@ -1315,7 +1475,20 @@
       ],
       "notes": "普通ごみへ。",
       "source": "official-common",
-      "confidence": 0.85
+      "confidence": 0.85,
+      "displayName": "カセットテープ",
+      "kana": "カセットテープ",
+      "aliases": [
+        "テープ"
+      ],
+      "disposalGuide": "普通ごみへ。",
+      "warnings": [],
+      "isOversizedCandidate": false,
+      "isHazardous": false,
+      "requiresOfficialCheck": false,
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidenceStatus": "confirmed",
+      "updatedAt": "2026-05-25"
     },
     {
       "id": "item-014",
@@ -1328,7 +1501,20 @@
       ],
       "notes": "普通ごみへ。",
       "source": "official-common",
-      "confidence": 0.85
+      "confidence": 0.85,
+      "displayName": "ビデオテープ",
+      "kana": "ビデオテープ",
+      "aliases": [
+        "VHS"
+      ],
+      "disposalGuide": "普通ごみへ。",
+      "warnings": [],
+      "isOversizedCandidate": false,
+      "isHazardous": false,
+      "requiresOfficialCheck": false,
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidenceStatus": "confirmed",
+      "updatedAt": "2026-05-25"
     },
     {
       "id": "item-015",
@@ -1342,7 +1528,23 @@
       ],
       "notes": "プラスチック製で30cm以下なら普通ごみ。金属製は小型ごみを確認。",
       "source": "official-common",
-      "confidence": 0.82
+      "confidence": 0.82,
+      "displayName": "ハンガー",
+      "kana": "ハンガー",
+      "aliases": [
+        "プラスチックハンガー",
+        "衣類"
+      ],
+      "disposalGuide": "プラスチック製で30cm以下なら普通ごみ。金属製は小型ごみを確認。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。"
+      ],
+      "isOversizedCandidate": false,
+      "isHazardous": false,
+      "requiresOfficialCheck": true,
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidenceStatus": "needs_review",
+      "updatedAt": "2026-05-25"
     },
     {
       "id": "item-016",
@@ -1356,7 +1558,21 @@
       ],
       "notes": "30cm以下なら普通ごみ。",
       "source": "official-common",
-      "confidence": 0.85
+      "confidence": 0.85,
+      "displayName": "バケツ",
+      "kana": "バケツ",
+      "aliases": [
+        "プラスチックバケツ",
+        "容器"
+      ],
+      "disposalGuide": "30cm以下なら普通ごみ。",
+      "warnings": [],
+      "isOversizedCandidate": false,
+      "isHazardous": false,
+      "requiresOfficialCheck": false,
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidenceStatus": "confirmed",
+      "updatedAt": "2026-05-25"
     },
     {
       "id": "item-017",
@@ -1370,7 +1586,21 @@
       ],
       "notes": "普通ごみへ。",
       "source": "official-common",
-      "confidence": 0.85
+      "confidence": 0.85,
+      "displayName": "DVD",
+      "kana": "DVD",
+      "aliases": [
+        "CD",
+        "ディスク"
+      ],
+      "disposalGuide": "普通ごみへ。",
+      "warnings": [],
+      "isOversizedCandidate": false,
+      "isHazardous": false,
+      "requiresOfficialCheck": false,
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidenceStatus": "confirmed",
+      "updatedAt": "2026-05-25"
     },
     {
       "id": "item-018",
@@ -1384,7 +1614,24 @@
       ],
       "notes": "45L袋に入れば普通ごみ。入らない場合は粗大ごみを確認。",
       "source": "official-common",
-      "confidence": 0.8
+      "confidence": 0.8,
+      "displayName": "まくら",
+      "kana": "まくら",
+      "aliases": [
+        "枕",
+        "寝具"
+      ],
+      "disposalGuide": "45L袋に入れば普通ごみ。入らない場合は粗大ごみを確認。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。",
+        "30cmを超えるものや袋に入らないものは粗大ごみ受付センターで確認してください。"
+      ],
+      "isOversizedCandidate": true,
+      "isHazardous": false,
+      "requiresOfficialCheck": true,
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidenceStatus": "needs_review",
+      "updatedAt": "2026-05-25"
     },
     {
       "id": "item-019",
@@ -1397,7 +1644,23 @@
       ],
       "notes": "45L袋に入れば普通ごみ。大きいものは粗大ごみを確認。",
       "source": "official-common",
-      "confidence": 0.8
+      "confidence": 0.8,
+      "displayName": "毛布",
+      "kana": "毛布",
+      "aliases": [
+        "寝具"
+      ],
+      "disposalGuide": "45L袋に入れば普通ごみ。大きいものは粗大ごみを確認。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。",
+        "30cmを超えるものや袋に入らないものは粗大ごみ受付センターで確認してください。"
+      ],
+      "isOversizedCandidate": true,
+      "isHazardous": false,
+      "requiresOfficialCheck": true,
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidenceStatus": "needs_review",
+      "updatedAt": "2026-05-25"
     },
     {
       "id": "item-020",
@@ -1411,7 +1674,21 @@
       ],
       "notes": "軽く水洗いしてプラスチック製容器包装へ。",
       "source": "official-common",
-      "confidence": 0.95
+      "confidence": 0.95,
+      "displayName": "食品トレイ",
+      "kana": "食品トレイ",
+      "aliases": [
+        "トレー",
+        "容器包装"
+      ],
+      "disposalGuide": "軽く水洗いしてプラスチック製容器包装へ。",
+      "warnings": [],
+      "isOversizedCandidate": false,
+      "isHazardous": false,
+      "requiresOfficialCheck": false,
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidenceStatus": "confirmed",
+      "updatedAt": "2026-05-25"
     },
     {
       "id": "item-021",
@@ -1424,7 +1701,20 @@
       ],
       "notes": "プラスチック製容器包装へ。",
       "source": "official-common",
-      "confidence": 0.95
+      "confidence": 0.95,
+      "displayName": "卵パック",
+      "kana": "卵パック",
+      "aliases": [
+        "パック"
+      ],
+      "disposalGuide": "プラスチック製容器包装へ。",
+      "warnings": [],
+      "isOversizedCandidate": false,
+      "isHazardous": false,
+      "requiresOfficialCheck": false,
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidenceStatus": "confirmed",
+      "updatedAt": "2026-05-25"
     },
     {
       "id": "item-022",
@@ -1439,7 +1729,22 @@
       ],
       "notes": "中身を出して軽く水洗いし、ふたを外す。",
       "source": "official-common",
-      "confidence": 0.95
+      "confidence": 0.95,
+      "displayName": "シャンプーボトル",
+      "kana": "シャンプーボトル",
+      "aliases": [
+        "リンスボトル",
+        "ボトル",
+        "容器包装"
+      ],
+      "disposalGuide": "中身を出して軽く水洗いし、ふたを外す。",
+      "warnings": [],
+      "isOversizedCandidate": false,
+      "isHazardous": false,
+      "requiresOfficialCheck": false,
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidenceStatus": "confirmed",
+      "updatedAt": "2026-05-25"
     },
     {
       "id": "item-023",
@@ -1452,7 +1757,20 @@
       ],
       "notes": "プラスチック製容器包装へ。ごみ袋として使う場合は透明・白色半透明の条件を確認。",
       "source": "official-common",
-      "confidence": 0.85
+      "confidence": 0.85,
+      "displayName": "レジ袋",
+      "kana": "レジ袋",
+      "aliases": [
+        "袋"
+      ],
+      "disposalGuide": "プラスチック製容器包装へ。ごみ袋として使う場合は透明・白色半透明の条件を確認。",
+      "warnings": [],
+      "isOversizedCandidate": false,
+      "isHazardous": false,
+      "requiresOfficialCheck": false,
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidenceStatus": "confirmed",
+      "updatedAt": "2026-05-25"
     },
     {
       "id": "item-024",
@@ -1466,7 +1784,21 @@
       ],
       "notes": "軽く水洗いしてプラスチック製容器包装へ。",
       "source": "official-common",
-      "confidence": 0.9
+      "confidence": 0.9,
+      "displayName": "豆腐の容器",
+      "kana": "豆腐の容器",
+      "aliases": [
+        "容器",
+        "食品"
+      ],
+      "disposalGuide": "軽く水洗いしてプラスチック製容器包装へ。",
+      "warnings": [],
+      "isOversizedCandidate": false,
+      "isHazardous": false,
+      "requiresOfficialCheck": false,
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidenceStatus": "confirmed",
+      "updatedAt": "2026-05-25"
     },
     {
       "id": "item-025",
@@ -1480,7 +1812,21 @@
       ],
       "notes": "軽く水洗いしてプラスチック製容器包装へ。",
       "source": "official-common",
-      "confidence": 0.9
+      "confidence": 0.9,
+      "displayName": "プリンカップ",
+      "kana": "プリンカップ",
+      "aliases": [
+        "カップ類",
+        "容器"
+      ],
+      "disposalGuide": "軽く水洗いしてプラスチック製容器包装へ。",
+      "warnings": [],
+      "isOversizedCandidate": false,
+      "isHazardous": false,
+      "requiresOfficialCheck": false,
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidenceStatus": "confirmed",
+      "updatedAt": "2026-05-25"
     },
     {
       "id": "item-026",
@@ -1494,7 +1840,21 @@
       ],
       "notes": "軽く水洗い。二重袋にしない。",
       "source": "official-common",
-      "confidence": 0.9
+      "confidence": 0.9,
+      "displayName": "弁当容器",
+      "kana": "弁当容器",
+      "aliases": [
+        "コンビニ弁当容器",
+        "食品容器"
+      ],
+      "disposalGuide": "軽く水洗い。二重袋にしない。",
+      "warnings": [],
+      "isOversizedCandidate": false,
+      "isHazardous": false,
+      "requiresOfficialCheck": false,
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidenceStatus": "confirmed",
+      "updatedAt": "2026-05-25"
     },
     {
       "id": "item-027",
@@ -1508,7 +1868,23 @@
       ],
       "notes": "汚れを落とせるものはプラスチック製容器包装へ。汚れが強いものは普通ごみを確認。",
       "source": "official-common",
-      "confidence": 0.75
+      "confidence": 0.75,
+      "displayName": "ラップ",
+      "kana": "ラップ",
+      "aliases": [
+        "食品ラップ",
+        "容器包装"
+      ],
+      "disposalGuide": "汚れを落とせるものはプラスチック製容器包装へ。汚れが強いものは普通ごみを確認。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。"
+      ],
+      "isOversizedCandidate": false,
+      "isHazardous": false,
+      "requiresOfficialCheck": true,
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidenceStatus": "needs_review",
+      "updatedAt": "2026-05-25"
     },
     {
       "id": "item-028",
@@ -1522,7 +1898,23 @@
       ],
       "notes": "中身を空にしてプラスチック製容器包装へ。",
       "source": "manual-initial",
-      "confidence": 0.75
+      "confidence": 0.75,
+      "displayName": "お菓子の袋",
+      "kana": "お菓子の袋",
+      "aliases": [
+        "袋",
+        "容器包装"
+      ],
+      "disposalGuide": "中身を空にしてプラスチック製容器包装へ。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。"
+      ],
+      "isOversizedCandidate": false,
+      "isHazardous": false,
+      "requiresOfficialCheck": true,
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidenceStatus": "needs_review",
+      "updatedAt": "2026-05-25"
     },
     {
       "id": "item-029",
@@ -1535,7 +1927,22 @@
       ],
       "notes": "外したラベルはプラスチック製容器包装へ。",
       "source": "manual-initial",
-      "confidence": 0.75
+      "confidence": 0.75,
+      "displayName": "ペットボトルのラベル",
+      "kana": "ペットボトルのラベル",
+      "aliases": [
+        "ラベル"
+      ],
+      "disposalGuide": "外したラベルはプラスチック製容器包装へ。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。"
+      ],
+      "isOversizedCandidate": false,
+      "isHazardous": false,
+      "requiresOfficialCheck": true,
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidenceStatus": "needs_review",
+      "updatedAt": "2026-05-25"
     },
     {
       "id": "item-030",
@@ -1548,7 +1955,20 @@
       ],
       "notes": "門真市案内では小袋に入れてペットボトルの日に出します。",
       "source": "official-common",
-      "confidence": 0.85
+      "confidence": 0.85,
+      "displayName": "ペットボトルのキャップ",
+      "kana": "ペットボトルのキャップ",
+      "aliases": [
+        "ふた"
+      ],
+      "disposalGuide": "門真市案内では小袋に入れてペットボトルの日に出します。",
+      "warnings": [],
+      "isOversizedCandidate": false,
+      "isHazardous": false,
+      "requiresOfficialCheck": false,
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidenceStatus": "confirmed",
+      "updatedAt": "2026-05-25"
     },
     {
       "id": "item-031",
@@ -1562,7 +1982,21 @@
       ],
       "notes": "中身を出して軽く水洗い。",
       "source": "official-common",
-      "confidence": 0.95
+      "confidence": 0.95,
+      "displayName": "空き缶",
+      "kana": "空き缶",
+      "aliases": [
+        "飲料缶",
+        "缶"
+      ],
+      "disposalGuide": "中身を出して軽く水洗い。",
+      "warnings": [],
+      "isOversizedCandidate": false,
+      "isHazardous": false,
+      "requiresOfficialCheck": false,
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidenceStatus": "confirmed",
+      "updatedAt": "2026-05-25"
     },
     {
       "id": "item-032",
@@ -1576,7 +2010,21 @@
       ],
       "notes": "中身を出して軽く水洗い。",
       "source": "official-common",
-      "confidence": 0.95
+      "confidence": 0.95,
+      "displayName": "空きびん",
+      "kana": "空きびん",
+      "aliases": [
+        "空き瓶",
+        "びん"
+      ],
+      "disposalGuide": "中身を出して軽く水洗い。",
+      "warnings": [],
+      "isOversizedCandidate": false,
+      "isHazardous": false,
+      "requiresOfficialCheck": false,
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidenceStatus": "confirmed",
+      "updatedAt": "2026-05-25"
     },
     {
       "id": "item-033",
@@ -1590,7 +2038,23 @@
       ],
       "notes": "使い切った後、袋を分けてキケンの張り紙をする。",
       "source": "official-common",
-      "confidence": 0.95
+      "confidence": 0.95,
+      "displayName": "スプレー缶",
+      "kana": "スプレー缶",
+      "aliases": [
+        "危険",
+        "ガス"
+      ],
+      "disposalGuide": "使い切った後、袋を分けてキケンの張り紙をする。",
+      "warnings": [
+        "発火・破裂・飛散・けがに注意し、必要に応じてキケン表示をしてください。"
+      ],
+      "isOversizedCandidate": false,
+      "isHazardous": true,
+      "requiresOfficialCheck": false,
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidenceStatus": "confirmed",
+      "updatedAt": "2026-05-25"
     },
     {
       "id": "item-034",
@@ -1605,7 +2069,24 @@
       ],
       "notes": "使い切った後、袋を分けてキケンの張り紙をする。",
       "source": "official-common",
-      "confidence": 0.95
+      "confidence": 0.95,
+      "displayName": "簡易ガスボンベ",
+      "kana": "簡易ガスボンベ",
+      "aliases": [
+        "カセットボンベ",
+        "危険",
+        "ガス"
+      ],
+      "disposalGuide": "使い切った後、袋を分けてキケンの張り紙をする。",
+      "warnings": [
+        "発火・破裂・飛散・けがに注意し、必要に応じてキケン表示をしてください。"
+      ],
+      "isOversizedCandidate": false,
+      "isHazardous": true,
+      "requiresOfficialCheck": false,
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidenceStatus": "confirmed",
+      "updatedAt": "2026-05-25"
     },
     {
       "id": "item-035",
@@ -1619,7 +2100,21 @@
       ],
       "notes": "小型ごみの日に出してください。",
       "source": "official-common",
-      "confidence": 0.9
+      "confidence": 0.9,
+      "displayName": "一斗缶",
+      "kana": "一斗缶",
+      "aliases": [
+        "缶",
+        "金物"
+      ],
+      "disposalGuide": "小型ごみの日に出してください。",
+      "warnings": [],
+      "isOversizedCandidate": false,
+      "isHazardous": false,
+      "requiresOfficialCheck": false,
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidenceStatus": "confirmed",
+      "updatedAt": "2026-05-25"
     },
     {
       "id": "item-036",
@@ -1633,7 +2128,21 @@
       ],
       "notes": "種類ごとに十字にしばる。一度に3束まで。",
       "source": "official-common",
-      "confidence": 0.95
+      "confidence": 0.95,
+      "displayName": "新聞",
+      "kana": "新聞",
+      "aliases": [
+        "新聞紙",
+        "古紙"
+      ],
+      "disposalGuide": "種類ごとに十字にしばる。一度に3束まで。",
+      "warnings": [],
+      "isOversizedCandidate": false,
+      "isHazardous": false,
+      "requiresOfficialCheck": false,
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidenceStatus": "confirmed",
+      "updatedAt": "2026-05-25"
     },
     {
       "id": "item-037",
@@ -1647,7 +2156,21 @@
       ],
       "notes": "十字にしばって古紙・古布へ。",
       "source": "official-common",
-      "confidence": 0.95
+      "confidence": 0.95,
+      "displayName": "段ボール",
+      "kana": "段ボール",
+      "aliases": [
+        "ダンボール",
+        "古紙"
+      ],
+      "disposalGuide": "十字にしばって古紙・古布へ。",
+      "warnings": [],
+      "isOversizedCandidate": false,
+      "isHazardous": false,
+      "requiresOfficialCheck": false,
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidenceStatus": "confirmed",
+      "updatedAt": "2026-05-25"
     },
     {
       "id": "item-038",
@@ -1660,7 +2183,20 @@
       ],
       "notes": "十字にしばって古紙・古布へ。",
       "source": "official-common",
-      "confidence": 0.95
+      "confidence": 0.95,
+      "displayName": "雑誌",
+      "kana": "雑誌",
+      "aliases": [
+        "古紙"
+      ],
+      "disposalGuide": "十字にしばって古紙・古布へ。",
+      "warnings": [],
+      "isOversizedCandidate": false,
+      "isHazardous": false,
+      "requiresOfficialCheck": false,
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidenceStatus": "confirmed",
+      "updatedAt": "2026-05-25"
     },
     {
       "id": "item-039",
@@ -1673,7 +2209,20 @@
       ],
       "notes": "古紙・古布へ。",
       "source": "official-common",
-      "confidence": 0.9
+      "confidence": 0.9,
+      "displayName": "チラシ",
+      "kana": "チラシ",
+      "aliases": [
+        "古紙"
+      ],
+      "disposalGuide": "古紙・古布へ。",
+      "warnings": [],
+      "isOversizedCandidate": false,
+      "isHazardous": false,
+      "requiresOfficialCheck": false,
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidenceStatus": "confirmed",
+      "updatedAt": "2026-05-25"
     },
     {
       "id": "item-040",
@@ -1686,7 +2235,20 @@
       ],
       "notes": "古紙・古布へ。汚れたものは普通ごみ。",
       "source": "official-common",
-      "confidence": 0.85
+      "confidence": 0.85,
+      "displayName": "紙袋",
+      "kana": "紙袋",
+      "aliases": [
+        "古紙"
+      ],
+      "disposalGuide": "古紙・古布へ。汚れたものは普通ごみ。",
+      "warnings": [],
+      "isOversizedCandidate": false,
+      "isHazardous": false,
+      "requiresOfficialCheck": false,
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidenceStatus": "confirmed",
+      "updatedAt": "2026-05-25"
     },
     {
       "id": "item-041",
@@ -1699,7 +2261,20 @@
       ],
       "notes": "古紙・古布へ。",
       "source": "official-common",
-      "confidence": 0.85
+      "confidence": 0.85,
+      "displayName": "牛乳パック",
+      "kana": "牛乳パック",
+      "aliases": [
+        "紙パック"
+      ],
+      "disposalGuide": "古紙・古布へ。",
+      "warnings": [],
+      "isOversizedCandidate": false,
+      "isHazardous": false,
+      "requiresOfficialCheck": false,
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidenceStatus": "confirmed",
+      "updatedAt": "2026-05-25"
     },
     {
       "id": "item-042",
@@ -1713,7 +2288,21 @@
       ],
       "notes": "45L以下の無色透明または白色半透明袋。一度に3袋まで。",
       "source": "official-common",
-      "confidence": 0.9
+      "confidence": 0.9,
+      "displayName": "古着",
+      "kana": "古着",
+      "aliases": [
+        "衣類",
+        "布"
+      ],
+      "disposalGuide": "45L以下の無色透明または白色半透明袋。一度に3袋まで。",
+      "warnings": [],
+      "isOversizedCandidate": false,
+      "isHazardous": false,
+      "requiresOfficialCheck": false,
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidenceStatus": "confirmed",
+      "updatedAt": "2026-05-25"
     },
     {
       "id": "item-043",
@@ -1726,7 +2315,20 @@
       ],
       "notes": "45L以下の袋で古紙・古布へ。汚損しているものは普通ごみ。",
       "source": "official-common",
-      "confidence": 0.9
+      "confidence": 0.9,
+      "displayName": "タオル",
+      "kana": "タオル",
+      "aliases": [
+        "布"
+      ],
+      "disposalGuide": "45L以下の袋で古紙・古布へ。汚損しているものは普通ごみ。",
+      "warnings": [],
+      "isOversizedCandidate": false,
+      "isHazardous": false,
+      "requiresOfficialCheck": false,
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidenceStatus": "confirmed",
+      "updatedAt": "2026-05-25"
     },
     {
       "id": "item-044",
@@ -1740,7 +2342,23 @@
       ],
       "notes": "30cm以下なら小型ごみ。30cm超は粗大ごみの可能性。",
       "source": "official-common",
-      "confidence": 0.95
+      "confidence": 0.95,
+      "displayName": "フライパン",
+      "kana": "フライパン",
+      "aliases": [
+        "金物",
+        "調理器具"
+      ],
+      "disposalGuide": "30cm以下なら小型ごみ。30cm超は粗大ごみの可能性。",
+      "warnings": [
+        "30cmを超えるものや袋に入らないものは粗大ごみ受付センターで確認してください。"
+      ],
+      "isOversizedCandidate": true,
+      "isHazardous": false,
+      "requiresOfficialCheck": false,
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidenceStatus": "confirmed",
+      "updatedAt": "2026-05-25"
     },
     {
       "id": "item-045",
@@ -1755,7 +2373,22 @@
       ],
       "notes": "30cm以下なら小型ごみ。",
       "source": "official-common",
-      "confidence": 0.92
+      "confidence": 0.92,
+      "displayName": "なべ",
+      "kana": "なべ",
+      "aliases": [
+        "鍋",
+        "金物",
+        "調理器具"
+      ],
+      "disposalGuide": "30cm以下なら小型ごみ。",
+      "warnings": [],
+      "isOversizedCandidate": false,
+      "isHazardous": false,
+      "requiresOfficialCheck": false,
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidenceStatus": "confirmed",
+      "updatedAt": "2026-05-25"
     },
     {
       "id": "item-046",
@@ -1768,7 +2401,20 @@
       ],
       "notes": "小型ごみへ。",
       "source": "official-common",
-      "confidence": 0.9
+      "confidence": 0.9,
+      "displayName": "やかん",
+      "kana": "やかん",
+      "aliases": [
+        "金物"
+      ],
+      "disposalGuide": "小型ごみへ。",
+      "warnings": [],
+      "isOversizedCandidate": false,
+      "isHazardous": false,
+      "requiresOfficialCheck": false,
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidenceStatus": "confirmed",
+      "updatedAt": "2026-05-25"
     },
     {
       "id": "item-047",
@@ -1783,7 +2429,24 @@
       ],
       "notes": "小型ごみへ。割れたものは包んでキケン表示。",
       "source": "official-common",
-      "confidence": 0.9
+      "confidence": 0.9,
+      "displayName": "陶磁器",
+      "kana": "陶磁器",
+      "aliases": [
+        "茶碗",
+        "皿",
+        "割れ物"
+      ],
+      "disposalGuide": "小型ごみへ。割れたものは包んでキケン表示。",
+      "warnings": [
+        "発火・破裂・飛散・けがに注意し、必要に応じてキケン表示をしてください。"
+      ],
+      "isOversizedCandidate": false,
+      "isHazardous": true,
+      "requiresOfficialCheck": false,
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidenceStatus": "confirmed",
+      "updatedAt": "2026-05-25"
     },
     {
       "id": "item-048",
@@ -1796,7 +2459,22 @@
       ],
       "notes": "小型ごみへ。飛散するものは新聞紙などで包装しキケン表示。",
       "source": "official-common",
-      "confidence": 0.9
+      "confidence": 0.9,
+      "displayName": "ガラス",
+      "kana": "ガラス",
+      "aliases": [
+        "割れ物"
+      ],
+      "disposalGuide": "小型ごみへ。飛散するものは新聞紙などで包装しキケン表示。",
+      "warnings": [
+        "発火・破裂・飛散・けがに注意し、必要に応じてキケン表示をしてください。"
+      ],
+      "isOversizedCandidate": false,
+      "isHazardous": true,
+      "requiresOfficialCheck": false,
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidenceStatus": "confirmed",
+      "updatedAt": "2026-05-25"
     },
     {
       "id": "item-049",
@@ -1811,7 +2489,24 @@
       ],
       "notes": "新聞紙などで包装し、キケンの張り紙をする。",
       "source": "official-common",
-      "confidence": 0.95
+      "confidence": 0.95,
+      "displayName": "蛍光管",
+      "kana": "蛍光管",
+      "aliases": [
+        "蛍光灯",
+        "危険",
+        "照明"
+      ],
+      "disposalGuide": "新聞紙などで包装し、キケンの張り紙をする。",
+      "warnings": [
+        "発火・破裂・飛散・けがに注意し、必要に応じてキケン表示をしてください。"
+      ],
+      "isOversizedCandidate": false,
+      "isHazardous": true,
+      "requiresOfficialCheck": false,
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidenceStatus": "confirmed",
+      "updatedAt": "2026-05-25"
     },
     {
       "id": "item-050",
@@ -1825,7 +2520,23 @@
       ],
       "notes": "新聞紙などで包装し、キケン表示。",
       "source": "official-common",
-      "confidence": 0.9
+      "confidence": 0.9,
+      "displayName": "電球",
+      "kana": "電球",
+      "aliases": [
+        "照明",
+        "割れ物"
+      ],
+      "disposalGuide": "新聞紙などで包装し、キケン表示。",
+      "warnings": [
+        "発火・破裂・飛散・けがに注意し、必要に応じてキケン表示をしてください。"
+      ],
+      "isOversizedCandidate": false,
+      "isHazardous": true,
+      "requiresOfficialCheck": false,
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidenceStatus": "confirmed",
+      "updatedAt": "2026-05-25"
     },
     {
       "id": "item-051",
@@ -1839,7 +2550,24 @@
       ],
       "notes": "小型ごみへ。種類により回収方法が異なる可能性があるため公式確認推奨。",
       "source": "official-common",
-      "confidence": 0.8
+      "confidence": 0.8,
+      "displayName": "電池",
+      "kana": "電池",
+      "aliases": [
+        "乾電池",
+        "危険"
+      ],
+      "disposalGuide": "小型ごみへ。種類により回収方法が異なる可能性があるため公式確認推奨。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。",
+        "発火・破裂・飛散・けがに注意し、必要に応じてキケン表示をしてください。"
+      ],
+      "isOversizedCandidate": false,
+      "isHazardous": true,
+      "requiresOfficialCheck": true,
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidenceStatus": "needs_review",
+      "updatedAt": "2026-05-25"
     },
     {
       "id": "item-052",
@@ -1852,7 +2580,22 @@
       ],
       "notes": "小型ごみへ。中身を使い切ってください。",
       "source": "official-common",
-      "confidence": 0.85
+      "confidence": 0.85,
+      "displayName": "ライター",
+      "kana": "ライター",
+      "aliases": [
+        "危険"
+      ],
+      "disposalGuide": "小型ごみへ。中身を使い切ってください。",
+      "warnings": [
+        "発火・破裂・飛散・けがに注意し、必要に応じてキケン表示をしてください。"
+      ],
+      "isOversizedCandidate": false,
+      "isHazardous": true,
+      "requiresOfficialCheck": false,
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidenceStatus": "confirmed",
+      "updatedAt": "2026-05-25"
     },
     {
       "id": "item-053",
@@ -1865,7 +2608,20 @@
       ],
       "notes": "太さ5cm以下、長さ1m以下に切りそろえて2束まで。",
       "source": "official-common",
-      "confidence": 0.9
+      "confidence": 0.9,
+      "displayName": "小枝",
+      "kana": "小枝",
+      "aliases": [
+        "枝"
+      ],
+      "disposalGuide": "太さ5cm以下、長さ1m以下に切りそろえて2束まで。",
+      "warnings": [],
+      "isOversizedCandidate": false,
+      "isHazardous": false,
+      "requiresOfficialCheck": false,
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidenceStatus": "confirmed",
+      "updatedAt": "2026-05-25"
     },
     {
       "id": "item-054",
@@ -1879,7 +2635,21 @@
       ],
       "notes": "中身を出して軽く水洗い。ふたを取り除く。",
       "source": "official-common",
-      "confidence": 0.95
+      "confidence": 0.95,
+      "displayName": "ペットボトル",
+      "kana": "ペットボトル",
+      "aliases": [
+        "PET",
+        "飲料"
+      ],
+      "disposalGuide": "中身を出して軽く水洗い。ふたを取り除く。",
+      "warnings": [],
+      "isOversizedCandidate": false,
+      "isHazardous": false,
+      "requiresOfficialCheck": false,
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidenceStatus": "confirmed",
+      "updatedAt": "2026-05-25"
     },
     {
       "id": "item-055",
@@ -1893,7 +2663,21 @@
       ],
       "notes": "リサイクルマークのペットボトルが対象。",
       "source": "official-common",
-      "confidence": 0.9
+      "confidence": 0.9,
+      "displayName": "しょうゆのペットボトル",
+      "kana": "しょうゆのペットボトル",
+      "aliases": [
+        "PET",
+        "調味料"
+      ],
+      "disposalGuide": "リサイクルマークのペットボトルが対象。",
+      "warnings": [],
+      "isOversizedCandidate": false,
+      "isHazardous": false,
+      "requiresOfficialCheck": false,
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidenceStatus": "confirmed",
+      "updatedAt": "2026-05-25"
     },
     {
       "id": "item-056",
@@ -1907,7 +2691,21 @@
       ],
       "notes": "リサイクルマークのペットボトルが対象。",
       "source": "official-common",
-      "confidence": 0.85
+      "confidence": 0.85,
+      "displayName": "みりんのペットボトル",
+      "kana": "みりんのペットボトル",
+      "aliases": [
+        "PET",
+        "調味料"
+      ],
+      "disposalGuide": "リサイクルマークのペットボトルが対象。",
+      "warnings": [],
+      "isOversizedCandidate": false,
+      "isHazardous": false,
+      "requiresOfficialCheck": false,
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidenceStatus": "confirmed",
+      "updatedAt": "2026-05-25"
     },
     {
       "id": "item-057",
@@ -1920,7 +2718,20 @@
       ],
       "notes": "リサイクルマークのペットボトルが対象。",
       "source": "official-common",
-      "confidence": 0.85
+      "confidence": 0.85,
+      "displayName": "酒類のペットボトル",
+      "kana": "酒類のペットボトル",
+      "aliases": [
+        "PET"
+      ],
+      "disposalGuide": "リサイクルマークのペットボトルが対象。",
+      "warnings": [],
+      "isOversizedCandidate": false,
+      "isHazardous": false,
+      "requiresOfficialCheck": false,
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidenceStatus": "confirmed",
+      "updatedAt": "2026-05-25"
     },
     {
       "id": "item-058",
@@ -1934,7 +2745,24 @@
       ],
       "notes": "粗大ごみ。電話予約と処理券を確認。",
       "source": "manual-initial",
-      "confidence": 0.8
+      "confidence": 0.8,
+      "displayName": "布団",
+      "kana": "布団",
+      "aliases": [
+        "ふとん",
+        "寝具"
+      ],
+      "disposalGuide": "粗大ごみ。電話予約と処理券を確認。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。",
+        "30cmを超えるものや袋に入らないものは粗大ごみ受付センターで確認してください。"
+      ],
+      "isOversizedCandidate": true,
+      "isHazardous": false,
+      "requiresOfficialCheck": true,
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/5/22406.html",
+      "confidenceStatus": "needs_review",
+      "updatedAt": "2026-05-25"
     },
     {
       "id": "item-059",
@@ -1947,7 +2775,23 @@
       ],
       "notes": "粗大ごみ。電話予約と処理券が必要。",
       "source": "manual-initial",
-      "confidence": 0.85
+      "confidence": 0.85,
+      "displayName": "ソファ",
+      "kana": "ソファ",
+      "aliases": [
+        "家具"
+      ],
+      "disposalGuide": "粗大ごみ。電話予約と処理券が必要。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。",
+        "30cmを超えるものや袋に入らないものは粗大ごみ受付センターで確認してください。"
+      ],
+      "isOversizedCandidate": true,
+      "isHazardous": false,
+      "requiresOfficialCheck": true,
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/5/22406.html",
+      "confidenceStatus": "needs_review",
+      "updatedAt": "2026-05-25"
     },
     {
       "id": "item-060",
@@ -1962,7 +2806,24 @@
       ],
       "notes": "30cmを超えるものは粗大ごみ。",
       "source": "official-common",
-      "confidence": 0.85
+      "confidence": 0.85,
+      "displayName": "家具",
+      "kana": "家具",
+      "aliases": [
+        "棚",
+        "たんす",
+        "耐久消費財"
+      ],
+      "disposalGuide": "30cmを超えるものは粗大ごみ。",
+      "warnings": [
+        "30cmを超えるものや袋に入らないものは粗大ごみ受付センターで確認してください。"
+      ],
+      "isOversizedCandidate": true,
+      "isHazardous": false,
+      "requiresOfficialCheck": false,
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/5/22406.html",
+      "confidenceStatus": "confirmed",
+      "updatedAt": "2026-05-25"
     },
     {
       "id": "item-061",
@@ -1976,7 +2837,24 @@
       ],
       "notes": "粗大ごみ。予約してください。",
       "source": "manual-initial",
-      "confidence": 0.8
+      "confidence": 0.8,
+      "displayName": "机",
+      "kana": "机",
+      "aliases": [
+        "テーブル",
+        "家具"
+      ],
+      "disposalGuide": "粗大ごみ。予約してください。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。",
+        "30cmを超えるものや袋に入らないものは粗大ごみ受付センターで確認してください。"
+      ],
+      "isOversizedCandidate": true,
+      "isHazardous": false,
+      "requiresOfficialCheck": true,
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/5/22406.html",
+      "confidenceStatus": "needs_review",
+      "updatedAt": "2026-05-25"
     },
     {
       "id": "item-062",
@@ -1990,7 +2868,24 @@
       ],
       "notes": "30cmを超えるものは粗大ごみ。小さい金属・プラ製品は素材も確認。",
       "source": "manual-initial",
-      "confidence": 0.75
+      "confidence": 0.75,
+      "displayName": "椅子",
+      "kana": "椅子",
+      "aliases": [
+        "いす",
+        "家具"
+      ],
+      "disposalGuide": "30cmを超えるものは粗大ごみ。小さい金属・プラ製品は素材も確認。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。",
+        "30cmを超えるものや袋に入らないものは粗大ごみ受付センターで確認してください。"
+      ],
+      "isOversizedCandidate": true,
+      "isHazardous": false,
+      "requiresOfficialCheck": true,
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/5/22406.html",
+      "confidenceStatus": "needs_review",
+      "updatedAt": "2026-05-25"
     },
     {
       "id": "item-063",
@@ -2003,7 +2898,23 @@
       ],
       "notes": "粗大ごみの可能性。公式申込時に確認してください。",
       "source": "manual-initial",
-      "confidence": 0.7
+      "confidence": 0.7,
+      "displayName": "自転車",
+      "kana": "自転車",
+      "aliases": [
+        "大型"
+      ],
+      "disposalGuide": "粗大ごみの可能性。公式申込時に確認してください。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。",
+        "30cmを超えるものや袋に入らないものは粗大ごみ受付センターで確認してください。"
+      ],
+      "isOversizedCandidate": true,
+      "isHazardous": false,
+      "requiresOfficialCheck": true,
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/5/22406.html",
+      "confidenceStatus": "needs_review",
+      "updatedAt": "2026-05-25"
     },
     {
       "id": "item-064",
@@ -2016,7 +2927,23 @@
       ],
       "notes": "粗大ごみ。予約してください。",
       "source": "manual-initial",
-      "confidence": 0.8
+      "confidence": 0.8,
+      "displayName": "マットレス",
+      "kana": "マットレス",
+      "aliases": [
+        "寝具"
+      ],
+      "disposalGuide": "粗大ごみ。予約してください。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。",
+        "30cmを超えるものや袋に入らないものは粗大ごみ受付センターで確認してください。"
+      ],
+      "isOversizedCandidate": true,
+      "isHazardous": false,
+      "requiresOfficialCheck": true,
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/5/22406.html",
+      "confidenceStatus": "needs_review",
+      "updatedAt": "2026-05-25"
     },
     {
       "id": "item-065",
@@ -2030,7 +2957,24 @@
       ],
       "notes": "大きいものは粗大ごみを確認。",
       "source": "manual-initial",
-      "confidence": 0.7
+      "confidence": 0.7,
+      "displayName": "カーペット",
+      "kana": "カーペット",
+      "aliases": [
+        "じゅうたん",
+        "敷物"
+      ],
+      "disposalGuide": "大きいものは粗大ごみを確認。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。",
+        "30cmを超えるものや袋に入らないものは粗大ごみ受付センターで確認してください。"
+      ],
+      "isOversizedCandidate": true,
+      "isHazardous": false,
+      "requiresOfficialCheck": true,
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/5/22406.html",
+      "confidenceStatus": "needs_review",
+      "updatedAt": "2026-05-25"
     },
     {
       "id": "item-066",
@@ -2043,7 +2987,23 @@
       ],
       "notes": "粗大ごみの可能性。家電リサイクル対象外か確認。",
       "source": "manual-initial",
-      "confidence": 0.7
+      "confidence": 0.7,
+      "displayName": "電子レンジ",
+      "kana": "電子レンジ",
+      "aliases": [
+        "家電"
+      ],
+      "disposalGuide": "粗大ごみの可能性。家電リサイクル対象外か確認。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。",
+        "30cmを超えるものや袋に入らないものは粗大ごみ受付センターで確認してください。"
+      ],
+      "isOversizedCandidate": true,
+      "isHazardous": false,
+      "requiresOfficialCheck": true,
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/5/22406.html",
+      "confidenceStatus": "needs_review",
+      "updatedAt": "2026-05-25"
     },
     {
       "id": "item-067",
@@ -2056,7 +3016,23 @@
       ],
       "notes": "30cm以下なら小型ごみ、超える場合は粗大ごみを確認。",
       "source": "manual-initial",
-      "confidence": 0.65
+      "confidence": 0.65,
+      "displayName": "炊飯器",
+      "kana": "炊飯器",
+      "aliases": [
+        "家電"
+      ],
+      "disposalGuide": "30cm以下なら小型ごみ、超える場合は粗大ごみを確認。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。",
+        "30cmを超えるものや袋に入らないものは粗大ごみ受付センターで確認してください。"
+      ],
+      "isOversizedCandidate": true,
+      "isHazardous": false,
+      "requiresOfficialCheck": true,
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidenceStatus": "needs_review",
+      "updatedAt": "2026-05-25"
     },
     {
       "id": "item-068",
@@ -2069,7 +3045,23 @@
       ],
       "notes": "小型ごみの目安。電池内蔵品は公式確認推奨。",
       "source": "manual-initial",
-      "confidence": 0.65
+      "confidence": 0.65,
+      "displayName": "ドライヤー",
+      "kana": "ドライヤー",
+      "aliases": [
+        "家電"
+      ],
+      "disposalGuide": "小型ごみの目安。電池内蔵品は公式確認推奨。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。",
+        "発火・破裂・飛散・けがに注意し、必要に応じてキケン表示をしてください。"
+      ],
+      "isOversizedCandidate": false,
+      "isHazardous": true,
+      "requiresOfficialCheck": true,
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidenceStatus": "needs_review",
+      "updatedAt": "2026-05-25"
     },
     {
       "id": "item-069",
@@ -2082,7 +3074,23 @@
       ],
       "notes": "小型ごみの目安。長さが大きい場合は公式確認推奨。",
       "source": "manual-initial",
-      "confidence": 0.6
+      "confidence": 0.6,
+      "displayName": "傘",
+      "kana": "傘",
+      "aliases": [
+        "金属"
+      ],
+      "disposalGuide": "小型ごみの目安。長さが大きい場合は公式確認推奨。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。",
+        "30cmを超えるものや袋に入らないものは粗大ごみ受付センターで確認してください。"
+      ],
+      "isOversizedCandidate": true,
+      "isHazardous": false,
+      "requiresOfficialCheck": true,
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidenceStatus": "needs_review",
+      "updatedAt": "2026-05-25"
     },
     {
       "id": "item-070",
@@ -2096,7 +3104,24 @@
       ],
       "notes": "新聞紙などで包み、キケン表示して小型ごみへ。",
       "source": "manual-initial",
-      "confidence": 0.7
+      "confidence": 0.7,
+      "displayName": "包丁",
+      "kana": "包丁",
+      "aliases": [
+        "刃物",
+        "危険"
+      ],
+      "disposalGuide": "新聞紙などで包み、キケン表示して小型ごみへ。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。",
+        "発火・破裂・飛散・けがに注意し、必要に応じてキケン表示をしてください。"
+      ],
+      "isOversizedCandidate": false,
+      "isHazardous": true,
+      "requiresOfficialCheck": true,
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidenceStatus": "needs_review",
+      "updatedAt": "2026-05-25"
     },
     {
       "id": "item-071",
@@ -2109,7 +3134,23 @@
       ],
       "notes": "危なくないよう包んで小型ごみへ。",
       "source": "manual-initial",
-      "confidence": 0.7
+      "confidence": 0.7,
+      "displayName": "はさみ",
+      "kana": "はさみ",
+      "aliases": [
+        "刃物"
+      ],
+      "disposalGuide": "危なくないよう包んで小型ごみへ。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。",
+        "発火・破裂・飛散・けがに注意し、必要に応じてキケン表示をしてください。"
+      ],
+      "isOversizedCandidate": false,
+      "isHazardous": true,
+      "requiresOfficialCheck": true,
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidenceStatus": "needs_review",
+      "updatedAt": "2026-05-25"
     },
     {
       "id": "item-072",
@@ -2122,7 +3163,24 @@
       ],
       "notes": "割れ物として包装しキケン表示。大きいものは粗大ごみを確認。",
       "source": "manual-initial",
-      "confidence": 0.65
+      "confidence": 0.65,
+      "displayName": "鏡",
+      "kana": "鏡",
+      "aliases": [
+        "ガラス"
+      ],
+      "disposalGuide": "割れ物として包装しキケン表示。大きいものは粗大ごみを確認。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。",
+        "発火・破裂・飛散・けがに注意し、必要に応じてキケン表示をしてください。",
+        "30cmを超えるものや袋に入らないものは粗大ごみ受付センターで確認してください。"
+      ],
+      "isOversizedCandidate": true,
+      "isHazardous": true,
+      "requiresOfficialCheck": true,
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidenceStatus": "needs_review",
+      "updatedAt": "2026-05-25"
     },
     {
       "id": "item-073",
@@ -2136,7 +3194,23 @@
       ],
       "notes": "陶磁器類として小型ごみへ。",
       "source": "official-common",
-      "confidence": 0.75
+      "confidence": 0.75,
+      "displayName": "植木鉢 陶器",
+      "kana": "植木鉢 陶器",
+      "aliases": [
+        "陶器の植木鉢",
+        "陶磁器"
+      ],
+      "disposalGuide": "陶磁器類として小型ごみへ。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。"
+      ],
+      "isOversizedCandidate": false,
+      "isHazardous": false,
+      "requiresOfficialCheck": true,
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidenceStatus": "needs_review",
+      "updatedAt": "2026-05-25"
     },
     {
       "id": "item-074",
@@ -2149,7 +3223,22 @@
       ],
       "notes": "家電リサイクル対象。市の通常収集ではなく公式案内を確認。",
       "source": "manual-initial",
-      "confidence": 0.8
+      "confidence": 0.8,
+      "displayName": "テレビ",
+      "kana": "テレビ",
+      "aliases": [
+        "家電リサイクル"
+      ],
+      "disposalGuide": "家電リサイクル対象。市の通常収集ではなく公式案内を確認。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。"
+      ],
+      "isOversizedCandidate": false,
+      "isHazardous": false,
+      "requiresOfficialCheck": true,
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidenceStatus": "needs_review",
+      "updatedAt": "2026-05-25"
     },
     {
       "id": "item-075",
@@ -2163,7 +3252,23 @@
       ],
       "notes": "家電リサイクル対象。販売店などへ確認。",
       "source": "manual-initial",
-      "confidence": 0.8
+      "confidence": 0.8,
+      "displayName": "冷蔵庫",
+      "kana": "冷蔵庫",
+      "aliases": [
+        "冷凍庫",
+        "家電リサイクル"
+      ],
+      "disposalGuide": "家電リサイクル対象。販売店などへ確認。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。"
+      ],
+      "isOversizedCandidate": false,
+      "isHazardous": false,
+      "requiresOfficialCheck": true,
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidenceStatus": "needs_review",
+      "updatedAt": "2026-05-25"
     },
     {
       "id": "item-076",
@@ -2176,7 +3281,22 @@
       ],
       "notes": "家電リサイクル対象。市の通常収集不可。",
       "source": "manual-initial",
-      "confidence": 0.8
+      "confidence": 0.8,
+      "displayName": "洗濯機",
+      "kana": "洗濯機",
+      "aliases": [
+        "家電リサイクル"
+      ],
+      "disposalGuide": "家電リサイクル対象。市の通常収集不可。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。"
+      ],
+      "isOversizedCandidate": false,
+      "isHazardous": false,
+      "requiresOfficialCheck": true,
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidenceStatus": "needs_review",
+      "updatedAt": "2026-05-25"
     },
     {
       "id": "item-077",
@@ -2189,7 +3309,22 @@
       ],
       "notes": "家電リサイクル対象。市の通常収集不可。",
       "source": "manual-initial",
-      "confidence": 0.8
+      "confidence": 0.8,
+      "displayName": "エアコン",
+      "kana": "エアコン",
+      "aliases": [
+        "家電リサイクル"
+      ],
+      "disposalGuide": "家電リサイクル対象。市の通常収集不可。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。"
+      ],
+      "isOversizedCandidate": false,
+      "isHazardous": false,
+      "requiresOfficialCheck": true,
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidenceStatus": "needs_review",
+      "updatedAt": "2026-05-25"
     },
     {
       "id": "item-078",
@@ -2202,7 +3337,22 @@
       ],
       "notes": "メーカー回収などを確認。",
       "source": "manual-initial",
-      "confidence": 0.7
+      "confidence": 0.7,
+      "displayName": "パソコン",
+      "kana": "パソコン",
+      "aliases": [
+        "PCリサイクル"
+      ],
+      "disposalGuide": "メーカー回収などを確認。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。"
+      ],
+      "isOversizedCandidate": false,
+      "isHazardous": false,
+      "requiresOfficialCheck": true,
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidenceStatus": "needs_review",
+      "updatedAt": "2026-05-25"
     },
     {
       "id": "item-079",
@@ -2217,7 +3367,25 @@
       ],
       "notes": "電池内蔵品は発火に注意。公式回収方法を確認。",
       "source": "manual-initial",
-      "confidence": 0.55
+      "confidence": 0.55,
+      "displayName": "スマートフォン",
+      "kana": "スマートフォン",
+      "aliases": [
+        "携帯電話",
+        "小型家電",
+        "電池"
+      ],
+      "disposalGuide": "電池内蔵品は発火に注意。公式回収方法を確認。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。",
+        "発火・破裂・飛散・けがに注意し、必要に応じてキケン表示をしてください。"
+      ],
+      "isOversizedCandidate": false,
+      "isHazardous": true,
+      "requiresOfficialCheck": true,
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidenceStatus": "needs_review",
+      "updatedAt": "2026-05-25"
     },
     {
       "id": "item-080",
@@ -2231,7 +3399,24 @@
       ],
       "notes": "発火の危険があります。通常ごみに混ぜず公式回収方法を確認。",
       "source": "manual-initial",
-      "confidence": 0.55
+      "confidence": 0.55,
+      "displayName": "モバイルバッテリー",
+      "kana": "モバイルバッテリー",
+      "aliases": [
+        "リチウムイオン",
+        "危険"
+      ],
+      "disposalGuide": "発火の危険があります。通常ごみに混ぜず公式回収方法を確認。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。",
+        "発火・破裂・飛散・けがに注意し、必要に応じてキケン表示をしてください。"
+      ],
+      "isOversizedCandidate": false,
+      "isHazardous": true,
+      "requiresOfficialCheck": true,
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidenceStatus": "needs_review",
+      "updatedAt": "2026-05-25"
     },
     {
       "id": "item-081",
@@ -2244,7 +3429,23 @@
       ],
       "notes": "中身の残りや缶の扱いで異なります。公式確認推奨。",
       "source": "manual-initial",
-      "confidence": 0.45
+      "confidence": 0.45,
+      "displayName": "ペンキ",
+      "kana": "ペンキ",
+      "aliases": [
+        "塗料"
+      ],
+      "disposalGuide": "中身の残りや缶の扱いで異なります。公式確認推奨。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。",
+        "発火・破裂・飛散・けがに注意し、必要に応じてキケン表示をしてください。"
+      ],
+      "isOversizedCandidate": false,
+      "isHazardous": true,
+      "requiresOfficialCheck": true,
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidenceStatus": "needs_review",
+      "updatedAt": "2026-05-25"
     },
     {
       "id": "item-082",
@@ -2258,7 +3459,23 @@
       ],
       "notes": "紙や布にしみこませるなど、出し方は公式確認推奨。",
       "source": "manual-initial",
-      "confidence": 0.45
+      "confidence": 0.45,
+      "displayName": "油",
+      "kana": "油",
+      "aliases": [
+        "食用油",
+        "液体"
+      ],
+      "disposalGuide": "紙や布にしみこませるなど、出し方は公式確認推奨。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。"
+      ],
+      "isOversizedCandidate": false,
+      "isHazardous": false,
+      "requiresOfficialCheck": true,
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidenceStatus": "needs_review",
+      "updatedAt": "2026-05-25"
     },
     {
       "id": "item-083",
@@ -2271,7 +3488,22 @@
       ],
       "notes": "容器包装のものは軽く汚れを落としてプラスチック製容器包装へ。製品は普通ごみを確認。",
       "source": "manual-initial",
-      "confidence": 0.55
+      "confidence": 0.55,
+      "displayName": "発泡スチロール",
+      "kana": "発泡スチロール",
+      "aliases": [
+        "容器包装"
+      ],
+      "disposalGuide": "容器包装のものは軽く汚れを落としてプラスチック製容器包装へ。製品は普通ごみを確認。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。"
+      ],
+      "isOversizedCandidate": false,
+      "isHazardous": false,
+      "requiresOfficialCheck": true,
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidenceStatus": "needs_review",
+      "updatedAt": "2026-05-25"
     },
     {
       "id": "item-084",
@@ -2284,7 +3516,22 @@
       ],
       "notes": "汚れていなければ古紙・古布を確認。",
       "source": "manual-initial",
-      "confidence": 0.55
+      "confidence": 0.55,
+      "displayName": "トイレットペーパーの芯",
+      "kana": "トイレットペーパーの芯",
+      "aliases": [
+        "古紙"
+      ],
+      "disposalGuide": "汚れていなければ古紙・古布を確認。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。"
+      ],
+      "isOversizedCandidate": false,
+      "isHazardous": false,
+      "requiresOfficialCheck": true,
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidenceStatus": "needs_review",
+      "updatedAt": "2026-05-25"
     },
     {
       "id": "item-085",
@@ -2297,7 +3544,22 @@
       ],
       "notes": "防水加工や汚れがあるものは普通ごみの目安。",
       "source": "manual-initial",
-      "confidence": 0.5
+      "confidence": 0.5,
+      "displayName": "紙コップ",
+      "kana": "紙コップ",
+      "aliases": [
+        "紙"
+      ],
+      "disposalGuide": "防水加工や汚れがあるものは普通ごみの目安。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。"
+      ],
+      "isOversizedCandidate": false,
+      "isHazardous": false,
+      "requiresOfficialCheck": true,
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidenceStatus": "needs_review",
+      "updatedAt": "2026-05-25"
     },
     {
       "id": "item-086",
@@ -2310,7 +3572,22 @@
       ],
       "notes": "汚れや大きさにより異なるため公式確認推奨。",
       "source": "manual-initial",
-      "confidence": 0.45
+      "confidence": 0.45,
+      "displayName": "アルミホイル",
+      "kana": "アルミホイル",
+      "aliases": [
+        "金属"
+      ],
+      "disposalGuide": "汚れや大きさにより異なるため公式確認推奨。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。"
+      ],
+      "isOversizedCandidate": false,
+      "isHazardous": false,
+      "requiresOfficialCheck": true,
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidenceStatus": "needs_review",
+      "updatedAt": "2026-05-25"
     },
     {
       "id": "item-087",
@@ -2323,7 +3600,22 @@
       ],
       "notes": "30cm以下のプラスチック製品として普通ごみの目安。",
       "source": "manual-initial",
-      "confidence": 0.65
+      "confidence": 0.65,
+      "displayName": "歯ブラシ",
+      "kana": "歯ブラシ",
+      "aliases": [
+        "プラスチック製品"
+      ],
+      "disposalGuide": "30cm以下のプラスチック製品として普通ごみの目安。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。"
+      ],
+      "isOversizedCandidate": false,
+      "isHazardous": false,
+      "requiresOfficialCheck": true,
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidenceStatus": "needs_review",
+      "updatedAt": "2026-05-25"
     },
     {
       "id": "item-088",
@@ -2337,7 +3629,24 @@
       ],
       "notes": "30cm以下なら普通ごみ。電池は外してください。",
       "source": "manual-initial",
-      "confidence": 0.6
+      "confidence": 0.6,
+      "displayName": "おもちゃ",
+      "kana": "おもちゃ",
+      "aliases": [
+        "プラスチックおもちゃ",
+        "プラスチック製品"
+      ],
+      "disposalGuide": "30cm以下なら普通ごみ。電池は外してください。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。",
+        "発火・破裂・飛散・けがに注意し、必要に応じてキケン表示をしてください。"
+      ],
+      "isOversizedCandidate": false,
+      "isHazardous": true,
+      "requiresOfficialCheck": true,
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidenceStatus": "needs_review",
+      "updatedAt": "2026-05-25"
     },
     {
       "id": "item-089",
@@ -2350,7 +3659,22 @@
       ],
       "notes": "金属が多い小型品は小型ごみの目安。",
       "source": "manual-initial",
-      "confidence": 0.5
+      "confidence": 0.5,
+      "displayName": "金属おもちゃ",
+      "kana": "金属おもちゃ",
+      "aliases": [
+        "金属"
+      ],
+      "disposalGuide": "金属が多い小型品は小型ごみの目安。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。"
+      ],
+      "isOversizedCandidate": false,
+      "isHazardous": false,
+      "requiresOfficialCheck": true,
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidenceStatus": "needs_review",
+      "updatedAt": "2026-05-25"
     },
     {
       "id": "item-090",
@@ -2364,7 +3688,23 @@
       ],
       "notes": "小型ごみの目安。",
       "source": "manual-initial",
-      "confidence": 0.6
+      "confidence": 0.6,
+      "displayName": "水筒",
+      "kana": "水筒",
+      "aliases": [
+        "金属水筒",
+        "金物"
+      ],
+      "disposalGuide": "小型ごみの目安。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。"
+      ],
+      "isOversizedCandidate": false,
+      "isHazardous": false,
+      "requiresOfficialCheck": true,
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidenceStatus": "needs_review",
+      "updatedAt": "2026-05-25"
     },
     {
       "id": "item-091",
@@ -2377,7 +3717,22 @@
       ],
       "notes": "汚れていなければ古紙・古布へ。",
       "source": "manual-initial",
-      "confidence": 0.6
+      "confidence": 0.6,
+      "displayName": "紙箱",
+      "kana": "紙箱",
+      "aliases": [
+        "古紙"
+      ],
+      "disposalGuide": "汚れていなければ古紙・古布へ。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。"
+      ],
+      "isOversizedCandidate": false,
+      "isHazardous": false,
+      "requiresOfficialCheck": true,
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidenceStatus": "needs_review",
+      "updatedAt": "2026-05-25"
     },
     {
       "id": "item-092",
@@ -2390,7 +3745,22 @@
       ],
       "notes": "ビニール部分を外して古紙・古布へ。",
       "source": "manual-initial",
-      "confidence": 0.55
+      "confidence": 0.55,
+      "displayName": "ティッシュ箱",
+      "kana": "ティッシュ箱",
+      "aliases": [
+        "古紙"
+      ],
+      "disposalGuide": "ビニール部分を外して古紙・古布へ。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。"
+      ],
+      "isOversizedCandidate": false,
+      "isHazardous": false,
+      "requiresOfficialCheck": true,
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidenceStatus": "needs_review",
+      "updatedAt": "2026-05-25"
     },
     {
       "id": "item-093",
@@ -2403,7 +3773,22 @@
       ],
       "notes": "古紙・古布の目安。",
       "source": "manual-initial",
-      "confidence": 0.55
+      "confidence": 0.55,
+      "displayName": "ラップの芯",
+      "kana": "ラップの芯",
+      "aliases": [
+        "古紙"
+      ],
+      "disposalGuide": "古紙・古布の目安。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。"
+      ],
+      "isOversizedCandidate": false,
+      "isHazardous": false,
+      "requiresOfficialCheck": true,
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidenceStatus": "needs_review",
+      "updatedAt": "2026-05-25"
     },
     {
       "id": "item-094",
@@ -2416,7 +3801,22 @@
       ],
       "notes": "中身を出して軽く水洗いし、プラスチック製容器包装へ。",
       "source": "manual-initial",
-      "confidence": 0.65
+      "confidence": 0.65,
+      "displayName": "洗剤ボトル",
+      "kana": "洗剤ボトル",
+      "aliases": [
+        "容器包装"
+      ],
+      "disposalGuide": "中身を出して軽く水洗いし、プラスチック製容器包装へ。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。"
+      ],
+      "isOversizedCandidate": false,
+      "isHazardous": false,
+      "requiresOfficialCheck": true,
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidenceStatus": "needs_review",
+      "updatedAt": "2026-05-25"
     },
     {
       "id": "item-095",
@@ -2429,7 +3829,22 @@
       ],
       "notes": "中身を出す。飲食料用以外は公式確認推奨。",
       "source": "manual-initial",
-      "confidence": 0.45
+      "confidence": 0.45,
+      "displayName": "化粧品びん",
+      "kana": "化粧品びん",
+      "aliases": [
+        "びん"
+      ],
+      "disposalGuide": "中身を出す。飲食料用以外は公式確認推奨。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。"
+      ],
+      "isOversizedCandidate": false,
+      "isHazardous": false,
+      "requiresOfficialCheck": true,
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidenceStatus": "needs_review",
+      "updatedAt": "2026-05-25"
     },
     {
       "id": "item-096",
@@ -2443,7 +3858,23 @@
       ],
       "notes": "小型ごみの目安。",
       "source": "manual-initial",
-      "confidence": 0.55
+      "confidence": 0.55,
+      "displayName": "電気コード",
+      "kana": "電気コード",
+      "aliases": [
+        "家電",
+        "金属"
+      ],
+      "disposalGuide": "小型ごみの目安。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。"
+      ],
+      "isOversizedCandidate": false,
+      "isHazardous": false,
+      "requiresOfficialCheck": true,
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidenceStatus": "needs_review",
+      "updatedAt": "2026-05-25"
     },
     {
       "id": "item-097",
@@ -2456,7 +3887,22 @@
       ],
       "notes": "小型ごみの目安。",
       "source": "manual-initial",
-      "confidence": 0.55
+      "confidence": 0.55,
+      "displayName": "延長コード",
+      "kana": "延長コード",
+      "aliases": [
+        "家電"
+      ],
+      "disposalGuide": "小型ごみの目安。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。"
+      ],
+      "isOversizedCandidate": false,
+      "isHazardous": false,
+      "requiresOfficialCheck": true,
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidenceStatus": "needs_review",
+      "updatedAt": "2026-05-25"
     },
     {
       "id": "item-098",
@@ -2469,7 +3915,23 @@
       ],
       "notes": "大きさにより小型ごみまたは粗大ごみ。30cm超は粗大ごみを確認。",
       "source": "manual-initial",
-      "confidence": 0.5
+      "confidence": 0.5,
+      "displayName": "プリンター",
+      "kana": "プリンター",
+      "aliases": [
+        "家電"
+      ],
+      "disposalGuide": "大きさにより小型ごみまたは粗大ごみ。30cm超は粗大ごみを確認。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。",
+        "30cmを超えるものや袋に入らないものは粗大ごみ受付センターで確認してください。"
+      ],
+      "isOversizedCandidate": true,
+      "isHazardous": false,
+      "requiresOfficialCheck": true,
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/5/22406.html",
+      "confidenceStatus": "needs_review",
+      "updatedAt": "2026-05-25"
     },
     {
       "id": "item-099",
@@ -2482,7 +3944,23 @@
       ],
       "notes": "30cm超は粗大ごみを確認。",
       "source": "manual-initial",
-      "confidence": 0.55
+      "confidence": 0.55,
+      "displayName": "掃除機",
+      "kana": "掃除機",
+      "aliases": [
+        "家電"
+      ],
+      "disposalGuide": "30cm超は粗大ごみを確認。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。",
+        "30cmを超えるものや袋に入らないものは粗大ごみ受付センターで確認してください。"
+      ],
+      "isOversizedCandidate": true,
+      "isHazardous": false,
+      "requiresOfficialCheck": true,
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/5/22406.html",
+      "confidenceStatus": "needs_review",
+      "updatedAt": "2026-05-25"
     },
     {
       "id": "item-100",
@@ -2496,7 +3974,3817 @@
       ],
       "notes": "粗大ごみの可能性が高い品目です。予約時に確認してください。",
       "source": "manual-initial",
-      "confidence": 0.55
+      "confidence": 0.55,
+      "displayName": "物干し竿",
+      "kana": "物干し竿",
+      "aliases": [
+        "大型",
+        "金属"
+      ],
+      "disposalGuide": "粗大ごみの可能性が高い品目です。予約時に確認してください。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。",
+        "30cmを超えるものや袋に入らないものは粗大ごみ受付センターで確認してください。"
+      ],
+      "isOversizedCandidate": true,
+      "isHazardous": false,
+      "requiresOfficialCheck": true,
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/5/22406.html",
+      "confidenceStatus": "needs_review",
+      "updatedAt": "2026-05-25"
+    },
+    {
+      "id": "item-101",
+      "names": [
+        "割り箸"
+      ],
+      "displayName": "割り箸",
+      "kana": "わりばし",
+      "aliases": [
+        "箸",
+        "木製箸"
+      ],
+      "categoryId": "burnable",
+      "keywords": [
+        "箸",
+        "木製箸"
+      ],
+      "notes": "汚れた木製の小物は普通ごみの目安です。",
+      "disposalGuide": "汚れた木製の小物は普通ごみの目安です。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。"
+      ],
+      "isOversizedCandidate": false,
+      "isHazardous": false,
+      "requiresOfficialCheck": true,
+      "source": "manual-needs-review",
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidence": 0.62,
+      "confidenceStatus": "needs_review",
+      "updatedAt": "2026-05-25"
+    },
+    {
+      "id": "item-102",
+      "names": [
+        "竹串"
+      ],
+      "displayName": "竹串",
+      "kana": "たけぐし",
+      "aliases": [
+        "串",
+        "焼き鳥串"
+      ],
+      "categoryId": "burnable",
+      "keywords": [
+        "串",
+        "焼き鳥串"
+      ],
+      "notes": "先端でけがをしないよう紙で包み、普通ごみの目安です。",
+      "disposalGuide": "先端でけがをしないよう紙で包み、普通ごみの目安です。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。",
+        "発火・破裂・飛散・けがに注意し、必要に応じてキケン表示をしてください。"
+      ],
+      "isOversizedCandidate": false,
+      "isHazardous": true,
+      "requiresOfficialCheck": true,
+      "source": "manual-needs-review",
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidence": 0.62,
+      "confidenceStatus": "needs_review",
+      "updatedAt": "2026-05-25"
+    },
+    {
+      "id": "item-103",
+      "names": [
+        "ゴム手袋"
+      ],
+      "displayName": "ゴム手袋",
+      "kana": "ごむてぶくろ",
+      "aliases": [
+        "ゴム製品",
+        "手袋"
+      ],
+      "categoryId": "burnable",
+      "keywords": [
+        "ゴム製品",
+        "手袋"
+      ],
+      "notes": "小さなゴム製品は普通ごみの目安です。",
+      "disposalGuide": "小さなゴム製品は普通ごみの目安です。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。"
+      ],
+      "isOversizedCandidate": false,
+      "isHazardous": false,
+      "requiresOfficialCheck": true,
+      "source": "manual-needs-review",
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidence": 0.62,
+      "confidenceStatus": "needs_review",
+      "updatedAt": "2026-05-25"
+    },
+    {
+      "id": "item-104",
+      "names": [
+        "スポンジ"
+      ],
+      "displayName": "スポンジ",
+      "kana": "すぽんじ",
+      "aliases": [
+        "台所スポンジ",
+        "掃除スポンジ"
+      ],
+      "categoryId": "burnable",
+      "keywords": [
+        "台所スポンジ",
+        "掃除スポンジ"
+      ],
+      "notes": "小さな清掃用品は普通ごみの目安です。",
+      "disposalGuide": "小さな清掃用品は普通ごみの目安です。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。"
+      ],
+      "isOversizedCandidate": false,
+      "isHazardous": false,
+      "requiresOfficialCheck": true,
+      "source": "manual-needs-review",
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidence": 0.62,
+      "confidenceStatus": "needs_review",
+      "updatedAt": "2026-05-25"
+    },
+    {
+      "id": "item-105",
+      "names": [
+        "汚れたラップ"
+      ],
+      "displayName": "汚れたラップ",
+      "kana": "よごれたらっぷ",
+      "aliases": [
+        "食品汚れ",
+        "ラップ汚れ"
+      ],
+      "categoryId": "burnable",
+      "keywords": [
+        "食品汚れ",
+        "ラップ汚れ"
+      ],
+      "notes": "汚れが落とせないものは普通ごみの目安です。",
+      "disposalGuide": "汚れが落とせないものは普通ごみの目安です。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。"
+      ],
+      "isOversizedCandidate": false,
+      "isHazardous": false,
+      "requiresOfficialCheck": true,
+      "source": "manual-needs-review",
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidence": 0.62,
+      "confidenceStatus": "needs_review",
+      "updatedAt": "2026-05-25"
+    },
+    {
+      "id": "item-106",
+      "names": [
+        "保冷剤"
+      ],
+      "displayName": "保冷剤",
+      "kana": "ほれいざい",
+      "aliases": [
+        "冷却剤",
+        "ジェル保冷剤"
+      ],
+      "categoryId": "burnable",
+      "keywords": [
+        "冷却剤",
+        "ジェル保冷剤"
+      ],
+      "notes": "中身を出さず普通ごみの目安です。",
+      "disposalGuide": "中身を出さず普通ごみの目安です。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。"
+      ],
+      "isOversizedCandidate": false,
+      "isHazardous": false,
+      "requiresOfficialCheck": true,
+      "source": "manual-needs-review",
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidence": 0.62,
+      "confidenceStatus": "needs_review",
+      "updatedAt": "2026-05-25"
+    },
+    {
+      "id": "item-107",
+      "names": [
+        "乾燥剤"
+      ],
+      "displayName": "乾燥剤",
+      "kana": "かんそうざい",
+      "aliases": [
+        "シリカゲル",
+        "除湿剤小袋"
+      ],
+      "categoryId": "burnable",
+      "keywords": [
+        "シリカゲル",
+        "除湿剤小袋"
+      ],
+      "notes": "小袋の乾燥剤は普通ごみの目安です。",
+      "disposalGuide": "小袋の乾燥剤は普通ごみの目安です。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。"
+      ],
+      "isOversizedCandidate": false,
+      "isHazardous": false,
+      "requiresOfficialCheck": true,
+      "source": "manual-needs-review",
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidence": 0.62,
+      "confidenceStatus": "needs_review",
+      "updatedAt": "2026-05-25"
+    },
+    {
+      "id": "item-108",
+      "names": [
+        "革ベルト"
+      ],
+      "displayName": "革ベルト",
+      "kana": "かわべると",
+      "aliases": [
+        "ベルト",
+        "革製品"
+      ],
+      "categoryId": "burnable",
+      "keywords": [
+        "ベルト",
+        "革製品"
+      ],
+      "notes": "革・布製の小物は普通ごみの目安です。金属が多い場合は小型ごみも確認してください。",
+      "disposalGuide": "革・布製の小物は普通ごみの目安です。金属が多い場合は小型ごみも確認してください。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。"
+      ],
+      "isOversizedCandidate": false,
+      "isHazardous": false,
+      "requiresOfficialCheck": true,
+      "source": "manual-needs-review",
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidence": 0.62,
+      "confidenceStatus": "needs_review",
+      "updatedAt": "2026-05-25"
+    },
+    {
+      "id": "item-109",
+      "names": [
+        "財布"
+      ],
+      "displayName": "財布",
+      "kana": "さいふ",
+      "aliases": [
+        "ウォレット",
+        "小物入れ"
+      ],
+      "categoryId": "burnable",
+      "keywords": [
+        "ウォレット",
+        "小物入れ"
+      ],
+      "notes": "革・布・合成皮革の小物は普通ごみの目安です。",
+      "disposalGuide": "革・布・合成皮革の小物は普通ごみの目安です。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。"
+      ],
+      "isOversizedCandidate": false,
+      "isHazardous": false,
+      "requiresOfficialCheck": true,
+      "source": "manual-needs-review",
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidence": 0.62,
+      "confidenceStatus": "needs_review",
+      "updatedAt": "2026-05-25"
+    },
+    {
+      "id": "item-110",
+      "names": [
+        "ポーチ"
+      ],
+      "displayName": "ポーチ",
+      "kana": "ぽーち",
+      "aliases": [
+        "化粧ポーチ",
+        "小袋"
+      ],
+      "categoryId": "burnable",
+      "keywords": [
+        "化粧ポーチ",
+        "小袋"
+      ],
+      "notes": "布・合成皮革の小物は普通ごみの目安です。",
+      "disposalGuide": "布・合成皮革の小物は普通ごみの目安です。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。"
+      ],
+      "isOversizedCandidate": false,
+      "isHazardous": false,
+      "requiresOfficialCheck": true,
+      "source": "manual-needs-review",
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidence": 0.62,
+      "confidenceStatus": "needs_review",
+      "updatedAt": "2026-05-25"
+    },
+    {
+      "id": "item-111",
+      "names": [
+        "使い捨てマスク"
+      ],
+      "displayName": "使い捨てマスク",
+      "kana": "つかいすてますく",
+      "aliases": [
+        "マスク",
+        "不織布マスク"
+      ],
+      "categoryId": "burnable",
+      "keywords": [
+        "マスク",
+        "不織布マスク"
+      ],
+      "notes": "衛生用品は普通ごみの目安です。",
+      "disposalGuide": "衛生用品は普通ごみの目安です。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。"
+      ],
+      "isOversizedCandidate": false,
+      "isHazardous": false,
+      "requiresOfficialCheck": true,
+      "source": "manual-needs-review",
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidence": 0.62,
+      "confidenceStatus": "needs_review",
+      "updatedAt": "2026-05-25"
+    },
+    {
+      "id": "item-112",
+      "names": [
+        "ティッシュペーパー"
+      ],
+      "displayName": "ティッシュペーパー",
+      "kana": "てぃっしゅぺーぱー",
+      "aliases": [
+        "ティッシュ",
+        "鼻紙"
+      ],
+      "categoryId": "burnable",
+      "keywords": [
+        "ティッシュ",
+        "鼻紙"
+      ],
+      "notes": "使用済みや汚れた紙は普通ごみへ。",
+      "disposalGuide": "使用済みや汚れた紙は普通ごみへ。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。"
+      ],
+      "isOversizedCandidate": false,
+      "isHazardous": false,
+      "requiresOfficialCheck": true,
+      "source": "official-common",
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidence": 0.9,
+      "confidenceStatus": "confirmed",
+      "updatedAt": "2026-05-25"
+    },
+    {
+      "id": "item-113",
+      "names": [
+        "写真"
+      ],
+      "displayName": "写真",
+      "kana": "しゃしん",
+      "aliases": [
+        "プリント写真",
+        "フォト"
+      ],
+      "categoryId": "burnable",
+      "keywords": [
+        "プリント写真",
+        "フォト"
+      ],
+      "notes": "写真紙はリサイクルに不向きなため普通ごみの目安です。",
+      "disposalGuide": "写真紙はリサイクルに不向きなため普通ごみの目安です。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。"
+      ],
+      "isOversizedCandidate": false,
+      "isHazardous": false,
+      "requiresOfficialCheck": true,
+      "source": "manual-needs-review",
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidence": 0.62,
+      "confidenceStatus": "needs_review",
+      "updatedAt": "2026-05-25"
+    },
+    {
+      "id": "item-114",
+      "names": [
+        "レシート"
+      ],
+      "displayName": "レシート",
+      "kana": "れしーと",
+      "aliases": [
+        "感熱紙",
+        "領収書"
+      ],
+      "categoryId": "burnable",
+      "keywords": [
+        "感熱紙",
+        "領収書"
+      ],
+      "notes": "感熱紙は普通ごみの目安です。",
+      "disposalGuide": "感熱紙は普通ごみの目安です。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。"
+      ],
+      "isOversizedCandidate": false,
+      "isHazardous": false,
+      "requiresOfficialCheck": true,
+      "source": "manual-needs-review",
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidence": 0.62,
+      "confidenceStatus": "needs_review",
+      "updatedAt": "2026-05-25"
+    },
+    {
+      "id": "item-115",
+      "names": [
+        "アルバム"
+      ],
+      "displayName": "アルバム",
+      "kana": "あるばむ",
+      "aliases": [
+        "写真アルバム",
+        "大型アルバム"
+      ],
+      "categoryId": "bulky",
+      "keywords": [
+        "写真アルバム",
+        "大型アルバム"
+      ],
+      "notes": "大きさや素材により普通ごみ・小型ごみ・粗大ごみが分かれます。",
+      "disposalGuide": "大きさや素材により普通ごみ・小型ごみ・粗大ごみが分かれます。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。",
+        "30cmを超えるものや袋に入らないものは粗大ごみ受付センターで確認してください。"
+      ],
+      "isOversizedCandidate": true,
+      "isHazardous": false,
+      "requiresOfficialCheck": true,
+      "source": "manual-needs-review",
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/5/22406.html",
+      "confidence": 0.62,
+      "confidenceStatus": "needs_review",
+      "updatedAt": "2026-05-25"
+    },
+    {
+      "id": "item-116",
+      "names": [
+        "プラスチック製まな板"
+      ],
+      "displayName": "プラスチック製まな板",
+      "kana": "ぷらすちっくせいまないた",
+      "aliases": [
+        "まな板",
+        "プラまな板"
+      ],
+      "categoryId": "burnable",
+      "keywords": [
+        "まな板",
+        "プラまな板"
+      ],
+      "notes": "30cm以下のプラスチック製品は普通ごみ。超える場合は粗大ごみを確認してください。",
+      "disposalGuide": "30cm以下のプラスチック製品は普通ごみ。超える場合は粗大ごみを確認してください。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。",
+        "30cmを超えるものや袋に入らないものは粗大ごみ受付センターで確認してください。"
+      ],
+      "isOversizedCandidate": true,
+      "isHazardous": false,
+      "requiresOfficialCheck": true,
+      "source": "official-common",
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidence": 0.9,
+      "confidenceStatus": "confirmed",
+      "updatedAt": "2026-05-25"
+    },
+    {
+      "id": "item-117",
+      "names": [
+        "プラスチック製コップ"
+      ],
+      "displayName": "プラスチック製コップ",
+      "kana": "ぷらすちっくせいこっぷ",
+      "aliases": [
+        "プラコップ",
+        "プラスチックコップ"
+      ],
+      "categoryId": "burnable",
+      "keywords": [
+        "プラコップ",
+        "プラスチックコップ"
+      ],
+      "notes": "容器包装ではないプラスチック製品は普通ごみの目安です。",
+      "disposalGuide": "容器包装ではないプラスチック製品は普通ごみの目安です。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。"
+      ],
+      "isOversizedCandidate": false,
+      "isHazardous": false,
+      "requiresOfficialCheck": true,
+      "source": "official-common",
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidence": 0.9,
+      "confidenceStatus": "confirmed",
+      "updatedAt": "2026-05-25"
+    },
+    {
+      "id": "item-118",
+      "names": [
+        "プラスチック製スプーン"
+      ],
+      "displayName": "プラスチック製スプーン",
+      "kana": "ぷらすちっくせいすぷーん",
+      "aliases": [
+        "プラスプーン",
+        "プラ製カトラリー"
+      ],
+      "categoryId": "burnable",
+      "keywords": [
+        "プラスプーン",
+        "プラ製カトラリー"
+      ],
+      "notes": "容器包装ではないプラスチック製品は普通ごみの目安です。",
+      "disposalGuide": "容器包装ではないプラスチック製品は普通ごみの目安です。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。"
+      ],
+      "isOversizedCandidate": false,
+      "isHazardous": false,
+      "requiresOfficialCheck": true,
+      "source": "official-common",
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidence": 0.9,
+      "confidenceStatus": "confirmed",
+      "updatedAt": "2026-05-25"
+    },
+    {
+      "id": "item-119",
+      "names": [
+        "ストロー"
+      ],
+      "displayName": "ストロー",
+      "kana": "すとろー",
+      "aliases": [
+        "プラスチックストロー"
+      ],
+      "categoryId": "burnable",
+      "keywords": [
+        "プラスチックストロー"
+      ],
+      "notes": "小さなプラスチック製品は普通ごみの目安です。",
+      "disposalGuide": "小さなプラスチック製品は普通ごみの目安です。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。"
+      ],
+      "isOversizedCandidate": false,
+      "isHazardous": false,
+      "requiresOfficialCheck": true,
+      "source": "official-common",
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidence": 0.9,
+      "confidenceStatus": "confirmed",
+      "updatedAt": "2026-05-25"
+    },
+    {
+      "id": "item-120",
+      "names": [
+        "食品保存袋"
+      ],
+      "displayName": "食品保存袋",
+      "kana": "しょくひんほぞんぶくろ",
+      "aliases": [
+        "ジッパーバッグ",
+        "フリーザーバッグ"
+      ],
+      "categoryId": "burnable",
+      "keywords": [
+        "ジッパーバッグ",
+        "フリーザーバッグ"
+      ],
+      "notes": "商品として購入した保存袋は普通ごみの目安です。容器包装か迷う場合は公式確認してください。",
+      "disposalGuide": "商品として購入した保存袋は普通ごみの目安です。容器包装か迷う場合は公式確認してください。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。"
+      ],
+      "isOversizedCandidate": false,
+      "isHazardous": false,
+      "requiresOfficialCheck": true,
+      "source": "manual-needs-review",
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidence": 0.62,
+      "confidenceStatus": "needs_review",
+      "updatedAt": "2026-05-25"
+    },
+    {
+      "id": "item-121",
+      "names": [
+        "マヨネーズ容器"
+      ],
+      "displayName": "マヨネーズ容器",
+      "kana": "まよねーずようき",
+      "aliases": [
+        "マヨ容器",
+        "チューブ容器"
+      ],
+      "categoryId": "plastic_container",
+      "keywords": [
+        "マヨ容器",
+        "チューブ容器"
+      ],
+      "notes": "中身を出して軽く洗い、ふたを外してプラスチック製容器包装へ。",
+      "disposalGuide": "中身を出して軽く洗い、ふたを外してプラスチック製容器包装へ。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。"
+      ],
+      "isOversizedCandidate": false,
+      "isHazardous": false,
+      "requiresOfficialCheck": true,
+      "source": "official-common",
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidence": 0.9,
+      "confidenceStatus": "confirmed",
+      "updatedAt": "2026-05-25"
+    },
+    {
+      "id": "item-122",
+      "names": [
+        "ケチャップ容器"
+      ],
+      "displayName": "ケチャップ容器",
+      "kana": "けちゃっぷようき",
+      "aliases": [
+        "ケチャップボトル",
+        "チューブ容器"
+      ],
+      "categoryId": "plastic_container",
+      "keywords": [
+        "ケチャップボトル",
+        "チューブ容器"
+      ],
+      "notes": "中身を出して軽く洗い、ふたを外してプラスチック製容器包装へ。",
+      "disposalGuide": "中身を出して軽く洗い、ふたを外してプラスチック製容器包装へ。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。"
+      ],
+      "isOversizedCandidate": false,
+      "isHazardous": false,
+      "requiresOfficialCheck": true,
+      "source": "official-common",
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidence": 0.9,
+      "confidenceStatus": "confirmed",
+      "updatedAt": "2026-05-25"
+    },
+    {
+      "id": "item-123",
+      "names": [
+        "洗剤詰め替え袋"
+      ],
+      "displayName": "洗剤詰め替え袋",
+      "kana": "せんざいつめかえぶくろ",
+      "aliases": [
+        "詰替袋",
+        "詰め替えパック"
+      ],
+      "categoryId": "plastic_container",
+      "keywords": [
+        "詰替袋",
+        "詰め替えパック"
+      ],
+      "notes": "中身を使い切ってプラスチック製容器包装へ。",
+      "disposalGuide": "中身を使い切ってプラスチック製容器包装へ。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。"
+      ],
+      "isOversizedCandidate": false,
+      "isHazardous": false,
+      "requiresOfficialCheck": true,
+      "source": "manual-needs-review",
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidence": 0.62,
+      "confidenceStatus": "needs_review",
+      "updatedAt": "2026-05-25"
+    },
+    {
+      "id": "item-124",
+      "names": [
+        "柔軟剤ボトル"
+      ],
+      "displayName": "柔軟剤ボトル",
+      "kana": "じゅうなんざいぼとる",
+      "aliases": [
+        "柔軟剤容器",
+        "洗剤ボトル類"
+      ],
+      "categoryId": "plastic_container",
+      "keywords": [
+        "柔軟剤容器",
+        "洗剤ボトル類"
+      ],
+      "notes": "中身を出して軽く洗い、ふたを外してください。",
+      "disposalGuide": "中身を出して軽く洗い、ふたを外してください。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。"
+      ],
+      "isOversizedCandidate": false,
+      "isHazardous": false,
+      "requiresOfficialCheck": true,
+      "source": "manual-needs-review",
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidence": 0.62,
+      "confidenceStatus": "needs_review",
+      "updatedAt": "2026-05-25"
+    },
+    {
+      "id": "item-125",
+      "names": [
+        "食品包装フィルム"
+      ],
+      "displayName": "食品包装フィルム",
+      "kana": "しょくひんほうそうふぃるむ",
+      "aliases": [
+        "包装フィルム",
+        "外装フィルム"
+      ],
+      "categoryId": "plastic_container",
+      "keywords": [
+        "包装フィルム",
+        "外装フィルム"
+      ],
+      "notes": "食品を包んでいた容器包装で、汚れを落とせるものはプラスチック製容器包装へ。",
+      "disposalGuide": "食品を包んでいた容器包装で、汚れを落とせるものはプラスチック製容器包装へ。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。"
+      ],
+      "isOversizedCandidate": false,
+      "isHazardous": false,
+      "requiresOfficialCheck": true,
+      "source": "manual-needs-review",
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidence": 0.62,
+      "confidenceStatus": "needs_review",
+      "updatedAt": "2026-05-25"
+    },
+    {
+      "id": "item-126",
+      "names": [
+        "カップ麺容器"
+      ],
+      "displayName": "カップ麺容器",
+      "kana": "かっぷめんようき",
+      "aliases": [
+        "即席麺容器",
+        "インスタント食品容器"
+      ],
+      "categoryId": "plastic_container",
+      "keywords": [
+        "即席麺容器",
+        "インスタント食品容器"
+      ],
+      "notes": "軽く水洗いしてプラスチック製容器包装へ。紙製や汚れが強いものは確認してください。",
+      "disposalGuide": "軽く水洗いしてプラスチック製容器包装へ。紙製や汚れが強いものは確認してください。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。"
+      ],
+      "isOversizedCandidate": false,
+      "isHazardous": false,
+      "requiresOfficialCheck": true,
+      "source": "official-common",
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidence": 0.9,
+      "confidenceStatus": "confirmed",
+      "updatedAt": "2026-05-25"
+    },
+    {
+      "id": "item-127",
+      "names": [
+        "発泡トレイ"
+      ],
+      "displayName": "発泡トレイ",
+      "kana": "はっぽうとれい",
+      "aliases": [
+        "白色トレイ",
+        "発泡スチロールトレイ"
+      ],
+      "categoryId": "plastic_container",
+      "keywords": [
+        "白色トレイ",
+        "発泡スチロールトレイ"
+      ],
+      "notes": "食品トレイは軽く水洗いしてプラスチック製容器包装へ。",
+      "disposalGuide": "食品トレイは軽く水洗いしてプラスチック製容器包装へ。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。"
+      ],
+      "isOversizedCandidate": false,
+      "isHazardous": false,
+      "requiresOfficialCheck": true,
+      "source": "official-common",
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidence": 0.9,
+      "confidenceStatus": "confirmed",
+      "updatedAt": "2026-05-25"
+    },
+    {
+      "id": "item-128",
+      "names": [
+        "果物ネット"
+      ],
+      "displayName": "果物ネット",
+      "kana": "くだものねっと",
+      "aliases": [
+        "フルーツネット",
+        "緩衝ネット"
+      ],
+      "categoryId": "plastic_container",
+      "keywords": [
+        "フルーツネット",
+        "緩衝ネット"
+      ],
+      "notes": "容器包装として使われたものはプラスチック製容器包装の目安です。",
+      "disposalGuide": "容器包装として使われたものはプラスチック製容器包装の目安です。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。"
+      ],
+      "isOversizedCandidate": false,
+      "isHazardous": false,
+      "requiresOfficialCheck": true,
+      "source": "manual-needs-review",
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidence": 0.62,
+      "confidenceStatus": "needs_review",
+      "updatedAt": "2026-05-25"
+    },
+    {
+      "id": "item-129",
+      "names": [
+        "ペットボトル外装フィルム"
+      ],
+      "displayName": "ペットボトル外装フィルム",
+      "kana": "ぺっとぼとるがいそうふぃるむ",
+      "aliases": [
+        "ラベル外装",
+        "シュリンクフィルム"
+      ],
+      "categoryId": "plastic_container",
+      "keywords": [
+        "ラベル外装",
+        "シュリンクフィルム"
+      ],
+      "notes": "外したラベル・外装フィルムはプラスチック製容器包装の目安です。",
+      "disposalGuide": "外したラベル・外装フィルムはプラスチック製容器包装の目安です。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。"
+      ],
+      "isOversizedCandidate": false,
+      "isHazardous": false,
+      "requiresOfficialCheck": true,
+      "source": "manual-needs-review",
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidence": 0.62,
+      "confidenceStatus": "needs_review",
+      "updatedAt": "2026-05-25"
+    },
+    {
+      "id": "item-130",
+      "names": [
+        "薬のシート"
+      ],
+      "displayName": "薬のシート",
+      "kana": "くすりのしーと",
+      "aliases": [
+        "PTPシート",
+        "錠剤シート"
+      ],
+      "categoryId": "plastic_container",
+      "keywords": [
+        "PTPシート",
+        "錠剤シート"
+      ],
+      "notes": "素材や中身の有無で扱いが変わる可能性があります。公式情報を確認してください。",
+      "disposalGuide": "素材や中身の有無で扱いが変わる可能性があります。公式情報を確認してください。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。"
+      ],
+      "isOversizedCandidate": false,
+      "isHazardous": false,
+      "requiresOfficialCheck": true,
+      "source": "manual-needs-review",
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidence": 0.62,
+      "confidenceStatus": "needs_review",
+      "updatedAt": "2026-05-25"
+    },
+    {
+      "id": "item-131",
+      "names": [
+        "ビール缶"
+      ],
+      "displayName": "ビール缶",
+      "kana": "びーるかん",
+      "aliases": [
+        "アルミ缶",
+        "飲料缶"
+      ],
+      "categoryId": "bottles_cans",
+      "keywords": [
+        "アルミ缶",
+        "飲料缶"
+      ],
+      "notes": "中身を出して軽く水洗いし、びん・缶類へ。",
+      "disposalGuide": "中身を出して軽く水洗いし、びん・缶類へ。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。"
+      ],
+      "isOversizedCandidate": false,
+      "isHazardous": false,
+      "requiresOfficialCheck": true,
+      "source": "official-common",
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidence": 0.9,
+      "confidenceStatus": "confirmed",
+      "updatedAt": "2026-05-25"
+    },
+    {
+      "id": "item-132",
+      "names": [
+        "缶詰缶"
+      ],
+      "displayName": "缶詰缶",
+      "kana": "かんづめかん",
+      "aliases": [
+        "食品缶",
+        "スチール缶"
+      ],
+      "categoryId": "bottles_cans",
+      "keywords": [
+        "食品缶",
+        "スチール缶"
+      ],
+      "notes": "中身を出して軽く水洗いし、びん・缶類へ。",
+      "disposalGuide": "中身を出して軽く水洗いし、びん・缶類へ。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。"
+      ],
+      "isOversizedCandidate": false,
+      "isHazardous": false,
+      "requiresOfficialCheck": true,
+      "source": "official-common",
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidence": 0.9,
+      "confidenceStatus": "confirmed",
+      "updatedAt": "2026-05-25"
+    },
+    {
+      "id": "item-133",
+      "names": [
+        "ジュース缶"
+      ],
+      "displayName": "ジュース缶",
+      "kana": "じゅーすかん",
+      "aliases": [
+        "飲料缶",
+        "空き缶"
+      ],
+      "categoryId": "bottles_cans",
+      "keywords": [
+        "飲料缶",
+        "空き缶"
+      ],
+      "notes": "中身を出して軽く水洗いし、びん・缶類へ。",
+      "disposalGuide": "中身を出して軽く水洗いし、びん・缶類へ。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。"
+      ],
+      "isOversizedCandidate": false,
+      "isHazardous": false,
+      "requiresOfficialCheck": true,
+      "source": "official-common",
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidence": 0.9,
+      "confidenceStatus": "confirmed",
+      "updatedAt": "2026-05-25"
+    },
+    {
+      "id": "item-134",
+      "names": [
+        "調味料びん"
+      ],
+      "displayName": "調味料びん",
+      "kana": "ちょうみりょうびん",
+      "aliases": [
+        "しょうゆびん",
+        "酢のびん"
+      ],
+      "categoryId": "bottles_cans",
+      "keywords": [
+        "しょうゆびん",
+        "酢のびん"
+      ],
+      "notes": "飲食料用の空きびんは中身を出して軽く水洗いしてください。",
+      "disposalGuide": "飲食料用の空きびんは中身を出して軽く水洗いしてください。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。"
+      ],
+      "isOversizedCandidate": false,
+      "isHazardous": false,
+      "requiresOfficialCheck": true,
+      "source": "official-common",
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidence": 0.9,
+      "confidenceStatus": "confirmed",
+      "updatedAt": "2026-05-25"
+    },
+    {
+      "id": "item-135",
+      "names": [
+        "ジャムびん"
+      ],
+      "displayName": "ジャムびん",
+      "kana": "じゃむびん",
+      "aliases": [
+        "食品びん",
+        "ガラスびん"
+      ],
+      "categoryId": "bottles_cans",
+      "keywords": [
+        "食品びん",
+        "ガラスびん"
+      ],
+      "notes": "飲食料用の空きびんは中身を出して軽く水洗いしてください。",
+      "disposalGuide": "飲食料用の空きびんは中身を出して軽く水洗いしてください。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。"
+      ],
+      "isOversizedCandidate": false,
+      "isHazardous": false,
+      "requiresOfficialCheck": true,
+      "source": "official-common",
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidence": 0.9,
+      "confidenceStatus": "confirmed",
+      "updatedAt": "2026-05-25"
+    },
+    {
+      "id": "item-136",
+      "names": [
+        "焼酎びん"
+      ],
+      "displayName": "焼酎びん",
+      "kana": "しょうちゅうびん",
+      "aliases": [
+        "酒びん",
+        "洋酒びん"
+      ],
+      "categoryId": "bottles_cans",
+      "keywords": [
+        "酒びん",
+        "洋酒びん"
+      ],
+      "notes": "飲食料用の空きびんは中身を出して軽く水洗いしてください。",
+      "disposalGuide": "飲食料用の空きびんは中身を出して軽く水洗いしてください。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。"
+      ],
+      "isOversizedCandidate": false,
+      "isHazardous": false,
+      "requiresOfficialCheck": true,
+      "source": "official-common",
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidence": 0.9,
+      "confidenceStatus": "confirmed",
+      "updatedAt": "2026-05-25"
+    },
+    {
+      "id": "item-137",
+      "names": [
+        "化粧水びん"
+      ],
+      "displayName": "化粧水びん",
+      "kana": "けしょうすいびん",
+      "aliases": [
+        "化粧品ボトル",
+        "ガラス容器"
+      ],
+      "categoryId": "bottles_cans",
+      "keywords": [
+        "化粧品ボトル",
+        "ガラス容器"
+      ],
+      "notes": "飲食料用以外のびんは扱いが異なる可能性があります。公式情報を確認してください。",
+      "disposalGuide": "飲食料用以外のびんは扱いが異なる可能性があります。公式情報を確認してください。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。"
+      ],
+      "isOversizedCandidate": false,
+      "isHazardous": false,
+      "requiresOfficialCheck": true,
+      "source": "manual-needs-review",
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidence": 0.62,
+      "confidenceStatus": "needs_review",
+      "updatedAt": "2026-05-25"
+    },
+    {
+      "id": "item-138",
+      "names": [
+        "食用油の缶"
+      ],
+      "displayName": "食用油の缶",
+      "kana": "しょくようあぶらのかん",
+      "aliases": [
+        "油缶",
+        "オイル缶"
+      ],
+      "categoryId": "small_items",
+      "keywords": [
+        "油缶",
+        "オイル缶"
+      ],
+      "notes": "中身の残りや大きさで扱いが変わります。一斗缶は小型ごみです。",
+      "disposalGuide": "中身の残りや大きさで扱いが変わります。一斗缶は小型ごみです。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。"
+      ],
+      "isOversizedCandidate": false,
+      "isHazardous": false,
+      "requiresOfficialCheck": true,
+      "source": "manual-needs-review",
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidence": 0.62,
+      "confidenceStatus": "needs_review",
+      "updatedAt": "2026-05-25"
+    },
+    {
+      "id": "item-139",
+      "names": [
+        "卓上コンロ用ボンベ"
+      ],
+      "displayName": "卓上コンロ用ボンベ",
+      "kana": "たくじょうこんろようぼんべ",
+      "aliases": [
+        "カセットガス",
+        "ガスボンベ"
+      ],
+      "categoryId": "bottles_cans",
+      "keywords": [
+        "カセットガス",
+        "ガスボンベ"
+      ],
+      "notes": "使い切った後、袋を分けてキケンの張り紙をしてください。",
+      "disposalGuide": "使い切った後、袋を分けてキケンの張り紙をしてください。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。",
+        "発火・破裂・飛散・けがに注意し、必要に応じてキケン表示をしてください。"
+      ],
+      "isOversizedCandidate": false,
+      "isHazardous": true,
+      "requiresOfficialCheck": true,
+      "source": "official-common",
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidence": 0.9,
+      "confidenceStatus": "confirmed",
+      "updatedAt": "2026-05-25"
+    },
+    {
+      "id": "item-140",
+      "names": [
+        "ヘアスプレー缶"
+      ],
+      "displayName": "ヘアスプレー缶",
+      "kana": "へあすぷれーかん",
+      "aliases": [
+        "整髪スプレー",
+        "スプレー缶"
+      ],
+      "categoryId": "bottles_cans",
+      "keywords": [
+        "整髪スプレー",
+        "スプレー缶"
+      ],
+      "notes": "使い切った後、袋を分けてキケンの張り紙をしてください。",
+      "disposalGuide": "使い切った後、袋を分けてキケンの張り紙をしてください。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。",
+        "発火・破裂・飛散・けがに注意し、必要に応じてキケン表示をしてください。"
+      ],
+      "isOversizedCandidate": false,
+      "isHazardous": true,
+      "requiresOfficialCheck": true,
+      "source": "official-common",
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidence": 0.9,
+      "confidenceStatus": "confirmed",
+      "updatedAt": "2026-05-25"
+    },
+    {
+      "id": "item-141",
+      "names": [
+        "教科書"
+      ],
+      "displayName": "教科書",
+      "kana": "きょうかしょ",
+      "aliases": [
+        "本",
+        "書籍"
+      ],
+      "categoryId": "paper_cloth",
+      "keywords": [
+        "本",
+        "書籍"
+      ],
+      "notes": "古紙として種類ごとに十字にしばって出してください。",
+      "disposalGuide": "古紙として種類ごとに十字にしばって出してください。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。"
+      ],
+      "isOversizedCandidate": false,
+      "isHazardous": false,
+      "requiresOfficialCheck": true,
+      "source": "official-common",
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidence": 0.9,
+      "confidenceStatus": "confirmed",
+      "updatedAt": "2026-05-25"
+    },
+    {
+      "id": "item-142",
+      "names": [
+        "ノート"
+      ],
+      "displayName": "ノート",
+      "kana": "のーと",
+      "aliases": [
+        "学習ノート",
+        "メモ帳"
+      ],
+      "categoryId": "paper_cloth",
+      "keywords": [
+        "学習ノート",
+        "メモ帳"
+      ],
+      "notes": "汚れていなければ古紙・古布へ。",
+      "disposalGuide": "汚れていなければ古紙・古布へ。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。"
+      ],
+      "isOversizedCandidate": false,
+      "isHazardous": false,
+      "requiresOfficialCheck": true,
+      "source": "official-common",
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidence": 0.9,
+      "confidenceStatus": "confirmed",
+      "updatedAt": "2026-05-25"
+    },
+    {
+      "id": "item-143",
+      "names": [
+        "コピー用紙"
+      ],
+      "displayName": "コピー用紙",
+      "kana": "こぴーようし",
+      "aliases": [
+        "印刷用紙",
+        "OA紙"
+      ],
+      "categoryId": "paper_cloth",
+      "keywords": [
+        "印刷用紙",
+        "OA紙"
+      ],
+      "notes": "汚れていなければ古紙・古布へ。",
+      "disposalGuide": "汚れていなければ古紙・古布へ。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。"
+      ],
+      "isOversizedCandidate": false,
+      "isHazardous": false,
+      "requiresOfficialCheck": true,
+      "source": "official-common",
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidence": 0.9,
+      "confidenceStatus": "confirmed",
+      "updatedAt": "2026-05-25"
+    },
+    {
+      "id": "item-144",
+      "names": [
+        "封筒"
+      ],
+      "displayName": "封筒",
+      "kana": "ふうとう",
+      "aliases": [
+        "郵便封筒",
+        "紙封筒"
+      ],
+      "categoryId": "paper_cloth",
+      "keywords": [
+        "郵便封筒",
+        "紙封筒"
+      ],
+      "notes": "汚れていなければ古紙・古布へ。窓フィルムなどは外してください。",
+      "disposalGuide": "汚れていなければ古紙・古布へ。窓フィルムなどは外してください。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。"
+      ],
+      "isOversizedCandidate": false,
+      "isHazardous": false,
+      "requiresOfficialCheck": true,
+      "source": "manual-needs-review",
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidence": 0.62,
+      "confidenceStatus": "needs_review",
+      "updatedAt": "2026-05-25"
+    },
+    {
+      "id": "item-145",
+      "names": [
+        "はがき"
+      ],
+      "displayName": "はがき",
+      "kana": "はがき",
+      "aliases": [
+        "葉書",
+        "ポストカード"
+      ],
+      "categoryId": "paper_cloth",
+      "keywords": [
+        "葉書",
+        "ポストカード"
+      ],
+      "notes": "汚れていなければ古紙・古布の目安です。",
+      "disposalGuide": "汚れていなければ古紙・古布の目安です。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。"
+      ],
+      "isOversizedCandidate": false,
+      "isHazardous": false,
+      "requiresOfficialCheck": true,
+      "source": "manual-needs-review",
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidence": 0.62,
+      "confidenceStatus": "needs_review",
+      "updatedAt": "2026-05-25"
+    },
+    {
+      "id": "item-146",
+      "names": [
+        "包装紙"
+      ],
+      "displayName": "包装紙",
+      "kana": "ほうそうし",
+      "aliases": [
+        "包み紙",
+        "ラッピング紙"
+      ],
+      "categoryId": "paper_cloth",
+      "keywords": [
+        "包み紙",
+        "ラッピング紙"
+      ],
+      "notes": "汚れていなければ古紙・古布へ。",
+      "disposalGuide": "汚れていなければ古紙・古布へ。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。"
+      ],
+      "isOversizedCandidate": false,
+      "isHazardous": false,
+      "requiresOfficialCheck": true,
+      "source": "manual-needs-review",
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidence": 0.62,
+      "confidenceStatus": "needs_review",
+      "updatedAt": "2026-05-25"
+    },
+    {
+      "id": "item-147",
+      "names": [
+        "紙芯"
+      ],
+      "displayName": "紙芯",
+      "kana": "かみしん",
+      "aliases": [
+        "芯",
+        "筒紙"
+      ],
+      "categoryId": "paper_cloth",
+      "keywords": [
+        "芯",
+        "筒紙"
+      ],
+      "notes": "汚れていなければ古紙・古布の目安です。",
+      "disposalGuide": "汚れていなければ古紙・古布の目安です。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。"
+      ],
+      "isOversizedCandidate": false,
+      "isHazardous": false,
+      "requiresOfficialCheck": true,
+      "source": "manual-needs-review",
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidence": 0.62,
+      "confidenceStatus": "needs_review",
+      "updatedAt": "2026-05-25"
+    },
+    {
+      "id": "item-148",
+      "names": [
+        "カタログ"
+      ],
+      "displayName": "カタログ",
+      "kana": "かたろぐ",
+      "aliases": [
+        "冊子",
+        "パンフレット"
+      ],
+      "categoryId": "paper_cloth",
+      "keywords": [
+        "冊子",
+        "パンフレット"
+      ],
+      "notes": "雑誌類として十字にしばって出してください。",
+      "disposalGuide": "雑誌類として十字にしばって出してください。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。"
+      ],
+      "isOversizedCandidate": false,
+      "isHazardous": false,
+      "requiresOfficialCheck": true,
+      "source": "official-common",
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidence": 0.9,
+      "confidenceStatus": "confirmed",
+      "updatedAt": "2026-05-25"
+    },
+    {
+      "id": "item-149",
+      "names": [
+        "パンフレット"
+      ],
+      "displayName": "パンフレット",
+      "kana": "ぱんふれっと",
+      "aliases": [
+        "リーフレット",
+        "冊子"
+      ],
+      "categoryId": "paper_cloth",
+      "keywords": [
+        "リーフレット",
+        "冊子"
+      ],
+      "notes": "汚れていなければ古紙・古布へ。",
+      "disposalGuide": "汚れていなければ古紙・古布へ。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。"
+      ],
+      "isOversizedCandidate": false,
+      "isHazardous": false,
+      "requiresOfficialCheck": true,
+      "source": "official-common",
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidence": 0.9,
+      "confidenceStatus": "confirmed",
+      "updatedAt": "2026-05-25"
+    },
+    {
+      "id": "item-150",
+      "names": [
+        "シュレッダー紙"
+      ],
+      "displayName": "シュレッダー紙",
+      "kana": "しゅれっだーし",
+      "aliases": [
+        "裁断紙",
+        "細かい紙"
+      ],
+      "categoryId": "paper_cloth",
+      "keywords": [
+        "裁断紙",
+        "細かい紙"
+      ],
+      "notes": "散らばらないよう袋などに入れる必要がある場合があります。公式情報を確認してください。",
+      "disposalGuide": "散らばらないよう袋などに入れる必要がある場合があります。公式情報を確認してください。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。"
+      ],
+      "isOversizedCandidate": false,
+      "isHazardous": false,
+      "requiresOfficialCheck": true,
+      "source": "manual-needs-review",
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidence": 0.62,
+      "confidenceStatus": "needs_review",
+      "updatedAt": "2026-05-25"
+    },
+    {
+      "id": "item-151",
+      "names": [
+        "Tシャツ"
+      ],
+      "displayName": "Tシャツ",
+      "kana": "てぃーしゃつ",
+      "aliases": [
+        "シャツ",
+        "古着"
+      ],
+      "categoryId": "paper_cloth",
+      "keywords": [
+        "シャツ",
+        "古着"
+      ],
+      "notes": "汚れていない衣類は45L以下の袋で古紙・古布へ。",
+      "disposalGuide": "汚れていない衣類は45L以下の袋で古紙・古布へ。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。"
+      ],
+      "isOversizedCandidate": false,
+      "isHazardous": false,
+      "requiresOfficialCheck": true,
+      "source": "official-common",
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidence": 0.9,
+      "confidenceStatus": "confirmed",
+      "updatedAt": "2026-05-25"
+    },
+    {
+      "id": "item-152",
+      "names": [
+        "セーター"
+      ],
+      "displayName": "セーター",
+      "kana": "せーたー",
+      "aliases": [
+        "ニット",
+        "古着"
+      ],
+      "categoryId": "paper_cloth",
+      "keywords": [
+        "ニット",
+        "古着"
+      ],
+      "notes": "汚れていない衣類は45L以下の袋で古紙・古布へ。",
+      "disposalGuide": "汚れていない衣類は45L以下の袋で古紙・古布へ。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。"
+      ],
+      "isOversizedCandidate": false,
+      "isHazardous": false,
+      "requiresOfficialCheck": true,
+      "source": "official-common",
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidence": 0.9,
+      "confidenceStatus": "confirmed",
+      "updatedAt": "2026-05-25"
+    },
+    {
+      "id": "item-153",
+      "names": [
+        "ジーンズ"
+      ],
+      "displayName": "ジーンズ",
+      "kana": "じーんず",
+      "aliases": [
+        "デニム",
+        "古着"
+      ],
+      "categoryId": "paper_cloth",
+      "keywords": [
+        "デニム",
+        "古着"
+      ],
+      "notes": "汚れていない衣類は45L以下の袋で古紙・古布へ。",
+      "disposalGuide": "汚れていない衣類は45L以下の袋で古紙・古布へ。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。"
+      ],
+      "isOversizedCandidate": false,
+      "isHazardous": false,
+      "requiresOfficialCheck": true,
+      "source": "official-common",
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidence": 0.9,
+      "confidenceStatus": "confirmed",
+      "updatedAt": "2026-05-25"
+    },
+    {
+      "id": "item-154",
+      "names": [
+        "靴下"
+      ],
+      "displayName": "靴下",
+      "kana": "くつした",
+      "aliases": [
+        "ソックス",
+        "古布"
+      ],
+      "categoryId": "paper_cloth",
+      "keywords": [
+        "ソックス",
+        "古布"
+      ],
+      "notes": "汚れていない布類は古紙・古布の目安です。",
+      "disposalGuide": "汚れていない布類は古紙・古布の目安です。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。"
+      ],
+      "isOversizedCandidate": false,
+      "isHazardous": false,
+      "requiresOfficialCheck": true,
+      "source": "manual-needs-review",
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidence": 0.62,
+      "confidenceStatus": "needs_review",
+      "updatedAt": "2026-05-25"
+    },
+    {
+      "id": "item-155",
+      "names": [
+        "シーツ"
+      ],
+      "displayName": "シーツ",
+      "kana": "しーつ",
+      "aliases": [
+        "寝具布",
+        "布類"
+      ],
+      "categoryId": "paper_cloth",
+      "keywords": [
+        "寝具布",
+        "布類"
+      ],
+      "notes": "汚れていない布類は45L以下の袋で古紙・古布へ。",
+      "disposalGuide": "汚れていない布類は45L以下の袋で古紙・古布へ。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。"
+      ],
+      "isOversizedCandidate": false,
+      "isHazardous": false,
+      "requiresOfficialCheck": true,
+      "source": "manual-needs-review",
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidence": 0.62,
+      "confidenceStatus": "needs_review",
+      "updatedAt": "2026-05-25"
+    },
+    {
+      "id": "item-156",
+      "names": [
+        "カーテン"
+      ],
+      "displayName": "カーテン",
+      "kana": "かーてん",
+      "aliases": [
+        "布カーテン",
+        "古布"
+      ],
+      "categoryId": "paper_cloth",
+      "keywords": [
+        "布カーテン",
+        "古布"
+      ],
+      "notes": "汚れていない布類は古紙・古布の目安です。大きい場合は公式確認してください。",
+      "disposalGuide": "汚れていない布類は古紙・古布の目安です。大きい場合は公式確認してください。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。",
+        "30cmを超えるものや袋に入らないものは粗大ごみ受付センターで確認してください。"
+      ],
+      "isOversizedCandidate": true,
+      "isHazardous": false,
+      "requiresOfficialCheck": true,
+      "source": "manual-needs-review",
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidence": 0.62,
+      "confidenceStatus": "needs_review",
+      "updatedAt": "2026-05-25"
+    },
+    {
+      "id": "item-157",
+      "names": [
+        "タオルケット"
+      ],
+      "displayName": "タオルケット",
+      "kana": "たおるけっと",
+      "aliases": [
+        "寝具布",
+        "布類"
+      ],
+      "categoryId": "paper_cloth",
+      "keywords": [
+        "寝具布",
+        "布類"
+      ],
+      "notes": "45L以下の袋に入る場合は古紙・古布の目安です。大きい場合は確認してください。",
+      "disposalGuide": "45L以下の袋に入る場合は古紙・古布の目安です。大きい場合は確認してください。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。",
+        "30cmを超えるものや袋に入らないものは粗大ごみ受付センターで確認してください。"
+      ],
+      "isOversizedCandidate": true,
+      "isHazardous": false,
+      "requiresOfficialCheck": true,
+      "source": "manual-needs-review",
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidence": 0.62,
+      "confidenceStatus": "needs_review",
+      "updatedAt": "2026-05-25"
+    },
+    {
+      "id": "item-158",
+      "names": [
+        "ハンカチ"
+      ],
+      "displayName": "ハンカチ",
+      "kana": "はんかち",
+      "aliases": [
+        "布小物",
+        "古布"
+      ],
+      "categoryId": "paper_cloth",
+      "keywords": [
+        "布小物",
+        "古布"
+      ],
+      "notes": "汚れていない布類は古紙・古布の目安です。",
+      "disposalGuide": "汚れていない布類は古紙・古布の目安です。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。"
+      ],
+      "isOversizedCandidate": false,
+      "isHazardous": false,
+      "requiresOfficialCheck": true,
+      "source": "manual-needs-review",
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidence": 0.62,
+      "confidenceStatus": "needs_review",
+      "updatedAt": "2026-05-25"
+    },
+    {
+      "id": "item-159",
+      "names": [
+        "ぬれた衣類"
+      ],
+      "displayName": "ぬれた衣類",
+      "kana": "ぬれたいるい",
+      "aliases": [
+        "濡れた古着",
+        "汚損衣類"
+      ],
+      "categoryId": "burnable",
+      "keywords": [
+        "濡れた古着",
+        "汚損衣類"
+      ],
+      "notes": "汚損・濡れた布類は普通ごみへ。",
+      "disposalGuide": "汚損・濡れた布類は普通ごみへ。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。"
+      ],
+      "isOversizedCandidate": false,
+      "isHazardous": false,
+      "requiresOfficialCheck": true,
+      "source": "official-common",
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidence": 0.9,
+      "confidenceStatus": "confirmed",
+      "updatedAt": "2026-05-25"
+    },
+    {
+      "id": "item-160",
+      "names": [
+        "汚れたタオル"
+      ],
+      "displayName": "汚れたタオル",
+      "kana": "よごれたたおる",
+      "aliases": [
+        "汚損タオル",
+        "油汚れタオル"
+      ],
+      "categoryId": "burnable",
+      "keywords": [
+        "汚損タオル",
+        "油汚れタオル"
+      ],
+      "notes": "汚損している布類は普通ごみへ。",
+      "disposalGuide": "汚損している布類は普通ごみへ。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。"
+      ],
+      "isOversizedCandidate": false,
+      "isHazardous": false,
+      "requiresOfficialCheck": true,
+      "source": "official-common",
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidence": 0.9,
+      "confidenceStatus": "confirmed",
+      "updatedAt": "2026-05-25"
+    },
+    {
+      "id": "item-161",
+      "names": [
+        "金属ハンガー"
+      ],
+      "displayName": "金属ハンガー",
+      "kana": "きんぞくはんがー",
+      "aliases": [
+        "針金ハンガー",
+        "金物"
+      ],
+      "categoryId": "small_items",
+      "keywords": [
+        "針金ハンガー",
+        "金物"
+      ],
+      "notes": "金属製の小物は小型ごみの目安です。",
+      "disposalGuide": "金属製の小物は小型ごみの目安です。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。"
+      ],
+      "isOversizedCandidate": false,
+      "isHazardous": false,
+      "requiresOfficialCheck": true,
+      "source": "manual-needs-review",
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidence": 0.62,
+      "confidenceStatus": "needs_review",
+      "updatedAt": "2026-05-25"
+    },
+    {
+      "id": "item-162",
+      "names": [
+        "針金"
+      ],
+      "displayName": "針金",
+      "kana": "はりがね",
+      "aliases": [
+        "ワイヤー",
+        "金属線"
+      ],
+      "categoryId": "small_items",
+      "keywords": [
+        "ワイヤー",
+        "金属線"
+      ],
+      "notes": "金属小物は小型ごみの目安です。",
+      "disposalGuide": "金属小物は小型ごみの目安です。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。"
+      ],
+      "isOversizedCandidate": false,
+      "isHazardous": false,
+      "requiresOfficialCheck": true,
+      "source": "manual-needs-review",
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidence": 0.62,
+      "confidenceStatus": "needs_review",
+      "updatedAt": "2026-05-25"
+    },
+    {
+      "id": "item-163",
+      "names": [
+        "ねじ"
+      ],
+      "displayName": "ねじ",
+      "kana": "ねじ",
+      "aliases": [
+        "ネジ",
+        "ビス"
+      ],
+      "categoryId": "small_items",
+      "keywords": [
+        "ネジ",
+        "ビス"
+      ],
+      "notes": "小さな金物は小型ごみの目安です。",
+      "disposalGuide": "小さな金物は小型ごみの目安です。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。"
+      ],
+      "isOversizedCandidate": false,
+      "isHazardous": false,
+      "requiresOfficialCheck": true,
+      "source": "manual-needs-review",
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidence": 0.62,
+      "confidenceStatus": "needs_review",
+      "updatedAt": "2026-05-25"
+    },
+    {
+      "id": "item-164",
+      "names": [
+        "釘"
+      ],
+      "displayName": "釘",
+      "kana": "くぎ",
+      "aliases": [
+        "クギ",
+        "金属くぎ"
+      ],
+      "categoryId": "small_items",
+      "keywords": [
+        "クギ",
+        "金属くぎ"
+      ],
+      "notes": "刺さらないよう包んで小型ごみの目安です。",
+      "disposalGuide": "刺さらないよう包んで小型ごみの目安です。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。",
+        "発火・破裂・飛散・けがに注意し、必要に応じてキケン表示をしてください。"
+      ],
+      "isOversizedCandidate": false,
+      "isHazardous": true,
+      "requiresOfficialCheck": true,
+      "source": "manual-needs-review",
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidence": 0.62,
+      "confidenceStatus": "needs_review",
+      "updatedAt": "2026-05-25"
+    },
+    {
+      "id": "item-165",
+      "names": [
+        "クリップ"
+      ],
+      "displayName": "クリップ",
+      "kana": "くりっぷ",
+      "aliases": [
+        "ゼムクリップ",
+        "金属クリップ"
+      ],
+      "categoryId": "small_items",
+      "keywords": [
+        "ゼムクリップ",
+        "金属クリップ"
+      ],
+      "notes": "小さな金物は小型ごみの目安です。",
+      "disposalGuide": "小さな金物は小型ごみの目安です。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。"
+      ],
+      "isOversizedCandidate": false,
+      "isHazardous": false,
+      "requiresOfficialCheck": true,
+      "source": "manual-needs-review",
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidence": 0.62,
+      "confidenceStatus": "needs_review",
+      "updatedAt": "2026-05-25"
+    },
+    {
+      "id": "item-166",
+      "names": [
+        "カッター刃"
+      ],
+      "displayName": "カッター刃",
+      "kana": "かったーば",
+      "aliases": [
+        "替刃",
+        "刃物"
+      ],
+      "categoryId": "small_items",
+      "keywords": [
+        "替刃",
+        "刃物"
+      ],
+      "notes": "新聞紙などで包み、キケン表示して小型ごみへ。",
+      "disposalGuide": "新聞紙などで包み、キケン表示して小型ごみへ。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。",
+        "発火・破裂・飛散・けがに注意し、必要に応じてキケン表示をしてください。"
+      ],
+      "isOversizedCandidate": false,
+      "isHazardous": true,
+      "requiresOfficialCheck": true,
+      "source": "manual-needs-review",
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidence": 0.62,
+      "confidenceStatus": "needs_review",
+      "updatedAt": "2026-05-25"
+    },
+    {
+      "id": "item-167",
+      "names": [
+        "かみそり"
+      ],
+      "displayName": "かみそり",
+      "kana": "かみそり",
+      "aliases": [
+        "剃刀",
+        "刃物"
+      ],
+      "categoryId": "small_items",
+      "keywords": [
+        "剃刀",
+        "刃物"
+      ],
+      "notes": "刃でけがをしないよう包み、キケン表示してください。",
+      "disposalGuide": "刃でけがをしないよう包み、キケン表示してください。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。",
+        "発火・破裂・飛散・けがに注意し、必要に応じてキケン表示をしてください。"
+      ],
+      "isOversizedCandidate": false,
+      "isHazardous": true,
+      "requiresOfficialCheck": true,
+      "source": "manual-needs-review",
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidence": 0.62,
+      "confidenceStatus": "needs_review",
+      "updatedAt": "2026-05-25"
+    },
+    {
+      "id": "item-168",
+      "names": [
+        "鍋ふた"
+      ],
+      "displayName": "鍋ふた",
+      "kana": "なべふた",
+      "aliases": [
+        "鍋蓋",
+        "金属ふた"
+      ],
+      "categoryId": "small_items",
+      "keywords": [
+        "鍋蓋",
+        "金属ふた"
+      ],
+      "notes": "30cm以下の金物は小型ごみの目安です。",
+      "disposalGuide": "30cm以下の金物は小型ごみの目安です。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。"
+      ],
+      "isOversizedCandidate": false,
+      "isHazardous": false,
+      "requiresOfficialCheck": true,
+      "source": "official-common",
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidence": 0.9,
+      "confidenceStatus": "confirmed",
+      "updatedAt": "2026-05-25"
+    },
+    {
+      "id": "item-169",
+      "names": [
+        "フライパンのふた"
+      ],
+      "displayName": "フライパンのふた",
+      "kana": "ふらいぱんのふた",
+      "aliases": [
+        "フライパン蓋",
+        "調理器具"
+      ],
+      "categoryId": "small_items",
+      "keywords": [
+        "フライパン蓋",
+        "調理器具"
+      ],
+      "notes": "30cm以下の金物は小型ごみの目安です。",
+      "disposalGuide": "30cm以下の金物は小型ごみの目安です。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。"
+      ],
+      "isOversizedCandidate": false,
+      "isHazardous": false,
+      "requiresOfficialCheck": true,
+      "source": "official-common",
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidence": 0.9,
+      "confidenceStatus": "confirmed",
+      "updatedAt": "2026-05-25"
+    },
+    {
+      "id": "item-170",
+      "names": [
+        "計量カッププラスチック"
+      ],
+      "displayName": "計量カッププラスチック",
+      "kana": "けいりょうかっぷぷらすちっく",
+      "aliases": [
+        "プラ計量カップ",
+        "キッチン小物"
+      ],
+      "categoryId": "burnable",
+      "keywords": [
+        "プラ計量カップ",
+        "キッチン小物"
+      ],
+      "notes": "容器包装ではない30cm以下のプラスチック製品は普通ごみの目安です。",
+      "disposalGuide": "容器包装ではない30cm以下のプラスチック製品は普通ごみの目安です。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。"
+      ],
+      "isOversizedCandidate": false,
+      "isHazardous": false,
+      "requiresOfficialCheck": true,
+      "source": "official-common",
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidence": 0.9,
+      "confidenceStatus": "confirmed",
+      "updatedAt": "2026-05-25"
+    },
+    {
+      "id": "item-171",
+      "names": [
+        "ガラスコップ"
+      ],
+      "displayName": "ガラスコップ",
+      "kana": "がらすこっぷ",
+      "aliases": [
+        "コップ",
+        "割れ物"
+      ],
+      "categoryId": "small_items",
+      "keywords": [
+        "コップ",
+        "割れ物"
+      ],
+      "notes": "ガラス類は小型ごみ。割れたものは包んでキケン表示してください。",
+      "disposalGuide": "ガラス類は小型ごみ。割れたものは包んでキケン表示してください。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。",
+        "発火・破裂・飛散・けがに注意し、必要に応じてキケン表示をしてください。"
+      ],
+      "isOversizedCandidate": false,
+      "isHazardous": true,
+      "requiresOfficialCheck": true,
+      "source": "official-common",
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidence": 0.9,
+      "confidenceStatus": "confirmed",
+      "updatedAt": "2026-05-25"
+    },
+    {
+      "id": "item-172",
+      "names": [
+        "花瓶"
+      ],
+      "displayName": "花瓶",
+      "kana": "かびん",
+      "aliases": [
+        "ガラス花瓶",
+        "陶器花瓶"
+      ],
+      "categoryId": "small_items",
+      "keywords": [
+        "ガラス花瓶",
+        "陶器花瓶"
+      ],
+      "notes": "ガラス類・陶磁器類は小型ごみの目安です。割れ物は包装してください。",
+      "disposalGuide": "ガラス類・陶磁器類は小型ごみの目安です。割れ物は包装してください。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。",
+        "発火・破裂・飛散・けがに注意し、必要に応じてキケン表示をしてください。"
+      ],
+      "isOversizedCandidate": false,
+      "isHazardous": true,
+      "requiresOfficialCheck": true,
+      "source": "official-common",
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidence": 0.9,
+      "confidenceStatus": "confirmed",
+      "updatedAt": "2026-05-25"
+    },
+    {
+      "id": "item-173",
+      "names": [
+        "急須"
+      ],
+      "displayName": "急須",
+      "kana": "きゅうす",
+      "aliases": [
+        "陶器急須",
+        "茶器"
+      ],
+      "categoryId": "small_items",
+      "keywords": [
+        "陶器急須",
+        "茶器"
+      ],
+      "notes": "陶磁器類は小型ごみの目安です。",
+      "disposalGuide": "陶磁器類は小型ごみの目安です。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。"
+      ],
+      "isOversizedCandidate": false,
+      "isHazardous": false,
+      "requiresOfficialCheck": true,
+      "source": "official-common",
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidence": 0.9,
+      "confidenceStatus": "confirmed",
+      "updatedAt": "2026-05-25"
+    },
+    {
+      "id": "item-174",
+      "names": [
+        "土鍋"
+      ],
+      "displayName": "土鍋",
+      "kana": "どなべ",
+      "aliases": [
+        "陶器鍋",
+        "鍋"
+      ],
+      "categoryId": "small_items",
+      "keywords": [
+        "陶器鍋",
+        "鍋"
+      ],
+      "notes": "30cm以下なら小型ごみの目安です。大きいものは粗大ごみを確認してください。",
+      "disposalGuide": "30cm以下なら小型ごみの目安です。大きいものは粗大ごみを確認してください。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。",
+        "30cmを超えるものや袋に入らないものは粗大ごみ受付センターで確認してください。"
+      ],
+      "isOversizedCandidate": true,
+      "isHazardous": false,
+      "requiresOfficialCheck": true,
+      "source": "manual-needs-review",
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidence": 0.62,
+      "confidenceStatus": "needs_review",
+      "updatedAt": "2026-05-25"
+    },
+    {
+      "id": "item-175",
+      "names": [
+        "電卓"
+      ],
+      "displayName": "電卓",
+      "kana": "でんたく",
+      "aliases": [
+        "計算機",
+        "小型家電"
+      ],
+      "categoryId": "small_items",
+      "keywords": [
+        "計算機",
+        "小型家電"
+      ],
+      "notes": "小型家電は小型ごみの目安です。電池は外してください。",
+      "disposalGuide": "小型家電は小型ごみの目安です。電池は外してください。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。"
+      ],
+      "isOversizedCandidate": false,
+      "isHazardous": false,
+      "requiresOfficialCheck": true,
+      "source": "manual-needs-review",
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidence": 0.62,
+      "confidenceStatus": "needs_review",
+      "updatedAt": "2026-05-25"
+    },
+    {
+      "id": "item-176",
+      "names": [
+        "リモコン"
+      ],
+      "displayName": "リモコン",
+      "kana": "りもこん",
+      "aliases": [
+        "テレビリモコン",
+        "小型家電"
+      ],
+      "categoryId": "small_items",
+      "keywords": [
+        "テレビリモコン",
+        "小型家電"
+      ],
+      "notes": "電池を外して小型ごみの目安です。",
+      "disposalGuide": "電池を外して小型ごみの目安です。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。"
+      ],
+      "isOversizedCandidate": false,
+      "isHazardous": false,
+      "requiresOfficialCheck": true,
+      "source": "manual-needs-review",
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidence": 0.62,
+      "confidenceStatus": "needs_review",
+      "updatedAt": "2026-05-25"
+    },
+    {
+      "id": "item-177",
+      "names": [
+        "目覚まし時計"
+      ],
+      "displayName": "目覚まし時計",
+      "kana": "めざましどけい",
+      "aliases": [
+        "時計",
+        "置き時計"
+      ],
+      "categoryId": "small_items",
+      "keywords": [
+        "時計",
+        "置き時計"
+      ],
+      "notes": "小型家電・金物として小型ごみの目安です。電池は外してください。",
+      "disposalGuide": "小型家電・金物として小型ごみの目安です。電池は外してください。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。"
+      ],
+      "isOversizedCandidate": false,
+      "isHazardous": false,
+      "requiresOfficialCheck": true,
+      "source": "manual-needs-review",
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidence": 0.62,
+      "confidenceStatus": "needs_review",
+      "updatedAt": "2026-05-25"
+    },
+    {
+      "id": "item-178",
+      "names": [
+        "腕時計"
+      ],
+      "displayName": "腕時計",
+      "kana": "うでどけい",
+      "aliases": [
+        "時計",
+        "小物"
+      ],
+      "categoryId": "small_items",
+      "keywords": [
+        "時計",
+        "小物"
+      ],
+      "notes": "電池式は電池の扱いも確認してください。小型ごみの目安です。",
+      "disposalGuide": "電池式は電池の扱いも確認してください。小型ごみの目安です。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。"
+      ],
+      "isOversizedCandidate": false,
+      "isHazardous": false,
+      "requiresOfficialCheck": true,
+      "source": "manual-needs-review",
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidence": 0.62,
+      "confidenceStatus": "needs_review",
+      "updatedAt": "2026-05-25"
+    },
+    {
+      "id": "item-179",
+      "names": [
+        "電子体温計"
+      ],
+      "displayName": "電子体温計",
+      "kana": "でんしたいおんけい",
+      "aliases": [
+        "体温計",
+        "小型家電"
+      ],
+      "categoryId": "small_items",
+      "keywords": [
+        "体温計",
+        "小型家電"
+      ],
+      "notes": "電池を外せる場合は外し、小型ごみの目安です。",
+      "disposalGuide": "電池を外せる場合は外し、小型ごみの目安です。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。"
+      ],
+      "isOversizedCandidate": false,
+      "isHazardous": false,
+      "requiresOfficialCheck": true,
+      "source": "manual-needs-review",
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidence": 0.62,
+      "confidenceStatus": "needs_review",
+      "updatedAt": "2026-05-25"
+    },
+    {
+      "id": "item-180",
+      "names": [
+        "水銀体温計"
+      ],
+      "displayName": "水銀体温計",
+      "kana": "すいぎんたいおんけい",
+      "aliases": [
+        "体温計",
+        "水銀"
+      ],
+      "categoryId": "hazardous_note",
+      "keywords": [
+        "体温計",
+        "水銀"
+      ],
+      "notes": "水銀を含む可能性があります。通常ごみに混ぜず、公式情報を確認してください。",
+      "disposalGuide": "水銀を含む可能性があります。通常ごみに混ぜず、公式情報を確認してください。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。",
+        "発火・破裂・飛散・けがに注意し、必要に応じてキケン表示をしてください。"
+      ],
+      "isOversizedCandidate": false,
+      "isHazardous": true,
+      "requiresOfficialCheck": true,
+      "source": "manual-needs-review",
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidence": 0.62,
+      "confidenceStatus": "needs_review",
+      "updatedAt": "2026-05-25"
+    },
+    {
+      "id": "item-181",
+      "names": [
+        "ボタン電池"
+      ],
+      "displayName": "ボタン電池",
+      "kana": "ぼたんでんち",
+      "aliases": [
+        "コイン電池",
+        "電池"
+      ],
+      "categoryId": "hazardous_note",
+      "keywords": [
+        "コイン電池",
+        "電池"
+      ],
+      "notes": "発火・破裂に注意し、通常ごみに混ぜず公式回収方法を確認してください。",
+      "disposalGuide": "発火・破裂に注意し、通常ごみに混ぜず公式回収方法を確認してください。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。",
+        "発火・破裂・飛散・けがに注意し、必要に応じてキケン表示をしてください。"
+      ],
+      "isOversizedCandidate": false,
+      "isHazardous": true,
+      "requiresOfficialCheck": true,
+      "source": "manual-needs-review",
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidence": 0.62,
+      "confidenceStatus": "needs_review",
+      "updatedAt": "2026-05-25"
+    },
+    {
+      "id": "item-182",
+      "names": [
+        "充電式電池"
+      ],
+      "displayName": "充電式電池",
+      "kana": "じゅうでんしきでんち",
+      "aliases": [
+        "二次電池",
+        "蓄電池"
+      ],
+      "categoryId": "hazardous_note",
+      "keywords": [
+        "二次電池",
+        "蓄電池"
+      ],
+      "notes": "発火の危険があります。通常ごみに混ぜず公式回収方法を確認してください。",
+      "disposalGuide": "発火の危険があります。通常ごみに混ぜず公式回収方法を確認してください。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。",
+        "発火・破裂・飛散・けがに注意し、必要に応じてキケン表示をしてください。"
+      ],
+      "isOversizedCandidate": false,
+      "isHazardous": true,
+      "requiresOfficialCheck": true,
+      "source": "manual-needs-review",
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidence": 0.62,
+      "confidenceStatus": "needs_review",
+      "updatedAt": "2026-05-25"
+    },
+    {
+      "id": "item-183",
+      "names": [
+        "リチウムイオン電池"
+      ],
+      "displayName": "リチウムイオン電池",
+      "kana": "りちうむいおんでんち",
+      "aliases": [
+        "リチウム電池",
+        "Li-ion",
+        "リチュウム電池"
+      ],
+      "categoryId": "hazardous_note",
+      "keywords": [
+        "リチウム電池",
+        "Li-ion",
+        "リチュウム電池"
+      ],
+      "notes": "発火の危険があります。通常ごみに混ぜず公式回収方法を確認してください。",
+      "disposalGuide": "発火の危険があります。通常ごみに混ぜず公式回収方法を確認してください。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。",
+        "発火・破裂・飛散・けがに注意し、必要に応じてキケン表示をしてください。"
+      ],
+      "isOversizedCandidate": false,
+      "isHazardous": true,
+      "requiresOfficialCheck": true,
+      "source": "manual-needs-review",
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidence": 0.62,
+      "confidenceStatus": "needs_review",
+      "updatedAt": "2026-05-25"
+    },
+    {
+      "id": "item-184",
+      "names": [
+        "膨張したモバイルバッテリー"
+      ],
+      "displayName": "膨張したモバイルバッテリー",
+      "kana": "ぼうちょうしたもばいるばってりー",
+      "aliases": [
+        "膨らんだバッテリー",
+        "リチウムイオン"
+      ],
+      "categoryId": "hazardous_note",
+      "keywords": [
+        "膨らんだバッテリー",
+        "リチウムイオン"
+      ],
+      "notes": "発火の危険があります。通常ごみに混ぜず、公式または販売店の回収方法を確認してください。",
+      "disposalGuide": "発火の危険があります。通常ごみに混ぜず、公式または販売店の回収方法を確認してください。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。",
+        "発火・破裂・飛散・けがに注意し、必要に応じてキケン表示をしてください。"
+      ],
+      "isOversizedCandidate": false,
+      "isHazardous": true,
+      "requiresOfficialCheck": true,
+      "source": "manual-needs-review",
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidence": 0.62,
+      "confidenceStatus": "needs_review",
+      "updatedAt": "2026-05-25"
+    },
+    {
+      "id": "item-185",
+      "names": [
+        "LED電球"
+      ],
+      "displayName": "LED電球",
+      "kana": "えるいーでぃーでんきゅう",
+      "aliases": [
+        "LEDランプ",
+        "電球"
+      ],
+      "categoryId": "small_items",
+      "keywords": [
+        "LEDランプ",
+        "電球"
+      ],
+      "notes": "電球類は小型ごみの目安です。飛散防止のため包装してください。",
+      "disposalGuide": "電球類は小型ごみの目安です。飛散防止のため包装してください。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。",
+        "発火・破裂・飛散・けがに注意し、必要に応じてキケン表示をしてください。"
+      ],
+      "isOversizedCandidate": false,
+      "isHazardous": true,
+      "requiresOfficialCheck": true,
+      "source": "manual-needs-review",
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidence": 0.62,
+      "confidenceStatus": "needs_review",
+      "updatedAt": "2026-05-25"
+    },
+    {
+      "id": "item-186",
+      "names": [
+        "電源アダプター"
+      ],
+      "displayName": "電源アダプター",
+      "kana": "でんげんあだぷたー",
+      "aliases": [
+        "ACアダプター",
+        "充電器"
+      ],
+      "categoryId": "small_items",
+      "keywords": [
+        "ACアダプター",
+        "充電器"
+      ],
+      "notes": "小型家電・コード類は小型ごみの目安です。",
+      "disposalGuide": "小型家電・コード類は小型ごみの目安です。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。"
+      ],
+      "isOversizedCandidate": false,
+      "isHazardous": false,
+      "requiresOfficialCheck": true,
+      "source": "manual-needs-review",
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidence": 0.62,
+      "confidenceStatus": "needs_review",
+      "updatedAt": "2026-05-25"
+    },
+    {
+      "id": "item-187",
+      "names": [
+        "USBケーブル"
+      ],
+      "displayName": "USBケーブル",
+      "kana": "ゆーえすびーけーぶる",
+      "aliases": [
+        "ケーブル",
+        "コード"
+      ],
+      "categoryId": "small_items",
+      "keywords": [
+        "ケーブル",
+        "コード"
+      ],
+      "notes": "コード類は小型ごみの目安です。",
+      "disposalGuide": "コード類は小型ごみの目安です。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。"
+      ],
+      "isOversizedCandidate": false,
+      "isHazardous": false,
+      "requiresOfficialCheck": true,
+      "source": "manual-needs-review",
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidence": 0.62,
+      "confidenceStatus": "needs_review",
+      "updatedAt": "2026-05-25"
+    },
+    {
+      "id": "item-188",
+      "names": [
+        "イヤホン"
+      ],
+      "displayName": "イヤホン",
+      "kana": "いやほん",
+      "aliases": [
+        "ヘッドホン",
+        "小型家電"
+      ],
+      "categoryId": "small_items",
+      "keywords": [
+        "ヘッドホン",
+        "小型家電"
+      ],
+      "notes": "電池内蔵品は公式確認してください。小型ごみの目安です。",
+      "disposalGuide": "電池内蔵品は公式確認してください。小型ごみの目安です。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。"
+      ],
+      "isOversizedCandidate": false,
+      "isHazardous": false,
+      "requiresOfficialCheck": true,
+      "source": "manual-needs-review",
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidence": 0.62,
+      "confidenceStatus": "needs_review",
+      "updatedAt": "2026-05-25"
+    },
+    {
+      "id": "item-189",
+      "names": [
+        "電動歯ブラシ"
+      ],
+      "displayName": "電動歯ブラシ",
+      "kana": "でんどうはぶらし",
+      "aliases": [
+        "充電式歯ブラシ",
+        "小型家電"
+      ],
+      "categoryId": "small_items",
+      "keywords": [
+        "充電式歯ブラシ",
+        "小型家電"
+      ],
+      "notes": "電池内蔵品は公式確認してください。小型ごみの目安です。",
+      "disposalGuide": "電池内蔵品は公式確認してください。小型ごみの目安です。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。",
+        "発火・破裂・飛散・けがに注意し、必要に応じてキケン表示をしてください。"
+      ],
+      "isOversizedCandidate": false,
+      "isHazardous": true,
+      "requiresOfficialCheck": true,
+      "source": "manual-needs-review",
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidence": 0.62,
+      "confidenceStatus": "needs_review",
+      "updatedAt": "2026-05-25"
+    },
+    {
+      "id": "item-190",
+      "names": [
+        "電気シェーバー"
+      ],
+      "displayName": "電気シェーバー",
+      "kana": "でんきしぇーばー",
+      "aliases": [
+        "髭剃り",
+        "小型家電"
+      ],
+      "categoryId": "small_items",
+      "keywords": [
+        "髭剃り",
+        "小型家電"
+      ],
+      "notes": "電池内蔵品は公式確認してください。小型ごみの目安です。",
+      "disposalGuide": "電池内蔵品は公式確認してください。小型ごみの目安です。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。",
+        "発火・破裂・飛散・けがに注意し、必要に応じてキケン表示をしてください。"
+      ],
+      "isOversizedCandidate": false,
+      "isHazardous": true,
+      "requiresOfficialCheck": true,
+      "source": "manual-needs-review",
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidence": 0.62,
+      "confidenceStatus": "needs_review",
+      "updatedAt": "2026-05-25"
+    },
+    {
+      "id": "item-191",
+      "names": [
+        "飲料用ペットボトル"
+      ],
+      "displayName": "飲料用ペットボトル",
+      "kana": "いんりょうようぺっとぼとる",
+      "aliases": [
+        "PET",
+        "ボトル"
+      ],
+      "categoryId": "pet_bottle",
+      "keywords": [
+        "PET",
+        "ボトル"
+      ],
+      "notes": "PETマークの飲料ボトルは中身を出して軽く水洗いし、ふたとラベルを外してください。",
+      "disposalGuide": "PETマークの飲料ボトルは中身を出して軽く水洗いし、ふたとラベルを外してください。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。"
+      ],
+      "isOversizedCandidate": false,
+      "isHazardous": false,
+      "requiresOfficialCheck": true,
+      "source": "official-common",
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidence": 0.9,
+      "confidenceStatus": "confirmed",
+      "updatedAt": "2026-05-25"
+    },
+    {
+      "id": "item-192",
+      "names": [
+        "お茶のペットボトル"
+      ],
+      "displayName": "お茶のペットボトル",
+      "kana": "おちゃのぺっとぼとる",
+      "aliases": [
+        "飲料ボトル",
+        "PET"
+      ],
+      "categoryId": "pet_bottle",
+      "keywords": [
+        "飲料ボトル",
+        "PET"
+      ],
+      "notes": "PETマークの飲料ボトルはペットボトルへ。",
+      "disposalGuide": "PETマークの飲料ボトルはペットボトルへ。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。"
+      ],
+      "isOversizedCandidate": false,
+      "isHazardous": false,
+      "requiresOfficialCheck": true,
+      "source": "official-common",
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidence": 0.9,
+      "confidenceStatus": "confirmed",
+      "updatedAt": "2026-05-25"
+    },
+    {
+      "id": "item-193",
+      "names": [
+        "炭酸飲料ペットボトル"
+      ],
+      "displayName": "炭酸飲料ペットボトル",
+      "kana": "たんさんいんりょうぺっとぼとる",
+      "aliases": [
+        "飲料ボトル",
+        "PET"
+      ],
+      "categoryId": "pet_bottle",
+      "keywords": [
+        "飲料ボトル",
+        "PET"
+      ],
+      "notes": "PETマークの飲料ボトルはペットボトルへ。",
+      "disposalGuide": "PETマークの飲料ボトルはペットボトルへ。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。"
+      ],
+      "isOversizedCandidate": false,
+      "isHazardous": false,
+      "requiresOfficialCheck": true,
+      "source": "official-common",
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidence": 0.9,
+      "confidenceStatus": "confirmed",
+      "updatedAt": "2026-05-25"
+    },
+    {
+      "id": "item-194",
+      "names": [
+        "めんつゆペットボトル"
+      ],
+      "displayName": "めんつゆペットボトル",
+      "kana": "めんつゆぺっとぼとる",
+      "aliases": [
+        "調味料ボトル",
+        "PET"
+      ],
+      "categoryId": "pet_bottle",
+      "keywords": [
+        "調味料ボトル",
+        "PET"
+      ],
+      "notes": "PETマークがある調味料ボトルはペットボトルの目安です。",
+      "disposalGuide": "PETマークがある調味料ボトルはペットボトルの目安です。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。"
+      ],
+      "isOversizedCandidate": false,
+      "isHazardous": false,
+      "requiresOfficialCheck": true,
+      "source": "manual-needs-review",
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidence": 0.62,
+      "confidenceStatus": "needs_review",
+      "updatedAt": "2026-05-25"
+    },
+    {
+      "id": "item-195",
+      "names": [
+        "ペットボトル本体"
+      ],
+      "displayName": "ペットボトル本体",
+      "kana": "ぺっとぼとるほんたい",
+      "aliases": [
+        "ペット",
+        "PETボトル"
+      ],
+      "categoryId": "pet_bottle",
+      "keywords": [
+        "ペット",
+        "PETボトル"
+      ],
+      "notes": "キャップ・ラベルを外し、中を軽く水洗いしてください。",
+      "disposalGuide": "キャップ・ラベルを外し、中を軽く水洗いしてください。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。"
+      ],
+      "isOversizedCandidate": false,
+      "isHazardous": false,
+      "requiresOfficialCheck": true,
+      "source": "official-common",
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidence": 0.9,
+      "confidenceStatus": "confirmed",
+      "updatedAt": "2026-05-25"
+    },
+    {
+      "id": "item-196",
+      "names": [
+        "ベッド"
+      ],
+      "displayName": "ベッド",
+      "kana": "べっど",
+      "aliases": [
+        "寝具家具",
+        "大型家具"
+      ],
+      "categoryId": "bulky",
+      "keywords": [
+        "寝具家具",
+        "大型家具"
+      ],
+      "notes": "粗大ごみの可能性が高い品目です。電話予約と処理券を確認してください。",
+      "disposalGuide": "粗大ごみの可能性が高い品目です。電話予約と処理券を確認してください。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。",
+        "30cmを超えるものや袋に入らないものは粗大ごみ受付センターで確認してください。"
+      ],
+      "isOversizedCandidate": true,
+      "isHazardous": false,
+      "requiresOfficialCheck": true,
+      "source": "manual-needs-review",
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/5/22406.html",
+      "confidence": 0.62,
+      "confidenceStatus": "needs_review",
+      "updatedAt": "2026-05-25"
+    },
+    {
+      "id": "item-197",
+      "names": [
+        "本棚"
+      ],
+      "displayName": "本棚",
+      "kana": "ほんだな",
+      "aliases": [
+        "棚",
+        "書棚"
+      ],
+      "categoryId": "bulky",
+      "keywords": [
+        "棚",
+        "書棚"
+      ],
+      "notes": "30cmを超える耐久消費財は粗大ごみ。予約時に確認してください。",
+      "disposalGuide": "30cmを超える耐久消費財は粗大ごみ。予約時に確認してください。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。",
+        "30cmを超えるものや袋に入らないものは粗大ごみ受付センターで確認してください。"
+      ],
+      "isOversizedCandidate": true,
+      "isHazardous": false,
+      "requiresOfficialCheck": true,
+      "source": "manual-needs-review",
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/5/22406.html",
+      "confidence": 0.62,
+      "confidenceStatus": "needs_review",
+      "updatedAt": "2026-05-25"
+    },
+    {
+      "id": "item-198",
+      "names": [
+        "食器棚"
+      ],
+      "displayName": "食器棚",
+      "kana": "しょっきだな",
+      "aliases": [
+        "棚",
+        "大型家具"
+      ],
+      "categoryId": "bulky",
+      "keywords": [
+        "棚",
+        "大型家具"
+      ],
+      "notes": "粗大ごみ。搬出条件や処理券を受付センターで確認してください。",
+      "disposalGuide": "粗大ごみ。搬出条件や処理券を受付センターで確認してください。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。",
+        "30cmを超えるものや袋に入らないものは粗大ごみ受付センターで確認してください。"
+      ],
+      "isOversizedCandidate": true,
+      "isHazardous": false,
+      "requiresOfficialCheck": true,
+      "source": "manual-needs-review",
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/5/22406.html",
+      "confidence": 0.62,
+      "confidenceStatus": "needs_review",
+      "updatedAt": "2026-05-25"
+    },
+    {
+      "id": "item-199",
+      "names": [
+        "衣装ケース"
+      ],
+      "displayName": "衣装ケース",
+      "kana": "いしょうけーす",
+      "aliases": [
+        "収納ケース",
+        "プラスチックケース"
+      ],
+      "categoryId": "bulky",
+      "keywords": [
+        "収納ケース",
+        "プラスチックケース"
+      ],
+      "notes": "30cmを超える場合は粗大ごみの可能性があります。",
+      "disposalGuide": "30cmを超える場合は粗大ごみの可能性があります。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。",
+        "30cmを超えるものや袋に入らないものは粗大ごみ受付センターで確認してください。"
+      ],
+      "isOversizedCandidate": true,
+      "isHazardous": false,
+      "requiresOfficialCheck": true,
+      "source": "manual-needs-review",
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/5/22406.html",
+      "confidence": 0.62,
+      "confidenceStatus": "needs_review",
+      "updatedAt": "2026-05-25"
+    },
+    {
+      "id": "item-200",
+      "names": [
+        "ベビーカー"
+      ],
+      "displayName": "ベビーカー",
+      "kana": "べびーかー",
+      "aliases": [
+        "乳母車",
+        "育児用品"
+      ],
+      "categoryId": "bulky",
+      "keywords": [
+        "乳母車",
+        "育児用品"
+      ],
+      "notes": "粗大ごみの可能性があります。予約時に確認してください。",
+      "disposalGuide": "粗大ごみの可能性があります。予約時に確認してください。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。",
+        "30cmを超えるものや袋に入らないものは粗大ごみ受付センターで確認してください。"
+      ],
+      "isOversizedCandidate": true,
+      "isHazardous": false,
+      "requiresOfficialCheck": true,
+      "source": "manual-needs-review",
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/5/22406.html",
+      "confidence": 0.62,
+      "confidenceStatus": "needs_review",
+      "updatedAt": "2026-05-25"
+    },
+    {
+      "id": "item-201",
+      "names": [
+        "チャイルドシート"
+      ],
+      "displayName": "チャイルドシート",
+      "kana": "ちゃいるどしーと",
+      "aliases": [
+        "子ども用シート",
+        "育児用品"
+      ],
+      "categoryId": "bulky",
+      "keywords": [
+        "子ども用シート",
+        "育児用品"
+      ],
+      "notes": "粗大ごみの可能性があります。予約時に確認してください。",
+      "disposalGuide": "粗大ごみの可能性があります。予約時に確認してください。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。",
+        "30cmを超えるものや袋に入らないものは粗大ごみ受付センターで確認してください。"
+      ],
+      "isOversizedCandidate": true,
+      "isHazardous": false,
+      "requiresOfficialCheck": true,
+      "source": "manual-needs-review",
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/5/22406.html",
+      "confidence": 0.62,
+      "confidenceStatus": "needs_review",
+      "updatedAt": "2026-05-25"
+    },
+    {
+      "id": "item-202",
+      "names": [
+        "扇風機"
+      ],
+      "displayName": "扇風機",
+      "kana": "せんぷうき",
+      "aliases": [
+        "家電",
+        "季節家電"
+      ],
+      "categoryId": "bulky",
+      "keywords": [
+        "家電",
+        "季節家電"
+      ],
+      "notes": "大きさにより小型ごみまたは粗大ごみ。30cm超は予約確認してください。",
+      "disposalGuide": "大きさにより小型ごみまたは粗大ごみ。30cm超は予約確認してください。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。",
+        "30cmを超えるものや袋に入らないものは粗大ごみ受付センターで確認してください。"
+      ],
+      "isOversizedCandidate": true,
+      "isHazardous": false,
+      "requiresOfficialCheck": true,
+      "source": "manual-needs-review",
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/5/22406.html",
+      "confidence": 0.62,
+      "confidenceStatus": "needs_review",
+      "updatedAt": "2026-05-25"
+    },
+    {
+      "id": "item-203",
+      "names": [
+        "空気清浄機"
+      ],
+      "displayName": "空気清浄機",
+      "kana": "くうきせいじょうき",
+      "aliases": [
+        "家電",
+        "フィルター家電"
+      ],
+      "categoryId": "bulky",
+      "keywords": [
+        "家電",
+        "フィルター家電"
+      ],
+      "notes": "大きさにより小型ごみまたは粗大ごみ。電池内蔵品は確認してください。",
+      "disposalGuide": "大きさにより小型ごみまたは粗大ごみ。電池内蔵品は確認してください。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。",
+        "30cmを超えるものや袋に入らないものは粗大ごみ受付センターで確認してください。"
+      ],
+      "isOversizedCandidate": true,
+      "isHazardous": false,
+      "requiresOfficialCheck": true,
+      "source": "manual-needs-review",
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/5/22406.html",
+      "confidence": 0.62,
+      "confidenceStatus": "needs_review",
+      "updatedAt": "2026-05-25"
+    },
+    {
+      "id": "item-204",
+      "names": [
+        "布団乾燥機"
+      ],
+      "displayName": "布団乾燥機",
+      "kana": "ふとんかんそうき",
+      "aliases": [
+        "家電",
+        "乾燥機"
+      ],
+      "categoryId": "bulky",
+      "keywords": [
+        "家電",
+        "乾燥機"
+      ],
+      "notes": "大きさにより小型ごみまたは粗大ごみ。30cm超は予約確認してください。",
+      "disposalGuide": "大きさにより小型ごみまたは粗大ごみ。30cm超は予約確認してください。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。",
+        "30cmを超えるものや袋に入らないものは粗大ごみ受付センターで確認してください。"
+      ],
+      "isOversizedCandidate": true,
+      "isHazardous": false,
+      "requiresOfficialCheck": true,
+      "source": "manual-needs-review",
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/5/22406.html",
+      "confidence": 0.62,
+      "confidenceStatus": "needs_review",
+      "updatedAt": "2026-05-25"
+    },
+    {
+      "id": "item-205",
+      "names": [
+        "こたつ"
+      ],
+      "displayName": "こたつ",
+      "kana": "こたつ",
+      "aliases": [
+        "暖房家具",
+        "家具"
+      ],
+      "categoryId": "bulky",
+      "keywords": [
+        "暖房家具",
+        "家具"
+      ],
+      "notes": "粗大ごみ。電話予約と処理券を確認してください。",
+      "disposalGuide": "粗大ごみ。電話予約と処理券を確認してください。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。",
+        "30cmを超えるものや袋に入らないものは粗大ごみ受付センターで確認してください。"
+      ],
+      "isOversizedCandidate": true,
+      "isHazardous": false,
+      "requiresOfficialCheck": true,
+      "source": "manual-needs-review",
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/5/22406.html",
+      "confidence": 0.62,
+      "confidenceStatus": "needs_review",
+      "updatedAt": "2026-05-25"
+    },
+    {
+      "id": "item-206",
+      "names": [
+        "ラグ"
+      ],
+      "displayName": "ラグ",
+      "kana": "らぐ",
+      "aliases": [
+        "敷物",
+        "カーペット類"
+      ],
+      "categoryId": "bulky",
+      "keywords": [
+        "敷物",
+        "カーペット類"
+      ],
+      "notes": "大きい敷物は粗大ごみの可能性があります。",
+      "disposalGuide": "大きい敷物は粗大ごみの可能性があります。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。",
+        "30cmを超えるものや袋に入らないものは粗大ごみ受付センターで確認してください。"
+      ],
+      "isOversizedCandidate": true,
+      "isHazardous": false,
+      "requiresOfficialCheck": true,
+      "source": "manual-needs-review",
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/5/22406.html",
+      "confidence": 0.62,
+      "confidenceStatus": "needs_review",
+      "updatedAt": "2026-05-25"
+    },
+    {
+      "id": "item-207",
+      "names": [
+        "すのこ"
+      ],
+      "displayName": "すのこ",
+      "kana": "すのこ",
+      "aliases": [
+        "木製すのこ",
+        "寝具"
+      ],
+      "categoryId": "bulky",
+      "keywords": [
+        "木製すのこ",
+        "寝具"
+      ],
+      "notes": "大きさにより普通ごみまたは粗大ごみ。30cm超は確認してください。",
+      "disposalGuide": "大きさにより普通ごみまたは粗大ごみ。30cm超は確認してください。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。",
+        "30cmを超えるものや袋に入らないものは粗大ごみ受付センターで確認してください。"
+      ],
+      "isOversizedCandidate": true,
+      "isHazardous": false,
+      "requiresOfficialCheck": true,
+      "source": "manual-needs-review",
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/5/22406.html",
+      "confidence": 0.62,
+      "confidenceStatus": "needs_review",
+      "updatedAt": "2026-05-25"
+    },
+    {
+      "id": "item-208",
+      "names": [
+        "物干し台"
+      ],
+      "displayName": "物干し台",
+      "kana": "ものほしだい",
+      "aliases": [
+        "屋外用品",
+        "大型金物"
+      ],
+      "categoryId": "bulky",
+      "keywords": [
+        "屋外用品",
+        "大型金物"
+      ],
+      "notes": "粗大ごみの可能性が高い品目です。予約時に確認してください。",
+      "disposalGuide": "粗大ごみの可能性が高い品目です。予約時に確認してください。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。",
+        "30cmを超えるものや袋に入らないものは粗大ごみ受付センターで確認してください。"
+      ],
+      "isOversizedCandidate": true,
+      "isHazardous": false,
+      "requiresOfficialCheck": true,
+      "source": "manual-needs-review",
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/5/22406.html",
+      "confidence": 0.62,
+      "confidenceStatus": "needs_review",
+      "updatedAt": "2026-05-25"
+    },
+    {
+      "id": "item-209",
+      "names": [
+        "液晶テレビ"
+      ],
+      "displayName": "液晶テレビ",
+      "kana": "えきしょうてれび",
+      "aliases": [
+        "テレビ",
+        "家電リサイクル"
+      ],
+      "categoryId": "recycle_law",
+      "keywords": [
+        "テレビ",
+        "家電リサイクル"
+      ],
+      "notes": "家電リサイクル対象です。市の通常収集ではなく公式案内を確認してください。",
+      "disposalGuide": "家電リサイクル対象です。市の通常収集ではなく公式案内を確認してください。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。"
+      ],
+      "isOversizedCandidate": false,
+      "isHazardous": false,
+      "requiresOfficialCheck": true,
+      "source": "manual-needs-review",
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidence": 0.62,
+      "confidenceStatus": "needs_review",
+      "updatedAt": "2026-05-25"
+    },
+    {
+      "id": "item-210",
+      "names": [
+        "ブラウン管テレビ"
+      ],
+      "displayName": "ブラウン管テレビ",
+      "kana": "ぶらうんかんてれび",
+      "aliases": [
+        "テレビ",
+        "家電リサイクル"
+      ],
+      "categoryId": "recycle_law",
+      "keywords": [
+        "テレビ",
+        "家電リサイクル"
+      ],
+      "notes": "家電リサイクル対象です。市の通常収集ではなく公式案内を確認してください。",
+      "disposalGuide": "家電リサイクル対象です。市の通常収集ではなく公式案内を確認してください。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。"
+      ],
+      "isOversizedCandidate": false,
+      "isHazardous": false,
+      "requiresOfficialCheck": true,
+      "source": "manual-needs-review",
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidence": 0.62,
+      "confidenceStatus": "needs_review",
+      "updatedAt": "2026-05-25"
+    },
+    {
+      "id": "item-211",
+      "names": [
+        "衣類乾燥機"
+      ],
+      "displayName": "衣類乾燥機",
+      "kana": "いるいかんそうき",
+      "aliases": [
+        "乾燥機",
+        "家電リサイクル"
+      ],
+      "categoryId": "recycle_law",
+      "keywords": [
+        "乾燥機",
+        "家電リサイクル"
+      ],
+      "notes": "家電リサイクル対象の可能性があります。販売店や公式案内を確認してください。",
+      "disposalGuide": "家電リサイクル対象の可能性があります。販売店や公式案内を確認してください。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。"
+      ],
+      "isOversizedCandidate": false,
+      "isHazardous": false,
+      "requiresOfficialCheck": true,
+      "source": "manual-needs-review",
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidence": 0.62,
+      "confidenceStatus": "needs_review",
+      "updatedAt": "2026-05-25"
+    },
+    {
+      "id": "item-212",
+      "names": [
+        "冷凍ストッカー"
+      ],
+      "displayName": "冷凍ストッカー",
+      "kana": "れいとうすとっかー",
+      "aliases": [
+        "冷凍庫類",
+        "家電リサイクル"
+      ],
+      "categoryId": "recycle_law",
+      "keywords": [
+        "冷凍庫類",
+        "家電リサイクル"
+      ],
+      "notes": "冷凍庫類は家電リサイクル対象の可能性があります。公式案内を確認してください。",
+      "disposalGuide": "冷凍庫類は家電リサイクル対象の可能性があります。公式案内を確認してください。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。"
+      ],
+      "isOversizedCandidate": false,
+      "isHazardous": false,
+      "requiresOfficialCheck": true,
+      "source": "manual-needs-review",
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidence": 0.62,
+      "confidenceStatus": "needs_review",
+      "updatedAt": "2026-05-25"
+    },
+    {
+      "id": "item-213",
+      "names": [
+        "注射針"
+      ],
+      "displayName": "注射針",
+      "kana": "ちゅうしゃばり",
+      "aliases": [
+        "医療系廃棄物",
+        "針"
+      ],
+      "categoryId": "hazardous_note",
+      "keywords": [
+        "医療系廃棄物",
+        "針"
+      ],
+      "notes": "在宅医療などの針は通常ごみに混ぜず、医療機関や公式案内を確認してください。",
+      "disposalGuide": "在宅医療などの針は通常ごみに混ぜず、医療機関や公式案内を確認してください。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。",
+        "発火・破裂・飛散・けがに注意し、必要に応じてキケン表示をしてください。"
+      ],
+      "isOversizedCandidate": false,
+      "isHazardous": true,
+      "requiresOfficialCheck": true,
+      "source": "manual-needs-review",
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidence": 0.62,
+      "confidenceStatus": "needs_review",
+      "updatedAt": "2026-05-25"
+    },
+    {
+      "id": "item-214",
+      "names": [
+        "薬品"
+      ],
+      "displayName": "薬品",
+      "kana": "やくひん",
+      "aliases": [
+        "化学薬品",
+        "液体薬品"
+      ],
+      "categoryId": "hazardous_note",
+      "keywords": [
+        "化学薬品",
+        "液体薬品"
+      ],
+      "notes": "危険性があります。通常ごみに混ぜず公式情報を確認してください。",
+      "disposalGuide": "危険性があります。通常ごみに混ぜず公式情報を確認してください。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。",
+        "発火・破裂・飛散・けがに注意し、必要に応じてキケン表示をしてください。"
+      ],
+      "isOversizedCandidate": false,
+      "isHazardous": true,
+      "requiresOfficialCheck": true,
+      "source": "manual-needs-review",
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidence": 0.62,
+      "confidenceStatus": "needs_review",
+      "updatedAt": "2026-05-25"
+    },
+    {
+      "id": "item-215",
+      "names": [
+        "農薬"
+      ],
+      "displayName": "農薬",
+      "kana": "のうやく",
+      "aliases": [
+        "薬剤",
+        "園芸薬品"
+      ],
+      "categoryId": "hazardous_note",
+      "keywords": [
+        "薬剤",
+        "園芸薬品"
+      ],
+      "notes": "危険性があります。通常ごみに混ぜず公式情報を確認してください。",
+      "disposalGuide": "危険性があります。通常ごみに混ぜず公式情報を確認してください。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。",
+        "発火・破裂・飛散・けがに注意し、必要に応じてキケン表示をしてください。"
+      ],
+      "isOversizedCandidate": false,
+      "isHazardous": true,
+      "requiresOfficialCheck": true,
+      "source": "manual-needs-review",
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidence": 0.62,
+      "confidenceStatus": "needs_review",
+      "updatedAt": "2026-05-25"
+    },
+    {
+      "id": "item-216",
+      "names": [
+        "灯油"
+      ],
+      "displayName": "灯油",
+      "kana": "とうゆ",
+      "aliases": [
+        "燃料",
+        "石油"
+      ],
+      "categoryId": "hazardous_note",
+      "keywords": [
+        "燃料",
+        "石油"
+      ],
+      "notes": "引火の危険があります。通常ごみに混ぜず公式情報を確認してください。",
+      "disposalGuide": "引火の危険があります。通常ごみに混ぜず公式情報を確認してください。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。",
+        "発火・破裂・飛散・けがに注意し、必要に応じてキケン表示をしてください。"
+      ],
+      "isOversizedCandidate": false,
+      "isHazardous": true,
+      "requiresOfficialCheck": true,
+      "source": "manual-needs-review",
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidence": 0.62,
+      "confidenceStatus": "needs_review",
+      "updatedAt": "2026-05-25"
+    },
+    {
+      "id": "item-217",
+      "names": [
+        "ガソリン"
+      ],
+      "displayName": "ガソリン",
+      "kana": "がそりん",
+      "aliases": [
+        "燃料",
+        "危険物"
+      ],
+      "categoryId": "hazardous_note",
+      "keywords": [
+        "燃料",
+        "危険物"
+      ],
+      "notes": "引火の危険があります。通常ごみに混ぜず公式情報を確認してください。",
+      "disposalGuide": "引火の危険があります。通常ごみに混ぜず公式情報を確認してください。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。",
+        "発火・破裂・飛散・けがに注意し、必要に応じてキケン表示をしてください。"
+      ],
+      "isOversizedCandidate": false,
+      "isHazardous": true,
+      "requiresOfficialCheck": true,
+      "source": "manual-needs-review",
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidence": 0.62,
+      "confidenceStatus": "needs_review",
+      "updatedAt": "2026-05-25"
+    },
+    {
+      "id": "item-218",
+      "names": [
+        "消火器"
+      ],
+      "displayName": "消火器",
+      "kana": "しょうかき",
+      "aliases": [
+        "圧力容器",
+        "防災用品"
+      ],
+      "categoryId": "hazardous_note",
+      "keywords": [
+        "圧力容器",
+        "防災用品"
+      ],
+      "notes": "市の通常収集では扱えない可能性があります。専門回収や公式情報を確認してください。",
+      "disposalGuide": "市の通常収集では扱えない可能性があります。専門回収や公式情報を確認してください。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。",
+        "発火・破裂・飛散・けがに注意し、必要に応じてキケン表示をしてください。"
+      ],
+      "isOversizedCandidate": false,
+      "isHazardous": true,
+      "requiresOfficialCheck": true,
+      "source": "manual-needs-review",
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidence": 0.62,
+      "confidenceStatus": "needs_review",
+      "updatedAt": "2026-05-25"
+    },
+    {
+      "id": "item-219",
+      "names": [
+        "バイク"
+      ],
+      "displayName": "バイク",
+      "kana": "ばいく",
+      "aliases": [
+        "二輪車",
+        "原付"
+      ],
+      "categoryId": "recycle_law",
+      "keywords": [
+        "二輪車",
+        "原付"
+      ],
+      "notes": "市の通常収集では扱えない可能性があります。二輪車リサイクルなど公式情報を確認してください。",
+      "disposalGuide": "市の通常収集では扱えない可能性があります。二輪車リサイクルなど公式情報を確認してください。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。"
+      ],
+      "isOversizedCandidate": false,
+      "isHazardous": false,
+      "requiresOfficialCheck": true,
+      "source": "manual-needs-review",
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidence": 0.62,
+      "confidenceStatus": "needs_review",
+      "updatedAt": "2026-05-25"
+    },
+    {
+      "id": "item-220",
+      "names": [
+        "タイヤ"
+      ],
+      "displayName": "タイヤ",
+      "kana": "たいや",
+      "aliases": [
+        "車用品",
+        "ゴムタイヤ"
+      ],
+      "categoryId": "recycle_law",
+      "keywords": [
+        "車用品",
+        "ゴムタイヤ"
+      ],
+      "notes": "市の通常収集では扱えない可能性があります。販売店や公式情報を確認してください。",
+      "disposalGuide": "市の通常収集では扱えない可能性があります。販売店や公式情報を確認してください。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。"
+      ],
+      "isOversizedCandidate": false,
+      "isHazardous": false,
+      "requiresOfficialCheck": true,
+      "source": "manual-needs-review",
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidence": 0.62,
+      "confidenceStatus": "needs_review",
+      "updatedAt": "2026-05-25"
+    },
+    {
+      "id": "item-221",
+      "names": [
+        "ピアノ"
+      ],
+      "displayName": "ピアノ",
+      "kana": "ぴあの",
+      "aliases": [
+        "大型楽器",
+        "楽器"
+      ],
+      "categoryId": "bulky",
+      "keywords": [
+        "大型楽器",
+        "楽器"
+      ],
+      "notes": "通常の粗大ごみで扱えない可能性があります。受付センターで確認してください。",
+      "disposalGuide": "通常の粗大ごみで扱えない可能性があります。受付センターで確認してください。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。",
+        "30cmを超えるものや袋に入らないものは粗大ごみ受付センターで確認してください。"
+      ],
+      "isOversizedCandidate": true,
+      "isHazardous": false,
+      "requiresOfficialCheck": true,
+      "source": "manual-needs-review",
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/5/22406.html",
+      "confidence": 0.62,
+      "confidenceStatus": "needs_review",
+      "updatedAt": "2026-05-25"
+    },
+    {
+      "id": "item-222",
+      "names": [
+        "金庫"
+      ],
+      "displayName": "金庫",
+      "kana": "きんこ",
+      "aliases": [
+        "耐火金庫",
+        "大型金物"
+      ],
+      "categoryId": "bulky",
+      "keywords": [
+        "耐火金庫",
+        "大型金物"
+      ],
+      "notes": "重量や構造により通常の粗大ごみで扱えない可能性があります。受付センターで確認してください。",
+      "disposalGuide": "重量や構造により通常の粗大ごみで扱えない可能性があります。受付センターで確認してください。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。",
+        "30cmを超えるものや袋に入らないものは粗大ごみ受付センターで確認してください。"
+      ],
+      "isOversizedCandidate": true,
+      "isHazardous": false,
+      "requiresOfficialCheck": true,
+      "source": "manual-needs-review",
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/5/22406.html",
+      "confidence": 0.62,
+      "confidenceStatus": "needs_review",
+      "updatedAt": "2026-05-25"
+    },
+    {
+      "id": "item-223",
+      "names": [
+        "塗料スプレー缶"
+      ],
+      "displayName": "塗料スプレー缶",
+      "kana": "とりょうすぷれーかん",
+      "aliases": [
+        "スプレー缶",
+        "ペンキスプレー"
+      ],
+      "categoryId": "bottles_cans",
+      "keywords": [
+        "スプレー缶",
+        "ペンキスプレー"
+      ],
+      "notes": "使い切った後、袋を分けてキケン表示してください。中身が残る場合は公式確認してください。",
+      "disposalGuide": "使い切った後、袋を分けてキケン表示してください。中身が残る場合は公式確認してください。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。",
+        "発火・破裂・飛散・けがに注意し、必要に応じてキケン表示をしてください。"
+      ],
+      "isOversizedCandidate": false,
+      "isHazardous": true,
+      "requiresOfficialCheck": true,
+      "source": "manual-needs-review",
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidence": 0.62,
+      "confidenceStatus": "needs_review",
+      "updatedAt": "2026-05-25"
+    },
+    {
+      "id": "item-224",
+      "names": [
+        "使い捨てカイロ"
+      ],
+      "displayName": "使い捨てカイロ",
+      "kana": "つかいすてかいろ",
+      "aliases": [
+        "カイロ",
+        "発熱剤"
+      ],
+      "categoryId": "burnable",
+      "keywords": [
+        "カイロ",
+        "発熱剤"
+      ],
+      "notes": "普通ごみの目安ですが、未使用や大量の場合は公式確認してください。",
+      "disposalGuide": "普通ごみの目安ですが、未使用や大量の場合は公式確認してください。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。"
+      ],
+      "isOversizedCandidate": false,
+      "isHazardous": false,
+      "requiresOfficialCheck": true,
+      "source": "manual-needs-review",
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidence": 0.62,
+      "confidenceStatus": "needs_review",
+      "updatedAt": "2026-05-25"
+    },
+    {
+      "id": "item-225",
+      "names": [
+        "ペットシーツ"
+      ],
+      "displayName": "ペットシーツ",
+      "kana": "ぺっとしーつ",
+      "aliases": [
+        "犬用シーツ",
+        "トイレシーツ"
+      ],
+      "categoryId": "burnable",
+      "keywords": [
+        "犬用シーツ",
+        "トイレシーツ"
+      ],
+      "notes": "汚物を取り除き、衛生的に包んで普通ごみの目安です。",
+      "disposalGuide": "汚物を取り除き、衛生的に包んで普通ごみの目安です。",
+      "warnings": [
+        "門真市公式情報で最終確認してください。"
+      ],
+      "isOversizedCandidate": false,
+      "isHazardous": false,
+      "requiresOfficialCheck": true,
+      "source": "manual-needs-review",
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/6/4394.html",
+      "confidence": 0.62,
+      "confidenceStatus": "needs_review",
+      "updatedAt": "2026-05-25"
     }
   ],
   "notices": [
@@ -2507,7 +7795,10 @@
       "monthHints": [
         12,
         1
-      ]
+      ],
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/35805.html",
+      "confirmedAt": "2026-05-25",
+      "confidence": "needs_review"
     },
     {
       "id": "pdf-review-required",
@@ -2516,7 +7807,40 @@
       "monthHints": [
         12,
         1
-      ]
+      ],
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/material/files/group/20/A.pdf",
+      "confirmedAt": "2026-05-25",
+      "confidence": "needs_review"
+    }
+  ],
+  "exceptionRules": [
+    {
+      "id": "kadoma-2026-12-2027-01-review",
+      "areaIds": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F"
+      ],
+      "dateFrom": "2026-12-01",
+      "dateTo": "2027-01-31",
+      "type": "needs_review",
+      "affectedCategories": [
+        "burnable",
+        "plastic_container",
+        "bottles_cans",
+        "paper_cloth",
+        "small_items",
+        "pet_bottle",
+        "bulky"
+      ],
+      "title": "2026年度 年末年始の収集変更確認",
+      "description": "令和8(2026)年度A地区PDFで、12月・1月は収集日を変更する場合があり広報かどまや市ホームページ確認が必要であることを確認。2026年12月から2027年1月の確定停止日・振替日は未確認のため、確定例外としては登録しない。",
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/material/files/group/20/A.pdf",
+      "confirmedAt": "2026-05-25",
+      "confidence": "needs_review"
     }
   ]
 }

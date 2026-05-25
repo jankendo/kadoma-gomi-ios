@@ -33,6 +33,7 @@ SCHEMA_FILES = {
     "items": SCHEMA_DIR / "garbage_item.schema.json",
     "areas": SCHEMA_DIR / "collection_area.schema.json",
     "schedules": SCHEMA_DIR / "collection_schedule.schema.json",
+    "special": SCHEMA_DIR / "special_rules.schema.json",
     "master": SCHEMA_DIR / "master.schema.json",
 }
 
@@ -47,6 +48,8 @@ EXPECTED_SCHEDULE_CATEGORIES = {
     "bulky",
 }
 DATE_FORMAT = "%Y-%m-%d"
+MIN_ITEM_COUNT = 200
+CONFIDENCE_STATUSES = {"confirmed", "needs_review", "estimated"}
 
 
 def load_json(path: Path) -> Any:
@@ -75,6 +78,7 @@ def normalize_text(value: str) -> str:
     text = unicodedata.normalize("NFKC", value).lower()
     text = re.sub(r"\s+", "", text)
     text = text.replace("ごみ", "ゴミ")
+    text = text.replace("ー", "").replace("-", "").replace("・", "").replace("/", "")
     return "".join(chr(ord(ch) + 0x60) if "ぁ" <= ch <= "ゖ" else ch for ch in text)
 
 
@@ -142,24 +146,9 @@ def validate_against_schema(value: Any, schema: dict[str, Any], path: str = "$")
 def validate_schema_files(data: dict[str, Any]) -> tuple[list[str], list[str]]:
     errors: list[str] = []
     warnings: list[str] = []
-    for key in ("categories", "items", "areas", "schedules"):
+    for key in ("categories", "items", "areas", "schedules", "special"):
         schema = load_json(SCHEMA_FILES[key])
         errors.extend(validate_against_schema(data[key], schema, f"split.{key}"))
-
-    if not isinstance(data["special"], dict):
-        errors.append("split.special: objectである必要があります")
-    else:
-        if "notices" not in data["special"] or "exceptions" not in data["special"]:
-            errors.append("split.special: notices と exceptions が必要です")
-        for notice in data["special"].get("notices", []):
-            if not notice.get("id") or not notice.get("title") or not notice.get("body"):
-                errors.append("split.special.notices: id/title/body が必要です")
-        for exception in data["special"].get("exceptions", []):
-            for key in ("date", "areaId", "categoryId", "action", "reason"):
-                if key not in exception:
-                    errors.append(f"split.special.exceptions: {key} が必要です")
-            if exception.get("action") not in {"add", "cancel", "note"}:
-                errors.append(f"split.special.exceptions: action が不正です: {exception.get('action')}")
     return errors, warnings
 
 
@@ -182,6 +171,9 @@ def validate_relationships(data: dict[str, Any]) -> tuple[list[str], list[str]]:
     item_ids = [item["id"] for item in items]
     schedule_ids = [schedule["id"] for schedule in schedules]
 
+    if len(items) < MIN_ITEM_COUNT:
+        errors.append(f"検索辞書は最低{MIN_ITEM_COUNT}件必要です。現在={len(items)}")
+
     if duplicates := _duplicates([category["id"] for category in categories]):
         errors.append(f"カテゴリIDが重複しています: {', '.join(duplicates)}")
     if duplicates := _duplicates(item_ids):
@@ -195,17 +187,39 @@ def validate_relationships(data: dict[str, Any]) -> tuple[list[str], list[str]]:
         errors.append(f"A-F全地区が必要です。現在={sorted(area_ids)}")
 
     item_names: dict[str, list[str]] = defaultdict(list)
+    alias_index: dict[str, list[str]] = defaultdict(list)
     for item in items:
         if item["categoryId"] not in category_ids:
             errors.append(f"{item['id']}: 存在しないカテゴリを参照しています: {item['categoryId']}")
         for name in item["names"]:
             item_names[normalize_text(name)].append(item["id"])
+        for alias in item.get("aliases", []):
+            alias_index[normalize_text(alias)].append(item["id"])
         if item["confidence"] < 0.6:
             warnings.append(f"{item['id']}: confidence が低いためUIで公式確認推奨表示が必要です")
+        if item.get("confidenceStatus") not in CONFIDENCE_STATUSES:
+            errors.append(f"{item['id']}: confidenceStatus が不正です: {item.get('confidenceStatus')}")
+        if item.get("confidenceStatus") != "confirmed" and not item.get("requiresOfficialCheck", False):
+            errors.append(f"{item['id']}: confirmed以外は requiresOfficialCheck=true が必要です")
+        if item.get("confidenceStatus") == "estimated":
+            warnings.append(f"{item['id']}: estimated は確定表示せず公式確認推奨表示が必要です")
+        if not str(item.get("sourceUrl", "")).startswith("https://www.city.kadoma.osaka.jp/"):
+            warnings.append(f"{item['id']}: sourceUrl は門真市公式URLを優先してください: {item.get('sourceUrl')}")
+        parse_date(item.get("updatedAt", ""), f"{item['id']}.updatedAt", errors)
 
     for normalized_name, ids in item_names.items():
         if len(set(ids)) > 1:
             errors.append(f"品目名が重複しています: {normalized_name} -> {', '.join(sorted(set(ids)))}")
+
+    alias_duplicates = [
+        (normalized_alias, sorted(set(ids)))
+        for normalized_alias, ids in alias_index.items()
+        if normalized_alias and len(set(ids)) > 1
+    ]
+    for normalized_alias, ids in alias_duplicates[:25]:
+        warnings.append(f"aliasが複数品目に使われています: {normalized_alias} -> {', '.join(ids)}")
+    if len(alias_duplicates) > 25:
+        warnings.append(f"alias重複警告は先頭25件のみ表示しました。残り={len(alias_duplicates) - 25}件")
 
     item_category_ids = {item["categoryId"] for item in items}
     empty_categories = sorted(category_ids - item_category_ids)
@@ -267,6 +281,30 @@ def validate_relationships(data: dict[str, Any]) -> tuple[list[str], list[str]]:
             errors.append(f"例外日が存在しない地区を参照しています: {exception['areaId']}")
         if exception["categoryId"] not in category_ids:
             errors.append(f"例外日が存在しないカテゴリを参照しています: {exception['categoryId']}")
+        if exception.get("confidence") != "confirmed":
+            errors.append(f"確定例外日は confidence=confirmed のみ登録できます: {exception}")
+        if not str(exception.get("sourceUrl", "")).startswith("https://www.city.kadoma.osaka.jp/"):
+            errors.append(f"例外日の sourceUrl は門真市公式URLが必要です: {exception}")
+        parse_date(exception.get("confirmedAt", ""), f"exception.{exception.get('id', exception.get('date'))}.confirmedAt", errors)
+
+    for rule in special.get("exceptionRules", []):
+        date_from = parse_date(rule["dateFrom"], f"{rule['id']}.dateFrom", errors)
+        date_to = parse_date(rule["dateTo"], f"{rule['id']}.dateTo", errors)
+        parse_date(rule["confirmedAt"], f"{rule['id']}.confirmedAt", errors)
+        if date_from and date_to and date_from > date_to:
+            errors.append(f"{rule['id']}: dateFrom が dateTo より後です")
+        for area_id in rule["areaIds"]:
+            if area_id not in area_ids:
+                errors.append(f"{rule['id']}: 存在しない地区を参照しています: {area_id}")
+        for category_id in rule["affectedCategories"]:
+            if category_id not in category_ids:
+                errors.append(f"{rule['id']}: 存在しないカテゴリを参照しています: {category_id}")
+        if rule["confidence"] not in CONFIDENCE_STATUSES:
+            errors.append(f"{rule['id']}: confidence が不正です: {rule['confidence']}")
+        if rule["confidence"] != "confirmed":
+            warnings.append(f"{rule['id']}: 未確定の例外レビュー情報です。収集日を断定表示しないでください")
+        if not str(rule.get("sourceUrl", "")).startswith("https://www.city.kadoma.osaka.jp/"):
+            errors.append(f"{rule['id']}: sourceUrl は門真市公式URLが必要です")
 
     return errors, warnings
 

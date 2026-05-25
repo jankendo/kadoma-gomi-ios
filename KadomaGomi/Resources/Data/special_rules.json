@@ -7,7 +7,10 @@
       "monthHints": [
         12,
         1
-      ]
+      ],
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/kurashi/gomi/9/35805.html",
+      "confirmedAt": "2026-05-25",
+      "confidence": "needs_review"
     },
     {
       "id": "pdf-review-required",
@@ -16,23 +19,41 @@
       "monthHints": [
         12,
         1
-      ]
+      ],
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/material/files/group/20/A.pdf",
+      "confirmedAt": "2026-05-25",
+      "confidence": "needs_review"
     }
   ],
-  "exceptions": [
+  "exceptions": [],
+  "exceptionRules": [
     {
-      "date": "2026-12-28",
-      "areaId": "A",
-      "categoryId": "plastic_container",
-      "action": "note",
-      "reason": "年末年始は公式ページ・広報で最新の変更有無を確認してください。"
-    },
-    {
-      "date": "2027-01-04",
-      "areaId": "A",
-      "categoryId": "plastic_container",
-      "action": "note",
-      "reason": "年末年始は公式ページ・広報で最新の変更有無を確認してください。"
+      "id": "kadoma-2026-12-2027-01-review",
+      "areaIds": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F"
+      ],
+      "dateFrom": "2026-12-01",
+      "dateTo": "2027-01-31",
+      "type": "needs_review",
+      "affectedCategories": [
+        "burnable",
+        "plastic_container",
+        "bottles_cans",
+        "paper_cloth",
+        "small_items",
+        "pet_bottle",
+        "bulky"
+      ],
+      "title": "2026年度 年末年始の収集変更確認",
+      "description": "令和8(2026)年度A地区PDFで、12月・1月は収集日を変更する場合があり広報かどまや市ホームページ確認が必要であることを確認。2026年12月から2027年1月の確定停止日・振替日は未確認のため、確定例外としては登録しない。",
+      "sourceUrl": "https://www.city.kadoma.osaka.jp/material/files/group/20/A.pdf",
+      "confirmedAt": "2026-05-25",
+      "confidence": "needs_review"
     }
   ]
 }

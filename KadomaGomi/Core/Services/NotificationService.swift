@@ -37,8 +37,8 @@ struct NotificationService {
                     eventDate: event.date,
                     fireDate: previousDay(for: event.date, hour: settings.previousNightHour),
                     categoryId: event.categoryId,
-                    title: "明日は「\(category.name)」の日です",
-                    body: notificationBody(for: category, prefix: "朝9時までに出してください。"),
+                    title: "明日は「\(category.name)」の収集予定です",
+                    body: notificationBody(for: category, event: event, prefix: "朝9時までに出してください。"),
                     timing: .previousNight
                 ))
             }
@@ -49,8 +49,8 @@ struct NotificationService {
                     eventDate: event.date,
                     fireDate: sameDay(for: event.date, hour: settings.morningHour, minute: settings.morningMinute),
                     categoryId: event.categoryId,
-                    title: "今日は「\(category.name)」の日です",
-                    body: notificationBody(for: category, prefix: "朝9時までです。"),
+                    title: "今日の朝は「\(category.name)」の収集予定です",
+                    body: notificationBody(for: category, event: event, prefix: "朝9時までです。"),
                     timing: .sameMorning
                 ))
             }
@@ -86,10 +86,13 @@ struct NotificationService {
         Calendar.kadoma.date(bySettingHour: hour, minute: minute, second: 0, of: date) ?? date
     }
 
-    private func notificationBody(for category: WasteCategory, prefix: String) -> String {
-        if let firstNote = category.notes.first {
-            return "\(prefix)\n\(firstNote)"
+    private func notificationBody(for category: WasteCategory, event: CollectionEvent, prefix: String) -> String {
+        if let note = event.note {
+            return "\(prefix)\n\(note)\n地区設定に基づく通知です。変更がある場合は公式情報も確認してください。"
         }
-        return prefix
+        if let firstNote = category.notes.first {
+            return "\(prefix)\n\(firstNote)\n地区設定に基づく通知です。変更がある場合は公式情報も確認してください。"
+        }
+        return "\(prefix)\n地区設定に基づく通知です。変更がある場合は公式情報も確認してください。"
     }
 }

@@ -8,6 +8,10 @@ struct CollectionCalendarView: View {
     private let columns = Array(repeating: GridItem(.flexible(), spacing: AppSpacing.sm), count: 7)
     private let weekdays = ["月", "火", "水", "木", "金", "土", "日"]
 
+    private var displayedReviewSummary: AreaCollectionSummary {
+        store.collectionSummary(referenceDate: displayedMonth)
+    }
+
     var body: some View {
         NavigationStack {
             AppScreen {
@@ -20,11 +24,19 @@ struct CollectionCalendarView: View {
                     upcomingList
                 }
 
-                AppStateView(
-                    kind: .empty,
-                    title: "例外日はマスタを優先します",
-                    message: "12月・1月や災害時は通常曜日から変わる場合があります。公式ページとアプリ内マスタ更新を確認してください。"
-                )
+                if displayedReviewSummary.today.needsOfficialReview {
+                    AppStateView(
+                        kind: .empty,
+                        title: "12月・1月は公式確認対象です",
+                        message: displayedReviewSummary.today.reviewRules.first?.description ?? "年末年始は通常曜日から変わる場合があります。公式ページとアプリ内マスタ更新を確認してください。"
+                    )
+                } else {
+                    AppStateView(
+                        kind: .empty,
+                        title: "例外日はマスタを優先します",
+                        message: "災害時や臨時変更は通常曜日から変わる場合があります。公式ページとアプリ内マスタ更新を確認してください。"
+                    )
+                }
             }
             .navigationTitle("カレンダー")
         }

@@ -123,3 +123,16 @@ SHA-256:
 ## 9. Phase 2追記
 
 第2フェーズでは `Scripts/run_quality_checks.py` を追加し、schema validation、生成物一致、manifest SHA、A-F地区カレンダースモーク、検索スモークをローカル/CIで確認できるようにした。Swiftのローカルビルドは引き続きWindowsでは不可のため、GitHub ActionsのmacOS runnerを正とする。
+
+## 10. Phase 3追記
+
+Phase 3 では以下を追加検証対象にした。
+
+- 225品目の辞書検証。
+- special_rules の `confidence` / `sourceUrl` / `confirmedAt` 検証。
+- master 生成後の `exceptionRules` 検証。
+- manifest SHA 一致。
+- 検索語追加分のスモークテスト。
+- 通知プレビュー設計スモークテスト。
+
+詳細な実行結果は `docs/phase3_verification.md` に記録する。

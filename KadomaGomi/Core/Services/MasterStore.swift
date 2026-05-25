@@ -29,25 +29,19 @@ final class MasterStore: ObservableObject {
     }
 
     func events(on date: Date) -> [CollectionEvent] {
-        let start = Calendar.kadoma.startOfDay(for: date)
-        let end = Calendar.kadoma.date(byAdding: .day, value: 1, to: start) ?? start
-        return calendarService
-            .generateEvents(master: master, areaId: settings.areaId, from: start, to: end)
-            .sorted { eventSortKey($0) < eventSortKey($1) }
+        summaryProvider().events(on: date)
     }
 
     func events(from start: Date, days: Int) -> [CollectionEvent] {
-        let end = Calendar.kadoma.date(byAdding: .day, value: days, to: start) ?? start
-        return calendarService
-            .generateEvents(master: master, areaId: settings.areaId, from: start, to: end)
-            .sorted {
-                if $0.date == $1.date { return eventSortKey($0) < eventSortKey($1) }
-                return $0.date < $1.date
-            }
+        summaryProvider().events(from: start, days: days)
     }
 
     func nextEvents(limit: Int = 5) -> [CollectionEvent] {
         Array(events(from: .now, days: 45).filter { $0.date >= Calendar.kadoma.startOfDay(for: .now) }.prefix(limit))
+    }
+
+    func collectionSummary(referenceDate: Date = .now, nextLimit: Int = 7) -> AreaCollectionSummary {
+        summaryProvider().areaSummary(referenceDate: referenceDate, nextLimit: nextLimit)
     }
 
     func searchItems(query: String) -> [WasteItem] {
@@ -151,17 +145,8 @@ final class MasterStore: ObservableObject {
         )
     }
 
-    private func eventSortKey(_ event: CollectionEvent) -> String {
-        let order = [
-            "burnable": "00",
-            "plastic_container": "10",
-            "bottles_cans": "20",
-            "paper_cloth": "30",
-            "small_items": "40",
-            "pet_bottle": "50",
-            "bulky": "60"
-        ]
-        return order[event.categoryId, default: "99"] + event.categoryId
+    private func summaryProvider() -> GarbageSummaryProvider {
+        GarbageSummaryProvider(master: master, settings: settings, calendarService: calendarService)
     }
 
     private func cacheMaster(_ master: MunicipalityMaster) {

@@ -17,6 +17,7 @@
 		B00000000000000000000008 /* MasterSyncService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00000000000000000000008 /* MasterSyncService.swift */; };
 		B00000000000000000000009 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00000000000000000000009 /* NotificationService.swift */; };
 		B00000000000000000000010 /* WasteSearchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00000000000000000000010 /* WasteSearchService.swift */; };
+		B00000000000000000000035 /* GarbageSummaryProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00000000000000000000037 /* GarbageSummaryProvider.swift */; };
 		B00000000000000000000011 /* Date+Kadoma.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00000000000000000000011 /* Date+Kadoma.swift */; };
 		B00000000000000000000012 /* Color+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00000000000000000000012 /* Color+Hex.swift */; };
 		B00000000000000000000013 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00000000000000000000013 /* HomeView.swift */; };
@@ -54,6 +55,7 @@
 		F00000000000000000000008 /* MasterSyncService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterSyncService.swift; sourceTree = "<group>"; };
 		F00000000000000000000009 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		F00000000000000000000010 /* WasteSearchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WasteSearchService.swift; sourceTree = "<group>"; };
+		F00000000000000000000037 /* GarbageSummaryProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GarbageSummaryProvider.swift; sourceTree = "<group>"; };
 		F00000000000000000000011 /* Date+Kadoma.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Kadoma.swift"; sourceTree = "<group>"; };
 		F00000000000000000000012 /* Color+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Hex.swift"; sourceTree = "<group>"; };
 		F00000000000000000000013 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -183,6 +185,7 @@
 				F00000000000000000000008 /* MasterSyncService.swift */,
 				F00000000000000000000009 /* NotificationService.swift */,
 				F00000000000000000000010 /* WasteSearchService.swift */,
+				F00000000000000000000037 /* GarbageSummaryProvider.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -373,6 +376,7 @@
 				B00000000000000000000008 /* MasterSyncService.swift in Sources */,
 				B00000000000000000000009 /* NotificationService.swift in Sources */,
 				B00000000000000000000010 /* WasteSearchService.swift in Sources */,
+				B00000000000000000000035 /* GarbageSummaryProvider.swift in Sources */,
 				B00000000000000000000011 /* Date+Kadoma.swift in Sources */,
 				B00000000000000000000012 /* Color+Hex.swift in Sources */,
 				B00000000000000000000013 /* HomeView.swift in Sources */,

@@ -30,16 +30,39 @@ struct WasteSearchService {
     private func score(item: WasteItem, query: String) -> Int {
         var totalScore = 0
         let variants = queryVariants(for: query)
+        totalScore += scoreText(text: item.primaryName, variants: variants, exact: 120, contains: 70, reverseContains: 35)
         for name in item.names {
             totalScore += scoreText(text: name, variants: variants, exact: 100, contains: 60, reverseContains: 30)
         }
-        for keyword in item.keywords {
+        for keyword in item.searchAliases {
             totalScore += scoreText(text: keyword, variants: variants, exact: 48, contains: 26, reverseContains: 12)
+        }
+        if let guide = item.disposalGuide {
+            totalScore += scoreText(text: guide, variants: variants, exact: 0, contains: 10, reverseContains: 0)
+        }
+        for warning in item.warnings ?? [] {
+            totalScore += scoreText(text: warning, variants: variants, exact: 0, contains: 8, reverseContains: 0)
         }
         if let category = categories.first(where: { $0.id == item.categoryId }) {
             totalScore += scoreText(text: category.name, variants: variants, exact: 70, contains: 45, reverseContains: 18)
             totalScore += scoreText(text: category.shortName, variants: variants, exact: 80, contains: 40, reverseContains: 18)
             totalScore += scoreText(text: category.disposalRule, variants: variants, exact: 0, contains: 6, reverseContains: 0)
+        }
+        if query == normalize("プラ") || query == normalize("プラスチック") {
+            if item.categoryId == "plastic_container" {
+                totalScore += 140
+            }
+            if item.categoryId == "burnable" {
+                totalScore -= 35
+            }
+        }
+        if query.contains(normalize("リチウム")) || query.contains(normalize("リチュウム")) || query.contains("liion") {
+            if item.categoryId == "hazardous_note" {
+                totalScore += 180
+            }
+            if item.primaryName == "電池" {
+                totalScore -= 60
+            }
         }
         if variants.contains(where: { normalize(item.notes).contains($0) }) {
             totalScore += 8
@@ -78,7 +101,17 @@ struct WasteSearchService {
             "カン": ["缶"],
             "缶": ["カン"],
             "ビン": ["びん", "瓶"],
-            "びん": ["ビン", "瓶"]
+            "びん": ["ビン", "瓶"],
+            "リチウム": ["リチウムイオン電池", "リチュウム", "リチューム"],
+            "リチュウム": ["リチウム", "リチウムイオン電池"],
+            "モバイル": ["モバイルバッテリー", "バッテリー"],
+            "バッテリー": ["モバイルバッテリー", "充電式電池", "リチウムイオン電池"],
+            "スプレー": ["スプレー缶", "ヘアスプレー缶", "塗料スプレー缶"],
+            "ボンベ": ["カセットボンベ", "簡易ガスボンベ", "卓上コンロ用ボンベ"],
+            "古着": ["衣類", "Tシャツ", "セーター", "ジーンズ"],
+            "本": ["雑誌", "教科書", "書籍"],
+            "粗大": ["粗大ごみ", "大型", "30cm超"],
+            "大型": ["粗大ごみ", "30cm超"]
         ]
 
         var variants: Set<String> = [normalized]
@@ -96,5 +129,9 @@ struct WasteSearchService {
             .replacingOccurrences(of: " ", with: "")
             .replacingOccurrences(of: "　", with: "")
             .replacingOccurrences(of: "ごみ", with: "ゴミ")
+            .replacingOccurrences(of: "ー", with: "")
+            .replacingOccurrences(of: "-", with: "")
+            .replacingOccurrences(of: "・", with: "")
+            .replacingOccurrences(of: "/", with: "")
     }
 }

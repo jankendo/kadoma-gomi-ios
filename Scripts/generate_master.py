@@ -23,7 +23,7 @@ from validate_data import (
 )
 
 
-MASTER_VERSION = "2026.04.01-af.2"
+MASTER_VERSION = "2026.04.01-af.3"
 SOURCE_UPDATED_AT = "2026-03-30"
 MASTER_FILE_NAME = "kadoma_27223_2026_master.json"
 DIFF_PATH = ROOT / "build" / "master_diff.txt"
@@ -123,6 +123,7 @@ def build_master(generated_at: str) -> dict[str, Any]:
         "categories": data["categories"],
         "itemDictionary": data["items"],
         "notices": data["special"].get("notices", []),
+        "exceptionRules": data["special"].get("exceptionRules", []),
     }
 
 
@@ -136,7 +137,7 @@ def build_manifest(master: dict[str, Any], master_text: str) -> dict[str, Any]:
         "sourceUpdatedAt": master["sourceUpdatedAt"],
         "generatedAt": master["generatedAt"],
         "requiresReview": True,
-        "message": "A-F地区の2026年度基本曜日を反映しました。年末年始は公式情報も確認してください。",
+        "message": "A-F地区の2026年度基本曜日と検索辞書拡張を反映しました。年末年始は公式情報も確認してください。",
     }
 
 

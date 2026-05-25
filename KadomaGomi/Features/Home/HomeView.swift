@@ -7,40 +7,32 @@ struct HomeView: View {
     let openCalendar: () -> Void
     let openSettings: () -> Void
 
-    private var todayEvents: [CollectionEvent] {
-        store.events(on: .now)
-    }
-
-    private var tomorrow: Date {
-        Calendar.kadoma.date(byAdding: .day, value: 1, to: .now) ?? .now
-    }
-
-    private var tomorrowEvents: [CollectionEvent] {
-        store.events(on: tomorrow)
+    private var summary: AreaCollectionSummary {
+        store.collectionSummary(nextLimit: 7)
     }
 
     var body: some View {
         NavigationStack {
             AppScreen {
                 HomeHeaderView(
-                    address: store.settings.addressText,
-                    areaName: store.currentArea?.name ?? "\(store.settings.areaId)地区",
-                    version: store.master.version,
-                    sourceUpdatedAt: store.master.sourceUpdatedAt
+                    address: summary.addressText,
+                    areaName: summary.areaName,
+                    version: summary.masterVersion,
+                    sourceUpdatedAt: summary.sourceUpdatedAt
                 )
 
                 CollectionEventCard(
                     title: "今日の収集予定",
-                    date: .now,
-                    events: todayEvents,
+                    date: summary.today.date,
+                    events: summary.today.events,
                     categoryProvider: store.category(for:),
                     prominence: .primary
                 )
 
                 CollectionEventCard(
                     title: "明日の収集予定",
-                    date: tomorrow,
-                    events: tomorrowEvents,
+                    date: summary.tomorrow.date,
+                    events: summary.tomorrow.events,
                     categoryProvider: store.category(for:),
                     prominence: .secondary
                 )
@@ -51,9 +43,9 @@ struct HomeView: View {
                     openSettings: openSettings
                 )
 
-                UpcomingEventsSection(events: store.nextEvents(limit: 7), categoryProvider: store.category(for:))
+                UpcomingEventsSection(events: summary.nextEvents, categoryProvider: store.category(for:))
 
-                YearEndNoticeSection()
+                YearEndNoticeSection(notices: summary.dataNotices)
 
                 DataStatusSection(store: store)
             }
@@ -172,6 +164,8 @@ private struct UpcomingEventsSection: View {
 }
 
 private struct YearEndNoticeSection: View {
+    let notices: [Notice]
+
     var body: some View {
         VStack(alignment: .leading, spacing: AppSpacing.md) {
             HStack(alignment: .top, spacing: AppSpacing.md) {
@@ -183,7 +177,7 @@ private struct YearEndNoticeSection: View {
                 VStack(alignment: .leading, spacing: AppSpacing.xs) {
                     Text("12月・1月は公式情報を確認")
                         .font(AppTypography.cardTitle)
-                    Text("年末年始は通常ルールから変更される可能性があります。アプリは例外マスタを優先しますが、最終確認は門真市公式ページで行ってください。")
+                    Text(noticeText)
                         .font(AppTypography.callout)
                         .foregroundStyle(AppColor.secondaryText)
                         .fixedSize(horizontal: false, vertical: true)
@@ -192,6 +186,10 @@ private struct YearEndNoticeSection: View {
         }
         .appCard()
         .accessibilityElement(children: .combine)
+    }
+
+    private var noticeText: String {
+        notices.first?.body ?? "年末年始は通常ルールから変更される可能性があります。アプリは例外マスタを優先しますが、最終確認は門真市公式ページで行ってください。"
     }
 }
 

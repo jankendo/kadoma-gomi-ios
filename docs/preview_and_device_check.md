@@ -39,3 +39,8 @@
 
 現在の作業環境はWindowsで、ローカルXcode Preview、Simulator、実機通知は実行できない。ビルドはGitHub Actions macOS runnerで確認する。
 
+## 6. Phase 3追記
+
+実機QA手順は `docs/release_qa_checklist.md` に分離した。確認対象は iPhone SE相当、393x852、430x932、可能ならiPad。表示モードはライト、ダーク、Dynamic Type最大、太字テキスト、コントラストを上げる、Reduce Motion。
+
+通知の実機手順は `docs/device_notification_test_plan.md` に記録した。Windows環境では実機通知到達、VoiceOver実走査、Xcode Previewは未確認のまま残す。

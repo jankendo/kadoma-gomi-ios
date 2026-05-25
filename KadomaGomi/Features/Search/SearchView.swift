@@ -136,7 +136,7 @@ private struct WasteItemResultCard: View {
             HStack(alignment: .top, spacing: AppSpacing.md) {
                 WasteSymbol(category: category, size: 44)
                 VStack(alignment: .leading, spacing: AppSpacing.xs) {
-                    Text(item.names.first ?? item.id)
+                    Text(item.primaryName)
                         .font(AppTypography.cardTitle)
                     if let category {
                         AppBadge(category.name, color: AppColor.category(category), systemImage: category.symbolName)
@@ -145,10 +145,21 @@ private struct WasteItemResultCard: View {
                 Spacer(minLength: 0)
             }
 
-            Text(item.notes)
+            Text(item.disposalGuide ?? item.notes)
                 .font(AppTypography.body)
                 .foregroundStyle(AppColor.text)
                 .fixedSize(horizontal: false, vertical: true)
+
+            if item.hazardFlag || item.oversizedFlag || item.needsOfficialCheck {
+                ViewThatFits(in: .horizontal) {
+                    HStack(spacing: AppSpacing.sm) {
+                        statusBadges
+                    }
+                    VStack(alignment: .leading, spacing: AppSpacing.xs) {
+                        statusBadges
+                    }
+                }
+            }
 
             if let category {
                 VStack(alignment: .leading, spacing: AppSpacing.xs) {
@@ -162,20 +173,37 @@ private struct WasteItemResultCard: View {
                 }
             }
 
-            if !item.names.dropFirst().isEmpty || !item.keywords.isEmpty {
-                Text("関連: \((Array(item.names.dropFirst()) + item.keywords).prefix(6).joined(separator: " / "))")
+            if let firstWarning = item.warnings?.first {
+                Text(firstWarning)
+                    .font(AppTypography.callout.weight(.semibold))
+                    .foregroundStyle(item.hazardFlag ? AppColor.error : AppColor.warning)
+                    .fixedSize(horizontal: false, vertical: true)
+            }
+
+            if !item.searchAliases.isEmpty {
+                Text("関連: \(item.searchAliases.prefix(6).joined(separator: " / "))")
                     .font(AppTypography.footnote)
                     .foregroundStyle(AppColor.tertiaryText)
                     .fixedSize(horizontal: false, vertical: true)
             }
 
-            if item.confidence < 0.7 {
-                AppBadge("公式確認推奨", color: AppColor.warning, systemImage: AppIcon.warning)
-            }
         }
         .appCard()
         .accessibilityElement(children: .combine)
         .accessibilityHint("品目のカテゴリ、出し方、注意を確認できます。")
+    }
+
+    @ViewBuilder
+    private var statusBadges: some View {
+        if item.hazardFlag {
+            AppBadge("注意品目", color: AppColor.error, systemImage: AppIcon.warning)
+        }
+        if item.oversizedFlag {
+            AppBadge("粗大候補", color: AppColor.warning, systemImage: AppIcon.bulky)
+        }
+        if item.needsOfficialCheck {
+            AppBadge("公式確認推奨", color: AppColor.warning, systemImage: AppIcon.official)
+        }
     }
 }
 

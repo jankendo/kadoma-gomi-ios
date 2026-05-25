@@ -125,3 +125,11 @@ Runtime互換:
 `sourceStatus` は分割JSON側で管理し、公式確認済み・レビュー対象・未確認を区別する。アプリのCodable互換を守るため、生成masterでは既存モデルが読むフィールドへ整形する。
 
 データ検証は `Scripts/validate_data.py` と `Scripts/run_quality_checks.py` で行う。manifest SHAは配信用masterの実バイト列から生成し、WindowsとCIで改行差分が出ないようLF固定で書き出す。
+
+## 10. Phase 3追記
+
+検索辞書を225件へ拡張し、品目ごとに `displayName`、`kana`、`aliases`、`disposalGuide`、`warnings`、`isOversizedCandidate`、`isHazardous`、`requiresOfficialCheck`、`sourceUrl`、`confidenceStatus`、`updatedAt` を追加した。
+
+`special_rules.json` は未確認の実例外日を確定登録しない設計に変更した。`exceptions` は confirmed のみ、`exceptionRules` は年末年始などレビュー対象期間を表す。2026年12月から2027年1月は `needs_review` として扱う。
+
+将来の Widget / App Shortcuts 用に `GarbageSummaryProvider`、`DayCollectionSummary`、`AreaCollectionSummary` を追加した。ホーム・通知・Widget・Siri 系機能が同じ読み取り専用サマリーを使えるようにするための入口である。

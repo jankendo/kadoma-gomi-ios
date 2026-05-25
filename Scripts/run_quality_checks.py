@@ -33,6 +33,14 @@ EXPECTED_SEARCH_CASES = {
     "びん": "bottles_cans",
     "ビン": "bottles_cans",
     "プラ": "plastic_container",
+    "リチウム": "hazardous_note",
+    "リチュウム電池": "hazardous_note",
+    "モバイルバッテリー": "hazardous_note",
+    "金属ハンガー": "small_items",
+    "衣類乾燥機": "recycle_law",
+    "ベビーカー": "bulky",
+    "Tシャツ": "paper_cloth",
+    "ヘアスプレー": "bottles_cans",
 }
 
 
@@ -114,6 +122,16 @@ def search_variants(text: str) -> set[str]:
         "缶": ["カン"],
         "ビン": ["びん", "瓶"],
         "びん": ["ビン", "瓶"],
+        "リチウム": ["リチウムイオン電池", "リチュウム", "リチューム"],
+        "リチュウム": ["リチウム", "リチウムイオン電池"],
+        "モバイル": ["モバイルバッテリー", "バッテリー"],
+        "バッテリー": ["モバイルバッテリー", "充電式電池", "リチウムイオン電池"],
+        "スプレー": ["スプレー缶", "ヘアスプレー缶", "塗料スプレー缶"],
+        "ボンベ": ["カセットボンベ", "簡易ガスボンベ", "卓上コンロ用ボンベ"],
+        "古着": ["衣類", "Tシャツ", "セーター", "ジーンズ"],
+        "本": ["雑誌", "教科書", "書籍"],
+        "粗大": ["粗大ごみ", "大型", "30cm超"],
+        "大型": ["粗大ごみ", "30cm超"],
     }
     for key, values in aliases.items():
         if normalize_text(key) == normalized:
@@ -124,9 +142,12 @@ def search_variants(text: str) -> set[str]:
 def search_score(item: dict, category: dict, query: str) -> int:
     variants = search_variants(query)
     score = 0
-    targets = [(name, 100, 60, 30) for name in item["names"]]
-    targets += [(keyword, 40, 24, 10) for keyword in item["keywords"]]
+    targets = [(item.get("displayName", item["names"][0]), 120, 70, 35)]
+    targets += [(name, 100, 60, 30) for name in item["names"]]
+    targets += [(keyword, 40, 24, 10) for keyword in set(item.get("aliases", []) + item["keywords"] + [item.get("kana", "")])]
     targets += [(category["name"], 70, 45, 18), (category["shortName"], 80, 40, 18)]
+    targets += [(item.get("disposalGuide", item["notes"]), 0, 10, 0)]
+    targets += [(warning, 0, 8, 0) for warning in item.get("warnings", [])]
     for text, exact, contains, reverse in targets:
         normalized = normalize_text(text)
         for variant in variants:
@@ -136,6 +157,16 @@ def search_score(item: dict, category: dict, query: str) -> int:
                 score += reverse
             elif variant in normalized:
                 score += contains
+    if query in {normalize_text("プラ"), normalize_text("プラスチック")}:
+        if item["categoryId"] == "plastic_container":
+            score += 140
+        if item["categoryId"] == "burnable":
+            score -= 35
+    if normalize_text("リチウム") in query or normalize_text("リチュウム") in query or "liion" in query:
+        if item["categoryId"] == "hazardous_note":
+            score += 180
+        if item.get("displayName") == "電池":
+            score -= 60
     if normalize_text(item["notes"]) in variants:
         score += 8
     return score
@@ -157,14 +188,57 @@ def run_search_tests(master: dict) -> None:
     print("OK: search smoke tests passed")
 
 
+def run_data_quality_tests(master: dict) -> None:
+    item_count = len(master["itemDictionary"])
+    if item_count < 200:
+        raise AssertionError(f"検索辞書が200品目未満です: {item_count}")
+    if master.get("municipalityName") != "門真市" or master.get("municipalityCode") != "27223":
+        raise AssertionError("門真市限定マスタではありません")
+    if {area["id"] for area in master["areas"]} != EXPECTED_AREA_IDS:
+        raise AssertionError("A-F全地区が維持されていません")
+    if not any(item.get("requiresOfficialCheck") for item in master["itemDictionary"]):
+        raise AssertionError("公式確認推奨品目が表現できていません")
+    if not master.get("exceptionRules"):
+        raise AssertionError("年末年始レビュー用 exceptionRules がありません")
+    for rule in master["exceptionRules"]:
+        if rule.get("confidence") != "needs_review":
+            raise AssertionError("未確定の年末年始ルールは needs_review として扱ってください")
+    print("OK: phase3 data quality tests passed")
+
+
+def run_notification_preview_tests(master: dict) -> None:
+    categories = master["categories"]
+    settings = {
+        "previousNightNotificationEnabled": True,
+        "morningNotificationEnabled": True,
+        "previousNightHour": 20,
+        "morningHour": 7,
+        "morningMinute": 30,
+    }
+    tomorrow_events = events_for(master, "A", date(2026, 5, 26))
+    if "burnable" not in tomorrow_events:
+        raise AssertionError("通知プレビュー対象の普通ごみ日が生成できません")
+    burnable = next(category for category in categories if category["id"] == "burnable")
+    if not burnable["defaultPreviousNightNotification"] or not burnable["defaultMorningNotification"]:
+        raise AssertionError("普通ごみの前日/当日通知デフォルトが崩れています")
+    bulky = next(category for category in categories if category["id"] == "bulky")
+    if bulky["defaultPreviousNightNotification"] or bulky["defaultMorningNotification"]:
+        raise AssertionError("粗大ごみは通常通知対象にしない設計です")
+    if not settings["previousNightNotificationEnabled"] or not settings["morningNotificationEnabled"]:
+        raise AssertionError("通知設定の検証前提が不正です")
+    print("OK: notification preview smoke tests passed")
+
+
 def main() -> int:
     try:
         run_command([sys.executable, "Scripts/validate_data.py", "--split-only"])
         run_command([sys.executable, "Scripts/generate_master.py", "--check"])
         run_command([sys.executable, "Scripts/validate_data.py"])
         master = build_master(default_generated_at())
+        run_data_quality_tests(master)
         run_calendar_tests(master)
         run_search_tests(master)
+        run_notification_preview_tests(master)
     except subprocess.CalledProcessError as exc:
         return exc.returncode
     except AssertionError as exc:

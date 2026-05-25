@@ -14,6 +14,7 @@ struct MunicipalityMaster: Codable {
     let categories: [WasteCategory]
     let itemDictionary: [WasteItem]
     let notices: [Notice]
+    let exceptionRules: [SpecialExceptionRule]?
 }
 
 struct SourcePage: Codable, Identifiable, Hashable {
@@ -62,6 +63,9 @@ struct CollectionException: Codable, Identifiable, Hashable {
     let categoryId: String
     let action: CollectionExceptionAction
     let reason: String
+    let sourceUrl: String?
+    let confirmedAt: String?
+    let confidence: String?
 }
 
 enum CollectionExceptionAction: String, Codable {
@@ -85,11 +89,42 @@ struct WasteCategory: Codable, Identifiable, Hashable {
 struct WasteItem: Codable, Identifiable, Hashable {
     let id: String
     let names: [String]
+    let displayName: String?
+    let kana: String?
+    let aliases: [String]?
     let categoryId: String
     let keywords: [String]
     let notes: String
+    let disposalGuide: String?
+    let warnings: [String]?
+    let isOversizedCandidate: Bool?
+    let isHazardous: Bool?
+    let requiresOfficialCheck: Bool?
     let source: String
+    let sourceUrl: String?
     let confidence: Double
+    let confidenceStatus: String?
+    let updatedAt: String?
+
+    var primaryName: String {
+        displayName ?? names.first ?? id
+    }
+
+    var searchAliases: [String] {
+        Array(Set((aliases ?? []) + Array(names.dropFirst()) + keywords + [kana].compactMap { $0 }))
+    }
+
+    var needsOfficialCheck: Bool {
+        (requiresOfficialCheck ?? false) || confidence < 0.7 || confidenceStatus == "needs_review" || confidenceStatus == "estimated"
+    }
+
+    var hazardFlag: Bool {
+        isHazardous ?? categoryId == "hazardous_note"
+    }
+
+    var oversizedFlag: Bool {
+        isOversizedCandidate ?? categoryId == "bulky"
+    }
 }
 
 struct Notice: Codable, Identifiable, Hashable {
@@ -97,6 +132,23 @@ struct Notice: Codable, Identifiable, Hashable {
     let title: String
     let body: String
     let monthHints: [Int]
+    let sourceUrl: String?
+    let confirmedAt: String?
+    let confidence: String?
+}
+
+struct SpecialExceptionRule: Codable, Identifiable, Hashable {
+    let id: String
+    let areaIds: [String]
+    let dateFrom: String
+    let dateTo: String
+    let type: String
+    let affectedCategories: [String]
+    let title: String
+    let description: String
+    let sourceUrl: String
+    let confirmedAt: String
+    let confidence: String
 }
 
 struct CollectionEvent: Identifiable, Hashable {

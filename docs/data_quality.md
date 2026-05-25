@@ -45,3 +45,16 @@
 
 通常は分割JSONを編集し、`generate_master.py --write` で生成物を更新する。`initial_master_27223_2026.json` や `docs/kadoma_27223_2026_master.json` を直接編集しない。
 
+## 7. Phase 3追加チェック
+
+- 検索辞書が200件以上であること。
+- 品目に `confidenceStatus` があること。
+- `confirmed` 以外の品目は `requiresOfficialCheck=true` であること。
+- `sourceUrl` は門真市公式URLを優先すること。
+- `special_rules.exceptions` は `confidence=confirmed` のみ登録できること。
+- `special_rules.exceptionRules` は `sourceUrl`、`confirmedAt`、`confidence` を持つこと。
+- 未確定年末年始ルールは warning として検出すること。
+- master に `exceptionRules` が含まれること。
+- manifest SHA が docs master と一致すること。
+
+Phase 3 時点の意図的な warning は、公式確認推奨品目と alias 重複である。alias 重複は検索の実用性を上げるために許容し、ログでは先頭25件と残件数だけを表示する。
