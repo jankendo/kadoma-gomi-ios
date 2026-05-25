@@ -51,7 +51,7 @@ enum AppColor {
     }
 
     static func categoryBackground(_ category: WasteCategory?) -> Color {
-        category(category).opacity(0.15)
+        Self.category(category).opacity(0.15)
     }
 
     static func softBackground(for color: Color) -> Color {
