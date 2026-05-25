@@ -224,7 +224,7 @@ private struct DataStatusSection: View {
 #Preview("Home iPhone SE") {
     HomeView(openSearch: {}, openCalendar: {}, openSettings: {})
         .environmentObject(MasterStore())
-        .previewDevice("iPhone SE (3rd generation)")
+        .previewLayout(.fixed(width: 320, height: 568))
 }
 
 #Preview("Home Dark Large Type") {
@@ -232,5 +232,5 @@ private struct DataStatusSection: View {
         .environmentObject(MasterStore())
         .preferredColorScheme(.dark)
         .environment(\.dynamicTypeSize, .accessibility2)
-        .previewDevice("iPhone 15 Pro")
+        .previewLayout(.fixed(width: 393, height: 852))
 }

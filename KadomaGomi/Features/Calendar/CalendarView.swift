@@ -209,7 +209,7 @@ private struct CalendarDayCell: View {
 #Preview("Calendar iPhone SE") {
     CollectionCalendarView()
         .environmentObject(MasterStore())
-        .previewDevice("iPhone SE (3rd generation)")
+        .previewLayout(.fixed(width: 320, height: 568))
 }
 
 #Preview("Calendar Dark Large Type") {
@@ -217,5 +217,5 @@ private struct CalendarDayCell: View {
         .environmentObject(MasterStore())
         .preferredColorScheme(.dark)
         .environment(\.dynamicTypeSize, .accessibility2)
-        .previewDevice("iPhone 15 Pro")
+        .previewLayout(.fixed(width: 393, height: 852))
 }

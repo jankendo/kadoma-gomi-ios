@@ -28,26 +28,26 @@ struct WasteSearchService {
     }
 
     private func score(item: WasteItem, query: String) -> Int {
-        var score = 0
+        var totalScore = 0
         let variants = queryVariants(for: query)
         for name in item.names {
-            score += score(text: name, variants: variants, exact: 100, contains: 60, reverseContains: 30)
+            totalScore += scoreText(text: name, variants: variants, exact: 100, contains: 60, reverseContains: 30)
         }
         for keyword in item.keywords {
-            score += score(text: keyword, variants: variants, exact: 48, contains: 26, reverseContains: 12)
+            totalScore += scoreText(text: keyword, variants: variants, exact: 48, contains: 26, reverseContains: 12)
         }
         if let category = categories.first(where: { $0.id == item.categoryId }) {
-            score += score(text: category.name, variants: variants, exact: 70, contains: 45, reverseContains: 18)
-            score += score(text: category.shortName, variants: variants, exact: 80, contains: 40, reverseContains: 18)
-            score += score(text: category.disposalRule, variants: variants, exact: 0, contains: 6, reverseContains: 0)
+            totalScore += scoreText(text: category.name, variants: variants, exact: 70, contains: 45, reverseContains: 18)
+            totalScore += scoreText(text: category.shortName, variants: variants, exact: 80, contains: 40, reverseContains: 18)
+            totalScore += scoreText(text: category.disposalRule, variants: variants, exact: 0, contains: 6, reverseContains: 0)
         }
         if variants.contains(where: { normalize(item.notes).contains($0) }) {
-            score += 8
+            totalScore += 8
         }
-        return score
+        return totalScore
     }
 
-    private func score(text: String, variants: Set<String>, exact: Int, contains: Int, reverseContains: Int) -> Int {
+    private func scoreText(text: String, variants: Set<String>, exact: Int, contains: Int, reverseContains: Int) -> Int {
         let normalized = normalize(text)
         return variants.reduce(0) { partialResult, variant in
             if normalized == variant {

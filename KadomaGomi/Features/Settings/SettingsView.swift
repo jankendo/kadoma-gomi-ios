@@ -448,5 +448,5 @@ private struct InlineLoadingMessage: View {
         .environmentObject(MasterStore())
         .preferredColorScheme(.dark)
         .environment(\.dynamicTypeSize, .accessibility2)
-        .previewDevice("iPhone 15 Pro")
+        .previewLayout(.fixed(width: 393, height: 852))
 }

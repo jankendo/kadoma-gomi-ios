@@ -189,5 +189,5 @@ private struct WasteItemResultCard: View {
         .environmentObject(MasterStore())
         .preferredColorScheme(.dark)
         .environment(\.dynamicTypeSize, .accessibility2)
-        .previewDevice("iPhone 15 Pro Max")
+        .previewLayout(.fixed(width: 430, height: 932))
 }
