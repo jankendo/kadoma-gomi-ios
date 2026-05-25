@@ -5,6 +5,9 @@ on:
     branches: [main, master]
   workflow_dispatch:
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 jobs:
   build:
     runs-on: macos-15
@@ -46,4 +49,3 @@ jobs:
           name: KadomaGomi-unsigned-ipa
           path: KadomaGomi-unsigned.ipa
           if-no-files-found: error
-
