@@ -8,6 +8,11 @@
 - `python Scripts\run_quality_checks.py`: 成功。split/master/manifest、calendar smoke、search smoke、notification preview smokeを通過。
 - `python -m py_compile Scripts\validate_data.py Scripts\generate_master.py Scripts\run_quality_checks.py`: 成功。
 - `xcodebuild -version`: 失敗。Windows環境に `xcodebuild` がないためローカルXcodeビルドは不可。
+- GitHub Actions `Build Unsigned iOS App` run `26430537617`: 成功。unsigned IPA artifact `KadomaGomi-unsigned-ipa` を生成。
+- GitHub Actions `Deploy Master JSON to GitHub Pages` run `26430537619`: 成功。
+- GitHub Actions `Validate Kadoma Data` run `26430610904`: 成功。
+- GitHub Actions `Monitor Kadoma Official Sources` run `26430611090`: 成功。
+- GitHub Pages `https://jankendo.github.io/kadoma-gomi-ios/manifest.json`: HTTP 200。`latestVersion=2026.04.01-af.4`、`municipalityCode=27223` を確認。
 
 ## 2. 成功した検証
 
@@ -15,6 +20,8 @@
 - ホーム更新は既存 `MasterStore.refreshMaster()` を呼び出し、SHA-256検証後に成功時のみmasterを差し替える設計になっていることをコード確認。
 - 通知テストidentifierが `dev-test-notification-` prefixで通常通知 `gomi_` と分離されていることをコード確認。
 - ごみ分別カテゴリカードは固定高さで統一されるように変更。
+- GitHub Actions上のmacOS build、IPA packaging、artifact upload。
+- GitHub Pages manifest HTTP確認。
 
 ## 3. 失敗した検証
 
@@ -40,4 +47,4 @@
 
 ## 6. ビルド可否
 
-ローカルWindowsでは未確認。GitHub ActionsのmacOS runnerで確認する。
+ローカルWindowsでは未確認。GitHub ActionsのmacOS runnerでは成功。
