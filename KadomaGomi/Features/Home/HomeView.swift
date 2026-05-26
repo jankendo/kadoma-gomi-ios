@@ -2,6 +2,7 @@ import SwiftUI
 
 struct HomeView: View {
     @EnvironmentObject private var store: MasterStore
+    @State private var updateStatus: HomeMasterUpdateStatus?
 
     let openSearch: () -> Void
     let openGuide: () -> Void
@@ -37,7 +38,8 @@ struct HomeView: View {
             GeometryReader { proxy in
                 let noticeHeight: CGFloat = summary.requiresOfficialReview ? 52 : 0
                 let headerHeight: CGFloat = min(112, max(84, proxy.size.height * 0.18))
-                let rowHeight = max(50, floor((proxy.size.height - headerHeight - noticeHeight) / 7))
+                let updateHeight: CGFloat = updateStatus == nil ? 0 : 44
+                let rowHeight = max(50, floor((proxy.size.height - headerHeight - noticeHeight - updateHeight) / 7))
 
                 VStack(spacing: 0) {
                     HomeAreaHeader(
@@ -47,11 +49,17 @@ struct HomeView: View {
                     )
                     .frame(height: headerHeight)
 
+                    if let updateStatus {
+                        HomeUpdateStatusBar(status: updateStatus)
+                            .frame(height: updateHeight)
+                    }
+
                     SimpleWeekCollectionList(
                         days: weekDays,
                         rowHeight: rowHeight,
                         eventsProvider: store.events(on:),
-                        categoryProvider: store.category(for:)
+                        categoryProvider: store.category(for:),
+                        itemsProvider: items(for:)
                     )
 
                     Spacer(minLength: 0)
@@ -77,12 +85,77 @@ struct HomeView: View {
                     .accessibilityLabel("アプリ情報と設定を開く")
                 }
                 ToolbarItem(placement: .topBarTrailing) {
-                    Button(action: openSettings) {
-                        Image(systemName: AppIcon.update)
+                    Button {
+                        Task { await refreshMasterFromHome() }
+                    } label: {
+                        if store.isSyncing {
+                            ProgressView()
+                                .tint(.white)
+                        } else {
+                            Image(systemName: AppIcon.update)
+                        }
                     }
-                    .accessibilityLabel("データ更新設定を開く")
+                    .disabled(store.isSyncing)
+                    .accessibilityLabel(store.isSyncing ? "ごみ収集データを更新中" : "ごみ収集データを更新")
                 }
             }
+        }
+    }
+
+    private func items(for categoryId: String) -> [WasteItem] {
+        store.master.itemDictionary.filter { $0.categoryId == categoryId }
+    }
+
+    @MainActor
+    private func refreshMasterFromHome() async {
+        let beforeVersion = store.master.version
+        updateStatus = .loading("データを更新しています...")
+        await store.refreshMaster()
+
+        let message = store.syncMessage ?? ""
+        if message.contains("失敗") || message.contains("正しくありません") {
+            updateStatus = .failure("データを更新できませんでした。通信状況を確認して、もう一度お試しください。")
+        } else if store.master.version != beforeVersion {
+            updateStatus = .success("ごみ収集データを更新しました")
+        } else if message.contains("最新") {
+            updateStatus = .success("すでに最新のデータです")
+        } else {
+            updateStatus = .success(message.isEmpty ? "ごみ収集データを確認しました" : message)
+        }
+    }
+}
+
+private enum HomeMasterUpdateStatus: Equatable {
+    case loading(String)
+    case success(String)
+    case failure(String)
+
+    var text: String {
+        switch self {
+        case .loading(let text), .success(let text), .failure(let text):
+            return text
+        }
+    }
+
+    var iconName: String {
+        switch self {
+        case .loading:
+            return AppIcon.update
+        case .success:
+            return AppIcon.success
+        case .failure:
+            return AppIcon.error
+        }
+    }
+
+    var color: Color {
+        switch self {
+        case .loading:
+            return AppColor.appTint
+        case .success:
+            return AppColor.success
+        case .failure:
+            return AppColor.error
         }
     }
 }
@@ -136,6 +209,7 @@ private struct SimpleWeekCollectionList: View {
     let rowHeight: CGFloat
     let eventsProvider: (Date) -> [CollectionEvent]
     let categoryProvider: (String) -> WasteCategory?
+    let itemsProvider: (String) -> [WasteItem]
 
     var body: some View {
         VStack(spacing: 0) {
@@ -144,7 +218,8 @@ private struct SimpleWeekCollectionList: View {
                     date: day,
                     events: eventsProvider(day),
                     rowHeight: rowHeight,
-                    categoryProvider: categoryProvider
+                    categoryProvider: categoryProvider,
+                    itemsProvider: itemsProvider
                 )
 
                 if index < days.count - 1 {
@@ -162,6 +237,7 @@ private struct SimpleWeekCollectionRow: View {
     let events: [CollectionEvent]
     let rowHeight: CGFloat
     let categoryProvider: (String) -> WasteCategory?
+    let itemsProvider: (String) -> [WasteItem]
 
     private var isToday: Bool {
         Calendar.kadoma.isDateInToday(date)
@@ -190,18 +266,11 @@ private struct SimpleWeekCollectionRow: View {
                 VStack(alignment: .leading, spacing: AppSpacing.xs) {
                     ForEach(events) { event in
                         if let category = categoryProvider(event.categoryId) {
-                            HStack(spacing: AppSpacing.sm) {
-                                Text(category.shortName)
-                                    .font(.title2.weight(.bold))
-                                    .foregroundStyle(AppColor.category(category))
-                                    .lineLimit(1)
-                                    .minimumScaleFactor(0.75)
-                                if event.requiresReservation {
-                                    Text("要予約")
-                                        .font(AppTypography.badge)
-                                        .foregroundStyle(AppColor.warning)
-                                }
-                            }
+                            HomeCategoryLink(
+                                category: category,
+                                items: itemsProvider(category.id),
+                                requiresReservation: event.requiresReservation
+                            )
                         }
                     }
                 }
@@ -211,8 +280,7 @@ private struct SimpleWeekCollectionRow: View {
         .padding(.horizontal, AppSpacing.xl)
         .frame(maxWidth: .infinity, minHeight: rowHeight, alignment: .center)
         .background(isToday ? AppColor.backgroundTop.opacity(0.55) : Color.white)
-        .accessibilityElement(children: .ignore)
-        .accessibilityLabel(accessibilityLabel)
+        .accessibilityElement(children: .contain)
     }
 
     private var dateColor: Color {
@@ -232,6 +300,64 @@ private struct SimpleWeekCollectionRow: View {
         }
         let names = events.compactMap { categoryProvider($0.categoryId)?.name }.joined(separator: "、")
         return "\(dateText)、\(names)の収集予定"
+    }
+}
+
+private struct HomeCategoryLink: View {
+    let category: WasteCategory
+    let items: [WasteItem]
+    let requiresReservation: Bool
+
+    var body: some View {
+        NavigationLink {
+            WasteCategoryDetailView(category: category, items: items)
+        } label: {
+            HStack(spacing: AppSpacing.sm) {
+                Text(category.shortName)
+                    .font(.title2.weight(.bold))
+                    .foregroundStyle(AppColor.category(category))
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.75)
+                if requiresReservation {
+                    Text("要予約")
+                        .font(AppTypography.badge)
+                        .foregroundStyle(AppColor.warning)
+                }
+                Image(systemName: "chevron.right")
+                    .font(.caption.weight(.bold))
+                    .foregroundStyle(AppColor.tertiaryText)
+            }
+            .contentShape(Rectangle())
+            .frame(minHeight: 44, alignment: .leading)
+        }
+        .buttonStyle(.plain)
+        .accessibilityLabel("\(category.name)、詳細を開く")
+    }
+}
+
+private struct HomeUpdateStatusBar: View {
+    let status: HomeMasterUpdateStatus
+
+    var body: some View {
+        HStack(spacing: AppSpacing.sm) {
+            if case .loading = status {
+                ProgressView()
+                    .scaleEffect(0.82)
+            } else {
+                Image(systemName: status.iconName)
+                    .foregroundStyle(status.color)
+                    .accessibilityHidden(true)
+            }
+            Text(status.text)
+                .font(AppTypography.callout.weight(.semibold))
+                .foregroundStyle(AppColor.text)
+                .lineLimit(1)
+                .minimumScaleFactor(0.82)
+            Spacer(minLength: 0)
+        }
+        .padding(.horizontal, AppSpacing.lg)
+        .background(status.color.opacity(0.10))
+        .accessibilityElement(children: .combine)
     }
 }
 
@@ -295,4 +421,34 @@ private struct HomeNoticeBar: View {
         .environmentObject(MasterStore())
         .environment(\.dynamicTypeSize, .accessibility2)
         .previewLayout(.fixed(width: 393, height: 852))
+}
+
+#Preview("Home Weekly Category Tap") {
+    HomeView(openSearch: {}, openGuide: {}, openCalendar: {}, openSettings: {})
+        .environmentObject(MasterStore())
+        .previewLayout(.fixed(width: 393, height: 852))
+}
+
+#Preview("Home Master Updating") {
+    HomeUpdateStatusBar(status: .loading("データを更新しています..."))
+        .padding()
+        .previewLayout(.sizeThatFits)
+}
+
+#Preview("Home Master Update Success") {
+    HomeUpdateStatusBar(status: .success("ごみ収集データを更新しました"))
+        .padding()
+        .previewLayout(.sizeThatFits)
+}
+
+#Preview("Home Master Update Failure") {
+    HomeUpdateStatusBar(status: .failure("データを更新できませんでした。通信状況を確認して、もう一度お試しください。"))
+        .padding()
+        .previewLayout(.sizeThatFits)
+}
+
+#Preview("Home iPhone SE") {
+    HomeView(openSearch: {}, openGuide: {}, openCalendar: {}, openSettings: {})
+        .environmentObject(MasterStore())
+        .previewLayout(.fixed(width: 320, height: 568))
 }

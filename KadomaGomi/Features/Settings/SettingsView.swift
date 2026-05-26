@@ -5,10 +5,25 @@ import UserNotifications
 struct SettingsView: View {
     @EnvironmentObject private var store: MasterStore
     @Environment(\.openURL) private var openURL
+    @AppStorage("kadoma.developerModeEnabled") private var developerModeEnabled = false
 
     @State private var addressText = ""
     @State private var addressMessage: SettingsMessage?
     @State private var notificationStatus: UNAuthorizationStatus = .notDetermined
+    @State private var appInfoTapCount = 0
+    @State private var developerModeMessage: SettingsMessage?
+
+    private var showsDeveloperTools: Bool {
+        developerModeEnabled || Self.isDebugBuild
+    }
+
+    private static var isDebugBuild: Bool {
+        #if DEBUG
+        return true
+        #else
+        return false
+        #endif
+    }
 
     var body: some View {
         NavigationStack {
@@ -45,8 +60,15 @@ struct SettingsView: View {
                 HelpAndAppInfoCard(
                     resetOnboarding: {
                         store.resetOnboarding()
-                    }
+                    },
+                    versionTapped: handleVersionTap
                 )
+                if let developerModeMessage, !showsDeveloperTools {
+                    InlineSettingsMessage(message: developerModeMessage)
+                }
+                if showsDeveloperTools {
+                    DeveloperSettingsEntryCard(store: store, isDebugBuild: Self.isDebugBuild)
+                }
             }
             .navigationTitle("設定")
             .navigationBarTitleDisplayMode(.inline)
@@ -101,6 +123,18 @@ struct SettingsView: View {
     private func refreshNotificationStatus() async {
         let settings = await UNUserNotificationCenter.current().notificationSettings()
         notificationStatus = settings.authorizationStatus
+    }
+
+    private func handleVersionTap() {
+        appInfoTapCount += 1
+        guard !showsDeveloperTools else { return }
+        if appInfoTapCount >= 7 {
+            developerModeEnabled = true
+            developerModeMessage = SettingsMessage(kind: .success, text: "開発者用機能を表示しました。通知テストや詳細ログを確認できます。")
+        } else if appInfoTapCount >= 4 {
+            let remain = 7 - appInfoTapCount
+            developerModeMessage = SettingsMessage(kind: .success, text: "開発者用機能を表示するには、あと\(remain)回タップします。")
+        }
     }
 }
 
@@ -349,16 +383,6 @@ private struct DataUpdateSettingsCard: View {
             if let checkedAt = store.settings.lastMasterCheckAt {
                 LabeledContent("最終確認", value: checkedAt)
             }
-            TextField("manifest URL", text: Binding(
-                get: { store.settings.remoteManifestURL },
-                set: {
-                    store.settings.remoteManifestURL = $0
-                    store.saveSettings()
-                }
-            ))
-            .textInputAutocapitalization(.never)
-            .autocorrectionDisabled()
-            .textFieldStyle(.roundedBorder)
 
             Button {
                 Task { await store.refreshMaster() }
@@ -439,6 +463,7 @@ private struct OfficialLinksCard: View {
 
 private struct HelpAndAppInfoCard: View {
     let resetOnboarding: () -> Void
+    let versionTapped: () -> Void
 
     var body: some View {
         VStack(alignment: .leading, spacing: AppSpacing.md) {
@@ -450,11 +475,294 @@ private struct HelpAndAppInfoCard: View {
             Button("初回案内をもう一度見る", action: resetOnboarding)
                 .buttonStyle(.bordered)
                 .controlSize(.large)
-            LabeledContent("バージョン", value: "1.0")
+            Button(action: versionTapped) {
+                LabeledContent("バージョン", value: "1.0")
+                    .frame(maxWidth: .infinity, minHeight: 44)
+                    .contentShape(Rectangle())
+            }
+            .buttonStyle(.plain)
+            .accessibilityHint("開発者用機能を表示する隠し操作です。通常利用では操作不要です。")
             LabeledContent("表示モード", value: "ライトモード専用")
             LabeledContent("文字サイズ", value: "Dynamic Type対応")
         }
         .appCard()
+    }
+}
+
+private struct DeveloperSettingsEntryCard: View {
+    @ObservedObject var store: MasterStore
+    let isDebugBuild: Bool
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: AppSpacing.md) {
+            AppSectionHeader("開発者用", subtitle: isDebugBuild ? "DEBUGビルドでは常時表示します" : "隠し操作で有効化されています", systemImage: "hammer.fill")
+            NavigationLink {
+                DeveloperNotificationTestView(store: store)
+            } label: {
+                HStack(spacing: AppSpacing.md) {
+                    Image(systemName: AppIcon.notification)
+                        .font(.title3.weight(.semibold))
+                        .frame(width: 44, height: 44)
+                        .background(AppColor.backgroundTop, in: RoundedRectangle(cornerRadius: AppRadius.md, style: .continuous))
+                        .foregroundStyle(AppColor.appTint)
+                    VStack(alignment: .leading, spacing: AppSpacing.xs) {
+                        Text("通知テストと検証情報")
+                            .font(AppTypography.cardTitle)
+                            .foregroundStyle(AppColor.text)
+                        Text("テスト通知、pending通知、マスタ情報を確認します。通常利用には不要です。")
+                            .font(AppTypography.footnote)
+                            .foregroundStyle(AppColor.secondaryText)
+                            .lineLimit(2)
+                    }
+                    Spacer(minLength: 0)
+                    Image(systemName: "chevron.right")
+                        .foregroundStyle(AppColor.tertiaryText)
+                }
+                .minimumTapTarget()
+            }
+            .buttonStyle(.plain)
+        }
+        .appCard()
+    }
+}
+
+private struct DeveloperNotificationTestView: View {
+    @ObservedObject var store: MasterStore
+
+    @State private var authorizationStatus: UNAuthorizationStatus = .notDetermined
+    @State private var pendingRequests: [UNNotificationRequest] = []
+    @State private var lastResult: SettingsMessage?
+    @State private var isRunning = false
+    @State private var confirmCancelAll = false
+
+    private let notificationService = NotificationService()
+
+    var body: some View {
+        AppScreen {
+            developerStatusCard
+            notificationTestCard
+            pendingNotificationsCard
+            developerDataCard
+        }
+        .navigationTitle("開発者用")
+        .navigationBarTitleDisplayMode(.inline)
+        .toolbarBackground(AppColor.header, for: .navigationBar)
+        .toolbarBackground(.visible, for: .navigationBar)
+        .toolbarColorScheme(.dark, for: .navigationBar)
+        .task {
+            await refreshState()
+        }
+        .confirmationDialog("すべてのpending通知を削除しますか？", isPresented: $confirmCancelAll, titleVisibility: .visible) {
+            Button("すべて削除", role: .destructive) {
+                notificationService.cancelAllPendingNotifications()
+                Task { await refreshState(result: SettingsMessage(kind: .success, text: "すべてのpending通知を削除しました。通常通知も削除されます。")) }
+            }
+            Button("キャンセル", role: .cancel) {}
+        } message: {
+            Text("通常の収集通知も削除されます。実機検証時だけ使用してください。")
+        }
+    }
+
+    private var developerStatusCard: some View {
+        VStack(alignment: .leading, spacing: AppSpacing.md) {
+            AppSectionHeader("通知許可状態", subtitle: "実機通知テストの前に確認します", systemImage: AppIcon.notification)
+            LabeledContent("状態", value: authorizationStatus.displayLabel)
+            if let lastResult {
+                InlineSettingsMessage(message: lastResult)
+            }
+            Button {
+                run("通知許可") {
+                    let granted = try await notificationService.requestAuthorization()
+                    return granted ? "通知が許可されました。" : "通知は許可されませんでした。iOS設定を確認してください。"
+                }
+            } label: {
+                Label("通知許可をリクエスト", systemImage: AppIcon.notification)
+                    .frame(maxWidth: .infinity)
+            }
+            .buttonStyle(.borderedProminent)
+            .controlSize(.large)
+            .tint(AppColor.appTint)
+            .disabled(isRunning)
+        }
+        .appCard()
+    }
+
+    private var notificationTestCard: some View {
+        VStack(alignment: .leading, spacing: AppSpacing.md) {
+            AppSectionHeader("テスト通知", subtitle: "通常通知とは別identifierで送ります", systemImage: "paperplane.fill")
+            ViewThatFits(in: .horizontal) {
+                HStack(spacing: AppSpacing.sm) {
+                    notificationButton("5秒後に送る", systemImage: "timer") {
+                        try await notificationService.scheduleDeveloperTestNotification(after: 5)
+                        return "5秒後のテスト通知を登録しました。"
+                    }
+                    notificationButton("10秒後に送る", systemImage: "timer") {
+                        try await notificationService.scheduleDeveloperTestNotification(after: 10)
+                        return "10秒後のテスト通知を登録しました。"
+                    }
+                }
+                VStack(spacing: AppSpacing.sm) {
+                    notificationButton("5秒後に送る", systemImage: "timer") {
+                        try await notificationService.scheduleDeveloperTestNotification(after: 5)
+                        return "5秒後のテスト通知を登録しました。"
+                    }
+                    notificationButton("10秒後に送る", systemImage: "timer") {
+                        try await notificationService.scheduleDeveloperTestNotification(after: 10)
+                        return "10秒後のテスト通知を登録しました。"
+                    }
+                }
+            }
+            notificationButton("明日のごみ通知を模擬", systemImage: "moon.stars.fill") {
+                try await notificationService.scheduleDeveloperWasteSimulation(kind: .tomorrow, categoryName: representativeCategoryName(kind: .tomorrow))
+                return "明日のごみ通知を模擬登録しました。"
+            }
+            notificationButton("今日の朝通知を模擬", systemImage: "sun.max.fill") {
+                try await notificationService.scheduleDeveloperWasteSimulation(kind: .morning, categoryName: representativeCategoryName(kind: .morning))
+                return "今日の朝通知を模擬登録しました。"
+            }
+            Text("テスト通知IDは \(NotificationService.developerTestIdentifierPrefix) で始まります。通常の収集通知はこの操作では削除しません。")
+                .font(AppTypography.footnote)
+                .foregroundStyle(AppColor.secondaryText)
+                .fixedSize(horizontal: false, vertical: true)
+        }
+        .appCard()
+    }
+
+    private var pendingNotificationsCard: some View {
+        VStack(alignment: .leading, spacing: AppSpacing.md) {
+            AppSectionHeader("pending通知", subtitle: "\(pendingRequests.count)件を確認中", systemImage: "list.bullet.rectangle")
+            if pendingRequests.isEmpty {
+                InlineSettingsMessage(message: SettingsMessage(kind: .success, text: "pending通知はありません。"))
+            } else {
+                VStack(spacing: AppSpacing.sm) {
+                    ForEach(pendingRequests.prefix(16), id: \.identifier) { request in
+                        VStack(alignment: .leading, spacing: 3) {
+                            Text(request.content.title.isEmpty ? "タイトルなし" : request.content.title)
+                                .font(AppTypography.callout.weight(.semibold))
+                                .foregroundStyle(AppColor.text)
+                            Text(request.identifier)
+                                .font(AppTypography.footnote)
+                                .foregroundStyle(request.identifier.hasPrefix(NotificationService.developerTestIdentifierPrefix) ? AppColor.appTint : AppColor.secondaryText)
+                                .lineLimit(2)
+                        }
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding(AppSpacing.sm)
+                        .background(AppColor.elevatedCardBackground, in: RoundedRectangle(cornerRadius: AppRadius.sm, style: .continuous))
+                    }
+                }
+            }
+            ViewThatFits(in: .horizontal) {
+                HStack(spacing: AppSpacing.sm) {
+                    Button("再読み込み") {
+                        Task { await refreshState() }
+                    }
+                    .buttonStyle(.bordered)
+                    .controlSize(.large)
+
+                    Button("テスト通知だけ削除") {
+                        Task {
+                            await notificationService.cancelDeveloperTestNotifications()
+                            await refreshState(result: SettingsMessage(kind: .success, text: "テスト通知だけを削除しました。"))
+                        }
+                    }
+                    .buttonStyle(.bordered)
+                    .controlSize(.large)
+                }
+                VStack(spacing: AppSpacing.sm) {
+                    Button("再読み込み") {
+                        Task { await refreshState() }
+                    }
+                    .buttonStyle(.bordered)
+                    .controlSize(.large)
+
+                    Button("テスト通知だけ削除") {
+                        Task {
+                            await notificationService.cancelDeveloperTestNotifications()
+                            await refreshState(result: SettingsMessage(kind: .success, text: "テスト通知だけを削除しました。"))
+                        }
+                    }
+                    .buttonStyle(.bordered)
+                    .controlSize(.large)
+                }
+            }
+
+            Button(role: .destructive) {
+                confirmCancelAll = true
+            } label: {
+                Label("すべてのpending通知を削除", systemImage: "trash.fill")
+                    .frame(maxWidth: .infinity)
+            }
+            .buttonStyle(.bordered)
+            .controlSize(.large)
+        }
+        .appCard()
+    }
+
+    private var developerDataCard: some View {
+        VStack(alignment: .leading, spacing: AppSpacing.md) {
+            AppSectionHeader("マスタ情報", subtitle: "開発者向けの確認用です", systemImage: AppIcon.update)
+            LabeledContent("municipalityCode", value: store.master.municipalityCode)
+            LabeledContent("master version", value: store.master.version)
+            LabeledContent("areas", value: "\(store.master.areas.count)")
+            LabeledContent("items", value: "\(store.master.itemDictionary.count)")
+            LabeledContent("manifest URL", value: store.settings.remoteManifestURL)
+            if let checkedAt = store.settings.lastMasterCheckAt {
+                LabeledContent("last check", value: checkedAt)
+            }
+            if let refreshedAt = store.settings.lastSuccessfulMasterRefreshAt {
+                LabeledContent("last success", value: refreshedAt)
+            }
+        }
+        .appCard()
+    }
+
+    private func notificationButton(_ title: String, systemImage: String, action: @escaping () async throws -> String) -> some View {
+        Button {
+            run(title, action: action)
+        } label: {
+            Label(title, systemImage: systemImage)
+                .frame(maxWidth: .infinity)
+        }
+        .buttonStyle(.bordered)
+        .controlSize(.large)
+        .disabled(isRunning)
+    }
+
+    @MainActor
+    private func run(_ label: String, action: @escaping () async throws -> String) {
+        isRunning = true
+        lastResult = SettingsMessage(kind: .success, text: "\(label)を実行しています。")
+        Task {
+            do {
+                let result = try await action()
+                await refreshState(result: SettingsMessage(kind: .success, text: result))
+            } catch {
+                await refreshState(result: SettingsMessage(kind: .error, text: error.localizedDescription))
+            }
+            await MainActor.run {
+                isRunning = false
+            }
+        }
+    }
+
+    @MainActor
+    private func refreshState(result: SettingsMessage? = nil) async {
+        authorizationStatus = await notificationService.authorizationStatus()
+        let requests = await notificationService.pendingRequests()
+        pendingRequests = requests.sorted { $0.identifier < $1.identifier }
+        if let result {
+            lastResult = result
+        }
+    }
+
+    @MainActor
+    private func representativeCategoryName(kind: DeveloperNotificationKind) -> String {
+        let summary = store.collectionSummary()
+        let events = kind == .tomorrow ? summary.tomorrow.events : summary.today.events
+        let category = events.compactMap { store.category(for: $0.categoryId) }.first
+            ?? store.category(for: "burnable")
+            ?? store.master.categories.first
+        return category?.name ?? "普通ごみ"
     }
 }
 
@@ -492,6 +800,25 @@ private struct InlineLoadingMessage: View {
     }
 }
 
+private extension UNAuthorizationStatus {
+    var displayLabel: String {
+        switch self {
+        case .notDetermined:
+            return "未確認"
+        case .denied:
+            return "拒否"
+        case .authorized:
+            return "許可"
+        case .provisional:
+            return "仮許可"
+        case .ephemeral:
+            return "一時許可"
+        @unknown default:
+            return "不明"
+        }
+    }
+}
+
 #Preview("Settings Simple Default") {
     SettingsView()
         .environmentObject(MasterStore())
@@ -502,4 +829,27 @@ private struct InlineLoadingMessage: View {
         .environmentObject(MasterStore())
         .environment(\.dynamicTypeSize, .accessibility2)
         .previewLayout(.fixed(width: 393, height: 852))
+}
+
+#Preview("Settings Normal User") {
+    SettingsView()
+        .environmentObject(MasterStore())
+}
+
+#Preview("Settings Developer Mode") {
+    SettingsView()
+        .environmentObject(MasterStore())
+}
+
+#Preview("Developer Notification Test") {
+    NavigationStack {
+        DeveloperNotificationTestView(store: MasterStore())
+    }
+}
+
+#Preview("Developer Pending Notifications") {
+    NavigationStack {
+        DeveloperNotificationTestView(store: MasterStore())
+    }
+    .previewLayout(.fixed(width: 393, height: 852))
 }

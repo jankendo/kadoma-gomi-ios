@@ -68,8 +68,10 @@ struct CollectionCalendarView: View {
                         selectedDate: $selectedDate,
                         cellHeight: cellHeight,
                         eventsProvider: store.events(on:),
-                        categoryProvider: store.category(for:)
+                        categoryProvider: store.category(for:),
+                        itemsProvider: items(for:)
                     )
+                    .simultaneousGesture(monthSwipeGesture)
                     .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
                 }
                 .background(Color.white)
@@ -84,13 +86,31 @@ struct CollectionCalendarView: View {
 
     private func moveMonth(_ value: Int) {
         guard let nextMonth = Calendar.kadoma.date(byAdding: .month, value: value, to: displayedMonth) else { return }
-        displayedMonth = Calendar.kadoma.startOfMonth(for: nextMonth)
-        selectedDate = displayedMonth
+        withAnimation(.easeOut(duration: 0.18)) {
+            displayedMonth = Calendar.kadoma.startOfMonth(for: nextMonth)
+            selectedDate = displayedMonth
+        }
     }
 
     private func moveToday() {
-        displayedMonth = Calendar.kadoma.startOfMonth(for: .now)
-        selectedDate = Calendar.kadoma.startOfDay(for: .now)
+        withAnimation(.easeOut(duration: 0.18)) {
+            displayedMonth = Calendar.kadoma.startOfMonth(for: .now)
+            selectedDate = Calendar.kadoma.startOfDay(for: .now)
+        }
+    }
+
+    private func items(for categoryId: String) -> [WasteItem] {
+        store.master.itemDictionary.filter { $0.categoryId == categoryId }
+    }
+
+    private var monthSwipeGesture: some Gesture {
+        DragGesture(minimumDistance: 28, coordinateSpace: .local)
+            .onEnded { value in
+                let width = value.translation.width
+                let height = value.translation.height
+                guard abs(width) > 72, abs(width) > abs(height) * 1.35 else { return }
+                moveMonth(width < 0 ? 1 : -1)
+            }
     }
 }
 
@@ -196,6 +216,7 @@ private struct CalendarFullMonthGrid: View {
     let cellHeight: CGFloat
     let eventsProvider: (Date) -> [CollectionEvent]
     let categoryProvider: (String) -> WasteCategory?
+    let itemsProvider: (String) -> [WasteItem]
 
     private let columns = Array(repeating: GridItem(.flexible(), spacing: 0), count: 7)
 
@@ -220,7 +241,8 @@ private struct CalendarFullMonthGrid: View {
                             events: eventsProvider(date),
                             isSelected: Calendar.kadoma.isDate(date, inSameDayAs: selectedDate),
                             cellHeight: cellHeight,
-                            categoryProvider: categoryProvider
+                            categoryProvider: categoryProvider,
+                            itemsProvider: itemsProvider
                         ) {
                             selectedDate = Calendar.kadoma.startOfDay(for: date)
                         }
@@ -251,6 +273,7 @@ private struct CalendarMonthOnlyCell: View {
     let isSelected: Bool
     let cellHeight: CGFloat
     let categoryProvider: (String) -> WasteCategory?
+    let itemsProvider: (String) -> [WasteItem]
     let select: () -> Void
 
     private var isToday: Bool {
@@ -266,46 +289,47 @@ private struct CalendarMonthOnlyCell: View {
     }
 
     var body: some View {
-        Button(action: select) {
-            VStack(alignment: .leading, spacing: 3) {
-                Text("\(Calendar.kadoma.component(.day, from: date))")
-                    .font(.title3.weight(.bold))
-                    .foregroundStyle(dateColor)
-                    .lineLimit(1)
-                    .minimumScaleFactor(0.75)
+        VStack(alignment: .leading, spacing: 3) {
+            Text("\(Calendar.kadoma.component(.day, from: date))")
+                .font(.title3.weight(.bold))
+                .foregroundStyle(dateColor)
+                .lineLimit(1)
+                .minimumScaleFactor(0.75)
 
-                Spacer(minLength: 0)
+            Spacer(minLength: 0)
 
-                VStack(alignment: .leading, spacing: 2) {
-                    ForEach(events.prefix(compact ? 1 : 2)) { event in
-                        if let category = categoryProvider(event.categoryId) {
-                            CalendarMiniWasteLabel(category: category, compact: compact)
-                        }
-                    }
-                    if events.count > (compact ? 1 : 2) {
-                        Text("+\(events.count - (compact ? 1 : 2))")
-                            .font(.caption.weight(.bold))
-                            .foregroundStyle(AppColor.secondaryText)
+            VStack(alignment: .leading, spacing: 2) {
+                ForEach(events.prefix(compact ? 1 : 2)) { event in
+                    if let category = categoryProvider(event.categoryId) {
+                        CalendarMiniWasteLabel(
+                            category: category,
+                            items: itemsProvider(category.id),
+                            compact: compact
+                        )
                     }
                 }
+                if events.count > (compact ? 1 : 2) {
+                    Text("+\(events.count - (compact ? 1 : 2))")
+                        .font(.caption.weight(.bold))
+                        .foregroundStyle(AppColor.secondaryText)
+                }
             }
-            .padding(6)
-            .frame(maxWidth: .infinity, minHeight: cellHeight, alignment: .topLeading)
-            .background(isToday ? AppColor.backgroundTop.opacity(0.65) : Color.white)
-            .overlay(
-                Rectangle()
-                    .stroke(AppColor.separator, lineWidth: 0.6)
-            )
-            .overlay(
-                Rectangle()
-                    .stroke(isToday ? AppColor.accent : (isSelected ? AppColor.appTint : Color.clear), lineWidth: isToday || isSelected ? 2.2 : 0)
-                    .padding(1)
-            )
         }
-        .buttonStyle(.plain)
-        .accessibilityElement(children: .ignore)
-        .accessibilityLabel(accessibilityLabel)
-        .accessibilityHint("カレンダー上の日付です。")
+        .padding(6)
+        .frame(maxWidth: .infinity, minHeight: cellHeight, alignment: .topLeading)
+        .background(isToday ? AppColor.backgroundTop.opacity(0.65) : Color.white)
+        .overlay(
+            Rectangle()
+                .stroke(AppColor.separator, lineWidth: 0.6)
+        )
+        .overlay(
+            Rectangle()
+                .stroke(isToday ? AppColor.accent : (isSelected ? AppColor.appTint : Color.clear), lineWidth: isToday || isSelected ? 2.2 : 0)
+                .padding(1)
+        )
+        .contentShape(Rectangle())
+        .onTapGesture(perform: select)
+        .accessibilityElement(children: .contain)
     }
 
     private var dateColor: Color {
@@ -330,21 +354,30 @@ private struct CalendarMonthOnlyCell: View {
 
 private struct CalendarMiniWasteLabel: View {
     let category: WasteCategory
+    let items: [WasteItem]
     let compact: Bool
 
     var body: some View {
-        HStack(spacing: 2) {
-            Image(systemName: category.symbolName)
-                .font(.system(size: compact ? 9 : 10, weight: .semibold))
-                .accessibilityHidden(true)
-            if !compact {
-                Text(category.shortName)
-                    .font(.system(size: 10, weight: .bold))
-                    .lineLimit(1)
-                    .minimumScaleFactor(0.7)
+        NavigationLink {
+            WasteCategoryDetailView(category: category, items: items)
+        } label: {
+            HStack(spacing: 2) {
+                Image(systemName: category.symbolName)
+                    .font(.system(size: compact ? 9 : 10, weight: .semibold))
+                    .accessibilityHidden(true)
+                if !compact {
+                    Text(category.shortName)
+                        .font(.system(size: 10, weight: .bold))
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.7)
+                }
             }
+            .frame(minHeight: compact ? 22 : 24, alignment: .leading)
+            .contentShape(Rectangle())
         }
+        .buttonStyle(.plain)
         .foregroundStyle(AppColor.category(category))
+        .accessibilityLabel("\(category.name)、詳細を開く")
     }
 }
 
@@ -382,4 +415,41 @@ private struct CalendarMiniWasteLabel: View {
     )
     .environmentObject(MasterStore())
     .previewLayout(.fixed(width: 393, height: 852))
+}
+
+#Preview("Calendar Swipe Month Default") {
+    CollectionCalendarView()
+        .environmentObject(MasterStore())
+        .previewLayout(.fixed(width: 393, height: 852))
+}
+
+#Preview("Calendar Swipe Month Next Month") {
+    CollectionCalendarView(
+        initialMonth: Calendar.kadoma.date(from: DateComponents(year: 2026, month: 6, day: 1)) ?? .now
+    )
+    .environmentObject(MasterStore())
+    .previewLayout(.fixed(width: 393, height: 852))
+}
+
+#Preview("Calendar Swipe Month Previous Month") {
+    CollectionCalendarView(
+        initialMonth: Calendar.kadoma.date(from: DateComponents(year: 2026, month: 4, day: 1)) ?? .now
+    )
+    .environmentObject(MasterStore())
+    .previewLayout(.fixed(width: 393, height: 852))
+}
+
+#Preview("Calendar Category Tap Preview") {
+    CollectionCalendarView(
+        initialMonth: Calendar.kadoma.date(from: DateComponents(year: 2026, month: 5, day: 1)) ?? .now,
+        selectedDate: Calendar.kadoma.date(from: DateComponents(year: 2026, month: 5, day: 7)) ?? .now
+    )
+    .environmentObject(MasterStore())
+    .previewLayout(.fixed(width: 393, height: 852))
+}
+
+#Preview("Calendar iPhone SE") {
+    CollectionCalendarView()
+        .environmentObject(MasterStore())
+        .previewLayout(.fixed(width: 320, height: 568))
 }

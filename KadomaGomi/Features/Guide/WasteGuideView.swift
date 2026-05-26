@@ -188,13 +188,13 @@ struct WasteCategoryGuideCard: View {
                 .foregroundStyle(AppColor.secondaryText)
                 .multilineTextAlignment(.center)
                 .lineLimit(2)
-                .fixedSize(horizontal: false, vertical: true)
+                .minimumScaleFactor(0.82)
             Text("\(itemCount)品目")
                 .font(AppTypography.badge)
                 .foregroundStyle(AppColor.secondaryText)
         }
         .padding(AppSpacing.lg)
-        .frame(maxWidth: .infinity, minHeight: 178, alignment: .top)
+        .frame(maxWidth: .infinity, minHeight: 188, maxHeight: 188, alignment: .top)
         .background(AppColor.cardBackground, in: RoundedRectangle(cornerRadius: AppRadius.lg, style: .continuous))
         .overlay(
             RoundedRectangle(cornerRadius: AppRadius.lg, style: .continuous)
@@ -666,6 +666,19 @@ private struct GuideSourceLink: View {
         .previewLayout(.fixed(width: 393, height: 852))
 }
 
+#Preview("WasteGuide Uniform Cards") {
+    WasteGuideView()
+        .environmentObject(MasterStore())
+        .previewLayout(.fixed(width: 393, height: 852))
+}
+
+#Preview("WasteGuide Uniform Cards Long Names") {
+    WasteGuideView()
+        .environmentObject(MasterStore())
+        .environment(\.dynamicTypeSize, .accessibility2)
+        .previewLayout(.fixed(width: 320, height: 568))
+}
+
 #Preview("Category Simple Detail") {
     let store = MasterStore()
     NavigationStack {
@@ -674,6 +687,17 @@ private struct GuideSourceLink: View {
             items: store.master.itemDictionary.filter { $0.categoryId == store.master.categories[0].id }
         )
     }
+}
+
+#Preview("WasteGuide Category Detail") {
+    let store = MasterStore()
+    NavigationStack {
+        WasteCategoryDetailView(
+            category: store.master.categories.first { $0.id == "plastic_container" } ?? store.master.categories[0],
+            items: store.master.itemDictionary.filter { $0.categoryId == "plastic_container" }
+        )
+    }
+    .previewLayout(.fixed(width: 393, height: 852))
 }
 
 #Preview("Item Detail Hazard") {

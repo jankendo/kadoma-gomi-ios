@@ -2,6 +2,8 @@ import Foundation
 import UserNotifications
 
 struct NotificationService {
+    static let developerTestIdentifierPrefix = "dev-test-notification-"
+
     func reschedule(events: [CollectionEvent], categories: [WasteCategory], settings: UserSettings) async throws {
         let center = UNUserNotificationCenter.current()
         let granted = try await center.requestAuthorization(options: [.alert, .sound, .badge])
@@ -63,6 +65,63 @@ struct NotificationService {
             .map { $0 }
     }
 
+    func authorizationStatus() async -> UNAuthorizationStatus {
+        let settings = await UNUserNotificationCenter.current().notificationSettings()
+        return settings.authorizationStatus
+    }
+
+    @discardableResult
+    func requestAuthorization() async throws -> Bool {
+        try await UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge])
+    }
+
+    func scheduleDeveloperTestNotification(after seconds: TimeInterval) async throws {
+        let granted = try await requestAuthorization()
+        guard granted else { throw DeveloperNotificationTestError.permissionDenied }
+        try await addIntervalNotification(
+            identifier: "\(Self.developerTestIdentifierPrefix)\(Int(seconds))s-\(UUID().uuidString)",
+            seconds: seconds,
+            title: "通知テスト",
+            body: "門真市ごみアプリのテスト通知です。"
+        )
+    }
+
+    func scheduleDeveloperWasteSimulation(kind: DeveloperNotificationKind, categoryName: String) async throws {
+        let granted = try await requestAuthorization()
+        guard granted else { throw DeveloperNotificationTestError.permissionDenied }
+        switch kind {
+        case .tomorrow:
+            try await addIntervalNotification(
+                identifier: "\(Self.developerTestIdentifierPrefix)tomorrow-\(UUID().uuidString)",
+                seconds: 5,
+                title: "明日は\(categoryName)の収集予定です",
+                body: "地区設定に基づく通知テストです。実際の収集日はアプリで確認してください。"
+            )
+        case .morning:
+            try await addIntervalNotification(
+                identifier: "\(Self.developerTestIdentifierPrefix)morning-\(UUID().uuidString)",
+                seconds: 5,
+                title: "今日は\(categoryName)の収集予定です",
+                body: "収集日当日の朝を想定したテスト通知です。"
+            )
+        }
+    }
+
+    func pendingRequests() async -> [UNNotificationRequest] {
+        await UNUserNotificationCenter.current().pendingNotificationRequests()
+    }
+
+    func cancelDeveloperTestNotifications() async {
+        let pending = await pendingRequests()
+        UNUserNotificationCenter.current().removePendingNotificationRequests(
+            withIdentifiers: pending.map(\.identifier).filter { $0.hasPrefix(Self.developerTestIdentifierPrefix) }
+        )
+    }
+
+    func cancelAllPendingNotifications() {
+        UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+    }
+
     private func addNotification(id: String, date: Date, title: String, body: String) async throws {
         guard date > .now else { return }
         let content = UNMutableNotificationContent()
@@ -75,6 +134,16 @@ struct NotificationService {
         components.timeZone = Calendar.kadoma.timeZone
         let trigger = UNCalendarNotificationTrigger(dateMatching: components, repeats: false)
         try await UNUserNotificationCenter.current().add(UNNotificationRequest(identifier: "gomi_\(id)", content: content, trigger: trigger))
+    }
+
+    private func addIntervalNotification(identifier: String, seconds: TimeInterval, title: String, body: String) async throws {
+        let content = UNMutableNotificationContent()
+        content.title = title
+        content.body = body
+        content.sound = .default
+
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: max(1, seconds), repeats: false)
+        try await UNUserNotificationCenter.current().add(UNNotificationRequest(identifier: identifier, content: content, trigger: trigger))
     }
 
     private func previousDay(for date: Date, hour: Int) -> Date {
@@ -94,5 +163,21 @@ struct NotificationService {
             return "\(prefix)\n\(firstNote)\n地区設定に基づく通知です。変更がある場合は公式情報も確認してください。"
         }
         return "\(prefix)\n地区設定に基づく通知です。変更がある場合は公式情報も確認してください。"
+    }
+}
+
+enum DeveloperNotificationKind: Equatable {
+    case tomorrow
+    case morning
+}
+
+enum DeveloperNotificationTestError: LocalizedError {
+    case permissionDenied
+
+    var errorDescription: String? {
+        switch self {
+        case .permissionDenied:
+            return "通知が許可されていません。iOS設定または通知許可ボタンから許可してください。"
+        }
     }
 }
