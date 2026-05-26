@@ -80,3 +80,18 @@
 - Onboarding Simple iPhone SE
 
 Phase 6ではDark Previewを追加しない。アプリはライトモード専用で、代わりに小型画面、Dynamic Type大、注意状態、空状態を重点確認する。
+
+## Phase 7 Minimal Preview
+
+- Home Weekly Simple Default
+- Home Weekly Simple Today Collection
+- Home Weekly Simple No Collection
+- Home Weekly Simple iPhone SE
+- Home Weekly Simple Dynamic Type Large
+- Calendar Full Month Only Default
+- Calendar Full Month Only iPhone SE
+- Calendar Full Month Only Dynamic Type Large
+- Calendar Full Month Only Multiple Items
+- Calendar Full Month Only Year End Notice
+
+Phase 7では、ホームに今週リストが主表示として出ること、カレンダーに月間グリッド以外の詳細カードが出ないことを重点確認する。
