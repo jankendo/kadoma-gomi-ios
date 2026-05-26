@@ -8,23 +8,24 @@ struct MainTabView: View {
         TabView(selection: $selectedTab) {
             HomeView(
                 openSearch: { selectedTab = .search },
+                openGuide: { selectedTab = .guide },
                 openCalendar: { selectedTab = .calendar },
                 openSettings: { selectedTab = .settings }
             )
                 .tabItem { Label("ホーム", systemImage: "house.fill") }
                 .tag(AppTab.home)
 
+            SearchView()
+                .tabItem { Label("ごみ検索", systemImage: "magnifyingglass") }
+                .tag(AppTab.search)
+
+            WasteGuideView()
+                .tabItem { Label("ごみ分別", systemImage: "trash.fill") }
+                .tag(AppTab.guide)
+
             CollectionCalendarView()
                 .tabItem { Label("カレンダー", systemImage: "calendar") }
                 .tag(AppTab.calendar)
-
-            SearchView()
-                .tabItem { Label("分別検索", systemImage: "magnifyingglass") }
-                .tag(AppTab.search)
-
-            BulkyWasteView()
-                .tabItem { Label("粗大ごみ", systemImage: "sofa.fill") }
-                .tag(AppTab.bulky)
 
             SettingsView()
                 .tabItem { Label("設定", systemImage: "gearshape.fill") }

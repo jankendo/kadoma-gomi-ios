@@ -171,3 +171,9 @@ Runtime互換:
 - `sourceTitle`
 
 Swift側はoptionalとして読み込むため、古いremote masterとの互換性を維持する。
+
+## 12. Phase 6追記
+
+第6フェーズではデータ構造は変更していない。A-F地区、225品目以上、分別カテゴリ、出し方手順、special_rules、manifest/SHAの設計を維持した。
+
+UIのみをシンプル化し、既存データをホーム、検索、分別ガイド、カレンダーで読みやすく表示する方針にした。master生成、schema validation、CI/CDの対象データはそのまま維持する。

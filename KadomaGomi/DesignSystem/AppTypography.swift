@@ -1,11 +1,11 @@
 import SwiftUI
 
 enum AppTypography {
-    static let screenTitle = Font.largeTitle.weight(.heavy)
-    static let heroTitle = Font.title.weight(.heavy)
-    static let heroNumber = Font.system(.largeTitle, design: .rounded).weight(.heavy)
+    static let screenTitle = Font.title.weight(.bold)
+    static let heroTitle = Font.title2.weight(.bold)
+    static let heroNumber = Font.system(.title, design: .default).weight(.bold)
     static let sectionTitle = Font.title3.weight(.bold)
-    static let cardTitle = Font.headline.weight(.bold)
+    static let cardTitle = Font.headline.weight(.semibold)
     static let compactTitle = Font.subheadline.weight(.bold)
     static let body = Font.body
     static let callout = Font.callout

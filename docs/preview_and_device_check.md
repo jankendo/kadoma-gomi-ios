@@ -57,3 +57,26 @@
 - `WasteItemDetailView` 注意品目詳細
 
 実機では、検索結果から詳細画面への遷移、カテゴリ詳細のスクロール、Dynamic Type大での手順カード折り返しを確認する。
+
+## Phase 6 Simple Preview
+
+- Home Simple Default
+- Home Simple iPhone SE
+- Home Simple Dynamic Type Large
+- Home Simple Year End Notice
+- Search Simple Default
+- Search Simple Result
+- Search Simple Hazard Item
+- Search Simple Dynamic Type Large
+- Category Simple Grid
+- Category Simple Detail
+- Calendar Simple Default
+- Calendar Simple iPhone SE
+- Calendar Simple Dynamic Type Large
+- Calendar Simple Year End Notice
+- Settings Simple Default
+- Settings Simple Dynamic Type Large
+- Onboarding Simple
+- Onboarding Simple iPhone SE
+
+Phase 6ではDark Previewを追加しない。アプリはライトモード専用で、代わりに小型画面、Dynamic Type大、注意状態、空状態を重点確認する。

@@ -7,11 +7,7 @@ struct AppCardModifier: ViewModifier {
             .background(AppColor.cardBackground, in: RoundedRectangle(cornerRadius: AppRadius.lg, style: .continuous))
             .overlay(
                 RoundedRectangle(cornerRadius: AppRadius.lg, style: .continuous)
-                    .stroke(.white.opacity(0.9), lineWidth: 1)
-            )
-            .overlay(
-                RoundedRectangle(cornerRadius: AppRadius.lg, style: .continuous)
-                    .stroke(AppColor.separator.opacity(0.50), lineWidth: 0.8)
+                    .stroke(AppColor.separator, lineWidth: 0.8)
             )
             .shadow(color: AppShadow.cardColor, radius: AppShadow.subtleRadius, x: 0, y: AppShadow.subtleY)
     }

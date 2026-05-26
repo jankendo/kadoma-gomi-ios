@@ -1,9 +1,9 @@
 import SwiftUI
 
 enum AppShadow {
-    static let cardColor = Color(hex: "#1B4332").opacity(0.10)
-    static let subtleRadius: CGFloat = 14
-    static let subtleY: CGFloat = 5
-    static let floatingRadius: CGFloat = 22
-    static let floatingY: CGFloat = 10
+    static let cardColor = Color.black.opacity(0.04)
+    static let subtleRadius: CGFloat = 4
+    static let subtleY: CGFloat = 1
+    static let floatingRadius: CGFloat = 8
+    static let floatingY: CGFloat = 2
 }

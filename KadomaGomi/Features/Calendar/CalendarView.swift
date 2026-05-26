@@ -56,8 +56,11 @@ struct CollectionCalendarView: View {
                     )
                 }
             }
-            .navigationTitle("カレンダー")
-            .toolbarBackground(AppColor.backgroundTop, for: .navigationBar)
+            .navigationTitle("収集日カレンダー")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbarBackground(AppColor.header, for: .navigationBar)
+            .toolbarBackground(.visible, for: .navigationBar)
+            .toolbarColorScheme(.dark, for: .navigationBar)
         }
     }
 
@@ -92,34 +95,16 @@ private struct CalendarMonthHeader: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: AppSpacing.md) {
-            HStack(alignment: .top, spacing: AppSpacing.md) {
-                Image(systemName: AppIcon.calendar)
-                    .font(.title2.weight(.heavy))
-                    .frame(width: 52, height: 52)
-                    .background(AppColor.softBlue, in: RoundedRectangle(cornerRadius: AppRadius.lg, style: .continuous))
-                    .foregroundStyle(AppColor.subTint)
-
+            HStack(alignment: .firstTextBaseline, spacing: AppSpacing.md) {
                 VStack(alignment: .leading, spacing: AppSpacing.xs) {
                     Text(KadomaDateFormatter.monthTitle.string(from: displayedMonth))
-                        .font(AppTypography.heroTitle)
+                        .font(AppTypography.screenTitle)
                     Text("\(areaName)の収集予定")
-                        .font(AppTypography.callout.weight(.semibold))
+                        .font(AppTypography.callout)
                         .foregroundStyle(AppColor.secondaryText)
                 }
 
                 Spacer(minLength: 0)
-            }
-
-            HStack(spacing: AppSpacing.sm) {
-                Button {
-                    moveMonth(-1)
-                } label: {
-                    Label("前月", systemImage: "chevron.left")
-                        .labelStyle(.iconOnly)
-                }
-                .buttonStyle(.bordered)
-                .controlSize(.large)
-                .accessibilityLabel("前の月")
 
                 Button {
                     displayedMonth = Calendar.kadoma.startOfMonth(for: .now)
@@ -128,21 +113,30 @@ private struct CalendarMonthHeader: View {
                     Label("今日", systemImage: AppIcon.today)
                         .font(AppTypography.compactTitle)
                 }
-                .buttonStyle(.borderedProminent)
-                .tint(AppColor.appTint)
-                .controlSize(.large)
+                .buttonStyle(.bordered)
+                .controlSize(.regular)
+            }
+
+            HStack(spacing: AppSpacing.md) {
+                Button {
+                    moveMonth(-1)
+                } label: {
+                    Label("前月", systemImage: "chevron.left")
+                }
+                .buttonStyle(.bordered)
+                .controlSize(.regular)
+                .accessibilityLabel("前の月")
+
+                Spacer(minLength: 0)
 
                 Button {
                     moveMonth(1)
                 } label: {
                     Label("次月", systemImage: "chevron.right")
-                        .labelStyle(.iconOnly)
                 }
                 .buttonStyle(.bordered)
-                .controlSize(.large)
+                .controlSize(.regular)
                 .accessibilityLabel("次の月")
-
-                Spacer(minLength: 0)
             }
 
             Picker("表示", selection: $displayMode) {
@@ -151,6 +145,11 @@ private struct CalendarMonthHeader: View {
                 }
             }
             .pickerStyle(.segmented)
+
+            Text("日付を選ぶと、その日の分別種類と出し方の要点を下に表示します。")
+                .font(AppTypography.callout)
+                .foregroundStyle(AppColor.secondaryText)
+                .fixedSize(horizontal: false, vertical: true)
         }
         .appCard()
         .accessibilityElement(children: .combine)
@@ -169,13 +168,13 @@ private struct SpecialRuleNoticeCard: View {
     var body: some View {
         HStack(alignment: .top, spacing: AppSpacing.md) {
             Image(systemName: summary.today.needsOfficialReview ? AppIcon.warning : AppIcon.shield)
-                .font(.headline.weight(.bold))
-                .frame(width: 42, height: 42)
-                .background(summary.today.needsOfficialReview ? AppColor.softYellow : AppColor.softMint, in: RoundedRectangle(cornerRadius: AppRadius.md, style: .continuous))
+                .font(.headline.weight(.semibold))
+                .frame(width: 40, height: 40)
+                .background(summary.today.needsOfficialReview ? AppColor.softYellow : AppColor.backgroundTop, in: Circle())
                 .foregroundStyle(summary.today.needsOfficialReview ? AppColor.warning : AppColor.success)
 
             VStack(alignment: .leading, spacing: AppSpacing.xs) {
-                Text(summary.today.needsOfficialReview ? "この月は公式確認も忘れずに" : "通常ルールと例外マスタを確認中")
+                Text(summary.today.needsOfficialReview ? "この月は公式情報も確認" : "通常ルールで表示中")
                     .font(AppTypography.cardTitle)
                 Text(summary.today.needsOfficialReview ? (summary.today.reviewRules.first?.description ?? "12月・1月は収集日が変わる場合があります。") : "災害時や臨時変更は通常曜日から変わる場合があります。最新マスタと公式情報を確認してください。")
                     .font(AppTypography.callout)
@@ -193,8 +192,8 @@ private struct CalendarLegendView: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: AppSpacing.md) {
-            AppSectionHeader("ごみ種別", subtitle: "色・アイコン・短い名前で見分けます", systemImage: "paintpalette.fill")
-            LazyVGrid(columns: [GridItem(.adaptive(minimum: 92), spacing: AppSpacing.sm)], alignment: .leading, spacing: AppSpacing.sm) {
+            AppSectionHeader("凡例", subtitle: "アイコンと短い名前で見分けます", systemImage: "list.bullet")
+            LazyVGrid(columns: [GridItem(.adaptive(minimum: 104), spacing: AppSpacing.sm)], alignment: .leading, spacing: AppSpacing.sm) {
                 ForEach(categories) { category in
                     AppBadge(category.shortName, color: AppColor.category(category), systemImage: category.symbolName)
                 }
@@ -211,20 +210,21 @@ private struct CalendarMonthView: View {
     let eventsProvider: (Date) -> [CollectionEvent]
     let categoryProvider: (String) -> WasteCategory?
 
-    private let columns = Array(repeating: GridItem(.flexible(), spacing: 5), count: 7)
+    private let columns = Array(repeating: GridItem(.flexible(), spacing: 4), count: 7)
 
     var body: some View {
         VStack(spacing: AppSpacing.sm) {
-            LazyVGrid(columns: columns, spacing: AppSpacing.sm) {
+            LazyVGrid(columns: columns, spacing: AppSpacing.xs) {
                 ForEach(weekdays, id: \.self) { weekday in
                     Text(weekday)
-                        .font(AppTypography.tinyBadge)
-                        .foregroundStyle(AppColor.secondaryText)
-                        .frame(maxWidth: .infinity)
+                        .font(AppTypography.compactTitle)
+                        .foregroundStyle(weekday == "土" ? AppColor.subTint : (weekday == "日" ? AppColor.error : AppColor.secondaryText))
+                        .frame(maxWidth: .infinity, minHeight: 32)
+                        .background(AppColor.backgroundTop.opacity(0.55), in: RoundedRectangle(cornerRadius: AppRadius.sm, style: .continuous))
                 }
             }
 
-            LazyVGrid(columns: columns, spacing: 5) {
+            LazyVGrid(columns: columns, spacing: 4) {
                 ForEach(Array(monthCells.enumerated()), id: \.offset) { _, date in
                     if let date {
                         CalendarDayCell(
@@ -237,7 +237,7 @@ private struct CalendarMonthView: View {
                         }
                     } else {
                         Color.clear
-                            .frame(minHeight: 72)
+                            .frame(minHeight: 88)
                     }
                 }
             }
@@ -262,14 +262,14 @@ private struct CalendarDayCell: View {
             VStack(alignment: .leading, spacing: 4) {
                 HStack(spacing: 2) {
                     Text("\(Calendar.kadoma.component(.day, from: date))")
-                        .font(AppTypography.tinyBadge)
+                        .font(AppTypography.compactTitle)
                         .foregroundStyle(isToday ? .white : AppColor.text)
-                        .frame(width: 22, height: 22)
+                        .frame(width: 26, height: 26)
                         .background(isToday ? AppColor.appTint : Color.clear, in: Circle())
                     Spacer(minLength: 0)
                     if events.count > 2 {
                         Text("+\(events.count - 2)")
-                            .font(.caption2.weight(.heavy))
+                            .font(AppTypography.tinyBadge)
                             .foregroundStyle(AppColor.tertiaryText)
                     }
                 }
@@ -285,11 +285,11 @@ private struct CalendarDayCell: View {
                 Spacer(minLength: 0)
             }
             .padding(5)
-            .frame(maxWidth: .infinity, minHeight: 82, alignment: .topLeading)
-            .background(isSelected ? AppColor.softYellow.opacity(0.92) : AppColor.cardBackground, in: RoundedRectangle(cornerRadius: AppRadius.sm, style: .continuous))
+            .frame(maxWidth: .infinity, minHeight: 92, alignment: .topLeading)
+            .background(isSelected ? AppColor.backgroundTop : AppColor.cardBackground, in: RoundedRectangle(cornerRadius: AppRadius.sm, style: .continuous))
             .overlay(
                 RoundedRectangle(cornerRadius: AppRadius.sm, style: .continuous)
-                    .stroke(isSelected ? AppColor.accent : (isToday ? AppColor.appTint : AppColor.separator.opacity(0.55)), lineWidth: isSelected || isToday ? 1.5 : 0.7)
+                    .stroke(isSelected ? AppColor.appTint : (isToday ? AppColor.appTint : AppColor.separator.opacity(0.55)), lineWidth: isSelected || isToday ? 2 : 0.7)
             )
         }
         .buttonStyle(.plain)
@@ -312,16 +312,16 @@ private struct CollectionDayChip: View {
     var body: some View {
         HStack(spacing: 2) {
             Image(systemName: category.symbolName)
-                .font(.system(size: 8, weight: .bold))
+                .font(.system(size: 8, weight: .semibold))
             Text(category.shortName)
-                .font(.system(size: 9, weight: .heavy))
+                .font(.system(size: 9, weight: .bold))
                 .lineLimit(1)
                 .minimumScaleFactor(0.70)
         }
         .padding(.horizontal, 4)
         .padding(.vertical, 3)
         .frame(maxWidth: .infinity, alignment: .leading)
-        .background(AppColor.categoryBackground(category), in: RoundedRectangle(cornerRadius: 6, style: .continuous))
+        .background(AppColor.categoryBackground(category), in: RoundedRectangle(cornerRadius: 5, style: .continuous))
         .foregroundStyle(AppColor.category(category))
     }
 }
@@ -342,7 +342,9 @@ private struct SelectedDaySummaryCard: View {
                         .foregroundStyle(AppColor.secondaryText)
                 }
                 Spacer()
-                AppBadge(Calendar.kadoma.isDateInToday(date) ? "今日" : "確認中", color: Calendar.kadoma.isDateInToday(date) ? AppColor.appTint : AppColor.official, systemImage: Calendar.kadoma.isDateInToday(date) ? AppIcon.today : AppIcon.info)
+                if Calendar.kadoma.isDateInToday(date) {
+                    AppBadge("今日", color: AppColor.appTint, systemImage: AppIcon.today)
+                }
             }
 
             if events.isEmpty {
@@ -380,25 +382,25 @@ private struct CollectionEventList: View {
     }
 }
 
-#Preview {
+#Preview("Calendar Simple Default") {
     CollectionCalendarView()
         .environmentObject(MasterStore())
 }
 
-#Preview("Calendar Light iPhone SE") {
+#Preview("Calendar Simple iPhone SE") {
     CollectionCalendarView()
         .environmentObject(MasterStore())
         .previewLayout(.fixed(width: 320, height: 568))
 }
 
-#Preview("Calendar Light Dynamic Type") {
+#Preview("Calendar Simple Dynamic Type Large") {
     CollectionCalendarView()
         .environmentObject(MasterStore())
         .environment(\.dynamicTypeSize, .accessibility2)
         .previewLayout(.fixed(width: 393, height: 852))
 }
 
-#Preview("Calendar Light Year End") {
+#Preview("Calendar Simple Year End Notice") {
     CollectionCalendarView(
         initialMonth: Calendar.kadoma.date(from: DateComponents(year: 2026, month: 12, day: 1)) ?? .now,
         selectedDate: Calendar.kadoma.date(from: DateComponents(year: 2026, month: 12, day: 28)) ?? .now

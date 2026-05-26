@@ -1,0 +1,49 @@
+# Simple Layout Design System
+
+## 1. 色設計
+
+| 用途 | 方針 |
+| --- | --- |
+| ヘッダー | 落ち着いた緑 `AppColor.header` |
+| 背景 | ごく薄いグレー `AppColor.background` |
+| 補助背景 | ごく薄い緑 `AppColor.backgroundTop` |
+| カード | 白 `AppColor.cardBackground` |
+| 文字 | 濃いグレー `AppColor.text` |
+| 補助文字 | 中間グレー `AppColor.secondaryText` |
+| 区切り | 薄いグレー `AppColor.separator` |
+| 注意 | 控えめなアンバー |
+| エラー | 強すぎない赤 |
+
+## 2. ごみ種別色
+
+ごみ種別の色は残すが、分類の主役は色ではなく、アイコン、短いラベル、カテゴリ名とする。色はチップや小さなアイコンの補助に使う。
+
+## 3. タイポグラフィ
+
+- 画面タイトルは `title.bold`。
+- 重要カード見出しは `title2.bold`。
+- セクション見出しは `title3.bold`。
+- 本文はDynamic Typeに追従する `body` / `callout`。
+- 極端に太い `heavy` を減らし、高齢者にも読みやすい重さにする。
+
+## 4. 角丸と影
+
+- 角丸は8/10/12/16ptに抑える。
+- 影はほぼ使わず、必要な場合も極薄にする。
+- 浮遊感ではなく、罫線と余白で区切る。
+
+## 5. コンポーネント方針
+
+- `AppScreen`: フラット背景と十分な余白。
+- `AppSectionHeader`: アイコンと見出し、任意の短い説明。
+- `AppBadge`: 控えめな角丸矩形。
+- `WasteSymbol`: 分別カテゴリの補助アイコン。
+- `QuickActionCard`: タップ先が分かる最小情報の行。
+- `AppStateView`: 原因と次の行動を説明する。
+
+## 6. アクセシビリティ
+
+- ボタンとタップ要素は44pt以上を維持。
+- 色だけで分類しない。
+- 重要カード、検索結果、カレンダー日付はVoiceOverで意味が通るラベルを持つ。
+- Dynamic Typeではカードが縦に伸びる前提で、固定高さの乱用を避ける。

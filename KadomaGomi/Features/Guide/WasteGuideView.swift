@@ -1,12 +1,114 @@
 import SwiftUI
 
+struct WasteGuideView: View {
+    @EnvironmentObject private var store: MasterStore
+
+    private var householdCategories: [WasteCategory] {
+        categoryIds(["burnable", "plastic_container", "bottles_cans", "paper_cloth", "small_items", "pet_bottle"])
+    }
+
+    private var specialCategories: [WasteCategory] {
+        categoryIds(["bulky", "hazardous_note", "recycle_law"])
+    }
+
+    var body: some View {
+        NavigationStack {
+            AppScreen {
+                WasteGuideHeader()
+                WasteGuideGridSection(
+                    title: "家庭ごみ",
+                    subtitle: "収集日に出す主な分別です",
+                    categories: householdCategories,
+                    items: store.master.itemDictionary
+                )
+                WasteGuideGridSection(
+                    title: "申込・確認が必要なもの",
+                    subtitle: "予約や公式確認が必要な品目です",
+                    categories: specialCategories,
+                    items: store.master.itemDictionary
+                )
+            }
+            .navigationTitle("ごみ分別")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbarBackground(AppColor.header, for: .navigationBar)
+            .toolbarBackground(.visible, for: .navigationBar)
+            .toolbarColorScheme(.dark, for: .navigationBar)
+        }
+    }
+
+    private func categoryIds(_ ids: [String]) -> [WasteCategory] {
+        ids.compactMap { id in
+            store.master.categories.first { $0.id == id }
+        }
+    }
+}
+
+private struct WasteGuideHeader: View {
+    var body: some View {
+        HStack(alignment: .top, spacing: AppSpacing.md) {
+            Image(systemName: AppIcon.guide)
+                .font(.title2.weight(.semibold))
+                .frame(width: 52, height: 52)
+                .background(AppColor.backgroundTop, in: Circle())
+                .foregroundStyle(AppColor.appTint)
+                .accessibilityHidden(true)
+            VStack(alignment: .leading, spacing: AppSpacing.xs) {
+                Text("種類から調べる")
+                    .font(AppTypography.heroTitle)
+                    .foregroundStyle(AppColor.text)
+                Text("ごみの種類を選ぶと、出し方・代表品目・注意点を確認できます。")
+                    .font(AppTypography.body)
+                    .foregroundStyle(AppColor.secondaryText)
+                    .fixedSize(horizontal: false, vertical: true)
+            }
+        }
+        .appCard()
+    }
+}
+
+private struct WasteGuideGridSection: View {
+    let title: String
+    let subtitle: String
+    let categories: [WasteCategory]
+    let items: [WasteItem]
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: AppSpacing.md) {
+            Text(title)
+                .font(AppTypography.sectionTitle)
+                .foregroundStyle(AppColor.text)
+            Text(subtitle)
+                .font(AppTypography.callout)
+                .foregroundStyle(AppColor.secondaryText)
+
+            LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: AppSpacing.md) {
+                ForEach(categories) { category in
+                    NavigationLink {
+                        WasteCategoryDetailView(
+                            category: category,
+                            items: items.filter { $0.categoryId == category.id }
+                        )
+                    } label: {
+                        WasteCategoryGuideCard(
+                            category: category,
+                            itemCount: items.filter { $0.categoryId == category.id }.count
+                        )
+                    }
+                    .buttonStyle(.plain)
+                }
+            }
+        }
+        .padding(.top, AppSpacing.sm)
+    }
+}
+
 struct WasteGuideOverviewSection: View {
     let categories: [WasteCategory]
     let items: [WasteItem]
 
     var body: some View {
         VStack(alignment: .leading, spacing: AppSpacing.md) {
-            AppSectionHeader("分別ガイド", subtitle: "種類ごとの出し方をカードで確認できます", systemImage: AppIcon.guide)
+            AppSectionHeader("分別ガイド", subtitle: "種類ごとの出し方を確認できます", systemImage: AppIcon.guide)
 
             LazyVGrid(columns: [GridItem(.adaptive(minimum: 150), spacing: AppSpacing.sm)], alignment: .leading, spacing: AppSpacing.sm) {
                 ForEach(categories) { category in
@@ -40,7 +142,10 @@ struct WasteCategoryDetailView: View {
             GuideSourceLink(title: category.sourceTitle ?? "門真市公式情報", urlText: category.sourceUrl)
         }
         .navigationTitle(category.guideDisplayName)
-        .toolbarBackground(AppColor.backgroundTop, for: .navigationBar)
+        .navigationBarTitleDisplayMode(.inline)
+        .toolbarBackground(AppColor.header, for: .navigationBar)
+        .toolbarBackground(.visible, for: .navigationBar)
+        .toolbarColorScheme(.dark, for: .navigationBar)
     }
 }
 
@@ -59,7 +164,10 @@ struct WasteItemDetailView: View {
             GuideSourceLink(title: item.sourceTitleText, urlText: item.sourceUrl ?? category?.sourceUrl)
         }
         .navigationTitle(item.primaryName)
-        .toolbarBackground(AppColor.backgroundTop, for: .navigationBar)
+        .navigationBarTitleDisplayMode(.inline)
+        .toolbarBackground(AppColor.header, for: .navigationBar)
+        .toolbarBackground(.visible, for: .navigationBar)
+        .toolbarColorScheme(.dark, for: .navigationBar)
     }
 }
 
@@ -68,35 +176,29 @@ struct WasteCategoryGuideCard: View {
     let itemCount: Int
 
     var body: some View {
-        VStack(alignment: .leading, spacing: AppSpacing.sm) {
-            HStack(alignment: .top, spacing: AppSpacing.sm) {
-                WasteSymbol(category: category, size: 42)
-                Spacer(minLength: 0)
-                AppBadge("\(itemCount)品目", color: AppColor.category(category))
-            }
+        VStack(alignment: .center, spacing: AppSpacing.sm) {
+            WasteSymbol(category: category, size: 72)
             Text(category.guideDisplayName)
                 .font(AppTypography.cardTitle)
                 .foregroundStyle(AppColor.text)
+                .multilineTextAlignment(.center)
                 .lineLimit(2)
             Text(category.guideSummary)
                 .font(AppTypography.footnote)
                 .foregroundStyle(AppColor.secondaryText)
-                .lineLimit(3)
+                .multilineTextAlignment(.center)
+                .lineLimit(2)
                 .fixedSize(horizontal: false, vertical: true)
+            Text("\(itemCount)品目")
+                .font(AppTypography.badge)
+                .foregroundStyle(AppColor.secondaryText)
         }
-        .padding(AppSpacing.md)
-        .frame(maxWidth: .infinity, minHeight: 154, alignment: .topLeading)
-        .background(
-            LinearGradient(
-                colors: [AppColor.cardBackground, AppColor.categoryBackground(category).opacity(0.8)],
-                startPoint: .topLeading,
-                endPoint: .bottomTrailing
-            ),
-            in: RoundedRectangle(cornerRadius: AppRadius.lg, style: .continuous)
-        )
+        .padding(AppSpacing.lg)
+        .frame(maxWidth: .infinity, minHeight: 178, alignment: .top)
+        .background(AppColor.cardBackground, in: RoundedRectangle(cornerRadius: AppRadius.lg, style: .continuous))
         .overlay(
             RoundedRectangle(cornerRadius: AppRadius.lg, style: .continuous)
-                .stroke(AppColor.category(category).opacity(0.22), lineWidth: 1)
+                .stroke(AppColor.separator, lineWidth: 1)
         )
         .accessibilityElement(children: .combine)
         .accessibilityHint("カテゴリの詳しい出し方を開きます。")
@@ -130,15 +232,11 @@ struct CategoryHeroCard: View {
             }
         }
         .padding(AppSpacing.lg)
-        .background(
-            LinearGradient(colors: [AppColor.cardBackground, AppColor.categoryBackground(category)], startPoint: .topLeading, endPoint: .bottomTrailing),
-            in: RoundedRectangle(cornerRadius: AppRadius.xl, style: .continuous)
-        )
+        .background(AppColor.cardBackground, in: RoundedRectangle(cornerRadius: AppRadius.lg, style: .continuous))
         .overlay(
-            RoundedRectangle(cornerRadius: AppRadius.xl, style: .continuous)
-                .stroke(AppColor.category(category).opacity(0.24), lineWidth: 1)
+            RoundedRectangle(cornerRadius: AppRadius.lg, style: .continuous)
+                .stroke(AppColor.separator, lineWidth: 1)
         )
-        .shadow(color: AppColor.category(category).opacity(0.12), radius: 16, x: 0, y: 7)
         .accessibilityElement(children: .combine)
     }
 
@@ -193,7 +291,7 @@ struct DisposalStepRow: View {
             Image(systemName: actionIcon(for: text))
                 .font(.headline.weight(.bold))
                 .frame(width: 34, height: 34)
-                .background(tint.opacity(0.13), in: RoundedRectangle(cornerRadius: AppRadius.sm, style: .continuous))
+                .background(AppColor.backgroundTop, in: RoundedRectangle(cornerRadius: AppRadius.sm, style: .continuous))
                 .foregroundStyle(tint)
                 .accessibilityHidden(true)
 
@@ -359,13 +457,10 @@ private struct ItemHeroCard: View {
             }
         }
         .padding(AppSpacing.lg)
-        .background(
-            LinearGradient(colors: [AppColor.cardBackground, AppColor.categoryBackground(category)], startPoint: .topLeading, endPoint: .bottomTrailing),
-            in: RoundedRectangle(cornerRadius: AppRadius.xl, style: .continuous)
-        )
+        .background(AppColor.cardBackground, in: RoundedRectangle(cornerRadius: AppRadius.lg, style: .continuous))
         .overlay(
-            RoundedRectangle(cornerRadius: AppRadius.xl, style: .continuous)
-                .stroke(AppColor.category(category).opacity(0.24), lineWidth: 1)
+            RoundedRectangle(cornerRadius: AppRadius.lg, style: .continuous)
+                .stroke(AppColor.separator, lineWidth: 1)
         )
         .accessibilityElement(children: .combine)
     }
@@ -565,15 +660,19 @@ private struct GuideSourceLink: View {
     }
 }
 
-#Preview("Guide Overview") {
+#Preview("Category Simple Grid") {
+    WasteGuideView()
+        .environmentObject(MasterStore())
+        .previewLayout(.fixed(width: 393, height: 852))
+}
+
+#Preview("Category Simple Detail") {
     let store = MasterStore()
     NavigationStack {
-        WasteGuideOverviewSection(
-            categories: store.master.categories,
-            items: store.master.itemDictionary
+        WasteCategoryDetailView(
+            category: store.master.categories[0],
+            items: store.master.itemDictionary.filter { $0.categoryId == store.master.categories[0].id }
         )
-        .padding()
-        .background(AppColor.background)
     }
 }
 

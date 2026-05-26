@@ -49,7 +49,10 @@ struct SettingsView: View {
                 )
             }
             .navigationTitle("設定")
-            .toolbarBackground(AppColor.backgroundTop, for: .navigationBar)
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbarBackground(AppColor.header, for: .navigationBar)
+            .toolbarBackground(.visible, for: .navigationBar)
+            .toolbarColorScheme(.dark, for: .navigationBar)
             .task {
                 addressText = store.settings.addressText
                 await refreshNotificationStatus()
@@ -128,9 +131,9 @@ private struct DistrictSettingsCard: View {
 
             HStack(alignment: .top, spacing: AppSpacing.md) {
                 Image(systemName: AppIcon.area)
-                    .font(.title2.weight(.heavy))
-                    .frame(width: 52, height: 52)
-                    .background(AppColor.softMint, in: RoundedRectangle(cornerRadius: AppRadius.lg, style: .continuous))
+                    .font(.title2.weight(.semibold))
+                    .frame(width: 50, height: 50)
+                    .background(AppColor.backgroundTop, in: Circle())
                     .foregroundStyle(AppColor.appTint)
                     .accessibilityHidden(true)
                 VStack(alignment: .leading, spacing: AppSpacing.xs) {
@@ -489,12 +492,12 @@ private struct InlineLoadingMessage: View {
     }
 }
 
-#Preview {
+#Preview("Settings Simple Default") {
     SettingsView()
         .environmentObject(MasterStore())
 }
 
-#Preview("Settings Light Dynamic Type") {
+#Preview("Settings Simple Dynamic Type Large") {
     SettingsView()
         .environmentObject(MasterStore())
         .environment(\.dynamicTypeSize, .accessibility2)

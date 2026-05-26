@@ -14,14 +14,7 @@ struct AppScreen<Content: View>: View {
             }
             .padding(AppSpacing.lg)
         }
-        .background(
-            LinearGradient(
-                colors: [AppColor.backgroundTop, AppColor.background, AppColor.backgroundBottom],
-                startPoint: .topLeading,
-                endPoint: .bottomTrailing
-            )
-            .ignoresSafeArea()
-        )
+        .background(AppColor.background.ignoresSafeArea())
         .scrollContentBackground(.hidden)
     }
 }
@@ -42,8 +35,7 @@ struct AppSectionHeader: View {
             if let systemImage {
                 Image(systemName: systemImage)
                     .foregroundStyle(AppColor.appTint)
-                    .frame(width: 30, height: 30)
-                    .background(AppColor.appTint.opacity(0.12), in: Circle())
+                    .frame(width: 24, height: 24)
             }
             VStack(alignment: .leading, spacing: AppSpacing.xs) {
                 Text(title)
@@ -84,8 +76,8 @@ struct AppBadge: View {
         .font(AppTypography.badge)
         .padding(.horizontal, AppSpacing.sm)
         .padding(.vertical, 6)
-        .background(color.opacity(0.14), in: Capsule())
-        .overlay(Capsule().stroke(color.opacity(0.22), lineWidth: 1))
+        .background(color.opacity(0.10), in: RoundedRectangle(cornerRadius: AppRadius.sm, style: .continuous))
+        .overlay(RoundedRectangle(cornerRadius: AppRadius.sm, style: .continuous).stroke(color.opacity(0.18), lineWidth: 1))
         .foregroundStyle(color)
         .accessibilityLabel(text)
     }
@@ -99,9 +91,9 @@ struct WasteSymbol: View {
         Image(systemName: category?.symbolName ?? "trash.fill")
             .font(.system(size: size * 0.42, weight: .semibold))
             .frame(width: size, height: size)
-            .background(AppColor.categoryBackground(category), in: RoundedRectangle(cornerRadius: min(AppRadius.lg, size / 3), style: .continuous))
+            .background(AppColor.categoryBackground(category), in: Circle())
             .overlay(
-                RoundedRectangle(cornerRadius: min(AppRadius.lg, size / 3), style: .continuous)
+                Circle()
                     .stroke(AppColor.category(category).opacity(0.22), lineWidth: 1)
             )
             .foregroundStyle(AppColor.category(category))
@@ -241,7 +233,7 @@ struct CollectionEventCard: View {
                         .foregroundStyle(AppColor.success)
                     VStack(alignment: .leading, spacing: AppSpacing.xs) {
                         Text("出すごみはありません")
-                            .font(prominence == .primary ? .title3.weight(.heavy) : AppTypography.cardTitle)
+                            .font(prominence == .primary ? .title3.weight(.bold) : AppTypography.cardTitle)
                             .foregroundStyle(AppColor.text)
                         Text("今日はゆっくり確認だけで大丈夫です。")
                             .font(AppTypography.callout)
@@ -260,13 +252,12 @@ struct CollectionEventCard: View {
         .padding(AppSpacing.lg)
         .background(
             RoundedRectangle(cornerRadius: AppRadius.xl, style: .continuous)
-                .fill(prominence == .primary ? AppColor.cardBackground : AppColor.elevatedCardBackground)
+                .fill(AppColor.cardBackground)
         )
         .overlay(
             RoundedRectangle(cornerRadius: AppRadius.xl, style: .continuous)
-                .stroke(prominence == .primary ? AppColor.appTint.opacity(0.30) : AppColor.separator.opacity(0.50), lineWidth: prominence == .primary ? 1.4 : 0.8)
+                .stroke(prominence == .primary ? AppColor.appTint.opacity(0.32) : AppColor.separator, lineWidth: prominence == .primary ? 1.2 : 0.8)
         )
-        .shadow(color: AppShadow.cardColor, radius: prominence == .primary ? AppShadow.floatingRadius : AppShadow.subtleRadius, x: 0, y: prominence == .primary ? AppShadow.floatingY : AppShadow.subtleY)
         .accessibilityElement(children: .combine)
         .accessibilityHint(events.isEmpty ? "この日はごみ出し予定がありません。" : "ごみ種別と出し方の注意を確認できます。")
     }
@@ -347,7 +338,6 @@ struct QuickActionCard: View {
                 RoundedRectangle(cornerRadius: AppRadius.lg, style: .continuous)
                     .stroke(color.opacity(0.22), lineWidth: 1)
             )
-            .shadow(color: color.opacity(0.10), radius: 10, x: 0, y: 4)
         }
         .buttonStyle(.plain)
         .minimumTapTarget()

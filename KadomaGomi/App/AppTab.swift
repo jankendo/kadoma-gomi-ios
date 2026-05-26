@@ -2,9 +2,8 @@ import Foundation
 
 enum AppTab: Hashable {
     case home
-    case calendar
     case search
-    case bulky
+    case guide
+    case calendar
     case settings
 }
-

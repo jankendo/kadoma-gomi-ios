@@ -74,14 +74,7 @@ struct OnboardingView: View {
             .padding(.bottom, AppSpacing.xl)
             .accessibilityHint(page == pages.count - 1 ? "大倉町1-20をA地区として設定してホームを開きます。" : "次の説明へ進みます。")
         }
-        .background(
-            LinearGradient(
-                colors: [AppColor.backgroundTop, AppColor.background, AppColor.backgroundBottom],
-                startPoint: .topLeading,
-                endPoint: .bottomTrailing
-            )
-            .ignoresSafeArea()
-        )
+        .background(AppColor.background.ignoresSafeArea())
     }
 }
 
@@ -107,7 +100,6 @@ private struct OnboardingPageView: View {
                     RoundedRectangle(cornerRadius: AppRadius.xl, style: .continuous)
                         .stroke(page.color.opacity(0.25), lineWidth: 1)
                 )
-                .shadow(color: page.color.opacity(0.12), radius: 18, x: 0, y: 8)
                 .accessibilityHidden(true)
 
             VStack(spacing: AppSpacing.md) {
@@ -127,11 +119,11 @@ private struct OnboardingPageView: View {
     }
 }
 
-#Preview {
+#Preview("Onboarding Simple") {
     OnboardingView(complete: {}, skip: {})
 }
 
-#Preview("Onboarding Light iPhone SE") {
+#Preview("Onboarding Simple iPhone SE") {
     OnboardingView(complete: {}, skip: {})
         .previewLayout(.fixed(width: 320, height: 568))
 }

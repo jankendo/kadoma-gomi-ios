@@ -10,6 +10,10 @@ struct SearchView: View {
         _selectedCategoryId = State(initialValue: initialCategoryId)
     }
 
+    private var trimmedQuery: String {
+        query.trimmingCharacters(in: .whitespacesAndNewlines)
+    }
+
     private var searchedItems: [WasteItem] {
         let base = store.searchItems(query: query)
         guard let selectedCategoryId else { return base }
@@ -25,31 +29,33 @@ struct SearchView: View {
     var body: some View {
         NavigationStack {
             AppScreen {
-                SearchHeroCard(query: $query)
-                SearchIntroCard()
-                WasteGuideOverviewSection(
+                SimpleSearchHeader(query: $query)
+                SimpleCategoryFilter(
                     categories: visibleCategories,
-                    items: store.master.itemDictionary
+                    selectedCategoryId: $selectedCategoryId
                 )
-                CategoryFilterSection(
-                    categories: visibleCategories,
-                    selectedCategoryId: $selectedCategoryId,
-                    categoryColor: { AppColor.category($0) }
-                )
-                SearchResultsSection(
-                    query: query,
-                    selectedCategory: selectedCategoryId.flatMap(store.category(for:)),
-                    items: searchedItems,
-                    allItems: store.master.itemDictionary,
-                    categoryProvider: store.category(for:),
-                    clearSearch: clearSearch
-                )
+
+                if trimmedQuery.isEmpty {
+                    SearchEmptyInstruction(
+                        examples: ["ペットボトル", "スプレー缶", "段ボール", "モバイルバッテリー"],
+                        setQuery: { query = $0 }
+                    )
+                } else {
+                    SimpleSearchResultsSection(
+                        query: trimmedQuery,
+                        selectedCategory: selectedCategoryId.flatMap(store.category(for:)),
+                        items: searchedItems,
+                        allItems: store.master.itemDictionary,
+                        categoryProvider: store.category(for:),
+                        clearSearch: clearSearch
+                    )
+                }
             }
-            .navigationTitle("分別検索")
-            .toolbarBackground(AppColor.backgroundTop, for: .navigationBar)
-            .searchable(text: $query, placement: .navigationBarDrawer(displayMode: .automatic), prompt: "例: フライパン、ペット、PET")
-            .textInputAutocapitalization(.never)
-            .autocorrectionDisabled()
+            .navigationTitle("ごみ検索")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbarBackground(AppColor.header, for: .navigationBar)
+            .toolbarBackground(.visible, for: .navigationBar)
+            .toolbarColorScheme(.dark, for: .navigationBar)
         }
     }
 
@@ -59,101 +65,62 @@ struct SearchView: View {
     }
 }
 
-private struct SearchHeroCard: View {
+private struct SimpleSearchHeader: View {
     @Binding var query: String
-    private let examples = ["ペットボトル", "スプレー缶", "段ボール", "モバイルバッテリー"]
 
     var body: some View {
         VStack(alignment: .leading, spacing: AppSpacing.md) {
-            HStack(alignment: .top, spacing: AppSpacing.md) {
-                Image(systemName: AppIcon.search)
-                    .font(.title2.weight(.heavy))
-                    .frame(width: 54, height: 54)
-                    .background(AppColor.softMint, in: RoundedRectangle(cornerRadius: AppRadius.lg, style: .continuous))
-                    .foregroundStyle(AppColor.appTint)
-                    .accessibilityHidden(true)
-                VStack(alignment: .leading, spacing: AppSpacing.xs) {
-                    Text("何を捨てたいですか？")
-                        .font(AppTypography.heroTitle)
-                    Text("ひらがな・カタカナ・略語でも探せます")
-                        .font(AppTypography.callout.weight(.semibold))
-                        .foregroundStyle(AppColor.secondaryText)
-                }
-            }
+            Text("分別方法を知りたい品目名を入力してください。")
+                .font(.title3.weight(.bold))
+                .foregroundStyle(AppColor.text)
+                .fixedSize(horizontal: false, vertical: true)
 
             HStack(spacing: AppSpacing.sm) {
                 Image(systemName: AppIcon.search)
-                    .foregroundStyle(AppColor.appTint)
-                TextField("例: ペット、PET、ダンボール", text: $query)
+                    .foregroundStyle(AppColor.secondaryText)
+                TextField("例: フライパン、ペット、PET", text: $query)
+                    .font(AppTypography.body)
                     .textInputAutocapitalization(.never)
                     .autocorrectionDisabled()
                     .submitLabel(.search)
+                if !query.isEmpty {
+                    Button {
+                        query = ""
+                    } label: {
+                        Image(systemName: "xmark.circle.fill")
+                            .foregroundStyle(AppColor.tertiaryText)
+                    }
+                    .accessibilityLabel("検索語を消去")
+                }
             }
             .padding(AppSpacing.md)
-            .background(AppColor.cardBackground, in: RoundedRectangle(cornerRadius: AppRadius.lg, style: .continuous))
+            .background(AppColor.cardBackground, in: RoundedRectangle(cornerRadius: AppRadius.md, style: .continuous))
             .overlay(
-                RoundedRectangle(cornerRadius: AppRadius.lg, style: .continuous)
-                    .stroke(AppColor.appTint.opacity(0.25), lineWidth: 1)
+                RoundedRectangle(cornerRadius: AppRadius.md, style: .continuous)
+                    .stroke(AppColor.separator, lineWidth: 1)
             )
             .minimumTapTarget()
-
-            ScrollView(.horizontal, showsIndicators: false) {
-                HStack(spacing: AppSpacing.sm) {
-                    ForEach(examples, id: \.self) { example in
-                        Button(example) {
-                            query = example
-                        }
-                        .font(AppTypography.badge)
-                        .padding(.horizontal, AppSpacing.md)
-                        .padding(.vertical, AppSpacing.sm)
-                        .background(AppColor.appTint.opacity(0.12), in: Capsule())
-                        .foregroundStyle(AppColor.appTint)
-                    }
-                }
-                .padding(.vertical, 2)
-            }
-        }
-        .padding(AppSpacing.lg)
-        .background(
-            LinearGradient(colors: [AppColor.softBlue.opacity(0.75), AppColor.cardBackground], startPoint: .topLeading, endPoint: .bottomTrailing),
-            in: RoundedRectangle(cornerRadius: AppRadius.xl, style: .continuous)
-        )
-        .overlay(
-            RoundedRectangle(cornerRadius: AppRadius.xl, style: .continuous)
-                .stroke(AppColor.subTint.opacity(0.16), lineWidth: 1)
-        )
-        .shadow(color: AppShadow.cardColor, radius: AppShadow.floatingRadius, x: 0, y: AppShadow.floatingY)
-    }
-}
-
-private struct SearchIntroCard: View {
-    var body: some View {
-        VStack(alignment: .leading, spacing: AppSpacing.md) {
-            AppSectionHeader("検索のコツ", subtitle: "正式名が分からなくても大丈夫です", systemImage: AppIcon.officialCheck)
-            Text("迷いやすい品目は、カテゴリ名だけでなく出し方の注意も表示します。最終判断に迷う場合は公式情報を確認してください。")
-                .font(AppTypography.callout)
-                .foregroundStyle(AppColor.secondaryText)
-                .fixedSize(horizontal: false, vertical: true)
         }
         .appCard()
     }
 }
 
-private struct CategoryFilterSection: View {
+private struct SimpleCategoryFilter: View {
     let categories: [WasteCategory]
     @Binding var selectedCategoryId: String?
-    let categoryColor: (WasteCategory) -> Color
 
     var body: some View {
-        VStack(alignment: .leading, spacing: AppSpacing.md) {
-            AppSectionHeader("カテゴリで絞り込み", subtitle: selectedCategoryId == nil ? "すべて表示中" : "選択中のカテゴリだけ表示", systemImage: "line.3.horizontal.decrease.circle")
+        VStack(alignment: .leading, spacing: AppSpacing.sm) {
+            Text("カテゴリで絞り込み")
+                .font(AppTypography.cardTitle)
+                .foregroundStyle(AppColor.text)
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: AppSpacing.sm) {
                     CategoryFilterChip(title: "すべて", color: AppColor.appTint, isSelected: selectedCategoryId == nil) {
                         selectedCategoryId = nil
                     }
                     ForEach(categories) { category in
-                        CategoryFilterChip(title: category.shortName, color: categoryColor(category), isSelected: selectedCategoryId == category.id) {
+                        CategoryFilterChip(title: category.shortName, color: AppColor.category(category), isSelected: selectedCategoryId == category.id) {
                             selectedCategoryId = category.id
                         }
                     }
@@ -164,7 +131,57 @@ private struct CategoryFilterSection: View {
     }
 }
 
-private struct SearchResultsSection: View {
+private struct SearchEmptyInstruction: View {
+    let examples: [String]
+    let setQuery: (String) -> Void
+
+    var body: some View {
+        VStack(alignment: .center, spacing: AppSpacing.lg) {
+            Image(systemName: "magnifyingglass.circle")
+                .font(.system(size: 72, weight: .regular))
+                .foregroundStyle(AppColor.appTint)
+                .accessibilityHidden(true)
+
+            VStack(spacing: AppSpacing.sm) {
+                Text("品目名を入力してください")
+                    .font(.title2.weight(.bold))
+                    .foregroundStyle(AppColor.text)
+                Text("ひらがな、カタカナ、略語でも検索できます。")
+                    .font(AppTypography.body)
+                    .foregroundStyle(AppColor.secondaryText)
+                    .multilineTextAlignment(.center)
+            }
+
+            VStack(alignment: .leading, spacing: AppSpacing.sm) {
+                Text("よく探す例")
+                    .font(AppTypography.cardTitle)
+                    .foregroundStyle(AppColor.text)
+                LazyVGrid(columns: [GridItem(.adaptive(minimum: 120), spacing: AppSpacing.sm)], alignment: .leading, spacing: AppSpacing.sm) {
+                    ForEach(examples, id: \.self) { example in
+                        Button(example) {
+                            setQuery(example)
+                        }
+                        .font(AppTypography.callout.weight(.semibold))
+                        .padding(.horizontal, AppSpacing.md)
+                        .padding(.vertical, AppSpacing.sm)
+                        .frame(maxWidth: .infinity)
+                        .background(AppColor.cardBackground, in: RoundedRectangle(cornerRadius: AppRadius.md, style: .continuous))
+                        .overlay(
+                            RoundedRectangle(cornerRadius: AppRadius.md, style: .continuous)
+                                .stroke(AppColor.separator, lineWidth: 1)
+                        )
+                    }
+                }
+            }
+        }
+        .frame(maxWidth: .infinity)
+        .padding(.vertical, AppSpacing.xl)
+        .appCard()
+        .accessibilityElement(children: .contain)
+    }
+}
+
+private struct SimpleSearchResultsSection: View {
     let query: String
     let selectedCategory: WasteCategory?
     let items: [WasteItem]
@@ -174,23 +191,19 @@ private struct SearchResultsSection: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: AppSpacing.md) {
-            AppSectionHeader(
-                query.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ? "よく使う品目" : "検索結果",
-                subtitle: resultSubtitle,
-                systemImage: "list.bullet.rectangle"
-            )
+            AppSectionHeader("検索結果", subtitle: resultSubtitle, systemImage: "list.bullet")
 
             if items.isEmpty {
                 AppStateView(
                     kind: .empty,
                     title: "該当する品目が見つかりません",
-                    message: "短い名前、ひらがな、カタカナでも試せます。例: ペット、PET、カン、ダンボール。迷う場合は公式ページで最新情報を確認してください。",
+                    message: "短い名前や別の表記でも試してください。迷う場合は門真市公式情報も確認してください。",
                     actionTitle: "検索条件をクリア",
                     action: clearSearch
                 )
             } else {
-                VStack(spacing: AppSpacing.md) {
-                    ForEach(items.prefix(40)) { item in
+                VStack(spacing: 0) {
+                    ForEach(Array(displayedItems.enumerated()), id: \.element.id) { index, item in
                         NavigationLink {
                             WasteItemDetailView(
                                 item: item,
@@ -198,21 +211,30 @@ private struct SearchResultsSection: View {
                                 relatedItems: relatedItems(for: item)
                             )
                         } label: {
-                            WasteItemResultCard(item: item, category: categoryProvider(item.categoryId))
+                            SimpleWasteItemResultRow(item: item, category: categoryProvider(item.categoryId))
                         }
                         .buttonStyle(.plain)
+
+                        if index < displayedItems.count - 1 {
+                            Divider().padding(.leading, 66)
+                        }
                     }
                 }
+                .background(AppColor.cardBackground, in: RoundedRectangle(cornerRadius: AppRadius.lg, style: .continuous))
+                .overlay(
+                    RoundedRectangle(cornerRadius: AppRadius.lg, style: .continuous)
+                        .stroke(AppColor.separator, lineWidth: 0.8)
+                )
             }
         }
     }
 
     private var resultSubtitle: String {
-        let categoryText = selectedCategory?.name ?? "全カテゴリ"
-        if query.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
-            return "\(categoryText)から、日常で迷いやすい品目を表示"
-        }
-        return "\(categoryText)で\(items.count)件"
+        "\(selectedCategory?.name ?? "全カテゴリ")で\(items.count)件"
+    }
+
+    private var displayedItems: [WasteItem] {
+        Array(items.prefix(40))
     }
 
     private func relatedItems(for item: WasteItem) -> [WasteItem] {
@@ -223,132 +245,77 @@ private struct SearchResultsSection: View {
     }
 }
 
-private struct WasteItemResultCard: View {
+private struct SimpleWasteItemResultRow: View {
     let item: WasteItem
     let category: WasteCategory?
 
     var body: some View {
-        VStack(alignment: .leading, spacing: AppSpacing.md) {
-            HStack(alignment: .top, spacing: AppSpacing.md) {
-                WasteSymbol(category: category, size: 44)
-                VStack(alignment: .leading, spacing: AppSpacing.xs) {
-                    Text(item.primaryName)
-                        .font(AppTypography.cardTitle)
-                    if let category {
-                        AppBadge(category.name, color: AppColor.category(category), systemImage: category.symbolName)
-                    }
+        HStack(alignment: .top, spacing: AppSpacing.md) {
+            WasteSymbol(category: category, size: 46)
+            VStack(alignment: .leading, spacing: AppSpacing.xs) {
+                Text(item.primaryName)
+                    .font(AppTypography.cardTitle)
+                    .foregroundStyle(AppColor.text)
+                if let category {
+                    Text(category.name)
+                        .font(AppTypography.callout.weight(.semibold))
+                        .foregroundStyle(AppColor.category(category))
                 }
-                Spacer(minLength: 0)
-            }
-
-            Text(item.disposalGuide ?? item.notes)
-                .font(AppTypography.body)
-                .foregroundStyle(AppColor.text)
-                .fixedSize(horizontal: false, vertical: true)
-
-            if item.hazardFlag || item.oversizedFlag || item.needsOfficialCheck {
+                Text(item.disposalGuide ?? item.notes)
+                    .font(AppTypography.callout)
+                    .foregroundStyle(AppColor.secondaryText)
+                    .lineLimit(3)
+                    .fixedSize(horizontal: false, vertical: true)
                 ViewThatFits(in: .horizontal) {
-                    HStack(spacing: AppSpacing.sm) {
-                        statusBadges
-                    }
-                    VStack(alignment: .leading, spacing: AppSpacing.xs) {
-                        statusBadges
-                    }
+                    HStack(spacing: AppSpacing.xs) { statusBadges }
+                    VStack(alignment: .leading, spacing: AppSpacing.xs) { statusBadges }
                 }
             }
-
-            if let category {
-                VStack(alignment: .leading, spacing: AppSpacing.xs) {
-                    Text("出し方の要点")
-                        .font(AppTypography.badge)
-                        .foregroundStyle(AppColor.secondaryText)
-                    VStack(alignment: .leading, spacing: AppSpacing.xs) {
-                        ForEach((item.detailSteps.isEmpty ? category.guideSteps : item.detailSteps).prefix(3), id: \.self) { step in
-                            HStack(alignment: .top, spacing: AppSpacing.xs) {
-                                Image(systemName: AppIcon.success)
-                                    .font(.caption.weight(.bold))
-                                    .foregroundStyle(AppColor.category(category))
-                                Text(step)
-                                    .font(AppTypography.callout)
-                                    .foregroundStyle(AppColor.secondaryText)
-                                    .fixedSize(horizontal: false, vertical: true)
-                            }
-                        }
-                    }
-                }
-            }
-
-            if let firstWarning = item.warnings?.first {
-                Text(firstWarning)
-                    .font(AppTypography.callout.weight(.semibold))
-                    .foregroundStyle(item.hazardFlag ? AppColor.error : AppColor.warning)
-                    .fixedSize(horizontal: false, vertical: true)
-            }
-
-            if !item.searchAliases.isEmpty {
-                Text("関連: \(item.searchAliases.prefix(6).joined(separator: " / "))")
-                    .font(AppTypography.footnote)
-                    .foregroundStyle(AppColor.tertiaryText)
-                    .fixedSize(horizontal: false, vertical: true)
-            }
-
-            HStack(spacing: AppSpacing.xs) {
-                Text("詳しい出し方を見る")
-                    .font(AppTypography.callout.weight(.bold))
-                Image(systemName: "chevron.right")
-                    .font(.caption.weight(.bold))
-            }
-            .foregroundStyle(AppColor.category(category))
-
+            Spacer(minLength: 0)
+            Image(systemName: "chevron.right")
+                .font(.footnote.weight(.semibold))
+                .foregroundStyle(AppColor.tertiaryText)
         }
-        .padding(AppSpacing.lg)
-        .background(
-            LinearGradient(colors: [AppColor.cardBackground, AppColor.categoryBackground(category).opacity(0.65)], startPoint: .topLeading, endPoint: .bottomTrailing),
-            in: RoundedRectangle(cornerRadius: AppRadius.xl, style: .continuous)
-        )
-        .overlay(
-            RoundedRectangle(cornerRadius: AppRadius.xl, style: .continuous)
-                .stroke(AppColor.category(category).opacity(0.22), lineWidth: 1)
-        )
-        .shadow(color: AppColor.category(category).opacity(0.10), radius: 14, x: 0, y: 6)
+        .padding(AppSpacing.md)
+        .contentShape(Rectangle())
         .accessibilityElement(children: .combine)
-        .accessibilityHint("品目のカテゴリ、出し方、注意を確認できます。")
+        .accessibilityHint("詳しい出し方を開きます。")
     }
 
     @ViewBuilder
     private var statusBadges: some View {
         if item.hazardFlag {
-            AppBadge("注意品目", color: AppColor.error, systemImage: AppIcon.warning)
+            AppBadge("注意", color: AppColor.error, systemImage: AppIcon.warning)
         }
         if item.oversizedFlag {
             AppBadge("粗大候補", color: AppColor.warning, systemImage: AppIcon.bulky)
         }
         if item.needsOfficialCheck {
-            AppBadge("公式確認推奨", color: AppColor.official, systemImage: AppIcon.official)
+            AppBadge("公式確認", color: AppColor.official, systemImage: AppIcon.official)
         }
     }
 }
 
-#Preview {
+#Preview("Search Simple Default") {
     SearchView()
         .environmentObject(MasterStore())
 }
 
-#Preview("Search Light Dynamic Type") {
-    SearchView()
+#Preview("Search Simple Result") {
+    SearchView(initialQuery: "ペットボトル")
         .environmentObject(MasterStore())
-        .environment(\.dynamicTypeSize, .accessibility2)
-        .previewLayout(.fixed(width: 430, height: 932))
+        .previewLayout(.fixed(width: 393, height: 852))
 }
 
-#Preview("Search Hazard Result") {
+#Preview("Search Simple Hazard Item") {
     SearchView(initialQuery: "スプレー缶")
         .environmentObject(MasterStore())
         .previewLayout(.fixed(width: 393, height: 852))
 }
 
-#Preview("Search No Result") {
-    SearchView(initialQuery: "これは存在しない品目")
+#Preview("Search Simple Dynamic Type Large") {
+    SearchView(initialQuery: "段ボール")
         .environmentObject(MasterStore())
+        .environment(\.dynamicTypeSize, .accessibility2)
         .previewLayout(.fixed(width: 393, height: 852))
 }
